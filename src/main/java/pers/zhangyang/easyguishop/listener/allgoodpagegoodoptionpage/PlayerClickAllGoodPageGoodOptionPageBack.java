@@ -38,21 +38,11 @@ public class PlayerClickAllGoodPageGoodOptionPageBack implements Listener {
 
         AllGoodPageGoodOptionPage allGoodPageGoodOptionPage = (AllGoodPageGoodOptionPage) holder;
         InventoryHolder inventoryHolder=allGoodPageGoodOptionPage.getPreviousHolder();
-        if (inventoryHolder instanceof AllShopPageShopOptionPage){
-            AllShopPageShopOptionPage allShopPageShopOptionPage= (AllShopPageShopOptionPage) inventoryHolder;
-            try {
-                allShopPageShopOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (inventoryHolder instanceof CollectedShopPageShopOptionPage){
-            CollectedShopPageShopOptionPage collectedShopPageShopOptionPage= (CollectedShopPageShopOptionPage) inventoryHolder;
-            try {
-                collectedShopPageShopOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        AllGoodPage allGoodPage= (AllGoodPage) inventoryHolder;
+        try {
+            allGoodPage.refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
 

@@ -10,6 +10,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.AllGoodPage;
 import pers.zhangyang.easyguishop.domain.AllShopPageShopOptionPage;
+import pers.zhangyang.easyguishop.domain.CollectedShopPageShopOptionPage;
 
 import java.sql.SQLException;
 
@@ -34,11 +35,24 @@ public class PlayerClickAllGoodPageBack implements Listener {
             return;
         }
         AllGoodPage allGoodPage = (AllGoodPage) holder;
-        AllShopPageShopOptionPage allShopPageShopOptionPage = (AllShopPageShopOptionPage) allGoodPage.getPreviousHolder();
-        try {
-            allShopPageShopOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        InventoryHolder inventoryHolder=allGoodPage.getPreviousHolder();
+
+        if (inventoryHolder instanceof AllShopPageShopOptionPage){
+            AllShopPageShopOptionPage allShopPageShopOptionPage = (AllShopPageShopOptionPage) allGoodPage.getPreviousHolder();
+            try {
+                allShopPageShopOptionPage.send();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (inventoryHolder instanceof CollectedShopPageShopOptionPage){
+            CollectedShopPageShopOptionPage collectedShopPageShopOptionPage = (CollectedShopPageShopOptionPage) allGoodPage.getPreviousHolder();
+            try {
+                collectedShopPageShopOptionPage.send();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
