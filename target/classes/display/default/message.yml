@@ -15,7 +15,7 @@ message:
 
   chat:
     failureGetLatestVersion:
-      - "&c&l获得最新版本失败。"
+      - "&c&l获得EasyGuiShop最新版本失败。"
     notPlayer:
       - "&c&l您不是玩家，不能执行这条命令。"
     notPermission:
@@ -60,7 +60,7 @@ message:
     invalidArgument:
       - "&c&l无效参数 &f{argument}。"
     notifyVersion:
-      - "&b&l当前版本是 &f{current}，&b&l最新版本是 &f{latest}。"
+      - "&b&lEasyGuiShop的当前版本是 &f{current_version}，&b&l最新版本是 &f{latest_version}。"
     notItemInMainHand:
       - "&c&l请在主手拿着物品。"
     invalidNumber:

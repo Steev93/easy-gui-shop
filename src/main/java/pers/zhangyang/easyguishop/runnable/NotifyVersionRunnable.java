@@ -29,15 +29,15 @@ public class NotifyVersionRunnable extends BukkitRunnable {
         }
         List<String> list;
         if (latestVersion != null) {
-            list = MessageYaml.INSTANCE.getStringList("notifyVersion");
+            list = MessageYaml.INSTANCE.getStringList("message.chat.notifyVersion");
             HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("{current}", EasyGuiShop.instance.getDescription().getVersion());
-            hashMap.put("{latest}", latestVersion);
+            hashMap.put("{current_version}", EasyGuiShop.instance.getDescription().getVersion());
+            hashMap.put("{latest_version}", latestVersion);
             if (list != null) {
                 ReplaceUtil.replace(list, hashMap);
             }
         } else {
-            list = MessageYaml.INSTANCE.getStringList("failureGetLatestVersion");
+            list = MessageYaml.INSTANCE.getStringList("message.chat.failureGetLatestVersion");
         }
         MessageUtil.sendMessageTo(sender, list);
 

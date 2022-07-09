@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easyguishop.completer.*;
 import pers.zhangyang.easyguishop.domain.*;
 import pers.zhangyang.easyguishop.executor.*;
+import pers.zhangyang.easyguishop.listener.PlayerJoin;
 import pers.zhangyang.easyguishop.listener.allgoodpage.*;
 import pers.zhangyang.easyguishop.listener.allgoodpagegoodoptionpage.PlayerClickAllGoodPageGoodOptionPage;
 import pers.zhangyang.easyguishop.listener.allgoodpagegoodoptionpage.PlayerClickAllGoodPageGoodOptionPageBack;
@@ -248,6 +249,8 @@ public class EasyGuiShop extends JavaPlugin {
     }
 
     private void registerListener() {
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(),this);
+
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageIconPageIconOptionPage(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageIconPageIconOptionPageBack(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageIconPageIconOptionPageUseShopIcon(), this);

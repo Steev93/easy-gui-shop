@@ -131,6 +131,7 @@ pers\zhangyang\easyguishop\domain\AllShopPage$1.class
 pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageTakeGood.class
 pers\zhangyang\easyguishop\completer\SetIconLimitTimeCompleter.class
 pers\zhangyang\easyguishop\meta\TradeRecordMeta.class
+pers\zhangyang\easyguishop\listener\PlayerJoin.class
 pers\zhangyang\easyguishop\util\ResourceUtil.class
 pers\zhangyang\easyguishop\listener\buyiconpageiconoptionpage\PlayerClickBuyIconPageIconOptionPage.class
 pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageBack.class
