@@ -1,0 +1,80 @@
+completer:
+
+  #当输入了/easyGuiShop后将提示补全以下内容
+  easyGuiShop:
+    - "help"
+    - "reloadPlugin"
+    - "correctYaml"
+    - "correctDatabase"
+    - "openGui"
+    - "plusShopPopularity"
+    - "subtractShopPopularity"
+    - "createIcon"
+    - "deleteIcon"
+    - "setIconVaultPrice"
+    - "setIconPlayerPointsPrice"
+    - "setIconItemPrice"
+    - "setIconLimitTime"
+    - "resetIconLimitTime"
+    - "setIconName"
+    - "setIconStock"
+    - "setGoodSystem"
+    - "setShopSystem"
+    - "setIconSystem"
+
+  #当输入了/easyGuiShop plusShopPopularity后将提示补全以下内容
+  easyGuiShopPlusPopularity:
+    - "<商店名字>"
+
+  #当输入了/easyGuiShop plusShopPopularity 值后将提示补全以下内容
+  easyGuiShopPlusPopularity$:
+    - "<数量>"
+
+  easyGuiShopSubtractPopularity:
+    - "<商店>"
+  easyGuiShopSubtractPopularity$:
+    - "<数量>"
+  easyGuiShopDeleteIcon:
+    - "<图标名字>"
+  easyGuiShopCreateIcon:
+    - "<图标名字>"
+  easyGuiShopSetIconVaultPrice:
+    - "<图标名字>"
+  easyGuiShopSetIconVaultPrice$:
+    - "<价格>"
+  easyGuiShopSetIconPlayerPointsPrice:
+    - "<图标名字>"
+  easyGuiShopSetIconPlayerPointsPrice$:
+    - "<价格>"
+  easyGuiShopSetIconItemPrice:
+    - "<图标名字>"
+  easyGuiShopSetIconItemPrice$:
+    - "<价格>"
+  easyGuiShopSetIconNamePrice:
+    - "<图标名字>"
+  easyGuiShopSetIconNamePrice$:
+    - "<新名字>"
+  easyGuiShopSetIconStock:
+    - "<图标名字>"
+  easyGuiShopSetIconStock$:
+    - "<数量>"
+  easyGuiShopSetIconSystem:
+    - "<图标名字>"
+  easyGuiShopSetIconSystem$:
+    - "<true|false>"
+  easyGuiShopSetShopSystem:
+    - "<店铺名字>"
+  easyGuiShopSetShopSystem$:
+    - "<true|false>"
+  easyGuiShopSetGoodSystem:
+    - "<店铺名字>"
+  easyGuiShopSetGoodSystem$:
+    - "<商品名字>"
+  easyGuiShopSetGoodSystem$$:
+    - "<true|false>"
+  easyGuiShopSetIconLimitTime:
+    - "<图标名字>"
+  easyGuiShopSetIconLimitTime$:
+    - "<时间>"
+  easyGuiShopResetIconLimitTime:
+    - "<图标名字>"

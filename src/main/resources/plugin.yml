@@ -1,0 +1,11 @@
+name: EasyGuiShop
+version: 2.0.0
+main: pers.zhangyang.easyguishop.EasyGuiShop
+api-version: 1.13
+commands:
+  EasyGuiShop:
+    aliases: egs
+
+softdepend:
+  - Vault
+  - PlayerPoints
