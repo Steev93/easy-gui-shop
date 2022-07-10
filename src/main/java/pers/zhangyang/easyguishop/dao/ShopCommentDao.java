@@ -20,12 +20,11 @@ public class ShopCommentDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS shop_comment(" +
-                "uuid String NOT NULL ," +
-                "commenter_uuid String NOT NULL ," +
-                "shop_uuid String NOT NULL ," +
-                "comment_time long NOT NULL ," +
-                "content String NOT NULL ," +
-                "PRIMARY KEY (uuid)" +
+                "uuid TEXT   ," +
+                "commenter_uuid TEXT   ," +
+                "shop_uuid TEXT   ," +
+                "comment_time BIGINT   ," +
+                "content TEXT   " +
                 ")");
         return ps.executeUpdate();
     }

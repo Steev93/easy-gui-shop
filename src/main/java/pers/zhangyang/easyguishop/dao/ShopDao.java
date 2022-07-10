@@ -19,17 +19,16 @@ public class ShopDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS shop(" +
-                "uuid String NOT NULL ," +
-                "name String NOT NULL ," +
-                "owner_uuid String NOT NULL ," +
-                "create_time long NOT NULL ," +
-                "collect_amount int NOT NULL ," +
-                "page_view int NOT NULL ," +
-                "popularity int NOT NULL ," +
-                "icon_uuid String  ," +
-                "location String  ," +
-                "description String ," +
-                "PRIMARY KEY (uuid)" +
+                "uuid TEXT   ," +
+                "`name` TEXT   ," +
+                "owner_uuid TEXT   ," +
+                "create_time BIGINT   ," +
+                "collect_amount INT   ," +
+                "page_view INT   ," +
+                "popularity INT   ," +
+                "icon_uuid TEXT  ," +
+                "location TEXT  ," +
+                "description TEXT " +
                 ")");
         return ps.executeUpdate();
 

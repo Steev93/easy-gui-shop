@@ -19,10 +19,9 @@ public class ItemStockDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS item_stock(" +
-                "player_uuid String NOT NULL ," +
-                "item_stack String NOT NULL ," +
-                "amount int NOT NULL ," +
-                "PRIMARY KEY (player_uuid,item_stack)" +
+                "player_uuid TEXT   ," +
+                "item_stack TEXT   ," +
+                "amount INT   " +
                 ")");
         return ps.executeUpdate();
 

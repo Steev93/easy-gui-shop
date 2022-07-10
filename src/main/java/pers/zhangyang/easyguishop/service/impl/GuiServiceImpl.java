@@ -440,7 +440,6 @@ public class GuiServiceImpl implements GuiService {
         }
         goodMeta.setPlayerPointsPrice(price);
         goodMeta.setVaultPrice(null);
-        goodMeta.setExperiencePrice(null);
         goodMeta.setItemPrice(null);
         goodMeta.setCurrencyItemStack(null);
         GoodDao.INSTANCE.deleteByUuid(goodMeta.getUuid());
@@ -457,7 +456,6 @@ public class GuiServiceImpl implements GuiService {
         goodMeta.setCurrencyItemStack(currencyData);
         goodMeta.setPlayerPointsPrice(null);
         goodMeta.setVaultPrice(null);
-        goodMeta.setExperiencePrice(null);
         GoodDao.INSTANCE.deleteByUuid(goodMeta.getUuid());
         GoodDao.INSTANCE.insert(goodMeta);
     }
@@ -470,7 +468,6 @@ public class GuiServiceImpl implements GuiService {
         }
         goodMeta.setVaultPrice(price);
         goodMeta.setPlayerPointsPrice(null);
-        goodMeta.setExperiencePrice(null);
         goodMeta.setItemPrice(null);
         goodMeta.setCurrencyItemStack(null);
         GoodDao.INSTANCE.deleteByUuid(goodMeta.getUuid());

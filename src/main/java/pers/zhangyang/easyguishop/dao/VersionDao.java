@@ -18,10 +18,9 @@ public class VersionDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS version (" +
-                "  big int NOT NULL ," +
-                "  middle int NOT NULL ," +
-                "  small int NOT NULL ," +
-                "  PRIMARY KEY (big,middle,small)" +
+                "  big INT   ," +
+                "  middle INT   ," +
+                "  small INT  " +
                 ")");
         return ps.executeUpdate();
 

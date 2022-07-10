@@ -18,21 +18,19 @@ public class GoodDao {
     public int init() throws SQLException {
         PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS good(" +
-                "uuid String NOT NULL ," +
-                "name String NOT NULL ," +
-                "good_item_stack NOT NULL ," +
-                "type String NOT NULL ," +
-                "create_time long NOT NULL ," +
-                "system boolean NOT NULL ," +
-                "stock int NOT NULL ," +
-                "shop_uuid String NOT NULL ," +
-                "limit_time long ," +
-                "currency_item_stack int ," +
-                "experience_price int ," +
-                "item_price int ," +
-                "vault_price double ," +
-                "player_points_price int ," +
-                "PRIMARY KEY (uuid)" +
+                "uuid TEXT   ," +
+                "`name` TEXT   ," +
+                "good_item_stack TEXT   ," +
+                "`type` TEXT   ," +
+                "create_time BIGINT   ," +
+                "`system` BIT   ," +
+                "stock INT   ," +
+                "shop_uuid TEXT   ," +
+                "limit_time INT ," +
+                "currency_item_stack TEXT ," +
+                "item_price INT ," +
+                "vault_price DOUBLE ," +
+                "player_points_price INT " +
                 ")");
         return ps.executeUpdate();
     }
@@ -40,8 +38,8 @@ public class GoodDao {
     public int insert(@NotNull GoodMeta goodMeta) throws SQLException {
         PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "INSERT INTO good (uuid,name,good_item_stack,type,create_time,system,stock,shop_uuid,limit_time," +
-                "currency_item_stack,experience_price,item_price,vault_price,player_points_price)" +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                "currency_item_stack,item_price,vault_price,player_points_price)" +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, goodMeta.getUuid());
         ps.setString(2, goodMeta.getName());
         ps.setString(3, goodMeta.getGoodItemStack());
@@ -52,10 +50,9 @@ public class GoodDao {
         ps.setObject(8, goodMeta.getShopUuid());
         ps.setObject(9, goodMeta.getLimitTime());
         ps.setObject(10, goodMeta.getCurrencyItemStack());
-        ps.setObject(11, goodMeta.getExperiencePrice());
-        ps.setObject(12, goodMeta.getItemPrice());
-        ps.setObject(13, goodMeta.getVaultPrice());
-        ps.setObject(14, goodMeta.getPlayerPointsPrice());
+        ps.setObject(11, goodMeta.getItemPrice());
+        ps.setObject(12, goodMeta.getVaultPrice());
+        ps.setObject(13, goodMeta.getPlayerPointsPrice());
         return ps.executeUpdate();
     }
 
@@ -131,7 +128,6 @@ public class GoodDao {
                 rs.getBoolean("system"), rs.getInt("stock"), rs.getString("shop_uuid"));
         goodMeta.setLimitTime((Integer) rs.getObject("limit_time"));
         goodMeta.setCurrencyItemStack(rs.getString("currency_item_stack"));
-        goodMeta.setExperiencePrice((Integer) rs.getObject("experience_price"));
         goodMeta.setItemPrice((Integer) rs.getObject("item_price"));
         goodMeta.setVaultPrice((Double) rs.getObject("vault_price"));
         goodMeta.setPlayerPointsPrice((Integer) rs.getObject("player_points_price"));

@@ -53,6 +53,7 @@ import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
 
 import java.io.IOException;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

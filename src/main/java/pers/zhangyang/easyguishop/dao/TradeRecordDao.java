@@ -19,20 +19,19 @@ public class TradeRecordDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS trade_record(" +
-                "uuid String NOT NULL ," +
-                "customer_uuid String NOT NULL ," +
-                "merchant_uuid String NOT NULL ," +
-                "good_item_stack String NOT NULL ," +
-                "trade_amount int NOT NULL ," +
-                "good_system boolean NOT NULL ," +
-                "trade_time String NOT NULL ," +
-                "good_type String NOT NULL ," +
-                "trade_tax_rate double ," +
-                "good_currency_item_stack int ," +
-                "good_vault_price double ," +
-                "good_player_points_price int ," +
-                "good_item_price int ," +
-                "PRIMARY KEY (uuid)" +
+                "uuid TEXT   ," +
+                "customer_uuid TEXT   ," +
+                "merchant_uuid TEXT   ," +
+                "good_item_stack TEXT   ," +
+                "trade_amount INT   ," +
+                "good_system BIT   ," +
+                "trade_time BIGINT   ," +
+                "good_type TEXT   ," +
+                "trade_tax_rate DOUBLE ," +
+                "good_currency_item_stack TEXT ," +
+                "good_vault_price DOUBLE ," +
+                "good_player_points_price INT ," +
+                "good_item_price INT " +
                 ")");
         return ps.executeUpdate();
 

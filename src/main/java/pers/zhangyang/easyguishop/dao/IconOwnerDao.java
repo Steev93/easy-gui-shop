@@ -20,9 +20,8 @@ public class IconOwnerDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS icon_owner(" +
-                "icon_uuid String NOT NULL ," +
-                "owner_uuid String NOT NULL ," +
-                "PRIMARY KEY (icon_uuid,owner_uuid)" +
+                "icon_uuid TEXT   ," +
+                "owner_uuid TEXT   " +
                 ")");
         return ps.executeUpdate();
 

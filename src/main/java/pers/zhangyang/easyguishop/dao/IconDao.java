@@ -20,18 +20,17 @@ public class IconDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS icon(" +
-                "uuid String NOT NULL ," +
-                "name String NOT NULL ," +
-                "create_time long NOT NULL ," +
-                "stock int NOT NULL ," +
-                "icon_item_stack String NOT NULL ," +
-                "system boolean NOT NULL ," +
-                "limit_time int ," +
-                "currency_item_stack String  ," +
-                "item_price int ," +
-                "vault_price double ," +
-                "player_points_price int ," +
-                "PRIMARY KEY (uuid)" +
+                "uuid TEXT   ," +
+                "`name` TEXT   ," +
+                "create_time BIGINT   ," +
+                "stock INT   ," +
+                "icon_item_stack TEXT   ," +
+                "`system` BIT   ," +
+                "limit_time INT ," +
+                "currency_item_stack TEXT  ," +
+                "item_price INT ," +
+                "vault_price DOUBLE ," +
+                "player_points_price INT " +
                 ")");
         return ps.executeUpdate();
 

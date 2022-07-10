@@ -20,9 +20,8 @@ public class ShopCollectorDao {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
                 "CREATE TABLE IF NOT EXISTS shop_collector(" +
-                "shop_uuid String NOT NULL ," +
-                "collector_uuid String NOT NULL ," +
-                "PRIMARY KEY (shop_uuid,collector_uuid)" +
+                "shop_uuid TEXT   ," +
+                "collector_uuid TEXT   " +
                 ")");
         return ps.executeUpdate();
     }

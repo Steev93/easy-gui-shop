@@ -17,7 +17,6 @@ public class GoodMeta {
 
     private Integer limitTime;
     private String currencyItemStack;
-    private Integer experiencePrice;
     private Integer itemPrice;
     private Double vaultPrice;
     private Integer playerPointsPrice;
@@ -111,15 +110,6 @@ public class GoodMeta {
     }
 
     @Nullable
-    public Integer getExperiencePrice() {
-        return experiencePrice;
-    }
-
-    public void setExperiencePrice(@Nullable Integer experiencePrice) {
-        this.experiencePrice = experiencePrice;
-    }
-
-    @Nullable
     public Integer getItemPrice() {
         return itemPrice;
     }
@@ -151,12 +141,11 @@ public class GoodMeta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GoodMeta goodMeta = (GoodMeta) o;
-        return createTime == goodMeta.createTime && system == goodMeta.system && stock == goodMeta.stock && Objects.equals(uuid, goodMeta.uuid) && Objects.equals(name, goodMeta.name) && Objects.equals(GoodItemStack, goodMeta.GoodItemStack) && Objects.equals(type, goodMeta.type) && Objects.equals(shopUuid, goodMeta.shopUuid) && Objects.equals(limitTime, goodMeta.limitTime) && Objects.equals(currencyItemStack, goodMeta.currencyItemStack) && Objects.equals(experiencePrice, goodMeta.experiencePrice) && Objects.equals(itemPrice, goodMeta.itemPrice) && Objects.equals(vaultPrice, goodMeta.vaultPrice) && Objects.equals(playerPointsPrice, goodMeta.playerPointsPrice);
+        return createTime == goodMeta.createTime && system == goodMeta.system && stock == goodMeta.stock && Objects.equals(uuid, goodMeta.uuid) && Objects.equals(name, goodMeta.name) && Objects.equals(GoodItemStack, goodMeta.GoodItemStack) && Objects.equals(type, goodMeta.type) && Objects.equals(shopUuid, goodMeta.shopUuid) && Objects.equals(limitTime, goodMeta.limitTime) && Objects.equals(currencyItemStack, goodMeta.currencyItemStack) && Objects.equals(itemPrice, goodMeta.itemPrice) && Objects.equals(vaultPrice, goodMeta.vaultPrice) && Objects.equals(playerPointsPrice, goodMeta.playerPointsPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, name, GoodItemStack, type, createTime, system, stock, shopUuid, limitTime, currencyItemStack, experiencePrice, itemPrice, vaultPrice, playerPointsPrice);
+        return Objects.hash(uuid, name, GoodItemStack, type, createTime, system, stock, shopUuid, limitTime, currencyItemStack, itemPrice, vaultPrice, playerPointsPrice);
     }
-
 }
