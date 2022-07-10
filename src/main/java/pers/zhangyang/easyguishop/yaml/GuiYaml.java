@@ -1,9 +1,11 @@
 package pers.zhangyang.easyguishop.yaml;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.base.YamlBase;
+import pers.zhangyang.easyguishop.exception.NotApplicableException;
 import pers.zhangyang.easyguishop.util.ItemStackUtil;
 import pers.zhangyang.easyguishop.util.MinecraftVersionUtil;
 
@@ -41,9 +43,17 @@ public class GuiYaml extends YamlBase {
         }
         if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil
                 .getMiddleVersion() < 13) {
-            return ItemStackUtil.getItemStack(material, displayName, lore, itemFlagList, amount);
+            try {
+                return ItemStackUtil.getItemStack(material, displayName, lore, itemFlagList, amount);
+            } catch (NotApplicableException e) {
+                return new ItemStack(material);
+            }
         } else {
-            return ItemStackUtil.getItemStack(material, displayName, lore, itemFlagList, amount, customModelData);
+            try {
+                return ItemStackUtil.getItemStack(material, displayName, lore, itemFlagList, amount, customModelData);
+            } catch (NotApplicableException e) {
+                return new ItemStack(material);
+            }
         }
     }
 }

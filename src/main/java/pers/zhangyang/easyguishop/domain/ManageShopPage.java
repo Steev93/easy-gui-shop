@@ -11,6 +11,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.ManageShopPageStatsEnum;
+import pers.zhangyang.easyguishop.exception.NotApplicableException;
 import pers.zhangyang.easyguishop.exception.NotExistNextException;
 import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.meta.IconMeta;
@@ -134,13 +135,21 @@ public class ManageShopPage implements InventoryHolder {
                 }
                 itemStack = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
                 ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.manageShopPage.manageShopPageShopOptionPage");
-                ItemStackUtil.apply(tem, itemStack);
+                try {
+                    ItemStackUtil.apply(tem, itemStack);
+                } catch (NotApplicableException e) {
+                    itemStack=tem;
+                }
 
             } else {
                 if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableShopUsePlayerHead")) {
                     itemStack = ItemStackUtil.getPlayerSkullItem(owner);
                     ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.manageShopPage.manageShopPageShopOptionPage");
-                    ItemStackUtil.apply(tem, itemStack);
+                    try {
+                        ItemStackUtil.apply(tem, itemStack);
+                    } catch (NotApplicableException e) {
+                        itemStack=tem;
+                    }
                 } else {
                     itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageShopPage.manageShopPageShopOptionPage");
                 }

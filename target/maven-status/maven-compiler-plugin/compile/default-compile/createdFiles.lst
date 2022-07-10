@@ -214,6 +214,7 @@ pers\zhangyang\easyguishop\meta\ItemStockMeta.class
 pers\zhangyang\easyguishop\util\MaterialDataUtil.class
 pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock.class
 pers\zhangyang\easyguishop\listener\shopcommentpage\PlayerClickShopCommentPageSearchByCommenter.class
+pers\zhangyang\easyguishop\exception\NotApplicableException.class
 pers\zhangyang\easyguishop\exception\NotExistShopException.class
 pers\zhangyang\easyguishop\service\impl\GuiServiceImpl$2.class
 pers\zhangyang\easyguishop\enumration\BuyIconPageStatsEnum.class

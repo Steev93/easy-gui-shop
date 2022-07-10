@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pers.zhangyang.easyguishop.exception.NotApplicableException;
 import pers.zhangyang.easyguishop.exception.UnsupportedMinecraftVersionException;
 
 import java.util.List;
@@ -18,9 +19,11 @@ import java.util.Set;
 
 public class ItemStackUtil {
 
+    @NotNull
     public static ItemStack getPlayerSkullItem(OfflinePlayer player) {
         ItemStack itemStack = getPlayerSkullItem();
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+        assert skullMeta != null;
         if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil.getMiddleVersion() < 13) {
             skullMeta.setOwner(player.getName());
         } else {
@@ -39,66 +42,38 @@ public class ItemStackUtil {
         }
     }
 
-    @NotNull
-    public static ItemStack setLore(@NotNull ItemStack itemStack, @Nullable List<String> lore) {
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setLore(lore);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
-    }
-
-    @NotNull
-    public static ItemStack setDisplayName(@NotNull ItemStack itemStack, @Nullable String displayName) {
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(displayName);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
-    }
-
-    @NotNull
-    public static ItemStack setCustomModelData(@NotNull ItemStack itemStack, @Nullable Integer data) {
-        if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil
-                .getMiddleVersion() < 13) {
-            throw new UnsupportedMinecraftVersionException();
-        }
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setCustomModelData(data);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
-    }
-
     //把itemstack的name  lore  customdata  移植到target里  itemflag添加
-    public static void apply(@NotNull ItemStack itemStack, @NotNull ItemStack target) {
+    public static void apply(@NotNull ItemStack itemStack, @NotNull ItemStack target) throws NotApplicableException {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        setDisplayName(target, itemMeta.getDisplayName());
-        setLore(target, itemMeta.getLore());
-        addItemFlag(target, itemMeta.getItemFlags());
+        ItemMeta targetMeta=target.getItemMeta();
+        if (targetMeta==null){
+            throw new NotApplicableException();
+        }
+        if (itemMeta==null){
+            return;
+        }
+        targetMeta.setDisplayName(itemMeta.getDisplayName());
+        targetMeta.setLore(itemMeta.getLore());
+        for (ItemFlag i : itemMeta.getItemFlags()) {
+            targetMeta.addItemFlags(i);
+        }
         if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil
                 .getMiddleVersion() >= 13 && itemMeta.hasCustomModelData()) {
-            setCustomModelData(itemStack, itemMeta.getCustomModelData());
+            targetMeta.setCustomModelData(itemMeta.getCustomModelData());
         }
-        itemStack.setItemMeta(itemMeta);
+        target.setItemMeta(targetMeta);
     }
 
-    @NotNull
-    public static ItemStack addItemFlag(@NotNull ItemStack itemStack, @NotNull Set<ItemFlag> flag) {
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        for (ItemFlag i : flag) {
-            itemMeta.addItemFlags(i);
-        }
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
-    }
 
     @NotNull
     public static ItemStack getItemStack(@NotNull Material material, @Nullable String displayName,
                                          @Nullable List<String> lore, @Nullable List<ItemFlag> flagList,
-                                         int amount) {
+                                         int amount) throws NotApplicableException {
 
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) {
-            throw new IllegalArgumentException(material.name());
+            throw new NotApplicableException();
         }
         if (lore != null) {
             for (int i = 0; i < lore.size(); i++) {
@@ -125,7 +100,7 @@ public class ItemStackUtil {
     @NotNull
     public static ItemStack getItemStack(@NotNull Material material, @Nullable String displayName,
                                          @Nullable List<String> lore, @Nullable List<ItemFlag> flagList,
-                                         int amount, @Nullable Integer customModelData) {
+                                         int amount, @Nullable Integer customModelData) throws NotApplicableException {
         if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil
                 .getMiddleVersion() < 13) {
             throw new UnsupportedMinecraftVersionException();

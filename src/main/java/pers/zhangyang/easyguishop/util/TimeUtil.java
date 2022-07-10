@@ -10,8 +10,7 @@ public class TimeUtil {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Date date = new Date(mill);
-        String dateStr = sdf.format(date);
-        return dateStr;
+        return sdf.format(date);
 
 
     }

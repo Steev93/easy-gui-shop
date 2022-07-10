@@ -11,16 +11,16 @@ gui:
     #如果店铺没有使用图标，是否显示为店主的头颅，开启这个功能可能会卡服，因为头颅材质占用网络资源
     enableShopUsePlayerHead: false
 
-    #商品是否在Gui中显示为商品物品的材质
+    #商品是否在Gui中显示为商品物品的材质，如果是对应物品没有ItemMeta信息，则会使用默认
     enableGoodUseGoodItem: true
 
-    #图标是否使用图标物品的材质
+    #图标是否使用图标物品的材质，如果是对应物品没有ItemMeta信息，则会使用默认
     enableIconUseIconItem: true
 
-    #交易记录是否使用交易物品的材质
+    #交易记录是否使用交易物品的材质，如果是对应物品没有ItemMeta信息，则会使用默认
     enableTradeRecordUseTradeRecordItem: true
 
-    #货币库存是否使用货币物品的材质
+    #货币库存是否使用货币物品的材质，如果是对应物品没有ItemMeta信息，则会使用默认
     enableItemStockUseItemStockItem: true
 
   #gui页面的标题
@@ -51,7 +51,7 @@ gui:
     allShopPage:
       allShopPageShopOptionPage:
 
-        #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
+        #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看，不可以是AIR
         materialName: "BOOKSHELF"
 
         #表示按钮的名称

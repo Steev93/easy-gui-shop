@@ -65,6 +65,7 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\Ma
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\ShopNotEmptyException.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodLimitTime.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageBack.java
+E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotApplicableException.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageBack.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\impl\GuiServiceImpl.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageShopCommentPage.java

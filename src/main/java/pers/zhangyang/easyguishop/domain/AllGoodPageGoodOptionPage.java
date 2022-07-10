@@ -91,16 +91,44 @@ public class AllGoodPageGoodOptionPage implements InventoryHolder {
         inventory.setItem(4, icon);
 
 
-        if (currency != null && goodMeta.getStock() > 0) {
-            if (goodMeta.getLimitTime() == null) {
-                ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
-                inventory.setItem(40, trade);
-            }
-            if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
+        if (currency != null ) {
+            if (goodMeta.getType().equalsIgnoreCase("收购")){
+                if (goodMeta.getLimitTime() == null) {
+                    ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                    inventory.setItem(40, trade);
+                }
+                if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
 
-                ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
-                inventory.setItem(40, trade);
+                    ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                    inventory.setItem(40, trade);
+                }
             }
+
+            if (goodMeta.getType().equalsIgnoreCase("出售")){
+                if (goodMeta.isSystem()) {
+                    if (goodMeta.getLimitTime() == null) {
+                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        inventory.setItem(40, trade);
+                    }
+                    if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
+
+                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        inventory.setItem(40, trade);
+                    }
+                }
+                if (!goodMeta.isSystem()&&goodMeta.getStock()>0) {
+                    if (goodMeta.getLimitTime() == null) {
+                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        inventory.setItem(40, trade);
+                    }
+                    if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
+
+                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        inventory.setItem(40, trade);
+                    }
+                }
+            }
+
         }
 
 

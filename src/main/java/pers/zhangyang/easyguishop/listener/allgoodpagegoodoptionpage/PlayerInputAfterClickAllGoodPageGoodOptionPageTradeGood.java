@@ -116,7 +116,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     return;
                 }
                 //检查店主是否有钱
-                if (!vault.has(merchant, vaultPrice)) {
+                if (!goodMeta.isSystem()&&!vault.has(merchant, vaultPrice) ) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreVaultWhenTradeGood"));
                     return;
                 }
@@ -146,7 +146,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                 double tax = beforeTax * taxRate;
                 double afterTax = beforeTax - tax;
                 vault.depositPlayer(player, afterTax);
-                vault.withdrawPlayer(merchant, beforeTax);
+                if (!goodMeta.isSystem()) {
+                    vault.withdrawPlayer(merchant, beforeTax);
+                }
             }
             if (playerPointsPrice != null) {
                 if (playerPoints == null) {
@@ -154,7 +156,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     return;
                 }
                 //检查钱
-                if (playerPoints.look(merchant.getUniqueId()) < playerPointsPrice) {
+                if (!goodMeta.isSystem()&&playerPoints.look(merchant.getUniqueId()) < playerPointsPrice) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMorePlayerPointsWhenTradeGood"));
                     return;
                 }
@@ -183,13 +185,16 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                 int tax = (int) Math.round(beforeTax * taxRate);
                 int afterTax = beforeTax - tax;
                 playerPoints.give(player.getUniqueId(), afterTax);
-                playerPoints.take(merchant.getUniqueId(), beforeTax);
+
+                if (!goodMeta.isSystem()) {
+                    playerPoints.take(merchant.getUniqueId(), beforeTax);
+                }
             }
             if (itemPrice != null) {
 
                 try {
                     //检查钱
-                    if (!guiService.hasItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), amount)) {
+                    if (!goodMeta.isSystem()&&!guiService.hasItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), amount)) {
                         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTradeGood"));
                         return;
                     }
@@ -209,7 +214,10 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     int beforeTax = itemPrice * amount;
                     int tax = (int) Math.round(beforeTax * taxRate);
                     int afterTax = beforeTax - tax;
-                    guiService.takeItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
+
+                    if (!goodMeta.isSystem()) {
+                        guiService.takeItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
+                    }
                     guiService.depositItemStock(player.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), afterTax);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -273,7 +281,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                 double tax = beforeTax * taxRate;
                 double afterTax = beforeTax - tax;
                 vault.withdrawPlayer(player, beforeTax);
-                vault.depositPlayer(merchant, afterTax);
+                if (!goodMeta.isSystem()) {
+                    vault.depositPlayer(merchant, afterTax);
+                }
 
             }
             if (playerPointsPrice != null) {
@@ -316,7 +326,10 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                 int tax = (int) Math.round(beforeTax * taxRate);
                 int afterTax = beforeTax - tax;
                 playerPoints.take(player.getUniqueId(), beforeTax);
-                playerPoints.give(merchant.getUniqueId(), afterTax);
+
+                if (!goodMeta.isSystem()) {
+                    playerPoints.give(merchant.getUniqueId(), afterTax);
+                }
 
             }
             if (itemPrice != null) {
@@ -341,7 +354,10 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     guiService.createTradeRecord(tradeRecordMeta);
                     //扣钱
                     guiService.takeItemStock(player.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
-                    guiService.depositItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), afterTax);
+
+                    if (!goodMeta.isSystem()) {
+                        guiService.depositItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), afterTax);
+                    }
                     allGoodPageGoodOptionPage.send();
                 } catch (SQLException e) {
                     e.printStackTrace();

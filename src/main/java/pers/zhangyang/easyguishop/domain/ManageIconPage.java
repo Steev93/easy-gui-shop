@@ -8,6 +8,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.BuyIconPageStatsEnum;
+import pers.zhangyang.easyguishop.exception.NotApplicableException;
 import pers.zhangyang.easyguishop.exception.NotExistNextException;
 import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.exception.NotExistShopException;
@@ -122,7 +123,11 @@ public class ManageIconPage implements InventoryHolder {
             if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableIconUseIconItem")) {
                 itemStack = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
                 ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.manageIconPage.manageIconPageIconOptionPage");
-                ItemStackUtil.apply(tem, itemStack);
+                try {
+                    ItemStackUtil.apply(tem, itemStack);
+                } catch (NotApplicableException e) {
+                    itemStack=tem;
+                }
             } else {
                 itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageIconPage.manageIconPageIconOptionPage");
             }

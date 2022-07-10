@@ -576,14 +576,14 @@ public class GuiServiceImpl implements GuiService {
         }
 
 
-        if (goodMeta.getType().equalsIgnoreCase("收购")) {
+        if (goodMeta.getType().equalsIgnoreCase("收购")&&!goodMeta.isSystem()) {
             if (amount > Integer.MAX_VALUE - goodMeta.getStock()) {
                 goodMeta.setStock(Integer.MAX_VALUE);
             } else {
                 goodMeta.setStock(goodMeta.getStock() + amount);
             }
 
-        } else if (goodMeta.getType().equalsIgnoreCase("出售")) {
+        } else if (goodMeta.getType().equalsIgnoreCase("出售")&&!goodMeta.isSystem()) {
             if (goodMeta.getStock() - amount < 0) {
                 throw new NotMoreGoodException();
             }
