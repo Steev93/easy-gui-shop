@@ -63,7 +63,7 @@ public class PlayerInputAfterClickManageGoodPageCreateGood implements Listener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ItemStack itemStack = InventoryUtil.getItemInMainHand(player);
+        ItemStack itemStack = InventoryUtil.getItemInMainHand(player).clone();
         itemStack.setAmount(1);
         if (itemStack.getType().equals(Material.AIR)) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
