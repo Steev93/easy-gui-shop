@@ -106,6 +106,8 @@ public class ManageItemStockPage implements InventoryHolder {
         inventory.setItem(49, back);
         ItemStack createItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.createItemStock");
         inventory.setItem(51, createItemStock);
+        ItemStack goBankLocation = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.goBankLocation");
+        inventory.setItem(47, goBankLocation);
 
     }
 

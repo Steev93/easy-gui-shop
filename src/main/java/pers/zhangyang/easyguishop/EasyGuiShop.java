@@ -277,6 +277,7 @@ public class EasyGuiShop extends JavaPlugin {
 
 
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageItemStockPage(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerClickManageItemStockPageGoBankLocation(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageItemStockPageNext(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageItemStockPagePrevious(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageItemStockPageBack(), this);

@@ -1,5 +1,6 @@
 package pers.zhangyang.easyguishop.listener.managegoodpagegoodoptionpage;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +10,16 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.ManageGoodPageGoodOptionPage;
+import pers.zhangyang.easyguishop.meta.ShopMeta;
+import pers.zhangyang.easyguishop.service.GuiService;
+import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
+import pers.zhangyang.easyguishop.util.LocationUtil;
+import pers.zhangyang.easyguishop.util.MessageUtil;
+import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
+import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easyguishop.yaml.SettingYaml;
+
+import java.sql.SQLException;
 
 public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener {
 
@@ -34,6 +45,33 @@ public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener
 
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         Player player = (Player) event.getWhoClicked();
+
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+
+        ShopMeta shopMeta;
+        try {
+            manageGoodPageGoodOptionPage.send();
+            shopMeta=guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
+            manageGoodPageGoodOptionPage.send();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+        if (shopMeta==null){
+            return;
+        }
+
+        String locationData=shopMeta.getLocation();
+        if (locationData==null){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetShopLocationWhenTakeGood"));
+            return;
+        }
+        Location location= LocationUtil.deserializeLocation(shopMeta.getLocation());
+        if (location.distance(player.getLocation())> SettingYaml.INSTANCE.getRange("setting.manageGoodRange")){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+            return;
+        }
+
         new PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood(player, manageGoodPageGoodOptionPage);
 
     }

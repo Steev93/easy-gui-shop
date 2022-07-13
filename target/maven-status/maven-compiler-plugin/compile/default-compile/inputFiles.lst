@@ -257,6 +257,7 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allgoodpage\PlayerClickAllGoodPageNext.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\manager\ConnectionManager.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotMorePopularityException.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpage\PlayerClickManageItemStockPageGoBankLocation.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconVaultPriceExecutor.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPagePrevious.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageGoodPage.java

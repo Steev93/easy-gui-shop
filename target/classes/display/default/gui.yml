@@ -1038,6 +1038,15 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
+      goBankLocation:
+        materialName: "ENDER_CHEST"
+        displayName: "&b&l&n前往货币银行坐标"
+        lore:
+          - "&e&l不去这里不能存取货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
       createItemStock:
         materialName: "CHEST"
         displayName: "&b&l&n创建"

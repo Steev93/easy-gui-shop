@@ -75,6 +75,18 @@ message:
       - "&c&l没有检测到PlayerPoints插件。"
 
     #经常发生的失败提示，每个操作对应一个失败提示
+    notNearBankLocationWhenTakeItemStock:
+      - "&c&l请在货币银行坐标32范围内取出货币"
+    notNearBankLocationWhenDepositItemStock:
+      - "&c&l请在货币银行坐标32范围内存入货币"
+    notSetShopLocationWhenTakeGood:
+      - "&c&l请在取出商品前设置商店的实体坐标"
+    notNearShopLocationWhenTakeGood:
+      - "&c&l请在商店实体坐标32范围内取出商品"
+    notSetShopLocationWhenDepositGood:
+      - "&c&l请在存入商品前设置商店的实体坐标"
+    notNearShopLocationWhenDepositGood:
+      - "&c&l请在商店实体坐标32范围内存入商品"
     notPermissionWhenSetGoodVaultPrice:
       - "&c&l缺少权限EasyGuiShop.setGoodVaultPrice"
     notPermissionWhenSetGoodItemPrice:
@@ -347,6 +359,8 @@ message:
       - "&b&l您重置了商品限购时间。"
     resetGoodPrce:
       - "&b&l您重置了商品价格。"
+    goBankLocation:
+      - "&b&l您前往了货币银行坐标。"
 
     #指令成功操作提示，每个操作对应一个提示
     setIconSystem:
