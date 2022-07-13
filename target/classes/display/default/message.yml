@@ -52,7 +52,7 @@ message:
       - "&b&l/egs resetIconLimitTime <图标名字>    重置图标限购时间。"
       - "&b&l/egs setIconSystem <图标名字> <true|false>    设置图标系统补货。"
       - "&b&l/egs setShopSystem <商店名字> <true|false>    设置店铺系统补货。"
-      - "&b&l/egs setGoodSystem <商店名字> <图标名字> <true|false>    设置商品系统补货。"
+      - "&b&l/egs setGoodSystem <商店名字> <商品名字> <true|false>    设置商品系统补货。"
       - "&b&l/egs setIconName <图标名字> <名字>    设置图标名字。"
       - "&b&l/egs deleteIcon <图标名字>    删除图标。"
       - "&b&l/egs plusShopPopularity <商店名字> <数量>    增加店铺人气。"

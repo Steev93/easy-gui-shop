@@ -55,7 +55,7 @@ gui:
         materialName: "BOOKSHELF"
 
         #表示按钮的名称
-        displayName: "&b&l&n的商店 &f&l{name}"
+        displayName: "&b&l&n商店 &f&l{name}"
 
         #表示按钮的描述，lore中可以用的变量，除了{()}括起来的，都可以用在displayName中
         lore:

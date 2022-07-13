@@ -115,13 +115,16 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookVault"));
                     return;
                 }
+                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.vault");
+                double beforeTax = vaultPrice * amount;
+                double tax = beforeTax * taxRate;
+                double afterTax = beforeTax - tax;
                 //检查店主是否有钱
-                if (!goodMeta.isSystem()&&!vault.has(merchant, vaultPrice) ) {
+                if (!goodMeta.isSystem()&&!vault.has(merchant, beforeTax) ) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreVaultWhenTradeGood"));
                     return;
                 }
                 //交易
-                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.vault");
                 try {
                     guiService.trade(goodMeta.getUuid(), amount, goodMeta);
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), player.getUniqueId().toString(),
@@ -142,9 +145,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     return;
                 }
                 //扣除货币
-                double beforeTax = vaultPrice * amount;
-                double tax = beforeTax * taxRate;
-                double afterTax = beforeTax - tax;
                 vault.depositPlayer(player, afterTax);
                 if (!goodMeta.isSystem()) {
                     vault.withdrawPlayer(merchant, beforeTax);
@@ -155,13 +155,16 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookPlayerPoints"));
                     return;
                 }
+                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.playerPoints");
+                int beforeTax = playerPointsPrice * amount;
+                int tax = (int) Math.round(beforeTax * taxRate);
+                int afterTax = beforeTax - tax;
                 //检查钱
-                if (!goodMeta.isSystem()&&playerPoints.look(merchant.getUniqueId()) < playerPointsPrice) {
+                if (!goodMeta.isSystem()&&playerPoints.look(merchant.getUniqueId()) < beforeTax) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMorePlayerPointsWhenTradeGood"));
                     return;
                 }
 
-                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.playerPoints");
                 try {
                     guiService.trade(goodMeta.getUuid(), amount, goodMeta);
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), player.getUniqueId().toString(),
@@ -181,9 +184,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
                 }
-                int beforeTax = playerPointsPrice * amount;
-                int tax = (int) Math.round(beforeTax * taxRate);
-                int afterTax = beforeTax - tax;
                 playerPoints.give(player.getUniqueId(), afterTax);
 
                 if (!goodMeta.isSystem()) {
@@ -193,12 +193,15 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
             if (itemPrice != null) {
 
                 try {
+                    double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.item");
+                    int beforeTax = itemPrice * amount;
+                    int tax = (int) Math.round(beforeTax * taxRate);
+                    int afterTax = beforeTax - tax;
                     //检查钱
-                    if (!goodMeta.isSystem()&&!guiService.hasItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), amount)) {
+                    if (!goodMeta.isSystem()&&!guiService.hasItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax)) {
                         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTradeGood"));
                         return;
                     }
-                    double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.item");
                     //交易
                     guiService.trade(goodMeta.getUuid(), amount, goodMeta);
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), player.getUniqueId().toString(),
@@ -211,9 +214,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     allGoodPageGoodOptionPage.send();
 
                     //转钱
-                    int beforeTax = itemPrice * amount;
-                    int tax = (int) Math.round(beforeTax * taxRate);
-                    int afterTax = beforeTax - tax;
 
                     if (!goodMeta.isSystem()) {
                         guiService.takeItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
@@ -248,12 +248,15 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookVault"));
                     return;
                 }
+                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.vault");
+                double beforeTax = vaultPrice * amount;
+                double tax = beforeTax * taxRate;
+                double afterTax = beforeTax - tax;
                 //检查是否有钱
-                if (!vault.has(player, vaultPrice)) {
+                if (!vault.has(player, beforeTax)) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughVaultWhenTradeGood"));
                     return;
                 }
-                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.vault");
                 //交易
                 try {
                     guiService.trade(goodMeta.getUuid(), amount, goodMeta);
@@ -277,9 +280,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
                 }
-                double beforeTax = vaultPrice * amount;
-                double tax = beforeTax * taxRate;
-                double afterTax = beforeTax - tax;
                 vault.withdrawPlayer(player, beforeTax);
                 if (!goodMeta.isSystem()) {
                     vault.depositPlayer(merchant, afterTax);
@@ -292,14 +292,17 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     return;
                 }
 
+                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.playerPoints");
+                int beforeTax = playerPointsPrice * amount;
+                int tax = (int) Math.round(beforeTax * taxRate);
+                int afterTax = beforeTax - tax;
                 //检查钱
-                if (playerPoints.look(player.getUniqueId()) < playerPointsPrice) {
+                if (playerPoints.look(player.getUniqueId()) < beforeTax) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughPlayerPointsWhenTradeGood"));
                     return;
                 }
 
 
-                double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.playerPoints");
                 try {
                     guiService.trade(goodMeta.getUuid(), amount, goodMeta);
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), player.getUniqueId().toString(),
@@ -322,9 +325,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
                 }
-                int beforeTax = playerPointsPrice * amount;
-                int tax = (int) Math.round(beforeTax * taxRate);
-                int afterTax = beforeTax - tax;
                 playerPoints.take(player.getUniqueId(), beforeTax);
 
                 if (!goodMeta.isSystem()) {
@@ -340,7 +340,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
                 //扣除货币
                 try {
                     //检查钱
-                    if (!guiService.hasItemStock(player.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), amount)) {
+                    if (!guiService.hasItemStock(player.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax)) {
                         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenTradeGood"));
                         return;
                     }
