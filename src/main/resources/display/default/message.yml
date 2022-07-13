@@ -4,10 +4,10 @@ message:
     #取消操作需要输入的
     cancel: "取消"
 
-    #收购类型商店创建需要输入的
+    #出售类型商店创建需要输入的
     sell: "出售"
 
-    #出售类型商店创建需要输入的
+    #收购类型商店创建需要输入的
     buy: "收购"
 
     #评论时，评论完多行后提交需要输入的
@@ -224,7 +224,7 @@ message:
     howToSearchByGoodNameInManageGoodPage:
       - "&a&l输入商品名字完成搜索，输入 &f取消 &a&l取消。"
     howToCreateGood:
-      - "&a&l依次输入商品名字、交易类型完成创建，输入 &f取消 &a&l取消。"
+      - "&a&l依次输入商品名字、交易类型完成创建（依次回车），输入 &f取消 &a&l取消。"
     howToDepositItemStock:
       - "&a&l输入您要存入的数量，输入 &f取消 &a&l取消。"
     howToTakeItemStock:
@@ -232,9 +232,9 @@ message:
     howToAddShopDescription:
       - "&a&l输入您要增加一行的描述，输入 &f取消 &a&l取消。"
     howToUpdateShopDescription:
-      - "&a&l依次输入行数、描述，输入 &f取消 &a&l取消。"
+      - "&a&l依次输入行数、描述（依次回车），输入 &f取消 &a&l取消。"
     howToSetShopDescription:
-      - "&a&l依次输入每行描述，输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
+      - "&a&l依次输入每行描述（依次回车），输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
     howToDeleteGood:
       - "&a&l输入商品名字完成删除，输入 &f取消 &a&l取消。"
     howToCreateShop:
@@ -250,7 +250,7 @@ message:
     howToTrade:
       - "&a&l输入要交易的数量完成交易，输入 &f取消 &a&l取消。"
     hotToCommentShopInAllShopPageShopOptionPage:
-      - "&a&l依次输入多行评论内容完成评论，输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
+      - "&a&l依次输入多行评论内容完成评论（依次回车），输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
     howToSearchByIconNameInBuyIconPage:
       - "&a&l输入图标名字完成搜索，输入 &f取消 &a&l取消。"
     howToSearchByIconNameInManageIconPage:

@@ -17,7 +17,8 @@ public class SettingYaml extends YamlBase {
     @NotNull
     public String getDisplay() {
         String display = getStringDefault("setting.display");
-        if (!display.equalsIgnoreCase("default")) {
+        if (!display.equalsIgnoreCase("default")
+        &&!display.equalsIgnoreCase("english")) {
             display = backUpConfiguration.getString("setting.display");
         }
         return display;

@@ -1,17 +1,17 @@
 message:
   input:
 
-    #取消操作需要输入的
-    cancel: "取消"
+    #To cancel the operation, you need to enter
+    cancel: "cancel"
 
-    #出售类型商店创建需要输入的
-    sell: "出售"
+    #Sales type store creation requires input
+    sell: "sell"
 
-    #收购类型商店创建需要输入的
-    buy: "收购"
+    #Purchase type store creation requires input
+    buy: "buy"
 
-    #评论时，评论完多行后提交需要输入的
-    submit: "提交"
+    #When commenting, submit the required input after commenting on multiple lines
+    submit: "submit"
 
   chat:
     failureGetLatestVersion:
@@ -74,7 +74,7 @@ message:
     notHookPlayerPoints:
       - "&c&l没有检测到PlayerPoints插件。"
 
-    #经常发生的失败提示，每个操作对应一个失败提示
+    #Frequently occurring failure prompt, each operation corresponds to a failure prompt
     notNearBankLocationWhenTakeItemStock:
       - "&c&l请在货币银行坐标32范围内取出货币"
     notNearBankLocationWhenDepositItemStock:
@@ -150,7 +150,8 @@ message:
     notEnoughItemStockWhenDepositItemStock:
       - "&c&l您背包里没有足够的物品货币。"
 
-    #下面这几个往往是很不容易发生的失败提示，是共用的,往往因为GUI没及时刷新导致的，发生概率不高
+    #The following failure prompts, which are not easy to occur,
+    #are common and often caused by the GUI not being refreshed in time, with a low probability of occurrence
     notSetPrice:
       - "&c&l没有设置价格。"
     notMoreItemStock:
@@ -184,7 +185,7 @@ message:
     notExistLine:
       - "&c&l不存在的行。"
 
-    #指令失败提示，每个操作一个提示
+    #Comand failure prompt, one prompt for each operation
     notExistShopWhenPlusPopularity:
       - "&c&l不存在的店铺，不能添加人气。"
     notExistShopWhenSubtractPopularity:
@@ -218,7 +219,7 @@ message:
 
 
 
-    #教程操作提示的，每个操作对应一个
+    #Tutorial operation tips, each operation corresponds to one
     howToSearchByShopNameInManageShopPage:
       - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
     howToSearchByGoodNameInManageGoodPage:
@@ -280,7 +281,7 @@ message:
     howToTakeGood:
       - "&a&l输入取出的数量，输入 &f取消 &a&l取消。"
 
-    #成功操作提示，每个操作对应一个提示
+    #Prompt for successful operation, one for each operation
     cancelCollectShopInAllShopPageShopOptionPage:
       - "&b&l您取消了收藏该店铺。"
     collectShopInAllShopPageShopOptionPage:
@@ -362,7 +363,7 @@ message:
     goBankLocation:
       - "&b&l您前往了货币银行坐标。"
 
-    #指令成功操作提示，每个操作对应一个提示
+    #Prompt for successful operation of the command, and each operation corresponds to a prompt
     setIconSystem:
       - "&b&l设置了图标为系统补货。"
     setIconStock:

@@ -1,66 +1,93 @@
 setting:
 
-  #使用哪一套语言，目前仅支持default
+  #使用哪一套语言，目前仅支持default、english
+  ##Which language is used? Currently, only default and English are supported
   display: "default"
 
-  #距离实体坐标多少范围内，才可以存取商品
+  #距离实体店铺坐标多少范围内，才可以存取商品
+  #How far away from the coordinates of the physical shop can you access goods
   manageGoodRange: 32
 
   #距离银行坐标多少范围内，才可以存取物品货币库存
+  #How far away from the bank coordinates can you access the item stock
   manageItemStockRange: 32
 
   #银行的坐标
+  #Coordinates of the bank
   bankLocation:
 
     #在哪一个世界，如果是不存在的世界，将采用默认值world
+    #In which world, if it does not exist, the default value world will be used
     worldName: world
 
     #x坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #X coordinate, you need to fill in decimal here.
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
     x: 0.0
 
     #y坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #Y coordinate, you need to fill in decimal here.
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
     y: 80.0
 
     #z坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #Z coordinate, you need to fill in decimal here.
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
     z: 0.0
 
   #税收，值必须为小于等于1并且大于等于0的实数
+  #Tax, the value must be a real number less than or equal to 1 and greater than or equal to 0
   tax:
 
     #金币的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
+    #The tax on gold coins will be rounded off.
+    #If the transaction amount is 100 and the tax is 0.5, then the tax is 100 × 0.5 = 50
     vault: 0.05
 
     #点券的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
+    #The tax of points will be rounded off.
+    #If the transaction amount is 100 and the tax is 0.5, the tax is 100 × 0.5 = 50
     playerPoints: 0.1
 
     #以物易物的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
+    #The tax item will be rounded off.
+    #If the transaction amount is 100 and the tax is 0.5, the tax is 100 × 0.5 = 50
     item: 0.1
 
 
 
   #热力值的大小 = 浏览量 × 浏览量系数 + 收藏数 × 收藏数系数 + 人气×人气系数
   #商店按照热力值大小从前往后排序显示
+  #how value = page view × page view coefficient + number of collections × collection coefficient + popularity × popularity coefficient
+  #Stores are displayed in order of hot value from front to back
   hotValueCoefficient:
 
     #浏览量系数，如果这里填写的不是非负数，则采用默认值1
+    #The page view coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
     pageView: 1
 
     #收藏数系数，如果这里填写的不是非负数，则采用默认值50
+    #The collect amount coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
     collectAmount: 50
 
     #人气系数，如果这里填写的不是非负数，则采用默认值5
+    #The popularity coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
     popularity: 5
 
-  #以下是数据库的设置,本插件全部存储都是用数据库的，已知支持sqlite、mysql这两个数据库，其他的数据库请自测
   database:
 
     #如果填写的数据库不可用，将采用默认值jdbc:sqlite:plugins/EasyGuiShop/data.db
     #格式为jdbc:数据库类型:数据库url
     #如果不明白可以去浏览器寻找答案
+    #If the filled database is not available, the default value jdbc:sqlite:plugins/EasyGuiShop/data.db
+    #The format is jdbc:database type:database url
+    #If you don't understand, you can go to the browser to find the answer
     url: "jdbc:sqlite:plugins/EasyGuiShop/data.db"
 
-    #数据库的用户名,没有可以不填写
+    #数据库的用户名,没有可以不填写或者填写[]或者删掉这项
+    #The username of the database can be left blank or [] or  delete this option
     username: []
 
-    #数据库的密码,没有可以不填写
+    #数据库的密码,没有可以不填写或者填写[]或者删掉这项
+    #The password of the database can be left blank or [] or delete this option
     password: []

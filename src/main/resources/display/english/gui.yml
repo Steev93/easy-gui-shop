@@ -1,30 +1,35 @@
 gui:
 
-  #gui中可替换的文字内容
+  #Replaceable text content in Gui
   replace:
 
-    #当商店或者商品为系统补货时，将把库存显示为以下内容
-    systemStock: "&d&l无限"
+    #When the good replenishes the system, the stock will be displayed as the following content
+    systemStock: "&d&linfinite"
 
   #gui的一些选项
   option:
 
-    #如果店铺没有使用图标，是否显示为店主的头颅，开启这个功能可能会卡服，因为头颅材质占用网络资源
+    #If the store doesn't use the icon, whether it is displayed as the owner's head or not
+    #Opening this function may lag, this takes up network resources
     enableShopUsePlayerHead: false
 
-    #商品是否在Gui中显示为商品物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #Whether the item is displayed as the material of the item in the GUI.
+    #If the corresponding item has no itemmeta information, it will not work
     enableGoodUseGoodItem: true
 
-    #图标是否使用图标物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #Whether the icon uses the material of the icon item.
+    #If the corresponding item does not have itemmeta information, it will not work
     enableIconUseIconItem: true
 
-    #交易记录是否使用交易物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #Whether the transaction record uses the material of the transaction item.
+    #If the corresponding item does not have itemmeta information, it will not work
     enableTradeRecordUseTradeRecordItem: true
 
-    #货币库存是否使用货币物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #Whether the currency inventory uses the material of the currency item.
+    #If the corresponding item does not have itemmeta information, it will not work
     enableItemStockUseItemStockItem: true
 
-  #gui页面的标题
+  #Title of GUI page
   title:
     allShopPage: "&b&l&n全部店铺&e&l(陈列了所有的店铺)"
     allShopPageShopOptionPage: "&b&l&n店铺选项页&e&l(对该店铺可进行的选项)"
@@ -47,18 +52,20 @@ gui:
     manageTradeRecordPageTradeRecordOptionPage: "&b&l&n交易记录选项&e&l(可进行的选项)"
     manageIconPageIconOptionPage: "&b&l&n管理图标选项页&e&l(可进行的选项)"
 
-  #gui内的按钮
+  #Buttons in Gui
   button:
     allShopPage:
       allShopPageShopOptionPage:
 
-        #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看，不可以是AIR
+        #The material representing the button.
+        #If you want to know the name of the material, please go to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html Check,
+        #not air
         materialName: "BOOKSHELF"
 
-        #表示按钮的名称
+        #Indicates the name of the button
         displayName: "&b&l&n商店 &f&l{name}"
 
-        #表示按钮的描述，lore中可以用的变量，除了{()}括起来的，都可以用在displayName中
+        #Represents the description of the button. Variables that can be used in lore, except those enclosed in {()}, can be used in displayName
         lore:
           - "&a&l店铺主人: {owner_name}"
           - "&b&l店铺名字: {name}"
@@ -71,14 +78,15 @@ gui:
           - "&c&l以下是描述"
           - "{(description)}"
 
-        #表示数量
+        #Indicates quantity
         amount: 1
 
-        #表示标志，想知道可以隐藏哪些，请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemFlag.html
+        #Indicates the flag
+        #If you want to know what can be hidden, please go to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemFlag.html
         itemFlag:
           - "HIDE_DESTROYS"
 
-        #用哪个模型数据 1.12及以前的版本不支持这个
+        #Which model data version 1.12 and earlier does not support this
         customModelData: [ ]
       next:
         materialName: "BOOK"
