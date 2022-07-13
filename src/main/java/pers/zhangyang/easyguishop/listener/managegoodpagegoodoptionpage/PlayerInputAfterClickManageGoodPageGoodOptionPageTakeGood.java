@@ -65,14 +65,14 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood implement
             amount = Integer.parseInt(input);
         } catch (NumberFormatException ex) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            try {
-                manageGoodPageGoodOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
             return;
         }
 
+        if(amount<0){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+            return;
+        }
 
         GoodMeta goodMeta = manageGoodPageGoodOptionPage.getGoodMeta();
         int space = InventoryUtil.checkSpace(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()));

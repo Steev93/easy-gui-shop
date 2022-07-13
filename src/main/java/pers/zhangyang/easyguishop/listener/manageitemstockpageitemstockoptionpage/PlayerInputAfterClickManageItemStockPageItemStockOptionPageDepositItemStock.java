@@ -64,11 +64,10 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositI
             amount = Integer.parseInt(input);
         } catch (NumberFormatException ex) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            try {
-                itemStockPageItemStockOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            return;
+        }
+        if(amount<0){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
         int have = InventoryUtil.computeItemHave(ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), player);

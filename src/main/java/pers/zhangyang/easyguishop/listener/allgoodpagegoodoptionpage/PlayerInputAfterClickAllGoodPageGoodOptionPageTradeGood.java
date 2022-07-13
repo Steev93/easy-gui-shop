@@ -74,6 +74,10 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood implements 
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
+        if(amount<0){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+            return;
+        }
 
 
         GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();

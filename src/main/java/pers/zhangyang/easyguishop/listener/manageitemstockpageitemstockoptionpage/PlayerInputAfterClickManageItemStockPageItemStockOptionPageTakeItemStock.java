@@ -67,15 +67,12 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItem
             amount = Integer.parseInt(input);
         } catch (NumberFormatException ex) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            try {
-                itemStockPageItemStockOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
             return;
         }
-
+        if(amount<0){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+            return;
+        }
         int space = InventoryUtil.checkSpace(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()));
         if (space < amount) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughSpaceWhenTakeItemStock"));

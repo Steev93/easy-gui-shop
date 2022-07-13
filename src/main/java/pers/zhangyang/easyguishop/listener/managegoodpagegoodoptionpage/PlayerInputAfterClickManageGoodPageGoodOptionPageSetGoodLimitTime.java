@@ -61,11 +61,11 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodLimitTime i
             price = Integer.parseInt(input);
         } catch (NumberFormatException ex) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            try {
-                manageGoodPageGoodOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            return;
+        }
+
+        if(price<0){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
         GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
