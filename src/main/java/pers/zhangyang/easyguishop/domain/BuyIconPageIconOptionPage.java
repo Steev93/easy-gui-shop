@@ -88,15 +88,30 @@ public class BuyIconPageIconOptionPage implements InventoryHolder {
         ItemStack icon = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
         inventory.setItem(4, icon);
 
-        if (currency != null && iconMeta.getStock() > 0) {
-            if (iconMeta.getLimitTime() == null) {
-                ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
-                inventory.setItem(40, buyIcon);
+        if (currency != null) {
+            if (iconMeta.isSystem()){
+                if (iconMeta.getLimitTime() == null) {
+                    ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
+                    inventory.setItem(40, buyIcon);
+                }
+                if (iconMeta.getLimitTime() != null && iconMeta.getLimitTime() * 1000 + iconMeta.getCreateTime() > System.currentTimeMillis()) {
+                    ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
+                    inventory.setItem(40, buyIcon);
+                }
             }
-            if (iconMeta.getLimitTime() != null && iconMeta.getLimitTime() * 1000 + iconMeta.getCreateTime() > System.currentTimeMillis()) {
-                ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
-                inventory.setItem(40, buyIcon);
+
+            if (!iconMeta.isSystem() && iconMeta.getStock()>0){
+                if (iconMeta.getLimitTime() == null) {
+                    ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
+                    inventory.setItem(40, buyIcon);
+                }
+                if (iconMeta.getLimitTime() != null && iconMeta.getLimitTime() * 1000 + iconMeta.getCreateTime() > System.currentTimeMillis()) {
+                    ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
+                    inventory.setItem(40, buyIcon);
+                }
             }
+
+
         }
 
         ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.back");
