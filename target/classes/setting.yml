@@ -25,9 +25,9 @@ setting:
     #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
     x: 0.0
 
-    #y坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #y坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值80.0
     #Y coordinate, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 80.0 will be used
     y: 80.0
 
     #z坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
