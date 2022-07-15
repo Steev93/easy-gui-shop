@@ -67,6 +67,14 @@ public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener
             return;
         }
         Location location= LocationUtil.deserializeLocation(shopMeta.getLocation());
+        if (location.getWorld()==null){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+            return;
+        }
+        if(!location.getWorld().equals(player.getLocation().getWorld())){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+            return;
+        }
         if (location.distance(player.getLocation())> SettingYaml.INSTANCE.getRange("setting.manageGoodRange")){
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
             return;
