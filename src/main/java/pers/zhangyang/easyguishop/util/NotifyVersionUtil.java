@@ -23,19 +23,26 @@ public class NotifyVersionUtil {
                 } catch (Throwable e) {
                     latestVersion = null;
                 }
-                List<String> list;
-                if (latestVersion != null) {
-                    list = MessageYaml.INSTANCE.getStringList("message.chat.notifyVersion");
-                    HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("{current_version}", EasyGuiShop.instance.getDescription().getVersion());
-                    hashMap.put("{latest_version}", latestVersion);
-                    if (list != null) {
-                        ReplaceUtil.replace(list, hashMap);
+                String finalLatestVersion = latestVersion;
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        List<String> list;
+                        if (finalLatestVersion != null) {
+                            list = MessageYaml.INSTANCE.getStringList("message.chat.notifyVersion");
+                            HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("{current_version}", EasyGuiShop.instance.getDescription().getVersion());
+                            hashMap.put("{latest_version}", finalLatestVersion);
+                            if (list != null) {
+                                ReplaceUtil.replace(list, hashMap);
+                            }
+                        } else {
+                            list = MessageYaml.INSTANCE.getStringList("message.chat.failureGetLatestVersion");
+                        }
+                        MessageUtil.sendMessageTo(sender, list);
                     }
-                } else {
-                    list = MessageYaml.INSTANCE.getStringList("message.chat.failureGetLatestVersion");
-                }
-                MessageUtil.sendMessageTo(sender, list);
+                }.runTask(EasyGuiShop.instance);
+
             }
         }.runTaskAsynchronously(EasyGuiShop.instance);
 
