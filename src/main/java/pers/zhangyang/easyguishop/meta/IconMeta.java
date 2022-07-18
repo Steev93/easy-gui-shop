@@ -7,10 +7,10 @@ import java.util.Objects;
 
 public class IconMeta {
     private final String uuid;
-    private String name;
     private final long createTime;
-    private int stock;
     private final String iconItemStack;
+    private String name;
+    private int stock;
     private String currencyItemStack;
     private boolean system;
 

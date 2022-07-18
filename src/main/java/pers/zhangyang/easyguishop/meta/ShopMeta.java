@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class ShopMeta {
     private final String uuid;
-    private String name;
     private final String ownerUuid;
     private final long createTime;
+    private String name;
     private int collectAmount;
     private String iconUuid;
     private String location;

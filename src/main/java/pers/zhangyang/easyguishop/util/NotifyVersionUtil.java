@@ -1,26 +1,17 @@
-package pers.zhangyang.easyguishop.runnable;
+package pers.zhangyang.easyguishop.util;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.ReplaceUtil;
-import pers.zhangyang.easyguishop.util.ResourceUtil;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
-public class NotifyVersionRunnable extends BukkitRunnable {
-    private final CommandSender sender;
+public class NotifyVersionUtil {
 
-    public NotifyVersionRunnable(CommandSender sender) {
-        this.sender = sender;
-    }
 
-    @Override
-    public void run() {
+    public static void notifyVersion(CommandSender sender) {
         String latestVersion;
         try {
             latestVersion = ResourceUtil.readFirstLine(new URL("https://zhangyang0204.github.io/easy-gui-shop/index.html"));
@@ -40,8 +31,6 @@ public class NotifyVersionRunnable extends BukkitRunnable {
             list = MessageYaml.INSTANCE.getStringList("message.chat.failureGetLatestVersion");
         }
         MessageUtil.sendMessageTo(sender, list);
-
     }
-
 
 }

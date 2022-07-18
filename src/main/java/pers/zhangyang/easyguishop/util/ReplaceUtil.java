@@ -16,7 +16,7 @@ public class ReplaceUtil {
 
     public static void formatLore(@NotNull ItemStack itemStack, @NotNull String pattern, @Nullable List<String> replaceTo) {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        if (itemMeta==null){
+        if (itemMeta == null) {
             return;
         }
         if (itemMeta.getLore() != null) {
@@ -29,7 +29,7 @@ public class ReplaceUtil {
 
     public static void replaceDisplayName(@NotNull ItemStack itemStack, @NotNull Map<String, String> replaceMap) {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        if (itemMeta==null){
+        if (itemMeta == null) {
             return;
         }
         itemMeta.setDisplayName(replace(itemMeta.getDisplayName(), replaceMap));
@@ -38,7 +38,7 @@ public class ReplaceUtil {
 
     public static void replaceLore(@NotNull ItemStack itemStack, @NotNull Map<String, String> replaceMap) {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        if (itemMeta==null){
+        if (itemMeta == null) {
             return;
         }
         if (itemMeta.getLore() != null) {

@@ -113,5 +113,5 @@ public interface GuiService {
 
     void resetGoodPrice(String goodUuid) throws NotExistGoodException, SQLException;
 
-    void setShopDescription(String shopUuid,String descriptionJson) throws SQLException, NotExistShopException;
+    void setShopDescription(String shopUuid, String descriptionJson) throws SQLException, NotExistShopException;
 }

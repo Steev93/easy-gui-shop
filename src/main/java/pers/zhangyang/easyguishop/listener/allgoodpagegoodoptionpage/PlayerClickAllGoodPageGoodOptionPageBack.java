@@ -10,8 +10,6 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.AllGoodPage;
 import pers.zhangyang.easyguishop.domain.AllGoodPageGoodOptionPage;
-import pers.zhangyang.easyguishop.domain.AllShopPageShopOptionPage;
-import pers.zhangyang.easyguishop.domain.CollectedShopPageShopOptionPage;
 
 import java.sql.SQLException;
 
@@ -37,8 +35,8 @@ public class PlayerClickAllGoodPageGoodOptionPageBack implements Listener {
         }
 
         AllGoodPageGoodOptionPage allGoodPageGoodOptionPage = (AllGoodPageGoodOptionPage) holder;
-        InventoryHolder inventoryHolder=allGoodPageGoodOptionPage.getPreviousHolder();
-        AllGoodPage allGoodPage= (AllGoodPage) inventoryHolder;
+        InventoryHolder inventoryHolder = allGoodPageGoodOptionPage.getPreviousHolder();
+        AllGoodPage allGoodPage = (AllGoodPage) inventoryHolder;
         try {
             allGoodPage.refresh();
         } catch (SQLException e) {

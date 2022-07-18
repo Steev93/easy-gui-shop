@@ -42,10 +42,10 @@ import pers.zhangyang.easyguishop.listener.managetraderecordpagetraderecordoptio
 import pers.zhangyang.easyguishop.listener.managetraderecordpagetraderecordoptionpage.PlayerClickManageTradeRecordPageTradeRecordOptionPageBack;
 import pers.zhangyang.easyguishop.listener.shopcommentpage.*;
 import pers.zhangyang.easyguishop.other.bstats.Metrics;
-import pers.zhangyang.easyguishop.runnable.NotifyVersionRunnable;
 import pers.zhangyang.easyguishop.service.BaseService;
 import pers.zhangyang.easyguishop.service.impl.BaseServiceImpl;
 import pers.zhangyang.easyguishop.util.MessageUtil;
+import pers.zhangyang.easyguishop.util.NotifyVersionUtil;
 import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.CompleterYaml;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
@@ -53,7 +53,6 @@ import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +94,7 @@ public class EasyGuiShop extends JavaPlugin {
         // 到这里插件已经成功可以使用了,提示插件标志
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(), MessageYaml.INSTANCE.getStringList("message.chat.enablePlugin"));
         // 后台更新提示
-        new NotifyVersionRunnable(Bukkit.getConsoleSender()).runTaskAsynchronously(this);
+        NotifyVersionUtil.notifyVersion(Bukkit.getConsoleSender());
         // bStats统计信息
         new Metrics(EasyGuiShop.instance, 14803);
     }
@@ -250,7 +249,7 @@ public class EasyGuiShop extends JavaPlugin {
     }
 
     private void registerListener() {
-        Bukkit.getPluginManager().registerEvents(new PlayerJoin(),this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
 
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageIconPageIconOptionPage(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerClickManageIconPageIconOptionPageBack(), this);

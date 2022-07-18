@@ -1,6 +1,5 @@
 package pers.zhangyang.easyguishop.yaml;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;

@@ -25,13 +25,13 @@ public class GuiServiceImpl implements GuiService {
         List<ShopMeta> shopMetaList = ShopDao.INSTANCE.list();
         shopMetaList.sort((o1, o2) -> {
             int star1 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o1.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o1.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o1.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o1.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o1.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o1.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             int star2 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o2.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o2.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o2.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o2.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o2.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o2.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             return star2 - star1;
         });
         return shopMetaList;
@@ -42,13 +42,13 @@ public class GuiServiceImpl implements GuiService {
         List<ShopMeta> shopMetaList = ShopDao.INSTANCE.listByOwnerUuid(ownerUuid);
         shopMetaList.sort((o1, o2) -> {
             int star1 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o1.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o1.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o1.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o1.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o1.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o1.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             int star2 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o2.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o2.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o2.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o2.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o2.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o2.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             return star2 - star1;
         });
         return shopMetaList;
@@ -68,13 +68,13 @@ public class GuiServiceImpl implements GuiService {
         });
         shopMetaList.sort((o1, o2) -> {
             int star1 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o1.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o1.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o1.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o1.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o1.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o1.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             int star2 = Math.addExact(Math.addExact(
-                            Math.multiplyExact(o2.getPopularity(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
-                            Math.multiplyExact(o2.getCollectAmount(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
-                    Math.multiplyExact(o2.getPageView(),SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
+                            Math.multiplyExact(o2.getPopularity(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")),
+                            Math.multiplyExact(o2.getCollectAmount(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount"))),
+                    Math.multiplyExact(o2.getPageView(), SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")));
             return star2 - star1;
         });
         return shopMetaList;
@@ -573,14 +573,14 @@ public class GuiServiceImpl implements GuiService {
         }
 
 
-        if (goodMeta.getType().equalsIgnoreCase("收购")&&!goodMeta.isSystem()) {
+        if (goodMeta.getType().equalsIgnoreCase("收购") && !goodMeta.isSystem()) {
             if (amount > Integer.MAX_VALUE - goodMeta.getStock()) {
                 goodMeta.setStock(Integer.MAX_VALUE);
             } else {
                 goodMeta.setStock(goodMeta.getStock() + amount);
             }
 
-        } else if (goodMeta.getType().equalsIgnoreCase("出售")&&!goodMeta.isSystem()) {
+        } else if (goodMeta.getType().equalsIgnoreCase("出售") && !goodMeta.isSystem()) {
             if (goodMeta.getStock() - amount < 0) {
                 throw new NotMoreGoodException();
             }

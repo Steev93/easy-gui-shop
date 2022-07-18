@@ -7,14 +7,13 @@ import java.util.Objects;
 
 public class GoodMeta {
     private final String uuid;
+    private final long createTime;
+    private final String shopUuid;
     private String name;
     private String GoodItemStack;
     private String type;
-    private final long createTime;
     private boolean system;
     private int stock;
-    private final String shopUuid;
-
     private Integer limitTime;
     private String currencyItemStack;
     private Integer itemPrice;
@@ -34,10 +33,6 @@ public class GoodMeta {
         this.shopUuid = shop_uuid;
     }
 
-    public void setGoodItemStack(String goodItemStack) {
-        GoodItemStack = goodItemStack;
-    }
-
     @NotNull
     public String getUuid() {
         return uuid;
@@ -55,6 +50,10 @@ public class GoodMeta {
     @NotNull
     public String getGoodItemStack() {
         return GoodItemStack;
+    }
+
+    public void setGoodItemStack(String goodItemStack) {
+        GoodItemStack = goodItemStack;
     }
 
     @NotNull

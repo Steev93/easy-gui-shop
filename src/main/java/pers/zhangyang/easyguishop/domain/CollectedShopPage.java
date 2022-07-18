@@ -132,7 +132,7 @@ public class CollectedShopPage implements InventoryHolder {
                 try {
                     ItemStackUtil.apply(tem, itemStack);
                 } catch (NotApplicableException e) {
-                    itemStack=tem;
+                    itemStack = tem;
                 }
 
             } else {
@@ -142,7 +142,7 @@ public class CollectedShopPage implements InventoryHolder {
                     try {
                         ItemStackUtil.apply(tem, itemStack);
                     } catch (NotApplicableException e) {
-                        itemStack=tem;
+                        itemStack = tem;
                     }
                 } else {
                     itemStack = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.collectedShopPageShopOptionPage");

@@ -5,8 +5,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageGoodPageGoodOptionPage;
 import pers.zhangyang.easyguishop.exception.NotExistGoodException;
@@ -35,7 +36,7 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageDepositGood implem
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
             return;
@@ -44,61 +45,73 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageDepositGood implem
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
             unregisterSelf();
-            try {
-                manageGoodPageGoodOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        manageGoodPageGoodOptionPage.send();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
 
 
         unregisterSelf();
-        try {
-            manageGoodPageGoodOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        int amount;
-        try {
-            amount = Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            return;
-        }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    manageGoodPageGoodOptionPage.send();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                int amount;
+                try {
+                    amount = Integer.parseInt(input);
+                } catch (NumberFormatException ex) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+                    return;
+                }
 
-        if(amount<0){
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            return;
-        }
+                if (amount < 0) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+                    return;
+                }
 
-        GoodMeta goodMeta = manageGoodPageGoodOptionPage.getGoodMeta();
-        int have = InventoryUtil.computeItemHave(ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), player);
-        if (have < amount) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughGoodWhenDeposit"));
+                GoodMeta goodMeta = manageGoodPageGoodOptionPage.getGoodMeta();
+                int have = InventoryUtil.computeItemHave(ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), player);
+                if (have < amount) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughGoodWhenDeposit"));
 
-            return;
-        }
+                    return;
+                }
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
-        try {
-            guiService.depositGood(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), amount);
-            manageGoodPageGoodOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        } catch (NotExistGoodException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
-            return;
-        }
-        InventoryUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), amount);
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.depositGood"));
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                try {
+                    guiService.depositGood(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), amount);
+                    manageGoodPageGoodOptionPage.send();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return;
+                } catch (NotExistGoodException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
+                    return;
+                }
+                InventoryUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), amount);
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.depositGood"));
+            }
+        }.runTask(EasyGuiShop.instance);
+
 
     }
 
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

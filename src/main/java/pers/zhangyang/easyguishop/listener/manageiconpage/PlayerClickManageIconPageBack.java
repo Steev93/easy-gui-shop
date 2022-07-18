@@ -8,7 +8,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easyguishop.domain.ManageGoodPage;
 import pers.zhangyang.easyguishop.domain.ManageIconPage;
 import pers.zhangyang.easyguishop.domain.ManageShopPageShopOptionPage;
 

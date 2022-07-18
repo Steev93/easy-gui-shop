@@ -5,8 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageShopPage;
 import pers.zhangyang.easyguishop.exception.DuplicateShopException;
@@ -35,7 +36,7 @@ public class PlayerInputAfterClickManageShopPageCreateShop implements Listener {
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
@@ -45,54 +46,66 @@ public class PlayerInputAfterClickManageShopPageCreateShop implements Listener {
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
             unregisterSelf();
-            try {
-                manageShopPage.refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        manageShopPage.refresh();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
 
 
         unregisterSelf();
-        try {
-            manageShopPage.refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    manageShopPage.refresh();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-        int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', input)).length();
+                int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', input)).length();
 
-        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", player);
-        if (perm == null) {
-            perm = 0;
-        }
-        if (perm < nameLength && !player.isOp()) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLength"));
-            return;
-        }
+                Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", player);
+                if (perm == null) {
+                    perm = 0;
+                }
+                if (perm < nameLength && !player.isOp()) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLength"));
+                    return;
+                }
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
 
-        ShopMeta shopMeta = new ShopMeta(UuidUtil.getUUID(), input, player.getUniqueId().toString(),
-                System.currentTimeMillis(), 0, 0, 0);
+                ShopMeta shopMeta = new ShopMeta(UuidUtil.getUUID(), input, player.getUniqueId().toString(),
+                        System.currentTimeMillis(), 0, 0, 0);
 
-        try {
-            guiService.createShop(shopMeta);
-            manageShopPage.refresh();
-        } catch (DuplicateShopException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopWhenCreateShop"));
-            return;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
+                try {
+                    guiService.createShop(shopMeta);
+                    manageShopPage.refresh();
+                } catch (DuplicateShopException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopWhenCreateShop"));
+                    return;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return;
+                }
 
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createShop"));
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createShop"));
+            }
+        }.runTask(EasyGuiShop.instance);
+
     }
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

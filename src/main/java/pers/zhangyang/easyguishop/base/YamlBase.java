@@ -11,6 +11,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class YamlBase {
 
@@ -124,9 +125,9 @@ public abstract class YamlBase {
     @NotNull
     public String getStringDefault(@NotNull String path) {
         if (!yamlConfiguration.isString(path)) {
-            return backUpConfiguration.getString(path);
+            return Objects.requireNonNull(backUpConfiguration.getString(path));
         }
-        return yamlConfiguration.getString(path);
+        return Objects.requireNonNull(yamlConfiguration.getString(path));
     }
 
     @Nullable

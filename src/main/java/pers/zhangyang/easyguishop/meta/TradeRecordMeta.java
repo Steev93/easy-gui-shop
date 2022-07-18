@@ -4,14 +4,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TradeRecordMeta {
-    private String uuid;
     private final String customerUuid;
     private final String merchantUuid;
-    private  String goodItemStack;
+    private final double tradeTaxRate;
+    private String uuid;
+    private String goodItemStack;
     private int tradeAmount;
     private boolean goodSystem;
     private long tradeTime;
-    private double tradeTaxRate;
     private String goodType;
     private String goodCurrencyItemStack;
     private Double goodVaultPrice;
@@ -20,7 +20,7 @@ public class TradeRecordMeta {
 
     public TradeRecordMeta(@NotNull String uuid, @NotNull String customerUuid, @NotNull String merchantUuid,
                            @NotNull String goodItemStack, int tradeAmount, boolean goodSystem, long tradeTime,
-                           String goodType,double tradeTaxRate) {
+                           String goodType, double tradeTaxRate) {
         this.tradeTaxRate = tradeTaxRate;
         this.uuid = uuid;
         this.customerUuid = customerUuid;
@@ -34,10 +34,6 @@ public class TradeRecordMeta {
 
     public double getTradeTaxRate() {
         return tradeTaxRate;
-    }
-
-    public void setGoodItemStack(String goodItemStack) {
-        this.goodItemStack = goodItemStack;
     }
 
     @NotNull
@@ -70,6 +66,10 @@ public class TradeRecordMeta {
     @NotNull
     public String getGoodItemStack() {
         return goodItemStack;
+    }
+
+    public void setGoodItemStack(String goodItemStack) {
+        this.goodItemStack = goodItemStack;
     }
 
     public int getTradeAmount() {

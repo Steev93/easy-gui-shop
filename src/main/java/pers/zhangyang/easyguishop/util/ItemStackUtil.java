@@ -15,7 +15,6 @@ import pers.zhangyang.easyguishop.exception.NotApplicableException;
 import pers.zhangyang.easyguishop.exception.UnsupportedMinecraftVersionException;
 
 import java.util.List;
-import java.util.Set;
 
 public class ItemStackUtil {
 
@@ -45,11 +44,11 @@ public class ItemStackUtil {
     //把itemstack的name  lore  customdata  移植到target里  itemflag添加
     public static void apply(@NotNull ItemStack itemStack, @NotNull ItemStack target) throws NotApplicableException {
         ItemMeta itemMeta = itemStack.getItemMeta();
-        ItemMeta targetMeta=target.getItemMeta();
-        if (targetMeta==null){
+        ItemMeta targetMeta = target.getItemMeta();
+        if (targetMeta == null) {
             throw new NotApplicableException();
         }
-        if (itemMeta==null){
+        if (itemMeta == null) {
             return;
         }
         targetMeta.setDisplayName(itemMeta.getDisplayName());

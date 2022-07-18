@@ -18,20 +18,22 @@ public class SettingYaml extends YamlBase {
     public String getDisplay() {
         String display = getStringDefault("setting.display");
         if (!display.equalsIgnoreCase("default")
-        &&!display.equalsIgnoreCase("english")) {
+                && !display.equalsIgnoreCase("english")) {
             display = backUpConfiguration.getString("setting.display");
         }
         return display;
     }
+
     @NotNull
     public Location getLocationMath(String path) {
-        Double x = getDoubleDefault(path+".x");
-        Double y = getDoubleDefault(path+".y");
-        Double z = getDoubleDefault(path+".z");
-        String worldName=getStringDefault(path+".worldName");
-        World world=Bukkit.getWorld(worldName);
-        return new Location(world==null?Bukkit.getWorld("world"):world,x,y,z);
+        Double x = getDoubleDefault(path + ".x");
+        Double y = getDoubleDefault(path + ".y");
+        Double z = getDoubleDefault(path + ".z");
+        String worldName = getStringDefault(path + ".worldName");
+        World world = Bukkit.getWorld(worldName);
+        return new Location(world == null ? Bukkit.getWorld("world") : world, x, y, z);
     }
+
     public double getRange(String path) {
         Double var = getDoubleDefault(path);
         if (var < 0) {

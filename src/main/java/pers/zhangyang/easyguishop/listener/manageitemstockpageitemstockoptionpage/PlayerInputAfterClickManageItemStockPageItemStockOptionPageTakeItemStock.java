@@ -4,8 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageItemStockPageItemStockOptionPage;
 import pers.zhangyang.easyguishop.exception.NotExistItemStockException;
@@ -37,7 +38,7 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItem
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
@@ -47,58 +48,70 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItem
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
             unregisterSelf();
-            try {
-                itemStockPageItemStockOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        itemStockPageItemStockOptionPage.send();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
 
         unregisterSelf();
-        try {
-            itemStockPageItemStockOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    itemStockPageItemStockOptionPage.send();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-        int amount;
-        try {
-            amount = Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            return;
-        }
-        if(amount<0){
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-            return;
-        }
-        int space = InventoryUtil.checkSpace(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()));
-        if (space < amount) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughSpaceWhenTakeItemStock"));
-            return;
-        }
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
-        try {
-            guiService.takeItemStock(player.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
-            itemStockPageItemStockOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NotMoreItemStockException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStock"));
-            return;
-        } catch (NotExistItemStockException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStock"));
-            return;
-        }
-        InventoryUtil.addItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.takeItemStock"));
+                int amount;
+                try {
+                    amount = Integer.parseInt(input);
+                } catch (NumberFormatException ex) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+                    return;
+                }
+                if (amount < 0) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+                    return;
+                }
+                int space = InventoryUtil.checkSpace(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()));
+                if (space < amount) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughSpaceWhenTakeItemStock"));
+                    return;
+                }
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                try {
+                    guiService.takeItemStock(player.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
+                    itemStockPageItemStockOptionPage.send();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (NotMoreItemStockException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStock"));
+                    return;
+                } catch (NotExistItemStockException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStock"));
+                    return;
+                }
+                InventoryUtil.addItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.takeItemStock"));
+            }
+        }.runTask(EasyGuiShop.instance);
+
 
     }
 
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

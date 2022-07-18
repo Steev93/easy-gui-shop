@@ -6,9 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageGoodPage;
 import pers.zhangyang.easyguishop.exception.DuplicateGoodException;
@@ -36,7 +37,7 @@ public class PlayerInputAfterClickManageGoodPageCreateGood implements Listener {
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
             return;
@@ -45,11 +46,17 @@ public class PlayerInputAfterClickManageGoodPageCreateGood implements Listener {
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
             unregisterSelf();
-            try {
-                manageGoodPage.refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        manageGoodPage.refresh();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
         if (name == null) {
@@ -58,42 +65,48 @@ public class PlayerInputAfterClickManageGoodPageCreateGood implements Listener {
         }
         type = input;
         unregisterSelf();
-        try {
-            manageGoodPage.refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ItemStack itemStack = InventoryUtil.getItemInMainHand(player).clone();
-        itemStack.setAmount(1);
-        if (itemStack.getType().equals(Material.AIR)) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
-            return;
-        }
-        String buy = MessageYaml.INSTANCE.getInput("message.input.buy");
-        String sell = MessageYaml.INSTANCE.getInput("message.input.sell");
-        if (!type.equalsIgnoreCase(buy) && !type.equalsIgnoreCase(sell)) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.unknownType"));
-            return;
-        }
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
-        GoodMeta goodMeta = new GoodMeta(UuidUtil.getUUID(), name, ItemStackUtil.itemStackSerialize(itemStack), type, System.currentTimeMillis(),
-                false, 0, manageGoodPage.getShopMeta().getUuid());
-        try {
-            guiService.createGood(goodMeta);
-            manageGoodPage.refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        } catch (DuplicateGoodException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateGoodWhenCreateGood"));
-            return;
-        }
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createGood"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    manageGoodPage.refresh();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                ItemStack itemStack = InventoryUtil.getItemInMainHand(player).clone();
+                itemStack.setAmount(1);
+                if (itemStack.getType().equals(Material.AIR)) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
+                    return;
+                }
+                String buy = MessageYaml.INSTANCE.getInput("message.input.buy");
+                String sell = MessageYaml.INSTANCE.getInput("message.input.sell");
+                if (!type.equalsIgnoreCase(buy) && !type.equalsIgnoreCase(sell)) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.unknownType"));
+                    return;
+                }
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                GoodMeta goodMeta = new GoodMeta(UuidUtil.getUUID(), name, ItemStackUtil.itemStackSerialize(itemStack), type, System.currentTimeMillis(),
+                        false, 0, manageGoodPage.getShopMeta().getUuid());
+                try {
+                    guiService.createGood(goodMeta);
+                    manageGoodPage.refresh();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return;
+                } catch (DuplicateGoodException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateGoodWhenCreateGood"));
+                    return;
+                }
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createGood"));
+            }
+        }.runTask(EasyGuiShop.instance);
+
     }
 
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

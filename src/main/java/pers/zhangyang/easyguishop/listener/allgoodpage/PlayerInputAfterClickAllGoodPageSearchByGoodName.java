@@ -4,8 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.AllGoodPage;
 import pers.zhangyang.easyguishop.util.MessageUtil;
@@ -27,7 +28,7 @@ public class PlayerInputAfterClickAllGoodPageSearchByGoodName implements Listene
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
             return;
@@ -35,27 +36,38 @@ public class PlayerInputAfterClickAllGoodPageSearchByGoodName implements Listene
         event.setCancelled(true);
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
+
             unregisterSelf();
-            try {
-                allGoodPage.refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        allGoodPage.refresh();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
 
         unregisterSelf();
-        try {
-            allGoodPage.searchByGooName(input);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    allGoodPage.searchByGooName(input);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.runTask(EasyGuiShop.instance);
     }
 
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

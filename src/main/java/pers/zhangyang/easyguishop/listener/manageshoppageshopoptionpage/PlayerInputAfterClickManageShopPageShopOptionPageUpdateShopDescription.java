@@ -4,8 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageShopPageShopOptionPage;
 import pers.zhangyang.easyguishop.exception.NotExistLineException;
@@ -37,7 +38,7 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescript
     }
 
     @EventHandler
-    public void onPlayerChat(PlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
         if (!player.equals(this.player)) {
@@ -47,12 +48,18 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescript
         String input = event.getMessage();
         if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
             unregisterSelf();
+            new BukkitRunnable() {
+                @Override
+                public void run() {
 
-            try {
-                manageShopPageShopOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                    try {
+                        manageShopPageShopOptionPage.send();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.runTask(EasyGuiShop.instance);
+
             return;
         }
 
@@ -75,29 +82,35 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescript
 
 
         unregisterSelf();
-        try {
-            manageShopPageShopOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    manageShopPageShopOptionPage.send();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
 
 
-        try {
-            guiService.updateShopDescription(shopMeta.getUuid(), line, des);
-            manageShopPageShopOptionPage.send();
-        } catch (NotExistShopException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
-            return;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        } catch (NotExistLineException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLine"));
-            return;
-        }
+                try {
+                    guiService.updateShopDescription(shopMeta.getUuid(), line, des);
+                    manageShopPageShopOptionPage.send();
+                } catch (NotExistShopException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
+                    return;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return;
+                } catch (NotExistLineException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLine"));
+                    return;
+                }
 
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.updateShopDescription"));
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.updateShopDescription"));
+            }
+        }.runTask(EasyGuiShop.instance);
+
         //打开
 
 
@@ -105,7 +118,7 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescript
 
 
     private void unregisterSelf() {
-        PlayerChatEvent.getHandlerList().unregister(this);
+        AsyncPlayerChatEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 

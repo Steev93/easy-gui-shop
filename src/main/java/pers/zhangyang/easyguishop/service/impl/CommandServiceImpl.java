@@ -3,7 +3,6 @@ package pers.zhangyang.easyguishop.service.impl;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.dao.*;
@@ -17,7 +16,6 @@ import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class CommandServiceImpl implements CommandService {
     public static final CommandServiceImpl INSTANCE = new CommandServiceImpl();
@@ -235,8 +233,8 @@ public class CommandServiceImpl implements CommandService {
                 ShopDao.INSTANCE.insert(s);
             }
             try {
-                String data=s.getLocation();
-                if (data!=null){
+                String data = s.getLocation();
+                if (data != null) {
                     LocationUtil.deserializeLocation(data);
                 }
             } catch (Exception e) {
@@ -251,10 +249,10 @@ public class CommandServiceImpl implements CommandService {
         for (GoodMeta s : goodMetaList) {
 
             try {
-                String data=s.getCurrencyItemStack();
-                if (data!=null){
-                    ItemStack itemStack=ItemStackUtil.itemStackDeserialize(data);
-                    if (itemStack.getAmount()!=1){
+                String data = s.getCurrencyItemStack();
+                if (data != null) {
+                    ItemStack itemStack = ItemStackUtil.itemStackDeserialize(data);
+                    if (itemStack.getAmount() != 1) {
                         itemStack.setAmount(1);
                         s.setCurrencyItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                         GoodDao.INSTANCE.deleteByUuid(s.getUuid());
@@ -268,9 +266,9 @@ public class CommandServiceImpl implements CommandService {
                 GoodDao.INSTANCE.insert(s);
             }
             try {
-                String data=s.getGoodItemStack();
-                ItemStack itemStack=ItemStackUtil.itemStackDeserialize(data);
-                if (itemStack.getAmount()!=1){
+                String data = s.getGoodItemStack();
+                ItemStack itemStack = ItemStackUtil.itemStackDeserialize(data);
+                if (itemStack.getAmount() != 1) {
                     itemStack.setAmount(1);
                     s.setGoodItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                     GoodDao.INSTANCE.deleteByUuid(s.getUuid());
@@ -288,12 +286,12 @@ public class CommandServiceImpl implements CommandService {
 
             try {
 
-                String data=s.getCurrencyItemStack();
-                if (data!=null) {
+                String data = s.getCurrencyItemStack();
+                if (data != null) {
                     //如果货币不是物品，设为null
-                    ItemStack itemStack=ItemStackUtil.itemStackDeserialize(data);
+                    ItemStack itemStack = ItemStackUtil.itemStackDeserialize(data);
                     //如果货币不是1，设置1
-                    if (itemStack.getAmount()!=1){
+                    if (itemStack.getAmount() != 1) {
                         itemStack.setAmount(1);
                         s.setCurrencyItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                     }
@@ -318,9 +316,9 @@ public class CommandServiceImpl implements CommandService {
 
             try {
                 //检查是否未物品，不是物品删掉
-                ItemStack itemStack =ItemStackUtil.itemStackDeserialize(s.getItemStack());
+                ItemStack itemStack = ItemStackUtil.itemStackDeserialize(s.getItemStack());
                 //检查数量是否未1，否则设置为1
-                if (itemStack.getAmount()!=1){
+                if (itemStack.getAmount() != 1) {
                     itemStack.setAmount(1);
                     s.setItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                     ItemStockDao.INSTANCE.deleteByPlayerUuidAndItemStack(s.getPlayerUuid(), s.getItemStack());
@@ -338,17 +336,17 @@ public class CommandServiceImpl implements CommandService {
 
 
             try {
-                String data=s.getGoodCurrencyItemStack();
+                String data = s.getGoodCurrencyItemStack();
                 //如果货币是空，删掉记录，否则检查数量1，不是1的话就设置未1
-                if (data!=null) {
-                    ItemStack itemStack=ItemStackUtil.itemStackDeserialize(data);
-                    if (itemStack.getAmount()!=1){
+                if (data != null) {
+                    ItemStack itemStack = ItemStackUtil.itemStackDeserialize(data);
+                    if (itemStack.getAmount() != 1) {
                         itemStack.setAmount(1);
                         s.setGoodItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                         TradeRecordDao.INSTANCE.deleteByUuid(s.getUuid());
                         TradeRecordDao.INSTANCE.insert(s);
                     }
-                }else {
+                } else {
                     TradeRecordDao.INSTANCE.deleteByUuid(s.getUuid());
                 }
             } catch (Exception e) {
@@ -356,9 +354,9 @@ public class CommandServiceImpl implements CommandService {
             }
             try {
                 //检查商品是不是合格的物品，不是的话抛出异常就删除了
-                ItemStack itemStack=ItemStackUtil.itemStackDeserialize(s.getGoodItemStack());
+                ItemStack itemStack = ItemStackUtil.itemStackDeserialize(s.getGoodItemStack());
                 //检查商品是不是数量1，如果不是设为1
-                if (itemStack.getAmount()!=1){
+                if (itemStack.getAmount() != 1) {
                     itemStack.setAmount(1);
                     s.setGoodItemStack(ItemStackUtil.itemStackSerialize(itemStack));
                     TradeRecordDao.INSTANCE.deleteByUuid(s.getUuid());

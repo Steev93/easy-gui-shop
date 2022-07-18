@@ -35,9 +35,9 @@ public class PlayerClickAllGoodPageBack implements Listener {
             return;
         }
         AllGoodPage allGoodPage = (AllGoodPage) holder;
-        InventoryHolder inventoryHolder=allGoodPage.getPreviousHolder();
+        InventoryHolder inventoryHolder = allGoodPage.getPreviousHolder();
 
-        if (inventoryHolder instanceof AllShopPageShopOptionPage){
+        if (inventoryHolder instanceof AllShopPageShopOptionPage) {
             AllShopPageShopOptionPage allShopPageShopOptionPage = (AllShopPageShopOptionPage) allGoodPage.getPreviousHolder();
             try {
                 allShopPageShopOptionPage.send();
@@ -46,7 +46,7 @@ public class PlayerClickAllGoodPageBack implements Listener {
             }
         }
 
-        if (inventoryHolder instanceof CollectedShopPageShopOptionPage){
+        if (inventoryHolder instanceof CollectedShopPageShopOptionPage) {
             CollectedShopPageShopOptionPage collectedShopPageShopOptionPage = (CollectedShopPageShopOptionPage) allGoodPage.getPreviousHolder();
             try {
                 collectedShopPageShopOptionPage.send();

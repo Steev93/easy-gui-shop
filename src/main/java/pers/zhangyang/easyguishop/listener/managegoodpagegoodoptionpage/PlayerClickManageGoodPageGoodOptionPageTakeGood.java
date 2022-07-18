@@ -51,31 +51,31 @@ public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener
         ShopMeta shopMeta;
         try {
             manageGoodPageGoodOptionPage.send();
-            shopMeta=guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
+            shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
             manageGoodPageGoodOptionPage.send();
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
-        if (shopMeta==null){
+        if (shopMeta == null) {
             return;
         }
 
-        String locationData=shopMeta.getLocation();
-        if (locationData==null){
+        String locationData = shopMeta.getLocation();
+        if (locationData == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetShopLocationWhenTakeGood"));
             return;
         }
-        Location location= LocationUtil.deserializeLocation(shopMeta.getLocation());
-        if (location.getWorld()==null){
+        Location location = LocationUtil.deserializeLocation(shopMeta.getLocation());
+        if (location.getWorld() == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
             return;
         }
-        if(!location.getWorld().equals(player.getLocation().getWorld())){
+        if (!location.getWorld().equals(player.getLocation().getWorld())) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
             return;
         }
-        if (location.distance(player.getLocation())> SettingYaml.INSTANCE.getRange("setting.manageGoodRange")){
+        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getRange("setting.manageGoodRange")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
             return;
         }

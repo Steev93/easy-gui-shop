@@ -89,7 +89,7 @@ public class BuyIconPageIconOptionPage implements InventoryHolder {
         inventory.setItem(4, icon);
 
         if (currency != null) {
-            if (iconMeta.isSystem()){
+            if (iconMeta.isSystem()) {
                 if (iconMeta.getLimitTime() == null) {
                     ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
                     inventory.setItem(40, buyIcon);
@@ -100,7 +100,7 @@ public class BuyIconPageIconOptionPage implements InventoryHolder {
                 }
             }
 
-            if (!iconMeta.isSystem() && iconMeta.getStock()>0){
+            if (!iconMeta.isSystem() && iconMeta.getStock() > 0) {
                 if (iconMeta.getLimitTime() == null) {
                     ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.buyIcon");
                     inventory.setItem(40, buyIcon);

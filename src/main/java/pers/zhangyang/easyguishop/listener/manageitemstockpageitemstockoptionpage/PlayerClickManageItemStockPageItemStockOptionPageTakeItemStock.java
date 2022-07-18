@@ -49,29 +49,28 @@ public class PlayerClickManageItemStockPageItemStockOptionPageTakeItemStock impl
         ItemStockMeta itemStockMeta;
         try {
             manageItemStockPageItemStockOptionPage.send();
-            itemStockMeta=guiService.getItemStock(player.getUniqueId().toString(),manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
+            itemStockMeta = guiService.getItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
             manageItemStockPageItemStockOptionPage.send();
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
-        if (itemStockMeta==null){
+        if (itemStockMeta == null) {
             return;
         }
-        Location location= SettingYaml.INSTANCE.getLocationMath("setting.bankLocation");
-        if (location.getWorld()==null){
+        Location location = SettingYaml.INSTANCE.getLocationMath("setting.bankLocation");
+        if (location.getWorld() == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
             return;
         }
-        if(!location.getWorld().equals(player.getLocation().getWorld())){
+        if (!location.getWorld().equals(player.getLocation().getWorld())) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
             return;
         }
-        if (location.distance(player.getLocation())> SettingYaml.INSTANCE.getRange("setting.manageItemStockRange")){
+        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getRange("setting.manageItemStockRange")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
             return;
         }
-
 
 
         new PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItemStock(player, manageItemStockPageItemStockOptionPage.getItemStockMeta(),

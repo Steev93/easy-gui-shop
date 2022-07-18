@@ -10,7 +10,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.ManageGoodPageGoodOptionPage;
-import pers.zhangyang.easyguishop.exception.NotExistGoodException;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
@@ -44,7 +43,6 @@ public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Liste
         }
 
 
-
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         Player player = (Player) event.getWhoClicked();
 
@@ -53,30 +51,30 @@ public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Liste
         ShopMeta shopMeta;
         try {
             manageGoodPageGoodOptionPage.send();
-            shopMeta=guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
+            shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
             manageGoodPageGoodOptionPage.send();
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
-        if (shopMeta==null){
+        if (shopMeta == null) {
             return;
         }
-        String locationData=shopMeta.getLocation();
-        if (locationData==null){
+        String locationData = shopMeta.getLocation();
+        if (locationData == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetShopLocationWhenDepositGood"));
             return;
         }
-        Location location= LocationUtil.deserializeLocation(shopMeta.getLocation());
-        if (location.getWorld()==null){
+        Location location = LocationUtil.deserializeLocation(shopMeta.getLocation());
+        if (location.getWorld() == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenDepositGood"));
             return;
         }
-        if(!location.getWorld().equals(player.getLocation().getWorld())){
+        if (!location.getWorld().equals(player.getLocation().getWorld())) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenDepositGood"));
             return;
         }
-        if (location.distance(player.getLocation())> SettingYaml.INSTANCE.getRange("setting.manageGoodRange")){
+        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getRange("setting.manageGoodRange")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenDepositGood"));
             return;
         }

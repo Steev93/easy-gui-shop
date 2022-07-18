@@ -9,13 +9,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easyguishop.domain.AllShopPage;
 import pers.zhangyang.easyguishop.domain.ManageItemStockPage;
 import pers.zhangyang.easyguishop.util.MessageUtil;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
-
-import java.sql.SQLException;
 
 public class PlayerClickManageItemStockPageGoBankLocation implements Listener {
 
@@ -39,8 +36,8 @@ public class PlayerClickManageItemStockPageGoBankLocation implements Listener {
         }
 
 
-        Location location= SettingYaml.INSTANCE.getLocationMath("setting.bankLocation");
-        Player player= (Player) event.getWhoClicked();
+        Location location = SettingYaml.INSTANCE.getLocationMath("setting.bankLocation");
+        Player player = (Player) event.getWhoClicked();
         player.teleport(location);
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.goBankLocation"));
 

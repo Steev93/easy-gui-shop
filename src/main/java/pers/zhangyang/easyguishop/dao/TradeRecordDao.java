@@ -119,7 +119,7 @@ public class TradeRecordDao {
         TradeRecordMeta shopMeta = new TradeRecordMeta(rs.getString("uuid"), rs.getString("customer_uuid"),
                 rs.getString("merchant_uuid"), rs.getString("good_item_stack"),
                 rs.getInt("trade_amount"), rs.getBoolean("good_system"),
-                rs.getLong("trade_time"), rs.getString("good_type"),rs.getDouble("trade_tax_rate"));
+                rs.getLong("trade_time"), rs.getString("good_type"), rs.getDouble("trade_tax_rate"));
         shopMeta.setGoodCurrencyItemStack(rs.getString("good_currency_item_stack"));
         shopMeta.setGoodVaultPrice((Double) rs.getObject("good_vault_price"));
         shopMeta.setGoodPlayerPointsPrice((Integer) rs.getObject("good_player_points_price"));
