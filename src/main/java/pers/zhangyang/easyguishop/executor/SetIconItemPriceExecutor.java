@@ -1,5 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -46,6 +47,7 @@ public class SetIconItemPriceExecutor extends ExecutorBase {
             invalidArgument(args[2]);
             return;
         }
+        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
         try {
             guiService.setIconItemPrice(args[1], price, ItemStackUtil.itemStackSerialize(itemStack));

@@ -71,6 +71,8 @@ public class PlayerInputAfterClickManageShopPageCreateShop implements Listener {
                     e.printStackTrace();
                 }
 
+                System.out.println(input);
+
                 int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', input)).length();
 
                 Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", player);
@@ -78,10 +80,10 @@ public class PlayerInputAfterClickManageShopPageCreateShop implements Listener {
                     perm = 0;
                 }
                 if (perm < nameLength && !player.isOp()) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLength"));
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLengthWhenCreateShop"));
                     return;
                 }
-
+                System.out.println(input);
                 GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
 
                 ShopMeta shopMeta = new ShopMeta(UuidUtil.getUUID(), input, player.getUniqueId().toString(),

@@ -1,6 +1,7 @@
 package pers.zhangyang.easyguishop.service.impl;
 
 import com.google.gson.Gson;
+import org.bukkit.ChatColor;
 import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.dao.*;
 import pers.zhangyang.easyguishop.manager.ConnectionManager;
@@ -35,7 +36,29 @@ public class BaseServiceImpl implements BaseService {
             VersionDao.INSTANCE.insert(new VersionMeta(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2])));
         }
     }
+    @Override
+    public void transform2_0_4() throws SQLException {
+        //从2.0.0到2.2.4的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新
+        VersionMeta versionMeta=VersionDao.INSTANCE.get();
+        assert versionMeta != null;
+        if (versionMeta.getBig()==2&&versionMeta.getMiddle()>2){
+            return;
+        }
+        if (versionMeta.getBig()==2&&versionMeta.getMiddle()==2&&versionMeta.getSmall()>=4){
+            return;
+        }
 
+
+        List<IconMeta> iconMetaList=IconDao.INSTANCE.list();
+        for (IconMeta iconMeta:iconMetaList){
+            iconMeta.setName(ChatColor.translateAlternateColorCodes('&',iconMeta.getName()));
+            IconDao.INSTANCE.deleteByUuid(iconMeta.getUuid());
+            IconDao.INSTANCE.insert(iconMeta);
+        }
+        VersionDao.INSTANCE.delete();
+        VersionDao.INSTANCE.insert(new VersionMeta(2, 2, 4));
+
+    }
 
     @Override
     public void transform2_0_0() throws SQLException {

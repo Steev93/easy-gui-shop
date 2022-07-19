@@ -1,6 +1,7 @@
 package pers.zhangyang.easyguishop.listener.manageshoppageshopoptionpage;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +16,7 @@ import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
 import pers.zhangyang.easyguishop.util.MessageUtil;
+import pers.zhangyang.easyguishop.util.PermUtil;
 import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 
@@ -71,7 +73,22 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageSetShopName implem
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+
+                int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', input)).length();
+
+                Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", player);
+                if (perm == null) {
+                    perm = 0;
+                }
+                if (perm < nameLength && !player.isOp()) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLengthWhenSetShopName"));
+                    return;
+                }
+
+
                 GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+
 
                 try {
                     guiService.setShopName(shopMeta.getUuid(), input);

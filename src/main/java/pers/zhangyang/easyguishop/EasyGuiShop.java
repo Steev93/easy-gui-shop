@@ -82,6 +82,7 @@ public class EasyGuiShop extends JavaPlugin {
 
         try {
             pluginService.transform2_0_0();
+            pluginService.transform2_0_4();
             pluginService.initDatabase();
         } catch (SQLException e) {
             e.printStackTrace();

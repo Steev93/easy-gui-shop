@@ -50,9 +50,9 @@ completer:
     - "<图标名字>"
   easyGuiShopSetIconItemPrice$:
     - "<价格>"
-  easyGuiShopSetIconNamePrice:
+  easyGuiShopSetIconName:
     - "<图标名字>"
-  easyGuiShopSetIconNamePrice$:
+  easyGuiShopSetIconName$:
     - "<新名字>"
   easyGuiShopSetIconStock:
     - "<图标名字>"

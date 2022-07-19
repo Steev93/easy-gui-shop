@@ -1,5 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,6 +31,8 @@ public class CreateIconExecutor extends ExecutorBase {
             MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
             return;
         }
+
+        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
         ItemStack itemStack = InventoryUtil.getItemInMainHand(player);
         IconMeta iconMeta = new IconMeta(UuidUtil.getUUID(), args[1], System.currentTimeMillis(), 0,
                 ItemStackUtil.itemStackSerialize(itemStack), false);

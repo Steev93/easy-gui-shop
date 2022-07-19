@@ -50,9 +50,9 @@ completer:
     - "<IconName>"
   easyGuiShopSetIconItemPrice$:
     - "<Price>"
-  easyGuiShopSetIconNamePrice:
+  easyGuiShopSetIconName:
     - "<IconName>"
-  easyGuiShopSetIconNamePrice$:
+  easyGuiShopSetIconName$:
     - "<NewName>"
   easyGuiShopSetIconStock:
     - "<IconName>"

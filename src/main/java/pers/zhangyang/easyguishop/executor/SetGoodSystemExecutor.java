@@ -1,5 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.base.ExecutorBase;
@@ -29,6 +30,8 @@ public class SetGoodSystemExecutor extends ExecutorBase {
             invalidArgument(args[3]);
             return;
         }
+        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
+        args[2]= ChatColor.translateAlternateColorCodes('&',args[2]);
         boolean system = Boolean.parseBoolean(args[3]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
         try {

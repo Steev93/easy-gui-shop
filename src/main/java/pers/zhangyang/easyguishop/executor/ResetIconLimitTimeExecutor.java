@@ -1,5 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.base.ExecutorBase;
@@ -23,6 +24,7 @@ public class ResetIconLimitTimeExecutor extends ExecutorBase {
         if (args.length != 2) {
             return;
         }
+        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
         try {
             guiService.setIconLimitTime(args[1], null);

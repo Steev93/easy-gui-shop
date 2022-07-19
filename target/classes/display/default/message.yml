@@ -133,8 +133,10 @@ message:
       - "&c&l已经创建过这个库存了"
     itemStockNotEmpty:
       - "&c&l库存不是空的，不能删除"
-    beyondShopNameLength:
+    beyondShopNameLengthWhenCreateShop:
       - "&c&l商店的名字长度已经超出了您能创建的长度。"
+    beyondShopNameLengthWhenSetShopName:
+      - "&c&l商店的名字长度已经超出了您能修改的长度。"
     beyondShopAmount:
       - "&c&l商店的数量已经超出了您能创建的数量。"
     duplicateShopWhenCreateShop:

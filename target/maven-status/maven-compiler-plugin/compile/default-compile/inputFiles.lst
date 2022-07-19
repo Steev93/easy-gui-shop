@@ -1,5 +1,6 @@
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpage\PlayerClickManageGoodPagePrevious.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageResetShopLocation.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\util\NotifyVersionUtil.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\enumration\ShopCommentPageStatsEnum.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllShopPageShopOptionPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageAllShopPageShopOptionPage.java
@@ -48,7 +49,6 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerClickManageItemStockPageItemStockOptionPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managetraderecordpage\PlayerClickManageTradeRecordPageBack.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\buyiconpage\PlayerClickBuyIconPageBuyIconPageIconOptionPage.java
-C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\runnable\NotifyVersionRunnable.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\util\ItemStackUtil.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\FailureCreateWorldException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageItemStockPageItemStockOptionPage.java
@@ -75,7 +75,6 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allgoodpagegoodoptionpage\PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageGoLocation.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managetraderecordpage\PlayerClickManageTradeRecordPagePrevious.java
-C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\util\RefreshUtil.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageResetShopDescription.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistPreviousException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageSetShopName.java

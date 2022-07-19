@@ -7,4 +7,5 @@ public interface BaseService {
 
     void transform2_0_0() throws SQLException;
 
+    void transform2_0_4() throws SQLException;
 }
