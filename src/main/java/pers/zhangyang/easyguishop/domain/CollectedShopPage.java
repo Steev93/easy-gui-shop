@@ -29,7 +29,7 @@ import java.util.*;
 public class CollectedShopPage implements InventoryHolder {
 
     private final Inventory inventory;
-    private final List<ShopMeta> shopMetaList = new ArrayList<>();
+    private  List<ShopMeta> shopMetaList = new ArrayList<>();
     private final InventoryHolder previousHolder;
     private final Player player;
     private int pageIndex;
@@ -100,10 +100,10 @@ public class CollectedShopPage implements InventoryHolder {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        int pageMax = PageUtil.page(pageIndex, 45, new ArrayList<>(shopMetaList)).size();
+        this.shopMetaList=(PageUtil.page(pageIndex, 45,shopMetaList));
         //设置内容
-        for (int i = 45 * pageIndex; i < 45 + 45 * pageIndex; i++) {
-            if (i >= pageMax + 45 * pageIndex) {
+        for (int i = 0; i < 45 ; i++) {
+            if (i >= shopMetaList.size()) {
                 break;
             }
             ShopMeta shopMeta = shopMetaList.get(i);
@@ -156,7 +156,7 @@ public class CollectedShopPage implements InventoryHolder {
             ReplaceUtil.formatLore(itemStack, "{(description)}", stringList);
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i - 45 * pageIndex, itemStack);
+            inventory.setItem(i, itemStack);
         }
     }
     //渲染当前页的菜单(不包括翻页)

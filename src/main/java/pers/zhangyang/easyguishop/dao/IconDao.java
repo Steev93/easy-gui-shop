@@ -5,9 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easyguishop.manager.ConnectionManager;
 import pers.zhangyang.easyguishop.meta.IconMeta;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.lang.reflect.Type;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,22 +36,24 @@ public class IconDao {
     }
 
     public int insert(@NotNull IconMeta iconMeta) throws SQLException {
+
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "INSERT INTO icon (uuid,name,create_time,stock,icon_item_stack,limit_time," +
-                "item_price,vault_price,player_points_price,currency_item_stack,system )" +
+                "INSERT INTO icon (uuid,`name`,create_time,stock,icon_item_stack,limit_time," +
+                "item_price,vault_price,player_points_price,currency_item_stack,`system`)" +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, iconMeta.getUuid());
         ps.setString(2, iconMeta.getName());
         ps.setLong(3, iconMeta.getCreateTime());
-        ps.setLong(4, iconMeta.getStock());
+        ps.setInt(4, iconMeta.getStock());
         ps.setString(5, iconMeta.getIconItemStack());
-        ps.setObject(6, iconMeta.getLimitTime());
-        ps.setObject(7, iconMeta.getItemPrice());
-        ps.setObject(8, iconMeta.getVaultPrice());
-        ps.setObject(9, iconMeta.getPlayerPointsPrice());
-        ps.setObject(10, iconMeta.getCurrencyItemStack());
-        ps.setObject(11, iconMeta.isSystem());
+
+            ps.setObject(6, iconMeta.getLimitTime());
+            ps.setObject(7, iconMeta.getItemPrice());
+            ps.setObject(8, iconMeta.getVaultPrice());
+            ps.setObject(9, iconMeta.getPlayerPointsPrice());
+        ps.setString(10, iconMeta.getCurrencyItemStack());
+        ps.setBoolean(11, iconMeta.isSystem());
         return ps.executeUpdate();
     }
 
@@ -97,7 +98,7 @@ public class IconDao {
     public IconMeta getByName(@NotNull String name) throws SQLException {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM icon WHERE name =? " +
+                "SELECT * FROM icon WHERE `name` =? " +
                 "");
         ps.setString(1, name);
         ResultSet rs = ps.executeQuery();

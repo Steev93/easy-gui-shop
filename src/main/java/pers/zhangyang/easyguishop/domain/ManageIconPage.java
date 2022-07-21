@@ -27,7 +27,7 @@ import java.util.List;
 public class ManageIconPage implements InventoryHolder {
 
     private final Inventory inventory;
-    private final List<IconMeta> iconMetaList = new ArrayList<>();
+    private  List<IconMeta> iconMetaList = new ArrayList<>();
     private final InventoryHolder previousHolder;
     private final Player player;
     private int pageIndex;
@@ -109,10 +109,10 @@ public class ManageIconPage implements InventoryHolder {
             inventory.setItem(i, null);
         }
 
-        int pageMax = PageUtil.page(pageIndex, 45, new ArrayList<>(iconMetaList)).size();
+        this.iconMetaList=(PageUtil.page(pageIndex, 45,iconMetaList));
         //设置内容
-        for (int i = 45 * pageIndex; i < 45 + 45 * pageIndex; i++) {
-            if (i >= pageMax + 45 * pageIndex) {
+        for (int i = 0; i < 45 ; i++) {
+            if (i >= iconMetaList.size()) {
                 break;
             }
             IconMeta iconMeta = iconMetaList.get(i);
@@ -133,7 +133,7 @@ public class ManageIconPage implements InventoryHolder {
             }
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i - 45 * pageIndex, itemStack);
+            inventory.setItem(i , itemStack);
         }
     }
 

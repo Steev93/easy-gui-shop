@@ -26,7 +26,7 @@ import java.util.List;
 public class ManageItemStockPage implements InventoryHolder {
 
     private final Inventory inventory;
-    private final List<ItemStockMeta> itemStockMetaList = new ArrayList<>();
+    private  List<ItemStockMeta> itemStockMetaList = new ArrayList<>();
     private final InventoryHolder previousHolder;
     private final Player player;
     private int pageIndex;
@@ -76,10 +76,10 @@ public class ManageItemStockPage implements InventoryHolder {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        int pageMax = PageUtil.page(pageIndex, 45, new ArrayList<>(itemStockMetaList)).size();
+        this.itemStockMetaList=(PageUtil.page(pageIndex, 45,itemStockMetaList));
         //设置内容
-        for (int i = 45 * pageIndex; i < 45 + 45 * pageIndex; i++) {
-            if (i >= pageMax + 45 * pageIndex) {
+        for (int i = 0; i < 45  ; i++) {
+            if (i >=itemStockMetaList.size()) {
                 break;
             }
 
@@ -96,7 +96,7 @@ public class ManageItemStockPage implements InventoryHolder {
             } else {
                 itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.manageItemStockPageItemStockOptionPage");
             }
-            inventory.setItem(i - 45 * pageIndex, itemStack);
+            inventory.setItem(i , itemStack);
         }
     }
 

@@ -51,7 +51,7 @@ public class TradeRecordDao {
         ps.setBoolean(6, tradeRecordMeta.isGoodSystem());
         ps.setLong(7, tradeRecordMeta.getTradeTime());
         ps.setString(8, tradeRecordMeta.getGoodType());
-        ps.setObject(9, tradeRecordMeta.getGoodCurrencyItemStack());
+        ps.setString(9, tradeRecordMeta.getGoodCurrencyItemStack());
         ps.setObject(10, tradeRecordMeta.getGoodVaultPrice());
         ps.setObject(11, tradeRecordMeta.getGoodPlayerPointsPrice());
         ps.setObject(12, tradeRecordMeta.getGoodItemPrice());

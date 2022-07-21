@@ -27,7 +27,7 @@ import java.util.List;
 public class AllGoodPage implements InventoryHolder {
 
     private final Inventory inventory;
-    private final List<GoodMeta> goodMetaList = new ArrayList<>();
+    private  List<GoodMeta> goodMetaList = new ArrayList<>();
     private final InventoryHolder previousHolder;
     private final Player viewer;
     private int pageIndex;
@@ -127,10 +127,10 @@ public class AllGoodPage implements InventoryHolder {
             inventory.setItem(i, null);
         }
 
-        int pageMax = PageUtil.page(pageIndex, 45, new ArrayList<>(goodMetaList)).size();
+        this.goodMetaList=(PageUtil.page(pageIndex, 45,goodMetaList));
         //设置内容
-        for (int i = 45 * pageIndex; i < 45 + 45 * pageIndex; i++) {
-            if (i >= pageMax + 45 * pageIndex) {
+        for (int i = 0 ; i < 45 ; i++) {
+            if (i >= goodMetaList.size() ) {
                 break;
             }
             GoodMeta goodMeta = goodMetaList.get(i);
@@ -162,7 +162,7 @@ public class AllGoodPage implements InventoryHolder {
             }
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i - 45 * pageIndex, itemStack);
+            inventory.setItem(i, itemStack);
         }
     }
 

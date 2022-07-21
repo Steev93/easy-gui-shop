@@ -37,7 +37,7 @@ public class GoodDao {
 
     public int insert(@NotNull GoodMeta goodMeta) throws SQLException {
         PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "INSERT INTO good (uuid,name,good_item_stack,type,create_time,system,stock,shop_uuid,limit_time," +
+                "INSERT INTO good (uuid,`name`,good_item_stack,`type`,create_time,`system`,stock,shop_uuid,limit_time," +
                 "currency_item_stack,item_price,vault_price,player_points_price)" +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, goodMeta.getUuid());
@@ -47,9 +47,9 @@ public class GoodDao {
         ps.setLong(5, goodMeta.getCreateTime());
         ps.setBoolean(6, goodMeta.isSystem());
         ps.setInt(7, goodMeta.getStock());
-        ps.setObject(8, goodMeta.getShopUuid());
+        ps.setString(8, goodMeta.getShopUuid());
         ps.setObject(9, goodMeta.getLimitTime());
-        ps.setObject(10, goodMeta.getCurrencyItemStack());
+        ps.setString(10, goodMeta.getCurrencyItemStack());
         ps.setObject(11, goodMeta.getItemPrice());
         ps.setObject(12, goodMeta.getVaultPrice());
         ps.setObject(13, goodMeta.getPlayerPointsPrice());
@@ -100,7 +100,7 @@ public class GoodDao {
     @Nullable
     public GoodMeta getByNameAndShopUuid(@NotNull String goodName, @NotNull String shopUuid) throws SQLException {
         PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good WHERE name = ? and shop_uuid=?" +
+                "SELECT * FROM good WHERE `name` = ? and shop_uuid=?" +
                 "");
         ps.setString(1, goodName);
         ps.setString(2, shopUuid);

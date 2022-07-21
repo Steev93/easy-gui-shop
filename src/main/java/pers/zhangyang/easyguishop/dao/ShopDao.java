@@ -38,7 +38,7 @@ public class ShopDao {
     public int insert(@NotNull ShopMeta shopMeta) throws SQLException {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "INSERT INTO shop (uuid,name,owner_uuid,create_time,collect_amount,icon_uuid,location," +
+                "INSERT INTO shop (uuid,`name`,owner_uuid,create_time,collect_amount,icon_uuid,location," +
                 "popularity,page_view,description)" +
                 "VALUES(?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, shopMeta.getUuid());
@@ -103,7 +103,7 @@ public class ShopDao {
     public ShopMeta getByName(@NotNull String name) throws SQLException {
         PreparedStatement ps;
         ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM shop WHERE name = ?" +
+                "SELECT * FROM shop WHERE `name` = ?" +
                 "");
         ps.setString(1, name);
         ResultSet rs = ps.executeQuery();

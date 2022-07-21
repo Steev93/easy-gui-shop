@@ -31,7 +31,7 @@ import java.util.UUID;
 public class ManageCommentPage implements InventoryHolder {
 
     private final Inventory inventory;
-    private final List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
+    private  List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
     private final InventoryHolder previousHolder;
     private final Player player;
     private int pageIndex;
@@ -81,10 +81,10 @@ public class ManageCommentPage implements InventoryHolder {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        int pageMax = PageUtil.page(pageIndex, 45, new ArrayList<>(shopCommentMetaList)).size();
+        this.shopCommentMetaList=(PageUtil.page(pageIndex, 45,shopCommentMetaList));
         //设置内容
-        for (int i = 45 * pageIndex; i < 45 + 45 * pageIndex; i++) {
-            if (i >= pageMax + 45 * pageIndex) {
+        for (int i = 0; i < 45 ; i++) {
+            if (i >= shopCommentMetaList.size()) {
                 break;
             }
             ShopCommentMeta shopCommentMeta = shopCommentMetaList.get(i);
@@ -101,7 +101,7 @@ public class ManageCommentPage implements InventoryHolder {
 
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i - 45 * pageIndex, itemStack);
+            inventory.setItem(i , itemStack);
         }
     }
 
