@@ -37,8 +37,13 @@ public class BaseServiceImpl implements BaseService {
         }
     }
     @Override
-    public void transform2_0_4() throws SQLException {
-        //从2.0.0到2.2.4的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新
+    public void transform2_2_4() throws SQLException {
+        //从2.0.0到2.2.4的 如果存在version并且存在版本号小于2.2.4，需要更新
+        DatabaseMetaData metaData = ConnectionManager.INSTANCE.getConnection().getMetaData();
+        ResultSet rs = metaData.getTables(null, null, "version", null);
+        if (!rs.next()) {
+            return;
+        }
         VersionMeta versionMeta=VersionDao.INSTANCE.get();
         assert versionMeta != null;
         if (versionMeta.getBig()==2&&versionMeta.getMiddle()>2){
