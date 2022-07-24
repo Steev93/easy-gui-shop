@@ -3,7 +3,6 @@ package pers.zhangyang.easyguishop.domain;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -11,53 +10,45 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.CollectedShopPageEnum;
-import pers.zhangyang.easyguishop.exception.NotApplicableException;
-import pers.zhangyang.easyguishop.exception.NotExistNextException;
-import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.meta.IconMeta;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.*;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
+import pers.zhangyang.easylibrary.base.BackAble;
+import pers.zhangyang.easylibrary.base.GuiPage;
+import pers.zhangyang.easylibrary.base.MultipleGuiPageBase;
+import pers.zhangyang.easylibrary.exception.NotApplicableException;
+import pers.zhangyang.easylibrary.exception.NotExistNextPageException;
+import pers.zhangyang.easylibrary.exception.NotExistPreviousPageException;
+import pers.zhangyang.easylibrary.util.*;
 
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.*;
 
-public class CollectedShopPage implements InventoryHolder {
+public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
-    private final Inventory inventory;
-    private  List<ShopMeta> shopMetaList = new ArrayList<>();
-    private final InventoryHolder previousHolder;
-    private final Player player;
+    private List<ShopMeta> shopMetaList = new ArrayList<>();
     private int pageIndex;
     private CollectedShopPageEnum stats;
     private String searchContent;
 
-    public CollectedShopPage(InventoryHolder previousHolder, Player player) {
-        this.player = player;
-        this.previousHolder = previousHolder;
-        String title = GuiYaml.INSTANCE.getString("gui.title.collectedShopPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
+    public CollectedShopPage(GuiPage backPage, Player viewer) {
+        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPage"), viewer, backPage, backPage.getOwner());
         stats = CollectedShopPageEnum.NORMAL;
         initMenuBarWithoutChangePage();
     }
 
 
-    public void searchByShopName(@NotNull String name) throws SQLException {
+    public void searchByShopName(@NotNull String name) {
         this.stats = CollectedShopPageEnum.SEARCH_SHOP_NAME;
         this.searchContent = name;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void searchByShopOwnerName(@NotNull String ownerName) throws SQLException {
+    public void searchByShopOwnerName(@NotNull String ownerName) {
         this.stats = CollectedShopPageEnum.SEARCH_OWNER_NAME;
         this.searchContent = ownerName;
         this.pageIndex = 0;
@@ -65,15 +56,15 @@ public class CollectedShopPage implements InventoryHolder {
     }
 
 
-    public void refresh() throws SQLException {
+    public void refresh() {
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         this.shopMetaList.clear();
-        this.shopMetaList.addAll(guiService.listPlayerCollectedShop(player.getUniqueId().toString()));
+        this.shopMetaList.addAll(guiService.listPlayerCollectedShop(owner.getUniqueId().toString()));
         refreshContent();
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.previous");
+            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
@@ -86,23 +77,23 @@ public class CollectedShopPage implements InventoryHolder {
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.next");
+            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        player.openInventory(this.inventory);
+        viewer.openInventory(this.inventory);
     }
 
     //根据shopMetaList渲染当前页的0-44
 
-    private void refreshContent() throws SQLException {
+    private void refreshContent() {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        this.shopMetaList=(PageUtil.page(pageIndex, 45,shopMetaList));
+        this.shopMetaList = (PageUtil.page(pageIndex, 45, shopMetaList));
         //设置内容
-        for (int i = 0; i < 45 ; i++) {
+        for (int i = 0; i < 45; i++) {
             if (i >= shopMetaList.size()) {
                 break;
             }
@@ -121,7 +112,7 @@ public class CollectedShopPage implements InventoryHolder {
             ItemStack itemStack;
 
             if (shopMeta.getIconUuid() != null) {
-                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
                 IconMeta iconMeta = guiService.getIcon(shopMeta.getIconUuid());
                 if (iconMeta == null) {
                     refresh();
@@ -137,7 +128,7 @@ public class CollectedShopPage implements InventoryHolder {
 
             } else {
                 if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableShopUsePlayerHead")) {
-                    itemStack = ItemStackUtil.getPlayerSkullItem(owner);
+                    itemStack = PlayerUtil.getPlayerSkullItem(owner);
                     ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
                     try {
                         ItemStackUtil.apply(tem, itemStack);
@@ -172,28 +163,28 @@ public class CollectedShopPage implements InventoryHolder {
         inventory.setItem(51, searchOwner);
     }
 
-    public void send() throws SQLException {
+    public void send() {
         this.stats = CollectedShopPageEnum.NORMAL;
         this.searchContent = null;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void nextPage() throws NotExistNextException, SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void nextPage() throws NotExistNextPageException {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMetaList.clear();
-        this.shopMetaList.addAll(guiService.listPlayerCollectedShop(player.getUniqueId().toString()));
+        this.shopMetaList.addAll(guiService.listPlayerCollectedShop(owner.getUniqueId().toString()));
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
-            throw new NotExistNextException();
+            throw new NotExistNextPageException();
         }
         this.pageIndex++;
         refresh();
     }
 
-    public void previousPage() throws NotExistPreviousException, SQLException {
+    public void previousPage() throws NotExistPreviousPageException {
         if (0 >= pageIndex) {
-            throw new NotExistPreviousException();
+            throw new NotExistPreviousPageException();
         }
         this.pageIndex--;
         refresh();
@@ -211,6 +202,11 @@ public class CollectedShopPage implements InventoryHolder {
     }
 
     public InventoryHolder getPreviousHolder() {
-        return previousHolder;
+        return backPage;
+    }
+
+    @Override
+    public void back() {
+        backPage.refresh();
     }
 }

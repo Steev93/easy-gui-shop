@@ -1,0 +1,84 @@
+completer:
+
+  #When /easyGuiShop is entered, you will be prompted to complete the following contents
+  easyGuiShop:
+    - "help"
+    - "reloadPlugin"
+    - "correctYaml"
+    - "correctDatabase"
+    - "openGui"
+    - "openMui"
+    - "plusShopPopularity"
+    - "subtractShopPopularity"
+    - "createIcon"
+    - "deleteIcon"
+    - "setIconVaultPrice"
+    - "setIconPlayerPointsPrice"
+    - "setIconItemPrice"
+    - "setIconLimitTime"
+    - "resetIconLimitTime"
+    - "setIconName"
+    - "setIconStock"
+    - "setGoodSystem"
+    - "setShopSystem"
+    - "setIconSystem"
+
+  #When /easyGuiShop plusShopPopularity is entered, you will be prompted to complete the following contents
+  easyGuiShopPlusPopularity:
+    - "<ShopName>"
+
+  #When /easyGuiShop plusShopPopularity value is entered, you will be prompted to complete the following contents
+  easyGuiShopPlusPopularity$:
+    - "<Amount>"
+
+  easyGuiShopOpenMui:
+    - "<PlayerName>"
+
+  easyGuiShopSubtractPopularity:
+    - "<ShopName>"
+  easyGuiShopSubtractPopularity$:
+    - "<Amount>"
+  easyGuiShopDeleteIcon:
+    - "<IconName>"
+  easyGuiShopCreateIcon:
+    - "<IconName>"
+  easyGuiShopSetIconVaultPrice:
+    - "<IconName>"
+  easyGuiShopSetIconVaultPrice$:
+    - "<Price>"
+  easyGuiShopSetIconPlayerPointsPrice:
+    - "<IconName>"
+  easyGuiShopSetIconPlayerPointsPrice$:
+    - "<Price>"
+  easyGuiShopSetIconItemPrice:
+    - "<IconName>"
+  easyGuiShopSetIconItemPrice$:
+    - "<Price>"
+  easyGuiShopSetIconName:
+    - "<IconName>"
+  easyGuiShopSetIconName$:
+    - "<NewName>"
+  easyGuiShopSetIconStock:
+    - "<IconName>"
+  easyGuiShopSetIconStock$:
+    - "<Amount>"
+  easyGuiShopSetIconSystem:
+    - "<IconName>"
+  easyGuiShopSetIconSystem$:
+    - "<true|false>"
+  easyGuiShopSetShopSystem:
+    - "<ShopName>"
+  easyGuiShopSetShopSystem$:
+    - "<true|false>"
+  easyGuiShopSetGoodSystem:
+    - "<ShopName>"
+  easyGuiShopSetGoodSystem$:
+    - "<GoodName>"
+  easyGuiShopSetGoodSystem$$:
+    - "<true|false>"
+  easyGuiShopSetIconLimitTime:
+    - "<IconName>"
+  easyGuiShopSetIconLimitTime$:
+    - "<Time>"
+  easyGuiShopResetIconLimitTime:
+    - "<IconName>"

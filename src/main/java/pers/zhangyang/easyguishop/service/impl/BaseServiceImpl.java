@@ -2,11 +2,12 @@ package pers.zhangyang.easyguishop.service.impl;
 
 import com.google.gson.Gson;
 import org.bukkit.ChatColor;
-import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.dao.*;
-import pers.zhangyang.easyguishop.manager.ConnectionManager;
 import pers.zhangyang.easyguishop.meta.*;
 import pers.zhangyang.easyguishop.service.BaseService;
+import pers.zhangyang.easylibrary.dao.VersionDao;
+import pers.zhangyang.easylibrary.meta.VersionMeta;
+import pers.zhangyang.easylibrary.util.VersionUtil;
 
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -16,151 +17,146 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static pers.zhangyang.easylibrary.base.DaoBase.getConnection;
+
 public class BaseServiceImpl implements BaseService {
 
-    public static final BaseServiceImpl INSTANCE = new BaseServiceImpl();
 
     @Override
-    public void initDatabase() throws SQLException {
-        GoodDao.INSTANCE.init();
-        IconDao.INSTANCE.init();
-        ShopCollectorDao.INSTANCE.init();
-        IconOwnerDao.INSTANCE.init();
-        ShopDao.INSTANCE.init();
-        ShopCommentDao.INSTANCE.init();
-        TradeRecordDao.INSTANCE.init();
-        ItemStockDao.INSTANCE.init();
-        VersionDao.INSTANCE.init();
-        if (VersionDao.INSTANCE.get() == null) {
-            String[] strings = EasyGuiShop.instance.getDescription().getVersion().split("\\.");
-            VersionDao.INSTANCE.insert(new VersionMeta(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2])));
-        }
-    }
-    @Override
-    public void transform2_0_4() throws SQLException {
-        //从2.0.0到2.2.4的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新
-        VersionMeta versionMeta=VersionDao.INSTANCE.get();
-        assert versionMeta != null;
-        if (versionMeta.getBig()==2&&versionMeta.getMiddle()>2){
-            return;
-        }
-        if (versionMeta.getBig()==2&&versionMeta.getMiddle()==2&&versionMeta.getSmall()>=4){
-            return;
-        }
+    public void transform2_2_4() {
+        try {
 
-
-        List<IconMeta> iconMetaList=IconDao.INSTANCE.list();
-        for (IconMeta iconMeta:iconMetaList){
-            iconMeta.setName(ChatColor.translateAlternateColorCodes('&',iconMeta.getName()));
-            IconDao.INSTANCE.deleteByUuid(iconMeta.getUuid());
-            IconDao.INSTANCE.insert(iconMeta);
+            //从2.0.0到2.2.4的 如果存在version表并且版本小于2.2.4，需要更新
+            DatabaseMetaData metaData = getConnection().getMetaData();
+            ResultSet rs = metaData.getTables(null, null, "version", null);
+            if (!rs.next()) {
+                return;
+            }
+            VersionDao versionDao = new VersionDao();
+            VersionMeta versionMeta = versionDao.get();
+            assert versionMeta != null;
+            if (!VersionUtil.isOlderThan(versionMeta.getBig(), versionMeta.getMiddle(), versionMeta.getSmall(), 2, 2, 4)) {
+                return;
+            }
+            List<IconMeta> iconMetaList = new IconDao().list();
+            for (IconMeta iconMeta : iconMetaList) {
+                iconMeta.setName(ChatColor.translateAlternateColorCodes('&', iconMeta.getName()));
+                new IconDao().deleteByUuid(iconMeta.getUuid());
+                new IconDao().insert(iconMeta);
+            }
+            versionDao.delete();
+            versionDao.insert(new VersionMeta(2, 2, 4));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        VersionDao.INSTANCE.delete();
-        VersionDao.INSTANCE.insert(new VersionMeta(2, 2, 4));
-
     }
 
     @Override
-    public void transform2_0_0() throws SQLException {
-        //从1.3.11更新到2.0.0的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新
-        DatabaseMetaData metaData = ConnectionManager.INSTANCE.getConnection().getMetaData();
-        ResultSet rs = metaData.getTables(null, null, "version", null);
-        if (rs.next()) {
-            return;
-        }
-        rs = metaData.getTables(null, null, "update_table", null);
-        if (!rs.next()) {
-            return;
-        }
-        GoodDao.INSTANCE.init();
-        IconDao.INSTANCE.init();
-        ShopCollectorDao.INSTANCE.init();
-        IconOwnerDao.INSTANCE.init();
-        ShopDao.INSTANCE.init();
-        ShopCommentDao.INSTANCE.init();
-        TradeRecordDao.INSTANCE.init();
-        ItemStockDao.INSTANCE.init();
-        VersionDao.INSTANCE.init();
-        //更新shop_table表到shop表
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM shop_table");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            ShopMeta shopMeta = new ShopMeta(rs.getString("shopUuid"), rs.getString("shopName"),
-                    rs.getString("shopOwnerUuid"), rs.getLong("shopCreateTime"), rs.getInt("shopCollectNumber"),
-                    0, 0);
-            shopMeta.setIconUuid(rs.getString("shopIconUuid"));
-            String oldDescription = rs.getString("shopDescription");
-            if (oldDescription != null) {
-                List<String> stringList = new ArrayList();
-                Collections.addAll(stringList, oldDescription.split(" "));
-                Gson gson = new Gson();
-                shopMeta.setShopDescription(gson.toJson(stringList));
+    public void transform2_0_0() {
+        try {
+            //从1.3.11更新到2.0.0的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新
+            DatabaseMetaData metaData = getConnection().getMetaData();
+            ResultSet rs = metaData.getTables(null, null, "version", null);
+            if (rs.next()) {
+                return;
             }
-            ShopDao.INSTANCE.insert(shopMeta);
-        }
-
-        //更新icon_table表为icon表
-        ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM icon_table");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            IconMeta iconMeta = new IconMeta(rs.getString("iconUuid"), rs.getString("iconName"),
-                    System.currentTimeMillis(), 0, rs.getString("iconData"), true);
-            if (rs.getString("iconCurrency").equalsIgnoreCase("vault")) {
-                iconMeta.setVaultPrice(rs.getDouble("iconPrice"));
+            rs = metaData.getTables(null, null, "update_table", null);
+            if (!rs.next()) {
+                return;
             }
-            if (rs.getString("iconCurrency").equalsIgnoreCase("playerPoints")) {
-                iconMeta.setPlayerPointsPrice(rs.getInt("iconPrice"));
+            new GoodDao().init();
+            new IconDao().init();
+            new ShopCollectorDao().init();
+            new IconOwnerDao().init();
+            new ShopDao().init();
+            new ShopCommentDao().init();
+            new TradeRecordDao().init();
+            new ItemStockDao().init();
+            VersionDao versionDao = new VersionDao();
+            versionDao.init();
+            //更新shop_table表到shop表
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM shop_table");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ShopMeta shopMeta = new ShopMeta(rs.getString("shopUuid"), rs.getString("shopName"),
+                        rs.getString("shopOwnerUuid"), rs.getLong("shopCreateTime"), rs.getInt("shopCollectNumber"),
+                        0, 0);
+                shopMeta.setIconUuid(rs.getString("shopIconUuid"));
+                String oldDescription = rs.getString("shopDescription");
+                if (oldDescription != null) {
+                    List<String> stringList = new ArrayList();
+                    Collections.addAll(stringList, oldDescription.split(" "));
+                    Gson gson = new Gson();
+                    shopMeta.setShopDescription(gson.toJson(stringList));
+                }
+                new ShopDao().insert(shopMeta);
             }
 
-            IconDao.INSTANCE.insert(iconMeta);
-        }
+            //更新icon_table表为icon表
+            ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM icon_table");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                IconMeta iconMeta = new IconMeta(rs.getString("iconUuid"), rs.getString("iconName"),
+                        System.currentTimeMillis(), 0, rs.getString("iconData"), true);
+                if (rs.getString("iconCurrency").equalsIgnoreCase("vault")) {
+                    iconMeta.setVaultPrice(rs.getDouble("iconPrice"));
+                }
+                if (rs.getString("iconCurrency").equalsIgnoreCase("playerPoints")) {
+                    iconMeta.setPlayerPointsPrice(rs.getInt("iconPrice"));
+                }
 
-        //更新good_table表为good表
-        ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good_table");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            GoodMeta goodMeta = new GoodMeta(rs.getString("goodUuid"), rs.getString("goodName"),
-                    rs.getString("goodData"), rs.getString("goodType"), System.currentTimeMillis(),
-                    rs.getString("goodInfinity").equalsIgnoreCase("无限"), rs.getInt("goodRest"),
-                    rs.getString("goodShopUuid"));
-            if (rs.getString("goodCurrency").equalsIgnoreCase("vault")) {
-                goodMeta.setVaultPrice(rs.getDouble("goodPrice"));
+                new IconDao().insert(iconMeta);
             }
-            if (rs.getString("goodCurrency").equalsIgnoreCase("playerPoints")) {
-                goodMeta.setPlayerPointsPrice(rs.getInt("goodPrice"));
+
+            //更新good_table表为good表
+            ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM good_table");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                GoodMeta goodMeta = new GoodMeta(rs.getString("goodUuid"), rs.getString("goodName"),
+                        rs.getString("goodData"), rs.getString("goodType"), System.currentTimeMillis(),
+                        rs.getString("goodInfinity").equalsIgnoreCase("无限"), rs.getInt("goodRest"),
+                        rs.getString("goodShopUuid"));
+                if (rs.getString("goodCurrency").equalsIgnoreCase("vault")) {
+                    goodMeta.setVaultPrice(rs.getDouble("goodPrice"));
+                }
+                if (rs.getString("goodCurrency").equalsIgnoreCase("playerPoints")) {
+                    goodMeta.setPlayerPointsPrice(rs.getInt("goodPrice"));
+                }
+                new GoodDao().insert(goodMeta);
             }
-            GoodDao.INSTANCE.insert(goodMeta);
+
+            //更新collect_table到shopCollector表
+            ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM collect_table");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ShopCollectorMeta shopCollectorMeta = new ShopCollectorMeta(rs.getString("shopUuid"),
+                        rs.getString("shopCollectorUuid"));
+
+                new ShopCollectorDao().insert(shopCollectorMeta);
+            }
+
+            //更新icon_have_table到iconOwner表
+            ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM icon_have_table");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                IconOwnerMeta iconOwnerMeta = new IconOwnerMeta(rs.getString("iconUuid"),
+                        rs.getString("iconOwnerUuid"));
+
+                new IconOwnerDao().insert(iconOwnerMeta);
+            }
+
+            versionDao.delete();
+            versionDao.insert(new VersionMeta(2, 0, 0));
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        //更新collect_table到shopCollector表
-        ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM collect_table");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            ShopCollectorMeta shopCollectorMeta = new ShopCollectorMeta(rs.getString("shopUuid"),
-                    rs.getString("shopCollectorUuid"));
-
-            ShopCollectorDao.INSTANCE.insert(shopCollectorMeta);
-        }
-
-        //更新icon_have_table到iconOwner表
-        ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM icon_have_table");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            IconOwnerMeta iconOwnerMeta = new IconOwnerMeta(rs.getString("iconUuid"),
-                    rs.getString("iconOwnerUuid"));
-
-            IconOwnerDao.INSTANCE.insert(iconOwnerMeta);
-        }
-
-        VersionDao.INSTANCE.delete();
-        VersionDao.INSTANCE.insert(new VersionMeta(2, 0, 0));
-
-
     }
 
 

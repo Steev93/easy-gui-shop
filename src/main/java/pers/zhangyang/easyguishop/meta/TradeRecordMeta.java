@@ -4,9 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TradeRecordMeta {
-    private final String customerUuid;
-    private final String merchantUuid;
-    private final double tradeTaxRate;
+    private String customerUuid;
+    private String merchantUuid;
+    private double tradeTaxRate;
     private String uuid;
     private String goodItemStack;
     private int tradeAmount;
@@ -17,6 +17,9 @@ public class TradeRecordMeta {
     private Double goodVaultPrice;
     private Integer goodPlayerPointsPrice;
     private Integer goodItemPrice;
+
+    public TradeRecordMeta() {
+    }
 
     public TradeRecordMeta(@NotNull String uuid, @NotNull String customerUuid, @NotNull String merchantUuid,
                            @NotNull String goodItemStack, int tradeAmount, boolean goodSystem, long tradeTime,
@@ -54,10 +57,6 @@ public class TradeRecordMeta {
         return tradeTime;
     }
 
-    public void setTradeTime(long tradeTime) {
-        this.tradeTime = tradeTime;
-    }
-
     @NotNull
     public String getMerchantUuid() {
         return merchantUuid;
@@ -76,25 +75,13 @@ public class TradeRecordMeta {
         return tradeAmount;
     }
 
-    public void setTradeAmount(int tradeAmount) {
-        this.tradeAmount = tradeAmount;
-    }
-
     public boolean isGoodSystem() {
         return goodSystem;
-    }
-
-    public void setGoodSystem(boolean goodSystem) {
-        this.goodSystem = goodSystem;
     }
 
     @NotNull
     public String getGoodType() {
         return goodType;
-    }
-
-    public void setGoodType(@NotNull String goodType) {
-        this.goodType = goodType;
     }
 
     @Nullable

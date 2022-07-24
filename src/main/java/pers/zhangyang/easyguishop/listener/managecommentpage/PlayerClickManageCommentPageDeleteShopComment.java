@@ -12,12 +12,12 @@ import pers.zhangyang.easyguishop.domain.ManageCommentPage;
 import pers.zhangyang.easyguishop.exception.NotExistShopCommentException;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easylibrary.annotation.EventListener;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
-
+@EventListener
 public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
 
     @EventHandler
@@ -42,16 +42,13 @@ public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
         Player player = (Player) event.getWhoClicked();
         ManageCommentPage manageCommentPage = (ManageCommentPage) holder;
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
 
         try {
             manageCommentPage.send();
             guiService.deleteShopComment(manageCommentPage.getShopCommentMetaList().get(slot).getUuid());
             manageCommentPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         } catch (NotExistShopCommentException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopComment"));
             return;

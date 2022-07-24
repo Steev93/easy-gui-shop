@@ -5,8 +5,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class IconOwnerMeta {
-    private final String iconUuid;
-    private final String ownerUuid;
+    private String iconUuid;
+    private String ownerUuid;
+
+    public IconOwnerMeta() {
+    }
 
     public IconOwnerMeta(@NotNull String iconUuid, @NotNull String ownerUuid) {
         this.iconUuid = iconUuid;

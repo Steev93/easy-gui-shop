@@ -3,9 +3,12 @@ package pers.zhangyang.easyguishop.meta;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemStockMeta {
-    private final String playerUuid;
+    private String playerUuid;
     private String itemStack;
     private int amount;
+
+    public ItemStockMeta() {
+    }
 
     public ItemStockMeta(@NotNull String playerUuid, @NotNull String itemStack, int amount) {
         this.playerUuid = playerUuid;

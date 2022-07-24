@@ -2,136 +2,141 @@ package pers.zhangyang.easyguishop.dao;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pers.zhangyang.easyguishop.manager.ConnectionManager;
 import pers.zhangyang.easyguishop.meta.GoodMeta;
+import pers.zhangyang.easylibrary.base.DaoBase;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class GoodDao {
 
-    public static final GoodDao INSTANCE = new GoodDao();
+public class GoodDao extends DaoBase {
 
-    public int init() throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "CREATE TABLE IF NOT EXISTS good(" +
-                "uuid TEXT   ," +
-                "`name` TEXT   ," +
-                "good_item_stack TEXT   ," +
-                "`type` TEXT   ," +
-                "create_time BIGINT   ," +
-                "`system` BIT   ," +
-                "stock INT   ," +
-                "shop_uuid TEXT   ," +
-                "limit_time INT ," +
-                "currency_item_stack TEXT ," +
-                "item_price INT ," +
-                "vault_price DOUBLE ," +
-                "player_points_price INT " +
-                ")");
-        return ps.executeUpdate();
+
+    public int init() {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "CREATE TABLE IF NOT EXISTS good(" +
+                    "uuid TEXT   ," +
+                    "`name` TEXT   ," +
+                    "good_item_stack TEXT   ," +
+                    "`type` TEXT   ," +
+                    "create_time BIGINT   ," +
+                    "`system` BIT   ," +
+                    "stock INT   ," +
+                    "shop_uuid TEXT   ," +
+                    "limit_time INT ," +
+                    "currency_item_stack TEXT ," +
+                    "item_price INT ," +
+                    "vault_price DOUBLE ," +
+                    "player_points_price INT " +
+                    ")");
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public int insert(@NotNull GoodMeta goodMeta) throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "INSERT INTO good (uuid,`name`,good_item_stack,`type`,create_time,`system`,stock,shop_uuid,limit_time," +
-                "currency_item_stack,item_price,vault_price,player_points_price)" +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        ps.setString(1, goodMeta.getUuid());
-        ps.setString(2, goodMeta.getName());
-        ps.setString(3, goodMeta.getGoodItemStack());
-        ps.setString(4, goodMeta.getType());
-        ps.setLong(5, goodMeta.getCreateTime());
-        ps.setBoolean(6, goodMeta.isSystem());
-        ps.setInt(7, goodMeta.getStock());
-        ps.setString(8, goodMeta.getShopUuid());
-        ps.setObject(9, goodMeta.getLimitTime());
-        ps.setString(10, goodMeta.getCurrencyItemStack());
-        ps.setObject(11, goodMeta.getItemPrice());
-        ps.setObject(12, goodMeta.getVaultPrice());
-        ps.setObject(13, goodMeta.getPlayerPointsPrice());
-        return ps.executeUpdate();
+    public int insert(@NotNull GoodMeta goodMeta) {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "INSERT INTO good (uuid,`name`,good_item_stack,`type`,create_time,`system`,stock,shop_uuid,limit_time," +
+                    "currency_item_stack,item_price,vault_price,player_points_price)" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, goodMeta.getUuid());
+            ps.setString(2, goodMeta.getName());
+            ps.setString(3, goodMeta.getGoodItemStack());
+            ps.setString(4, goodMeta.getType());
+            ps.setLong(5, goodMeta.getCreateTime());
+            ps.setBoolean(6, goodMeta.isSystem());
+            ps.setInt(7, goodMeta.getStock());
+            ps.setString(8, goodMeta.getShopUuid());
+            ps.setObject(9, goodMeta.getLimitTime());
+            ps.setString(10, goodMeta.getCurrencyItemStack());
+            ps.setObject(11, goodMeta.getItemPrice());
+            ps.setObject(12, goodMeta.getVaultPrice());
+            ps.setObject(13, goodMeta.getPlayerPointsPrice());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @NotNull
-    public List<GoodMeta> list() throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good " +
-                "");
-        ResultSet rs = ps.executeQuery();
-        List<GoodMeta> goodMetaList = new ArrayList<>();
-        while (rs.next()) {
-            goodMetaList.add(transform(rs));
+    public List<GoodMeta> list() {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM good " +
+                    "");
+            ResultSet rs = ps.executeQuery();
+            return multipleTransform(rs, GoodMeta.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return goodMetaList;
     }
 
     @NotNull
-    public List<GoodMeta> listByShopUuid(@NotNull String shopUuid) throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good WHERE shop_uuid = ?" +
-                "");
-        ps.setString(1, shopUuid);
-        ResultSet rs = ps.executeQuery();
-        List<GoodMeta> goodMetaList = new ArrayList<>();
-        while (rs.next()) {
-            goodMetaList.add(transform(rs));
+    public List<GoodMeta> listByShopUuid(@NotNull String shopUuid) {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM good WHERE shop_uuid = ?" +
+                    "");
+            ps.setString(1, shopUuid);
+            ResultSet rs = ps.executeQuery();
+            return multipleTransform(rs, GoodMeta.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return goodMetaList;
     }
 
     @Nullable
-    public GoodMeta getByUuid(@NotNull String goodUuid) throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good WHERE uuid = ?" +
-                "");
-        ps.setString(1, goodUuid);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            return transform(rs);
+    public GoodMeta getByUuid(@NotNull String goodUuid) {
+        try {
+
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM good WHERE uuid = ?" +
+                    "");
+            ps.setString(1, goodUuid);
+            ResultSet rs = ps.executeQuery();
+
+            return singleTransform(rs, GoodMeta.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
 
     @Nullable
-    public GoodMeta getByNameAndShopUuid(@NotNull String goodName, @NotNull String shopUuid) throws SQLException {
-        PreparedStatement ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "SELECT * FROM good WHERE `name` = ? and shop_uuid=?" +
-                "");
-        ps.setString(1, goodName);
-        ps.setString(2, shopUuid);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            return transform(rs);
+    public GoodMeta getByNameAndShopUuid(@NotNull String goodName, @NotNull String shopUuid) {
+        try {
+
+            PreparedStatement ps = getConnection().prepareStatement("" +
+                    "SELECT * FROM good WHERE `name` = ? and shop_uuid=?" +
+                    "");
+            ps.setString(1, goodName);
+            ps.setString(2, shopUuid);
+            ResultSet rs = ps.executeQuery();
+
+            return singleTransform(rs, GoodMeta.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
-    public int deleteByUuid(@NotNull String goodUuid) throws SQLException {
-        PreparedStatement ps;
-        ps = ConnectionManager.INSTANCE.getConnection().prepareStatement("" +
-                "DELETE FROM good WHERE uuid = ?" +
-                "");
-        ps.setString(1, goodUuid);
-        return ps.executeUpdate();
+    public int deleteByUuid(@NotNull String goodUuid) {
+        try {
+
+            PreparedStatement ps;
+            ps = getConnection().prepareStatement("" +
+                    "DELETE FROM good WHERE uuid = ?" +
+                    "");
+            ps.setString(1, goodUuid);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @NotNull
-    private GoodMeta transform(@NotNull ResultSet rs) throws SQLException {
-        GoodMeta goodMeta = new GoodMeta(rs.getString("uuid"), rs.getString("name"),
-                rs.getString("good_item_stack"), rs.getString("type"),
-                rs.getLong("create_time"),
-                rs.getBoolean("system"), rs.getInt("stock"), rs.getString("shop_uuid"));
-        goodMeta.setLimitTime((Integer) rs.getObject("limit_time"));
-        goodMeta.setCurrencyItemStack(rs.getString("currency_item_stack"));
-        goodMeta.setItemPrice((Integer) rs.getObject("item_price"));
-        goodMeta.setVaultPrice((Double) rs.getObject("vault_price"));
-        goodMeta.setPlayerPointsPrice((Integer) rs.getObject("player_points_price"));
-        return goodMeta;
-    }
 
 }

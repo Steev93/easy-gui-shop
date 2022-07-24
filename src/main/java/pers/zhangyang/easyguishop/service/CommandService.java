@@ -1,39 +1,38 @@
 package pers.zhangyang.easyguishop.service;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easyguishop.exception.*;
 import pers.zhangyang.easyguishop.meta.IconMeta;
 
-import java.sql.SQLException;
 
 public interface CommandService {
 
-    void createIcon(IconMeta iconMeta) throws SQLException, DuplicateIconException;
+    void createIcon(@NotNull IconMeta iconMeta) throws DuplicateIconException;
 
-    void deleteIcon(String iconName) throws NotExistIconException, SQLException;
+    void deleteIcon(@NotNull String iconName) throws NotExistIconException;
 
-    void plusShopPopularity(String shopName, int amount) throws NotExistShopException, SQLException;
+    void plusShopPopularity(@NotNull String shopName, int amount) throws NotExistShopException;
 
-    void subtractShopPopularity(String shopName, int amount) throws NotExistShopException, SQLException, NotMorePopularityException;
+    void subtractShopPopularity(@NotNull String shopName, int amount) throws NotExistShopException, NotMorePopularityException;
 
-    void setIconPlayerPointsAndPrice(String iconName, int price) throws NotExistIconException, SQLException;
+    void setIconPlayerPointsAndPrice(@NotNull String iconName, int price) throws NotExistIconException;
 
-    void setIconItemPrice(String iconName, int price, String currencyData) throws NotExistIconException, SQLException;
+    void setIconItemPrice(@NotNull String iconName, int price, @NotNull String currencyData) throws NotExistIconException;
 
-    void setIconVaultPrice(String iconName, double price) throws NotExistIconException, SQLException;
+    void setIconVaultPrice(@NotNull String iconName, double price) throws NotExistIconException;
 
-    void setIconLimitTime(String goodUuid, Integer time) throws NotExistIconException, SQLException;
+    void setIconLimitTime(@NotNull String goodUuid, @Nullable Integer time) throws NotExistIconException;
 
-    void setIconName(String iconName, String name) throws NotExistIconException, SQLException, DuplicateIconException;
+    void setIconName(@NotNull String iconName, @NotNull String name) throws NotExistIconException, DuplicateIconException;
 
-    void setIconStock(String iconName, int amount) throws NotExistIconException, SQLException;
+    void setIconStock(@NotNull String iconName, int amount) throws NotExistIconException;
 
-    void setIconSystem(String iconName, boolean system) throws SQLException, NotExistIconException;
+    void setIconSystem(@NotNull String iconName, boolean system) throws NotExistIconException;
 
-    void setGoodSystem(String shopName, String goodName, boolean system) throws NotExistShopException, SQLException, NotExistGoodException;
+    void setGoodSystem(@NotNull String shopName, @NotNull String goodName, boolean system) throws NotExistShopException, NotExistGoodException;
 
-    void setShopSystem(String shopName, boolean system) throws SQLException, NotExistShopException;
+    void setShopSystem(@NotNull String shopName, boolean system) throws NotExistShopException;
 
-    void initDatabase() throws SQLException;
-
-    void correctDatabase() throws SQLException;
+    void correctDatabase();
 }

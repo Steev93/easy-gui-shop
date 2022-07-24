@@ -3,43 +3,38 @@ package pers.zhangyang.easyguishop.executor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import pers.zhangyang.easyguishop.base.ExecutorBase;
 import pers.zhangyang.easyguishop.exception.NotExistGoodException;
 import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.service.CommandService;
 import pers.zhangyang.easyguishop.service.impl.CommandServiceImpl;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
-
-import java.sql.SQLException;
+import pers.zhangyang.easylibrary.base.ExecutorBase;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 public class SetGoodSystemExecutor extends ExecutorBase {
 
-    public SetGoodSystemExecutor(@NotNull CommandSender sender, boolean forcePlayer, @NotNull String[] args) {
-        super(sender, forcePlayer, args);
+    public SetGoodSystemExecutor(@NotNull CommandSender sender, String cmdName, @NotNull String[] args) {
+        super(sender, cmdName, args);
     }
 
     @Override
     protected void run() {
-        if (args.length != 4) {
+        if (args.length != 3) {
             return;
         }
-        if (!args[3].equalsIgnoreCase("true") && !args[3].equalsIgnoreCase("false")) {
+        if (!args[2].equalsIgnoreCase("true") && !args[2].equalsIgnoreCase("false")) {
 
-            invalidArgument(args[3]);
+            MessageUtil.invalidArgument(sender, args[2]);
             return;
         }
-        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
-        args[2]= ChatColor.translateAlternateColorCodes('&',args[2]);
-        boolean system = Boolean.parseBoolean(args[3]);
-        CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
+        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
+        args[1] = ChatColor.translateAlternateColorCodes('&', args[1]);
+        boolean system = Boolean.parseBoolean(args[2]);
+        CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
-            guiService.setGoodSystem(args[1], args[2], system);
+            guiService.setGoodSystem(args[0], args[1], system);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopWhenSetGoodSystem"));
             return;

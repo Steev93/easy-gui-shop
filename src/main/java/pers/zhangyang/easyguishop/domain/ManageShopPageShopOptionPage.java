@@ -2,8 +2,6 @@ package pers.zhangyang.easyguishop.domain;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -12,38 +10,37 @@ import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
+import pers.zhangyang.easylibrary.base.BackAble;
+import pers.zhangyang.easylibrary.base.GuiPage;
+import pers.zhangyang.easylibrary.base.SingleGuiPageBase;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManageShopPageShopOptionPage implements InventoryHolder {
-    private final Inventory inventory;
-    private final InventoryHolder previousHolder;
-    private final Player player;
+public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements BackAble {
     private ShopMeta shopMeta;
 
-    public ManageShopPageShopOptionPage(InventoryHolder previousHolder, Player player, ShopMeta shopMeta) {
-        this.player = player;
+    public ManageShopPageShopOptionPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
+        super(GuiYaml.INSTANCE.getString("gui.title.manageShopPageShopOptionPage"), player, previousHolder, previousHolder.getOwner());
+
         this.shopMeta = shopMeta;
-        this.previousHolder = previousHolder;
-        String title = GuiYaml.INSTANCE.getString("gui.title.manageShopPageShopOptionPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
+
     }
 
     //根据Shop的情况来设置Button
-    public void send() throws SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void send() {
+        refresh();
+    }
+
+    @Override
+    public void refresh() {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(shopMeta.getUuid());
         if (this.shopMeta == null) {
-            ((ManageShopPage) previousHolder).send();
+            backPage.send();
             return;
         }
         this.inventory.clear();
@@ -92,7 +89,7 @@ public class ManageShopPageShopOptionPage implements InventoryHolder {
         inventory.setItem(23, lookComment);
         ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.back");
         inventory.setItem(49, back);
-        player.openInventory(inventory);
+        viewer.openInventory(inventory);
     }
 
     public ShopMeta getShopMeta() {
@@ -107,7 +104,12 @@ public class ManageShopPageShopOptionPage implements InventoryHolder {
     }
 
     public InventoryHolder getPreviousHolder() {
-        return previousHolder;
+        return backPage;
+    }
+
+    @Override
+    public void back() {
+        backPage.refresh();
     }
 }
 

@@ -5,113 +5,112 @@ import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easyguishop.exception.*;
 import pers.zhangyang.easyguishop.meta.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface GuiService {
-    List<ShopMeta> listShop() throws SQLException;
+    List<ShopMeta> listShop();
 
-    List<ShopMeta> listPlayerShop(String ownerUuid) throws SQLException;
+    List<ShopMeta> listPlayerShop(String ownerUuid);
 
-    List<ShopMeta> listPlayerCollectedShop(String playerUuid) throws SQLException;
+    List<ShopMeta> listPlayerCollectedShop(String playerUuid);
 
-    List<ShopCommentMeta> listPlayerComment(String playerUuid) throws SQLException;
+    List<ShopCommentMeta> listPlayerComment(String playerUuid);
 
-    List<ShopCommentMeta> listShopComment(String shopUuid) throws SQLException, NotExistShopException;
+    List<ShopCommentMeta> listShopComment(String shopUuid) throws NotExistShopException;
 
-    List<IconMeta> listIcon() throws SQLException;
+    List<IconMeta> listIcon();
 
-    List<IconMeta> listPlayerIcon(String ownerUuid) throws SQLException;
+    List<IconMeta> listPlayerIcon(String ownerUuid);
 
-    List<GoodMeta> listShopGood(String shopUuid) throws SQLException, NotExistShopException;
+    List<GoodMeta> listShopGood(String shopUuid) throws NotExistShopException;
 
-    List<ItemStockMeta> listPlayerItemStock(String playerUuid) throws SQLException;
+    List<ItemStockMeta> listPlayerItemStock(String playerUuid);
 
-    List<TradeRecordMeta> listPlayerTradeRecord(String playerUuid) throws SQLException;
+    List<TradeRecordMeta> listPlayerTradeRecord(String playerUuid);
 
-    void createShop(@NotNull ShopMeta shopMeta) throws DuplicateShopException, SQLException;
+    void createShop(@NotNull ShopMeta shopMeta) throws DuplicateShopException;
 
-    void viewShop(@NotNull String shopUuid, int amount) throws NotExistShopException, SQLException;
+    void viewShop(@NotNull String shopUuid, int amount) throws NotExistShopException;
 
-    void deleteShop(String shopUuid) throws NotExistShopException, ShopNotEmptyException, SQLException;
+    void deleteShop(String shopUuid) throws NotExistShopException, ShopNotEmptyException;
 
-    void addShopDescription(String shopUuid, String d) throws NotExistShopException, SQLException;
+    void addShopDescription(String shopUuid, String d) throws NotExistShopException;
 
-    void removeShopDescription(String shopUuid) throws NotExistShopException, SQLException, NotExistLineException;
+    void removeShopDescription(String shopUuid) throws NotExistShopException, NotExistLineException;
 
-    void updateShopDescription(String shopUuid, int line, String d) throws NotExistShopException, SQLException, NotExistLineException;
+    void updateShopDescription(String shopUuid, int line, String d) throws NotExistShopException, NotExistLineException;
 
-    void resetShopDescription(String shopUuid) throws NotExistShopException, SQLException;
+    void resetShopDescription(String shopUuid) throws NotExistShopException;
 
-    void setShopLocation(String shopUuid, String locationData) throws NotExistShopException, SQLException;
+    void setShopLocation(String shopUuid, String locationData) throws NotExistShopException;
 
-    void resetShopLocation(String shopUuid) throws NotExistShopException, SQLException;
+    void resetShopLocation(String shopUuid) throws NotExistShopException;
 
-    void collectShop(ShopCollectorMeta shopCollectorMeta) throws NotExistShopException, SQLException, DuplicateShopCollectorException;
+    void collectShop(ShopCollectorMeta shopCollectorMeta) throws NotExistShopException, DuplicateShopCollectorException;
 
-    void cancelCollectShop(String playerUuid, String shopUuid) throws NotExistShopException, SQLException, NotExistShopCollectorException;
+    void cancelCollectShop(String playerUuid, String shopUuid) throws NotExistShopException, NotExistShopCollectorException;
 
-    void createShopComment(ShopCommentMeta shopCommentMeta) throws DuplicateShopCommenterException, SQLException;
+    void createShopComment(ShopCommentMeta shopCommentMeta) throws DuplicateShopCommenterException;
 
-    void deleteShopComment(String commentUuid) throws SQLException, NotExistShopCommentException;
-
-    @Nullable
-    ShopCollectorMeta getShopCollector(String shopUuid, String collectorUuid) throws NotExistShopException, SQLException;
+    void deleteShopComment(String commentUuid) throws NotExistShopCommentException;
 
     @Nullable
-    ShopMeta getShop(String shopUuid) throws SQLException;
+    ShopCollectorMeta getShopCollector(String shopUuid, String collectorUuid) throws NotExistShopException;
 
-    GoodMeta getGood(String goodUuid) throws SQLException;
+    @Nullable
+    ShopMeta getShop(String shopUuid);
 
-    void buyIcon(String playerUuid, String iconUuid, IconMeta oldIconMeta) throws SQLException, NotExistIconException, NotMoreIconException, StateChangeException, DuplicateIconOwnerException;
+    GoodMeta getGood(String goodUuid);
 
-    void useShopIcon(String iconUuid, String shopUuid) throws NotExistIconException, SQLException, NotExistShopException;
+    void buyIcon(String playerUuid, String iconUuid, IconMeta oldIconMeta) throws NotExistIconException, NotMoreIconException, StateChangeException, DuplicateIconOwnerException;
 
-    void resetShopIcon(String shopUuid) throws NotExistShopException, SQLException;
+    void useShopIcon(String iconUuid, String shopUuid) throws NotExistIconException, NotExistShopException;
 
-    IconMeta getIcon(String iconUuid) throws SQLException;
+    void resetShopIcon(String shopUuid) throws NotExistShopException;
 
-    TradeRecordMeta getTradeRecord(String uuid) throws SQLException;
+    IconMeta getIcon(String iconUuid);
 
-    void createGood(GoodMeta goodMeta) throws SQLException, DuplicateGoodException;
+    TradeRecordMeta getTradeRecord(String uuid);
 
-    void deleteGood(String goodName, String shopUuid) throws NotExistGoodException, GoodNotEmptyException, SQLException;
+    void createGood(GoodMeta goodMeta) throws DuplicateGoodException;
 
-    void setGoodPlayerPointsPrice(String goodUuid, int price) throws NotExistGoodException, SQLException;
+    void deleteGood(String goodName, String shopUuid) throws NotExistGoodException, GoodNotEmptyException;
 
-    void setGoodItemPrice(String goodUuid, int price, String currencyData) throws SQLException, NotExistGoodException;
+    void setGoodPlayerPointsPrice(String goodUuid, int price) throws NotExistGoodException;
 
-    void setGoodVaultPrice(String goodUuid, double price) throws NotExistGoodException, SQLException;
+    void setGoodItemPrice(String goodUuid, int price, String currencyData) throws NotExistGoodException;
 
-    void setGoodLimitTime(String goodUuid, Integer time) throws NotExistGoodException, SQLException;
+    void setGoodVaultPrice(String goodUuid, double price) throws NotExistGoodException;
 
-    void depositItemStock(String playerUuid, String itemStack, int amount) throws SQLException;
+    void setGoodLimitTime(String goodUuid, Integer time) throws NotExistGoodException;
 
-    void takeItemStock(String playerUuid, String itemStack, int amount) throws SQLException, NotMoreItemStockException, NotExistItemStockException;
+    void depositItemStock(String playerUuid, String itemStack, int amount);
 
-    void createItemStock(ItemStockMeta itemStockMeta) throws DuplicateItemStockException, SQLException;
+    void takeItemStock(String playerUuid, String itemStack, int amount) throws NotMoreItemStockException, NotExistItemStockException;
 
-    void deleteItemStock(String playerUuid, String itemStack) throws ItemStockNotEmptyException, NotExistItemStockException, SQLException;
+    void createItemStock(ItemStockMeta itemStockMeta) throws DuplicateItemStockException;
 
-    ItemStockMeta getItemStock(String playerUuid, String itemStack) throws SQLException;
+    void deleteItemStock(String playerUuid, String itemStack) throws ItemStockNotEmptyException, NotExistItemStockException;
 
-    void changeGoodTransactionType(String goodUuid) throws NotExistGoodException, SQLException;
+    ItemStockMeta getItemStock(String playerUuid, String itemStack);
 
-    void trade(String goodUuid, int amount, GoodMeta old) throws SQLException, NotExistGoodException, NotMoreGoodException, StateChangeException;
+    void changeGoodTransactionType(String goodUuid) throws NotExistGoodException;
 
-    void createTradeRecord(TradeRecordMeta tradeRecordMeta) throws DuplicateTradeRecordException, SQLException;
+    void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, NotMoreGoodException, StateChangeException;
 
-    void setGoodName(String goodUuid, String name) throws NotExistGoodException, SQLException, DuplicateGoodException;
+    void createTradeRecord(TradeRecordMeta tradeRecordMeta) throws DuplicateTradeRecordException;
 
-    void setShopName(String shopUuid, String name) throws NotExistShopException, SQLException, DuplicateShopException;
+    void setGoodName(String goodUuid, String name) throws NotExistGoodException, DuplicateGoodException;
 
-    void depositGood(String goodUuid, int amount) throws SQLException, NotExistGoodException;
+    void setShopName(String shopUuid, String name) throws NotExistShopException, DuplicateShopException;
 
-    void takeGood(String goodUuid, int amount) throws NotMoreGoodException, NotExistGoodException, SQLException;
+    void depositGood(String goodUuid, int amount) throws NotExistGoodException;
 
-    boolean hasItemStock(String playerUuid, String itemStack, int amount) throws SQLException;
+    void takeGood(String goodUuid, int amount) throws NotMoreGoodException, NotExistGoodException;
 
-    void resetGoodPrice(String goodUuid) throws NotExistGoodException, SQLException;
+    boolean hasItemStock(String playerUuid, String itemStack, int amount);
 
-    void setShopDescription(String shopUuid, String descriptionJson) throws SQLException, NotExistShopException;
+    void resetGoodPrice(String goodUuid) throws NotExistGoodException;
+
+    void setShopDescription(String shopUuid, String descriptionJson) throws NotExistShopException;
 }

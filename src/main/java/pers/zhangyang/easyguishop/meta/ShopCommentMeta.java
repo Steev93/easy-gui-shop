@@ -5,11 +5,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class ShopCommentMeta {
-    private final String uuid;
-    private final String commenterUuid;
-    private final String shopUuid;
-    private final String content;
-    private final long commentTime;
+    private String uuid;
+    private String commenterUuid;
+    private String shopUuid;
+    private String content;
+    private long commentTime;
+
+    public ShopCommentMeta() {
+    }
 
     public ShopCommentMeta(@NotNull String uuid, @NotNull String commenterUuid, @NotNull String shopUuid, @NotNull String content, long commentTime) {
         this.uuid = uuid;

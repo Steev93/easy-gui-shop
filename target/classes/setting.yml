@@ -1,7 +1,11 @@
 setting:
 
-  #使用哪一套语言，目前仅支持default、english
-  ##Which language is used? Currently, only default and English are supported
+  #使用哪一套语言 可以在这里看到可选的语言https://github.com/ZhangYang0204/easy-gui-shop/tree/master/src/main/resources/display
+  #你也可以在https://github.com/ZhangYang0204/easy-gui-shop/tree/master/src/main/resources/display上传你使用的语言
+  #此项修改后只有服务器重启或者使用其他插件重新安装此插件后才会生效
+  #Which language is used? If you want to find what you can use,please go to https://github.com/ZhangYang0204/easy-gui-shop/tree/master/src/main/resources/display
+  #You can also go to https://github.com/ZhangYang0204/easy-gui-shop/tree/master/src/main/resources/display to upload your language
+  #This modification will not take effect until the server is restarted or the plugin is reinstalled by other plugin
   display: "default"
 
   #距离实体店铺坐标多少范围内，才可以存取商品
@@ -34,6 +38,16 @@ setting:
     #Z coordinate, you need to fill in decimal here.
     #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
     z: 0.0
+
+    #yaw，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #yaw, you need to fill in decimal here.
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    yaw: 0.0
+
+    #pitch，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
+    #pitch, you need to fill in decimal here.
+    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    pitch: 0.0
 
   #税收，值必须为小于等于1并且大于等于0的实数
   #Tax, the value must be a real number less than or equal to 1 and greater than or equal to 0
@@ -74,20 +88,3 @@ setting:
     #The popularity coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
     popularity: 5
 
-  database:
-
-    #如果填写的数据库不可用，将采用默认值jdbc:sqlite:plugins/EasyGuiShop/data.db
-    #格式为jdbc:数据库类型:数据库url
-    #如果不明白可以去浏览器寻找答案
-    #If the filled database is not available, the default value jdbc:sqlite:plugins/EasyGuiShop/data.db
-    #The format is jdbc:database type:database url
-    #If you don't understand, you can go to the browser to find the answer
-    url: "jdbc:sqlite:plugins/EasyGuiShop/data.db"
-
-    #数据库的用户名,没有可以不填写或者填写[]或者删掉这项
-    #The username of the database can be left blank or [] or  delete this option
-    username: []
-
-    #数据库的密码,没有可以不填写或者填写[]或者删掉这项
-    #The password of the database can be left blank or [] or delete this option
-    password: []

@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="easy-library-repository" />
+      <option name="name" value="easy-library-repository" />
+      <option name="url" value="https://zhangyang0204.github.io/easy-library/repository" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="rosewood-repo" />
       <option name="name" value="rosewood-repo" />
       <option name="url" value="https://repo.rosewooddev.io/repository/public/" />

@@ -1,7 +1,5 @@
 package pers.zhangyang.easyguishop.domain;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -11,43 +9,36 @@ import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
+import pers.zhangyang.easylibrary.base.BackAble;
+import pers.zhangyang.easylibrary.base.GuiPage;
+import pers.zhangyang.easylibrary.base.SingleGuiPageBase;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
-
-public class CollectedShopPageShopOptionPage implements InventoryHolder {
-    private final Inventory inventory;
-    private final InventoryHolder previousHolder;
-    private final Player player;
+public class CollectedShopPageShopOptionPage extends SingleGuiPageBase implements BackAble {
     private ShopMeta shopMeta;
 
-    public CollectedShopPageShopOptionPage(InventoryHolder previousHolder, Player player, ShopMeta shopMeta) {
-        this.player = player;
+    public CollectedShopPageShopOptionPage(GuiPage backPage, Player viewer, ShopMeta shopMeta) {
+        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPageShopOptionPage"), viewer, backPage, backPage.getOwner());
         this.shopMeta = shopMeta;
-        this.previousHolder = previousHolder;
-        String title = GuiYaml.INSTANCE.getString("gui.title.collectedShopPageShopOptionPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
+
     }
 
-    //根据Shop的情况来设置Button
-    public void send() throws SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+
+    @Override
+    public void refresh() {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(shopMeta.getUuid());
         if (this.shopMeta == null) {
-            ((CollectedShopPage) previousHolder).send();
+            backPage.send();
             return;
         }
 
         boolean isCollected;
         try {
-            isCollected = guiService.getShopCollector(shopMeta.getUuid(), player.getUniqueId().toString()) != null;
+            isCollected = guiService.getShopCollector(shopMeta.getUuid(), owner.getUniqueId().toString()) != null;
         } catch (NotExistShopException e) {
-            ((CollectedShopPage) previousHolder).send();
+            backPage.send();
             return;
         }
 
@@ -63,7 +54,7 @@ public class CollectedShopPageShopOptionPage implements InventoryHolder {
         ItemStack goShop = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPageShopOptionPage.allGoodPage");
         inventory.setItem(31, goShop);
         if (shopMeta.getLocation() != null) {
-            ItemStack goLocation = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPageShopOptionPage.goLocation");
+            ItemStack goLocation = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPageShopOptionPage.goShopLocation");
             inventory.setItem(22, goLocation);
         }
 
@@ -73,7 +64,7 @@ public class CollectedShopPageShopOptionPage implements InventoryHolder {
         inventory.setItem(23, lookComment);
         ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPageShopOptionPage.back");
         inventory.setItem(49, back);
-        player.openInventory(this.inventory);
+        viewer.openInventory(this.inventory);
     }
 
     public ShopMeta getShopMeta() {
@@ -81,13 +72,18 @@ public class CollectedShopPageShopOptionPage implements InventoryHolder {
     }
 
     public InventoryHolder getPreviousHolder() {
-        return previousHolder;
+        return backPage;
     }
 
     @NotNull
     @Override
     public Inventory getInventory() {
         return inventory;
+    }
+
+    @Override
+    public void back() {
+        backPage.refresh();
     }
 }
 

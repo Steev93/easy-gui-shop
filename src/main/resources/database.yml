@@ -1,0 +1,16 @@
+database:
+  #如果填写的数据库不可用，将采用默认值jdbc:sqlite:plugins/EasyGuiShop/data.db
+  #格式为jdbc:数据库类型:数据库url
+  #如果不明白可以去浏览器寻找答案
+  #If the filled database is not available, the default value jdbc:sqlite:plugins/EasyGuiShop/data.db
+  #The format is jdbc:database type:database url
+  #If you don't understand, you can go to the browser to find the answer
+  url: "jdbc:sqlite:plugins/EasyGuiShop/data.db"
+
+  #数据库的用户名,没有可以不填写或者填写[]或者删掉这项
+  #The username of the database can be left blank or [] or  delete this option
+  username: []
+
+  #数据库的密码,没有可以不填写或者填写[]或者删掉这项
+  #The password of the database can be left blank or [] or delete this option
+  password: []

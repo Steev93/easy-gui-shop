@@ -1,63 +1,53 @@
 package pers.zhangyang.easyguishop.domain;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.ManageShopPageStatsEnum;
-import pers.zhangyang.easyguishop.exception.NotApplicableException;
-import pers.zhangyang.easyguishop.exception.NotExistNextException;
-import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.meta.GoodMeta;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.*;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
+import pers.zhangyang.easylibrary.base.BackAble;
+import pers.zhangyang.easylibrary.base.GuiPage;
+import pers.zhangyang.easylibrary.base.MultipleGuiPageBase;
+import pers.zhangyang.easylibrary.exception.NotApplicableException;
+import pers.zhangyang.easylibrary.exception.NotExistNextPageException;
+import pers.zhangyang.easylibrary.exception.NotExistPreviousPageException;
+import pers.zhangyang.easylibrary.util.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ManageGoodPage implements InventoryHolder {
+public class ManageGoodPage extends MultipleGuiPageBase implements BackAble {
 
-    private final Inventory inventory;
-    private  List<GoodMeta> goodMetaList = new ArrayList<>();
-    private final InventoryHolder previousHolder;
-    private final Player player;
+    private List<GoodMeta> goodMetaList = new ArrayList<>();
     private int pageIndex;
     private ManageShopPageStatsEnum stats;
     private String searchContent;
     private ShopMeta shopMeta;
 
 
-    public ManageGoodPage(InventoryHolder previousHolder, Player player, ShopMeta shopMeta) {
-        this.player = player;
+    public ManageGoodPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
+        super(GuiYaml.INSTANCE.getString("gui.title.manageGoodPage"), player, previousHolder, previousHolder.getOwner());
         this.shopMeta = shopMeta;
-        this.previousHolder = previousHolder;
-        String title = GuiYaml.INSTANCE.getString("gui.title.manageGoodPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
         stats = ManageShopPageStatsEnum.NORMAL;
         initMenuBarWithoutChangePage();
     }
 
-    public void send() throws SQLException {
+    public void send() {
         this.stats = ManageShopPageStatsEnum.NORMAL;
         this.searchContent = null;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void searchByGooName(@NotNull String name) throws SQLException {
+    public void searchByGooName(@NotNull String name) {
         this.stats = ManageShopPageStatsEnum.SEARCH_SHOP_NAME;
         this.searchContent = name;
         this.pageIndex = 0;
@@ -65,13 +55,13 @@ public class ManageGoodPage implements InventoryHolder {
     }
 
 
-    public void refresh() throws SQLException {
+    public void refresh() {
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
         if (this.shopMeta == null) {
-            ((ManageShopPageShopOptionPage) previousHolder).send();
+            backPage.send();
             return;
         }
 
@@ -80,7 +70,7 @@ public class ManageGoodPage implements InventoryHolder {
         try {
             this.goodMetaList.addAll(guiService.listShopGood(shopMeta.getUuid()));
         } catch (NotExistShopException e) {
-            ((ManageShopPageShopOptionPage) previousHolder).send();
+            backPage.send();
             return;
         }
 
@@ -95,20 +85,20 @@ public class ManageGoodPage implements InventoryHolder {
 
         refreshContent();
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPage.previous");
+            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPage.previousPage");
             inventory.setItem(45, previous);
         } else {
 
             inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPage.next");
+            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPage.nextPage");
             inventory.setItem(53, next);
         } else {
 
             inventory.setItem(53, null);
         }
-        player.openInventory(this.inventory);
+        viewer.openInventory(this.inventory);
     }
 
     //根据shopMetaList渲染当前页的0-44
@@ -117,10 +107,10 @@ public class ManageGoodPage implements InventoryHolder {
             inventory.setItem(i, null);
         }
 
-        this.goodMetaList=(PageUtil.page(pageIndex, 45,goodMetaList));
+        this.goodMetaList = (PageUtil.page(pageIndex, 45, goodMetaList));
         //设置内容
-        for (int i = 0; i < 45 ; i++) {
-            if (i >=goodMetaList.size()) {
+        for (int i = 0; i < 45; i++) {
+            if (i >= goodMetaList.size()) {
                 break;
             }
             GoodMeta goodMeta = goodMetaList.get(i);
@@ -152,7 +142,7 @@ public class ManageGoodPage implements InventoryHolder {
             }
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i , itemStack);
+            inventory.setItem(i, itemStack);
         }
     }
 
@@ -169,32 +159,32 @@ public class ManageGoodPage implements InventoryHolder {
     }
 
 
-    public void nextPage() throws NotExistNextException, SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void nextPage() throws NotExistNextPageException {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
         if (this.shopMeta == null) {
-            ((ManageShopPageShopOptionPage) previousHolder).send();
+            backPage.send();
             return;
         }
         this.goodMetaList.clear();
         try {
             this.goodMetaList.addAll(guiService.listShopGood(this.shopMeta.getUuid()));
         } catch (NotExistShopException e) {
-            ((ManageShopPageShopOptionPage) previousHolder).send();
+            backPage.send();
             return;
         }
 
         int maxIndex = PageUtil.computeMaxPageIndex(goodMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
-            throw new NotExistNextException();
+            throw new NotExistNextPageException();
         }
         this.pageIndex++;
         refresh();
     }
 
-    public void previousPage() throws NotExistPreviousException, NotExistShopException, SQLException {
+    public void previousPage() throws NotExistPreviousPageException {
         if (0 >= pageIndex) {
-            throw new NotExistPreviousException();
+            throw new NotExistPreviousPageException();
         }
         this.pageIndex--;
         refresh();
@@ -210,13 +200,18 @@ public class ManageGoodPage implements InventoryHolder {
     }
 
     public InventoryHolder getPreviousHolder() {
-        return previousHolder;
+        return backPage;
     }
 
     @NotNull
     @Override
     public Inventory getInventory() {
         return inventory;
+    }
+
+    @Override
+    public void back() {
+        backPage.refresh();
     }
 }
 

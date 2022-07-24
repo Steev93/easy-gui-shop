@@ -43,6 +43,7 @@ message:
       - "&b&l/egs correctDatabase    对数据库的一些数据进行修复，删掉不合法的数据（使用前先备份数据）。"
       - "&b&l/egs reloadPlugin    重载。"
       - "&b&l/egs openGui    打开Gui界面。"
+      - "&b&l/egs openMui 玩家名字    打开Mui界面(管理玩家的Gui)。"
       - "&b&l/egs createIcon <图标名字>    增加图标，需要手持物品。"
       - "&b&l/egs setIconVaultPrice <图标名字> <价格>    设置图标金币价格。"
       - "&b&l/egs setIconItemPrice <图标名字> <价格>    设置图标以物易物价格，需要手持物品。"
@@ -65,10 +66,10 @@ message:
       - "&c&l请在主手拿着物品。"
     invalidNumber:
       - "&c&l无效的数字。"
-    notExistNext:
-      - "&c&l不存下一页。"
-    notExistPrevious:
-      - "&c&l不存在上一页。"
+    notExistNextPage:
+      - "&c没有下一页了"
+    notExistPreviousPage:
+      - "&c没有上一页了"
     notHookVault:
       - "&c&l没有检测到Vault插件和基于Vault的经济插件。"
     notHookPlayerPoints:
@@ -262,7 +263,7 @@ message:
     howToSearchByShopOwnerNameInCollectedShopPage:
       - "&a&l输入店主名字完成搜索，输入 &f取消 &a&l取消。"
     howToCommentShopInCollectedShopPageShopOptionPage:
-      - "&a&l输入评论内容完成评论，输入 &f取消 &a&l取消。"
+      - "&a&l依次输入评论内容完成评论（依次回车），输入 &f取消 &a&l取消。"
     howToSetGoodPlayerPointsPrice:
       - "&a&l输入价格，输入 &f取消 &a&l取消。"
     howToSearchByCommenterName:
@@ -287,7 +288,7 @@ message:
       - "&b&l您取消了收藏该店铺。"
     collectShopInAllShopPageShopOptionPage:
       - "&b&l您收藏了该店铺。"
-    goLocationInAllShopPageShopOptionPage:
+    goShopLocationInAllShopPageShopOptionPage:
       - "&b&l您传送到了店铺坐标。"
     buyIcon:
       - "&b&l您购买了图标。"
@@ -295,7 +296,7 @@ message:
       - "&b&l您取消了收藏该店铺。"
     collectShopInCollectedShopPageShopOptionPage:
       - "&b&l您收藏了该店铺。"
-    goLocationInCollectedShopPageShopOptionPage:
+    goShopLocationInCollectedShopPageShopOptionPage:
       - "&b&l您传送到店铺坐标。"
     toggleGoodType:
       - "&b&l您切换了商店交易类型。"

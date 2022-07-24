@@ -3,58 +3,48 @@ package pers.zhangyang.easyguishop.domain;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.AllShopPageStatsEnum;
-import pers.zhangyang.easyguishop.exception.NotApplicableException;
-import pers.zhangyang.easyguishop.exception.NotExistNextException;
-import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.meta.IconMeta;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.*;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
+import pers.zhangyang.easylibrary.base.MultipleGuiPageBase;
+import pers.zhangyang.easylibrary.exception.NotApplicableException;
+import pers.zhangyang.easylibrary.exception.NotExistNextPageException;
+import pers.zhangyang.easylibrary.exception.NotExistPreviousPageException;
+import pers.zhangyang.easylibrary.util.*;
 
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.*;
 
-public class AllShopPage implements InventoryHolder {
+public class AllShopPage extends MultipleGuiPageBase {
 
-    private final Inventory inventory;
-    private  List<ShopMeta> shopMetaList = new ArrayList<>();
-    private final Player player;
+    private List<ShopMeta> shopMetaList = new ArrayList<>();
     private int pageIndex;
     private AllShopPageStatsEnum stats;
     private String searchContent;
 
-    public AllShopPage(Player player) {
-        this.player = player;
-        String title = GuiYaml.INSTANCE.getString("gui.title.allShopPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
+    public AllShopPage(Player player, OfflinePlayer owner) {
+        super(GuiYaml.INSTANCE.getString("gui.title.allShopPage"), player, null, owner);
         stats = AllShopPageStatsEnum.NORMAL;
         initMenuBarWithoutChangePage();
     }
 
-    public void searchByShopName(@NotNull String name) throws SQLException {
+    public void searchByShopName(@NotNull String name) {
         this.stats = AllShopPageStatsEnum.SEARCH_SHOP_NAME;
         this.searchContent = name;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void searchByShopOwnerName(@NotNull String ownerName) throws SQLException {
+    public void searchByShopOwnerName(@NotNull String ownerName) {
         this.stats = AllShopPageStatsEnum.SEARCH_OWNER_NAME;
         this.searchContent = ownerName;
         this.pageIndex = 0;
@@ -62,61 +52,61 @@ public class AllShopPage implements InventoryHolder {
     }
 
     //根据当前的状态来从数据库里获取
-    public void refresh() throws SQLException {
+    public void refresh() {
         this.shopMetaList.clear();
         if (this.stats.equals(AllShopPageStatsEnum.NORMAL)) {
-            GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+            GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
             this.shopMetaList.addAll(guiService.listShop());
         }
         if (this.stats.equals(AllShopPageStatsEnum.SEARCH_SHOP_NAME)) {
-            GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+            GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
             this.shopMetaList.addAll(guiService.listShop());
             this.shopMetaList.removeIf(shopMeta -> !shopMeta.getName().contains(searchContent));
         }
         if (this.stats.equals(AllShopPageStatsEnum.SEARCH_OWNER_NAME)) {
-            GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+            GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
             this.shopMetaList.addAll(guiService.listShop());
             this.shopMetaList.removeIf(shopMeta -> !Objects.requireNonNull(Bukkit.getOfflinePlayer(UUID.fromString(shopMeta.getOwnerUuid())).getName()).contains(searchContent));
         }
         refreshContent();
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.previous");
+            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.next");
+            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        player.openInventory(inventory);
+        viewer.openInventory(inventory);
     }
 
-    public void send() throws SQLException {
+    public void send() {
         this.stats = AllShopPageStatsEnum.NORMAL;
         this.searchContent = null;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void nextPage() throws NotExistNextException, SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void nextPage() throws NotExistNextPageException {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMetaList.clear();
         this.shopMetaList.addAll(guiService.listShop());
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
-            throw new NotExistNextException();
+            throw new NotExistNextPageException();
         }
         this.pageIndex++;
         refresh();
     }
 
-    public void previousPage() throws NotExistPreviousException, SQLException {
+    public void previousPage() throws NotExistPreviousPageException {
         if (0 >= pageIndex) {
-            throw new NotExistPreviousException();
+            throw new NotExistPreviousPageException();
         }
         this.pageIndex--;
         refresh();
@@ -134,13 +124,13 @@ public class AllShopPage implements InventoryHolder {
     }
 
     //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() throws SQLException {
+    private void refreshContent() {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        this.shopMetaList=(PageUtil.page(pageIndex, 45,shopMetaList));
+        this.shopMetaList = (PageUtil.page(pageIndex, 45, shopMetaList));
         //设置内容
-        for (int i = 0; i < 45 ; i++) {
+        for (int i = 0; i < 45; i++) {
             if (i >= shopMetaList.size()) {
                 break;
             }
@@ -159,7 +149,7 @@ public class AllShopPage implements InventoryHolder {
             ItemStack itemStack;
 
             if (shopMeta.getIconUuid() != null) {
-                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+                GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
                 IconMeta iconMeta = guiService.getIcon(shopMeta.getIconUuid());
                 if (iconMeta == null) {
                     refresh();
@@ -175,7 +165,7 @@ public class AllShopPage implements InventoryHolder {
 
             } else {
                 if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableShopUsePlayerHead")) {
-                    itemStack = ItemStackUtil.getPlayerSkullItem(owner);
+                    itemStack = PlayerUtil.getPlayerSkullItem(owner);
                     ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.allShopPageShopOptionPage");
                     try {
                         ItemStackUtil.apply(tem, itemStack);
@@ -217,4 +207,5 @@ public class AllShopPage implements InventoryHolder {
         ItemStack searchOwner = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.searchByShopOwnerName");
         inventory.setItem(51, searchOwner);
     }
+
 }

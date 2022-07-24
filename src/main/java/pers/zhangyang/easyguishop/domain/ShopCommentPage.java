@@ -3,7 +3,6 @@ package pers.zhangyang.easyguishop.domain;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -11,49 +10,41 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.enumration.ShopCommentPageStatsEnum;
-import pers.zhangyang.easyguishop.exception.NotExistNextException;
-import pers.zhangyang.easyguishop.exception.NotExistPreviousException;
 import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.meta.ShopCommentMeta;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.PageUtil;
-import pers.zhangyang.easyguishop.util.ReplaceUtil;
-import pers.zhangyang.easyguishop.util.TimeUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
+import pers.zhangyang.easylibrary.base.BackAble;
+import pers.zhangyang.easylibrary.base.GuiPage;
+import pers.zhangyang.easylibrary.base.MultipleGuiPageBase;
+import pers.zhangyang.easylibrary.exception.NotExistNextPageException;
+import pers.zhangyang.easylibrary.exception.NotExistPreviousPageException;
+import pers.zhangyang.easylibrary.util.PageUtil;
+import pers.zhangyang.easylibrary.util.ReplaceUtil;
+import pers.zhangyang.easylibrary.util.TimeUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.*;
 
-public class ShopCommentPage implements InventoryHolder {
+public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
 
-    private final Inventory inventory;
-    private  List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
-    private final InventoryHolder previousHolder;
-    private final Player player;
+    private List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
     private int pageIndex;
     private ShopCommentPageStatsEnum stats;
     private String searchContent;
     private ShopMeta shopMeta;
 
-    public ShopCommentPage(InventoryHolder previousHolder, Player player, ShopMeta shopMeta) {
-        this.player = player;
+    public ShopCommentPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
+        super(GuiYaml.INSTANCE.getString("gui.title.shopCommentPage"), player, previousHolder, previousHolder.getOwner());
         this.shopMeta = shopMeta;
-        String title = GuiYaml.INSTANCE.getString("gui.title.shopCommentPage");
-        if (title == null) {
-            this.inventory = Bukkit.createInventory(this, 54);
-        } else {
-            this.inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&', title));
-        }
         stats = ShopCommentPageStatsEnum.NORMAL;
         initMenuBarWithoutChangePage();
-        this.previousHolder = previousHolder;
     }
 
-    public void send() throws SQLException {
+    public void send() {
         this.stats = ShopCommentPageStatsEnum.NORMAL;
         this.searchContent = null;
         this.pageIndex = 0;
@@ -61,25 +52,25 @@ public class ShopCommentPage implements InventoryHolder {
 
     }
 
-    public void searchByCommenterName(@NotNull String ownerName) throws SQLException {
+    public void searchByCommenterName(@NotNull String ownerName) {
         this.stats = ShopCommentPageStatsEnum.SEARCH_COMMENTER_NAME;
         this.searchContent = ownerName;
         this.pageIndex = 0;
         refresh();
     }
 
-    public void refresh() throws SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void refresh() {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
         if (this.shopMeta == null) {
-            if (previousHolder instanceof AllShopPageShopOptionPage) {
-                ((AllShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof AllShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof CollectedShopPageShopOptionPage) {
-                ((CollectedShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof CollectedShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof ManageShopPageShopOptionPage) {
-                ((ManageShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof ManageShopPageShopOptionPage) {
+                backPage.send();
             }
             return;
         }
@@ -87,14 +78,14 @@ public class ShopCommentPage implements InventoryHolder {
         try {
             shopCommentMetaList.addAll(guiService.listShopComment(shopMeta.getUuid()));
         } catch (NotExistShopException e) {
-            if (previousHolder instanceof AllShopPageShopOptionPage) {
-                ((AllShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof AllShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof CollectedShopPageShopOptionPage) {
-                ((CollectedShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof CollectedShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof ManageShopPageShopOptionPage) {
-                ((ManageShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof ManageShopPageShopOptionPage) {
+                backPage.send();
             }
             return;
         }
@@ -110,18 +101,18 @@ public class ShopCommentPage implements InventoryHolder {
 
         refreshContent();
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.previous");
+            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.next");
+            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        player.openInventory(this.inventory);
+        viewer.openInventory(this.inventory);
     }
 
     //根据shopMetaList渲染当前页的0-44
@@ -129,9 +120,9 @@ public class ShopCommentPage implements InventoryHolder {
         for (int i = 0; i < 45; i++) {
             inventory.setItem(i, null);
         }
-        this.shopCommentMetaList=(PageUtil.page(pageIndex, 45,shopCommentMetaList));
+        this.shopCommentMetaList = (PageUtil.page(pageIndex, 45, shopCommentMetaList));
         //设置内容
-        for (int i = 0; i < 45 ; i++) {
+        for (int i = 0; i < 45; i++) {
             if (i >= shopCommentMetaList.size()) {
                 break;
             }
@@ -148,7 +139,7 @@ public class ShopCommentPage implements InventoryHolder {
             ReplaceUtil.formatLore(itemStack, "{(content)}", stringList);
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
-            inventory.setItem(i , itemStack);
+            inventory.setItem(i, itemStack);
         }
     }
 
@@ -162,18 +153,18 @@ public class ShopCommentPage implements InventoryHolder {
         inventory.setItem(50, search);
     }
 
-    public void nextPage() throws NotExistNextException, SQLException {
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+    public void nextPage() throws NotExistNextPageException {
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
         if (this.shopMeta == null) {
-            if (previousHolder instanceof AllShopPageShopOptionPage) {
-                ((AllShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof AllShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof CollectedShopPageShopOptionPage) {
-                ((CollectedShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof CollectedShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof ManageShopPageShopOptionPage) {
-                ((ManageShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof ManageShopPageShopOptionPage) {
+                backPage.send();
             }
             return;
         }
@@ -181,28 +172,28 @@ public class ShopCommentPage implements InventoryHolder {
         try {
             shopCommentMetaList.addAll(guiService.listShopComment(shopMeta.getUuid()));
         } catch (NotExistShopException e) {
-            if (previousHolder instanceof AllShopPageShopOptionPage) {
-                ((AllShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof AllShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof CollectedShopPageShopOptionPage) {
-                ((CollectedShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof CollectedShopPageShopOptionPage) {
+                backPage.send();
             }
-            if (previousHolder instanceof ManageShopPageShopOptionPage) {
-                ((ManageShopPageShopOptionPage) previousHolder).send();
+            if (backPage instanceof ManageShopPageShopOptionPage) {
+                backPage.send();
             }
             return;
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopCommentMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
-            throw new NotExistNextException();
+            throw new NotExistNextPageException();
         }
         this.pageIndex++;
         refresh();
     }
 
-    public void previousPage() throws NotExistPreviousException, SQLException {
+    public void previousPage() throws NotExistPreviousPageException {
         if (0 >= pageIndex) {
-            throw new NotExistPreviousException();
+            throw new NotExistPreviousPageException();
         }
         this.pageIndex--;
         refresh();
@@ -214,7 +205,7 @@ public class ShopCommentPage implements InventoryHolder {
 
 
     public InventoryHolder getPreviousHolder() {
-        return previousHolder;
+        return backPage;
     }
 
     @NotNull
@@ -223,4 +214,8 @@ public class ShopCommentPage implements InventoryHolder {
         return inventory;
     }
 
+    @Override
+    public void back() {
+        backPage.refresh();
+    }
 }

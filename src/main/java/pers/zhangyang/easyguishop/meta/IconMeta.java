@@ -6,9 +6,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class IconMeta {
-    private final String uuid;
-    private final long createTime;
-    private final String iconItemStack;
+    private String uuid;
+    private long createTime;
+    private String iconItemStack;
     private String name;
     private int stock;
     private String currencyItemStack;
@@ -18,6 +18,9 @@ public class IconMeta {
     private Integer itemPrice;
     private Double vaultPrice;
     private Integer playerPointsPrice;
+
+    public IconMeta() {
+    }
 
     public IconMeta(@NotNull String uuid, @NotNull String name, long createTime, int stock, @NotNull String iconItemStack, boolean system) {
         this.uuid = uuid;

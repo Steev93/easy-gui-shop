@@ -1,117 +1,46 @@
 package pers.zhangyang.easyguishop.listener.manageshoppageshopoptionpage;
 
 import com.google.gson.Gson;
-import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageShopPageShopOptionPage;
 import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easylibrary.base.InfiniteInputListenerBase;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+public class PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription extends InfiniteInputListenerBase {
 
-public class PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription implements Listener {
-
-    private final Player player;
     private final ShopMeta shopMeta;
     private final ManageShopPageShopOptionPage manageShopPageShopOptionPage;
-    private final List<String> descriptionList = new ArrayList<>();
 
-    public PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription(Player player, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
+    public PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription(Player player, OfflinePlayer owner, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
+        super(player, owner, manageShopPage);
         this.manageShopPageShopOptionPage = manageShopPage;
-        this.player = player;
         this.shopMeta = shopMeta;
-        Bukkit.getPluginManager().registerEvents(this, EasyGuiShop.instance);
-        player.closeInventory();
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToSetShopDescription"));
     }
 
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        Player player = event.getPlayer();
-        if (!player.equals(this.player)) {
-            return;
-        }
-        event.setCancelled(true);
-        String input = event.getMessage();
-        if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
-            unregisterSelf();
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    try {
-                        manageShopPageShopOptionPage.send();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.runTask(EasyGuiShop.instance);
+    @Override
+    public void run() {
 
-            return;
-        }
-        if (!input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.submit"))) {
-            descriptionList.add(input);
+
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
+
+
+        try {
+            guiService.setShopDescription(shopMeta.getUuid(), new Gson().toJson(messageList));
+            manageShopPageShopOptionPage.send();
+        } catch (NotExistShopException e) {
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         }
 
-        unregisterSelf();
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    manageShopPageShopOptionPage.send();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
-
-
-                try {
-                    guiService.setShopDescription(shopMeta.getUuid(), new Gson().toJson(descriptionList));
-                    manageShopPageShopOptionPage.send();
-                } catch (NotExistShopException e) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
-                    return;
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return;
-                }
-
-                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.setShopDescription"));
-            }
-        }.runTask(EasyGuiShop.instance);
-
-        //打开
-
-
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.setShopDescription"));
     }
-
-
-    private void unregisterSelf() {
-        AsyncPlayerChatEvent.getHandlerList().unregister(this);
-        PlayerQuitEvent.getHandlerList().unregister(this);
-    }
-
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        if (!event.getPlayer().equals(this.player)) {
-            return;
-        }
-        unregisterSelf();
-    }
-
-
 }

@@ -1,62 +1,41 @@
 package pers.zhangyang.easyguishop.listener.managegoodpagegoodoptionpage;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.ManageGoodPageGoodOptionPage;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.LocationUtil;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
+import pers.zhangyang.easylibrary.annotation.EventListener;
+import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
+import pers.zhangyang.easylibrary.util.LocationUtil;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
-
+@EventListener
 public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Listener {
 
-    @EventHandler
+    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {21})
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
-        if (!(holder instanceof ManageGoodPageGoodOptionPage)) {
-            return;
-        }
-        int slot = event.getRawSlot();
-        if (slot != 21) {
-            return;
-        }
-        ItemStack itemStack = event.getCurrentItem();
-        if (itemStack == null || itemStack.getType().equals(Material.AIR)) {
-            return;
-        }
-        if (!(event.getWhoClicked() instanceof Player)) {
-            return;
-        }
-
 
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         Player player = (Player) event.getWhoClicked();
 
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ShopMeta shopMeta;
-        try {
-            manageGoodPageGoodOptionPage.send();
-            shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
-            manageGoodPageGoodOptionPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
+        manageGoodPageGoodOptionPage.send();
+        shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
+        manageGoodPageGoodOptionPage.send();
+
         if (shopMeta == null) {
             return;
         }
@@ -80,7 +59,7 @@ public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Liste
         }
 
 
-        new PlayerInputAfterClickManageGoodPageGoodOptionPageDepositGood(player, manageGoodPageGoodOptionPage);
+        new PlayerInputAfterClickManageGoodPageGoodOptionPageDepositGood(player, manageGoodPageGoodOptionPage.getOwner(), manageGoodPageGoodOptionPage);
 
     }
 

@@ -5,8 +5,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class ShopCollectorMeta {
-    private final String shopUuid;
-    private final String collectorUuid;
+    private String shopUuid;
+    private String collectorUuid;
+
+    public ShopCollectorMeta() {
+    }
 
     public ShopCollectorMeta(@NotNull String shopUuid, @NotNull String collectorUuid) {
         this.shopUuid = shopUuid;

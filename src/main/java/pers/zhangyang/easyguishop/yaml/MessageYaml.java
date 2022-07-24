@@ -2,7 +2,7 @@ package pers.zhangyang.easyguishop.yaml;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pers.zhangyang.easyguishop.base.YamlBase;
+import pers.zhangyang.easylibrary.base.YamlBase;
 
 public class MessageYaml extends YamlBase {
 

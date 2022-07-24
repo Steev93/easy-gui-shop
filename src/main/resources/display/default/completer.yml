@@ -7,6 +7,7 @@ completer:
     - "correctYaml"
     - "correctDatabase"
     - "openGui"
+    - "openMui"
     - "plusShopPopularity"
     - "subtractShopPopularity"
     - "createIcon"
@@ -29,6 +30,9 @@ completer:
   #当输入了/easyGuiShop plusShopPopularity 值后将提示补全以下内容
   easyGuiShopPlusPopularity$:
     - "<数量>"
+
+  easyGuiShopOpenMui:
+    - "<玩家名字>"
 
   easyGuiShopSubtractPopularity:
     - "<商店>"

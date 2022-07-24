@@ -1,121 +1,59 @@
 package pers.zhangyang.easyguishop.listener.manageitemstockpageitemstockoptionpage;
 
-import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.ManageItemStockPageItemStockOptionPage;
 import pers.zhangyang.easyguishop.meta.ItemStockMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.InventoryUtil;
-import pers.zhangyang.easyguishop.util.ItemStackUtil;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easylibrary.base.FiniteInputListenerBase;
+import pers.zhangyang.easylibrary.util.ItemStackUtil;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.PlayerUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
+public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock extends FiniteInputListenerBase {
 
-public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock implements Listener {
-
-    private final Player player;
     private final ItemStockMeta itemStockMeta;
     private final ManageItemStockPageItemStockOptionPage itemStockPageItemStockOptionPage;
 
-    public PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock(Player player, ItemStockMeta shopMeta, ManageItemStockPageItemStockOptionPage manageShopPage) {
+    public PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock(Player player, OfflinePlayer owner, ItemStockMeta shopMeta, ManageItemStockPageItemStockOptionPage manageShopPage) {
+        super(player, owner, manageShopPage, 1);
         this.itemStockPageItemStockOptionPage = manageShopPage;
-        this.player = player;
         this.itemStockMeta = shopMeta;
-        Bukkit.getPluginManager().registerEvents(this, EasyGuiShop.instance);
-        player.closeInventory();
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToDepositItemStock"));
     }
 
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        Player player = event.getPlayer();
-        if (!player.equals(this.player)) {
+    @Override
+    public void run() {
+
+
+        int amount;
+        try {
+            amount = Integer.parseInt(messages[0]);
+        } catch (NumberFormatException ex) {
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
-        event.setCancelled(true);
-        String input = event.getMessage();
-        if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
-            unregisterSelf();
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    try {
-                        itemStockPageItemStockOptionPage.send();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.runTask(EasyGuiShop.instance);
+        if (amount < 0) {
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
+            return;
+        }
+        int have = PlayerUtil.computeItemHave(ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), player);
+        if (have < amount) {
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenDepositItemStock"));
 
             return;
         }
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
-        unregisterSelf();
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    itemStockPageItemStockOptionPage.send();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                int amount;
-                try {
-                    amount = Integer.parseInt(input);
-                } catch (NumberFormatException ex) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-                    return;
-                }
-                if (amount < 0) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
-                    return;
-                }
-                int have = InventoryUtil.computeItemHave(ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), player);
-                if (have < amount) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenDepositItemStock"));
+        guiService.depositItemStock(owner.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
+        itemStockPageItemStockOptionPage.send();
 
-                    return;
-                }
-                GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
-                try {
-                    guiService.depositItemStock(player.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
-                    itemStockPageItemStockOptionPage.send();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                InventoryUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);
-                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.depositItemStock"));
-
-
-            }
-        }.runTask(EasyGuiShop.instance);
+        PlayerUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.depositItemStock"));
 
     }
-
-
-    private void unregisterSelf() {
-        AsyncPlayerChatEvent.getHandlerList().unregister(this);
-        PlayerQuitEvent.getHandlerList().unregister(this);
-    }
-
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        if (!event.getPlayer().equals(this.player)) {
-            return;
-        }
-        unregisterSelf();
-    }
-
-
 }

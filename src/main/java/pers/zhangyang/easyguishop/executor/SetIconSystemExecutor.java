@@ -3,41 +3,36 @@ package pers.zhangyang.easyguishop.executor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import pers.zhangyang.easyguishop.base.ExecutorBase;
 import pers.zhangyang.easyguishop.exception.NotExistIconException;
 import pers.zhangyang.easyguishop.service.CommandService;
 import pers.zhangyang.easyguishop.service.impl.CommandServiceImpl;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
-
-import java.sql.SQLException;
+import pers.zhangyang.easylibrary.base.ExecutorBase;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 public class SetIconSystemExecutor extends ExecutorBase {
 
-    public SetIconSystemExecutor(@NotNull CommandSender sender, boolean forcePlayer, @NotNull String[] args) {
-        super(sender, forcePlayer, args);
+    public SetIconSystemExecutor(@NotNull CommandSender sender, String cmdName, @NotNull String[] args) {
+        super(sender, cmdName, args);
     }
 
     @Override
     protected void run() {
-        if (args.length != 3) {
+        if (args.length != 2) {
             return;
         }
-        if (!args[2].equalsIgnoreCase("true") && !args[2].equalsIgnoreCase("false")) {
+        if (!args[1].equalsIgnoreCase("true") && !args[1].equalsIgnoreCase("false")) {
 
-            invalidArgument(args[2]);
+            MessageUtil.invalidArgument(sender, args[1]);
             return;
         }
-        boolean system = Boolean.parseBoolean(args[2]);
-        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
-        CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
+        boolean system = Boolean.parseBoolean(args[1]);
+        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
+        CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
-            guiService.setIconSystem(args[1], system);
+            guiService.setIconSystem(args[0], system);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         } catch (NotExistIconException e) {
             MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.notExistIconWhenSetIconSystem"));
             return;

@@ -1,0 +1,1385 @@
+gui:
+
+  #Replaceable text content in Gui
+  replace:
+
+    #When the good replenishes the system, the stock will be displayed as the following content
+    systemStock: "&d&linfinite"
+
+  #Here are some option about Gui
+  option:
+
+    #If the store doesn't use the icon, whether it is displayed as the owner's head or not
+    #Opening this function may lag, this takes up network resources
+    enableShopUsePlayerHead: false
+
+    #Whether the item is displayed as the material of the item in the GUI.
+    #If the corresponding item has no itemmeta information, it will not work
+    enableGoodUseGoodItem: true
+
+    #Whether the icon uses the material of the icon item.
+    #If the corresponding item does not have itemmeta information, it will not work
+    enableIconUseIconItem: true
+
+    #Whether the transaction record uses the material of the transaction item.
+    #If the corresponding item does not have itemmeta information, it will not work
+    enableTradeRecordUseTradeRecordItem: true
+
+    #Whether the currency inventory uses the material of the currency item.
+    #If the corresponding item does not have itemmeta information, it will not work
+    enableItemStockUseItemStockItem: true
+
+  #Title of GUI page
+  title:
+    allShopPage: "&b&l&nAll Shop&e&l(Here are all shop)"
+    allShopPageShopOptionPage: "&b&l&nShop Option&e&l(Here are some option about shop)"
+    collectedShopPageShopOptionPage: "&b&l&nShop Option&e&l(Here are some option about shop)"
+    manageShopPageShopOptionPage: "&b&l&nShop Option&e&l(Here are some option about shop)"
+    manageShopPage: "&b&l&nManage Shop&e&l(Here are all your shop)"
+    collectedShopPage: "&b&l&nCollected Shop&e&l(Here are all shop you collected)"
+    shopCommentPage: "&b&l&nShop Comment&e&l(Here are all shop comment)"
+    manageCommentPage: "&b&l&nManage Comment&e&l(Here are all your comment)"
+    buyIconPage: "&b&l&nBuy Icon&e&l(Here are all icon)"
+    manageIconPage: "&b&l&nManage Icon&e&l(Here are all your icon)"
+    buyIconPageIconOptionPage: "&b&l&nBuy Icon Option&e&l(Here are some option)"
+    allGoodPage: "&b&l&nAll Good&e&l(Here are all good of this shop)"
+    manageItemStockPageItemStockOptionPage: "&b&l&nManage Item Stock Option&e&l(Here are some option)"
+    manageGoodPage: "&b&l&nManage Good&e&l(Here are all good of this shop)"
+    manageGoodPageGoodOptionPage: "&b&l&nGood Option&e&l(Here are some option)"
+    manageItemStockPage: "&b&l&nManage Item Stock&e&l(Here are all your item stock)"
+    allGoodPageGoodOptionPage: "&b&l&nGood Option&e&l(Here are some good option)"
+    manageTradeRecordPage: "&b&l&nManage Trade Record&e&l(Here are trade record about you)"
+    manageTradeRecordPageTradeRecordOptionPage: "&b&l&nManage Trade Record Option&e&l(Here are some option)"
+    manageIconPageIconOptionPage: "&b&l&nManage Icon Option&e&l(Here are some option)"
+
+  #Buttons in Gui
+  button:
+    allShopPage:
+      allShopPageShopOptionPage:
+
+        #The material representing the button.
+        #If you want to know the name of the material, please go to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html Check,
+        #if air it will not display and can not be clicked
+        materialName: "BOOKSHELF"
+
+        #Indicates the name of the button
+        displayName: "&b&l&nShop &f&l{name}"
+
+        #Represents the description of the button. Variables that can be used in lore, except those enclosed in {()}, can be used in displayName
+        lore:
+          - "&a&lShop Owner: {owner_name}"
+          - "&b&lShop Name: {name}"
+          - "&c&lCreate Time: {create_time}"
+          - "&d&lCollect Amount: {collect_amount}"
+          - "&e&lPage View: {page_view}"
+          - "&f&lPopularity: {popularity}"
+          - "&a&lHot Value: {hot_value}"
+          - "&b&lClick to look more"
+          - "&c&lHere are some description about shop below"
+          - "{(description)}"
+
+        #Indicates quantity
+        amount: 1
+
+        #Indicates the flag
+        #If you want to know what can be hidden, please go to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemFlag.html
+        itemFlag:
+          - "HIDE_DESTROYS"
+
+        #Which model data version 1.12 and earlier does not support this
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&nNext Page"
+        lore:
+          - "&e&lGo to next page"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&nPrevious Page"
+        lore:
+          - "&e&lGo to previous page"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      manageTradeRecordPage:
+        materialName: "EMERALD"
+        displayName: "&b&l&nManage Trade Record"
+        lore:
+          - "&a&lClick to look your trade record"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      manageShopPage:
+        materialName: "DIAMOND_PICKAXE"
+        displayName: "&b&l&nManage Shop"
+        lore:
+          - "&a&lClick to manage shop"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      collectedShopPage:
+        materialName: "PAPER"
+        displayName: "&b&l&nCollected Shop"
+        lore:
+          - "&a&lClick to look your collected shop"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      manageItemStockPage:
+        materialName: "IRON_BLOCK"
+        displayName: "&b&l&nManage Item Stock"
+        lore:
+          - "&e&lClick to manage your item stock"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      manageCommentPage:
+        materialName: "MAP"
+        displayName: "&b&l&nManage Comment"
+        lore:
+          - "&a&lClick to manage your comment"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByShopName:
+        materialName: "COMPASS"
+        displayName: "&b&l&nSearch By Shop Name"
+        lore:
+          - "&e&lClick to search shop by shop name"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByShopOwnerName:
+        materialName: "COMPASS"
+        displayName: "&b&l&nSearch By Shop Owner Name"
+        lore:
+          - "&e&lClick to search shop by shop owner name"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    allShopPageShopOptionPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&nBack"
+        lore:
+          - "&e&lClick to back"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      allGoodPage:
+        materialName: "CHEST"
+        displayName: "&b&l&nAll Good"
+        lore:
+          - "&e&lClick to look all good of this shop"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goShopLocation:
+        materialName: "BEACON"
+        displayName: "&b&l&nGo Shop Location"
+        lore:
+          - "&e&lClick to go Shop Location"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      collectShop:
+        materialName: "LEVER"
+        displayName: "&b&l&nCollect Shop"
+        lore:
+          - "&e&lClick to collect shop"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      cancelCollectShop:
+        materialName: "TORCH"
+        displayName: "&b&l&nCancel Collect Shop"
+        lore:
+          - "&e&lClick to cancel collect shop"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      commentShop:
+        materialName: "FEATHER"
+        displayName: "&b&l&n评论商店"
+        lore:
+          - "&e&l点击评论商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      shopCommentPage:
+        materialName: "ENCHANTED_BOOK"
+        displayName: "&b&l&n查看评论"
+        lore:
+          - "&e&l点击查看商店评论"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    allGoodPage:
+      allGoodPageGoodOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n商品名字：&f{name}"
+        lore:
+          - "&c&l商品名字: {name}"
+          - "&c&l交易类型: {type}"
+          - "&c&l库存: {stock}"
+          - "&c&l限购时间: {limit_time}"
+          - "&c&l创建时间: {create_time}"
+          - "&e&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByGoodName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索商品名字"
+        lore:
+          - "&e&l点击按商品的名字搜索商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    allGoodPageGoodOptionPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回管理商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      vaultCurrency:
+        materialName: "PAPER"
+        displayName: "&b&l&n金币"
+        lore:
+          - "&e&l金币货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      playerPointsCurrency:
+        materialName: "map"
+        displayName: "&b&l&n点券"
+        lore:
+          - "&e&l点券货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideGoodAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n货币"
+        lore:
+          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&a&l上侧的是商品"
+          - "&a&l下侧的是货币"
+          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goodInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&c&l商品名字: {name}"
+          - "&c&l交易类型: {type}"
+          - "&e&l价格：{price}"
+          - "&e&l库存：{stock}"
+          - "&e&l限购时间：{limit_time} 秒"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      tradeGood:
+        materialName: "NETHER_STAR"
+        displayName: "&b&l&n交易"
+        lore:
+          - "&b&l点我交易"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    buyIconPage:
+      buyIconPageIconOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n图标：&f{name}"
+        lore:
+          - "&c&l图标名字: {name}"
+          - "&c&l创建时间: {create_time}"
+          - "&c&l库存: {stock}"
+          - "&c&l限购时间: {limit_time}"
+          - "&e&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByIconName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索图标名字"
+        lore:
+          - "&e&l点击按图标的名字搜索图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    buyIconPageIconOptionPage:
+      vaultCurrency:
+        materialName: "PAPER"
+        displayName: "&b&l&n金币"
+        lore:
+          - "&e&l金币货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      playerPointsCurrency:
+        materialName: "map"
+        displayName: "&b&l&n点券"
+        lore:
+          - "&e&l点券货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回图标购买"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideIconAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n货币"
+        lore:
+          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&a&l上侧的是图标"
+          - "&a&l下侧的是货币"
+          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      iconInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&e&l图标名字：{name}"
+          - "&e&l创建时间：{create_time}"
+          - "&e&l价格：{price}"
+          - "&e&l库存：{stock}"
+          - "&e&l限购时间：{limit_time} 秒"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      buyIcon:
+        materialName: "NETHER_STAR"
+        displayName: "&b&l&n购买"
+        lore:
+          - "&e&l点击购买图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    collectedShopPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回全部店铺界面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      collectedShopPageShopOptionPage:
+        materialName: "BOOKSHELF"
+        displayName: "{owner_name} &b&l&n的商店"
+        lore:
+          - "&a&l店铺主人: {owner_name}"
+          - "&a&l店铺名字: {name}"
+          - "&b&l创建时间: {create_time}"
+          - "&d&l收藏数量: {collect_amount}"
+          - "&d&l浏览量: {page_view}"
+          - "&d&l人气: {popularity}"
+          - "&e&l热力值: {hot_value}"
+          - "&f&l点击查看店铺操作选项"
+          - "&a&l以下是描述"
+          - "{(description)}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByShopName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索店铺名字"
+        lore:
+          - "&e&l点击按店铺的名称搜索商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByShopOwnerName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索店主"
+        lore:
+          - "&e&l点击按店主的名字搜索商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    collectedShopPageShopOptionPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回我的收藏店铺界面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      allGoodPage:
+        materialName: "CHEST"
+        displayName: "&b&l&n去店铺"
+        lore:
+          - "&e&l进入店铺"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goShopLocation:
+        materialName: "BEACON"
+        displayName: "&b&l&n去店铺的实体坐标"
+        lore:
+          - "&e&l前往实体店铺"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      cancelCollectShop:
+        materialName: "TORCH"
+        displayName: "&b&l&n取消收藏"
+        lore:
+          - "&e&l点击取消收藏商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      collectShop:
+        materialName: "LEVER"
+        displayName: "&b&l&n收藏"
+        lore:
+          - "&e&l点击收藏商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      commentShop:
+        materialName: "FEATHER"
+        displayName: "&b&l&n评论商店"
+        lore:
+          - "&e&l点击评论商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      shopCommentPage:
+        materialName: "ENCHANTED_BOOK"
+        displayName: "&b&l&n查看评论"
+        lore:
+          - "&e&l点击查看商店评论"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    shopCommentPage:
+      shopComment:
+        materialName: "FEATHER"
+        displayName: "{commenter_name} &b&l&n的评论"
+        lore:
+          - "&a&l评论人: {commenter_name}"
+          - "&b&l评论时间: {comment_time}"
+          - "&c&l以下是评论"
+          - "{(content)}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByCommenterName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索玩家的评论"
+        lore:
+          - "&e&l点击按玩家的名字搜索评论"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageCommentPage:
+      deleteShopComment:
+        materialName: "BARRIER"
+        displayName: "{commenter_name} &b&l&n的评论"
+        lore:
+          - "&a&l评论人: {commenter_name}"
+          - "&b&l评论时间: {comment_time}"
+          - "&c&l点击删除评论"
+          - "&d&l以下是评论"
+          - "{(content)}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageGoodPage:
+      manageGoodPageGoodOptionPage:
+        materialName: "CHEST"
+        displayName: "&b&l&n商品名字：&f{name}"
+        lore:
+          - "&c&l商品名字: {name}"
+          - "&c&l交易类型: {type}"
+          - "&c&l库存: {stock}"
+          - "&c&l限购时间: {limit_time}"
+          - "&c&l创建时间: {create_time}"
+          - "&e&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByGoodName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索商品名字"
+        lore:
+          - "&e&l点击按商品的名字搜索商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      createGood:
+        materialName: "DIAMOND"
+        displayName: "&b&l&n创建商品"
+        lore:
+          - "&e&l点击我创建商品"
+        amount: 2
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      deleteGood:
+        materialName: "BARRIER"
+        displayName: "&b&l&n删除商品"
+        lore:
+          - "&e&l点击去删除商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageGoodPageGoodOptionPage:
+      resetGoodPrice:
+        materialName: "PAPER"
+        displayName: "&b&l&n重置商品价格"
+        lore:
+          - "&e&l点我重置商品价格"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      resetGoodLimitTime:
+        materialName: "PAPER"
+        displayName: "&b&l&n重置限购时间"
+        lore:
+          - "&e&l点我重置限购时间"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      vaultCurrency:
+        materialName: "PAPER"
+        displayName: "&b&l&n金币"
+        lore:
+          - "&e&l金币货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      playerPointsCurrency:
+        materialName: "map"
+        displayName: "&b&l&n点券"
+        lore:
+          - "&e&l点券货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodName:
+        materialName: "NAME_TAG"
+        displayName: "&b&l&n设置名字"
+        lore:
+          - "&e&l点击设置商品名字"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      depositGood:
+        materialName: "CHEST"
+        displayName: "&b&l&n存入"
+        lore:
+          - "&e&l存入商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      takeGood:
+        materialName: "ENDER_CHEST"
+        displayName: "&b&l&n取出"
+        lore:
+          - "&e&l取出商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回管理商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideGoodAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n货币"
+        lore:
+          - "&b&l左侧的是商品"
+          - "&a&l<<<<<<<<<<<<"
+          - "&a&l右侧的是货币"
+          - "&b&l>>>>>>>>>>>>"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goodInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&c&l商品名字: {name}"
+          - "&c&l交易类型: {type}"
+          - "&e&l价格：{price}"
+          - "&e&l库存：{stock}"
+          - "&e&l限购时间：{limit_time} 秒"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      toggleGoodType:
+        materialName: "STONE_BUTTON"
+        displayName: "&b&l&n切换交易类型"
+        lore:
+          - "&b&l点我切换交易类型"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodLimitTime:
+        materialName: "SAND"
+        displayName: "&b&l&n设置限购时间"
+        lore:
+          - "&b&l点我设置限购时间"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodVaultPrice:
+        materialName: "PAPER"
+        displayName: "&b&l&n设置为金币"
+        lore:
+          - "&b&l点我设置金币商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodPlayerPointsPrice:
+        materialName: "MAP"
+        displayName: "&b&l&n设置为点券"
+        lore:
+          - "&b&l点我设置点券商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      setGoodItemPrice:
+        materialName: "EMERALD_BLOCK"
+        displayName: "&b&l&n设置为以物易物"
+        lore:
+          - "&b&l点我设置以物易物商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageIconPage:
+      manageIconPageIconOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n图标：&f{name}"
+        lore:
+          - "&c&l图标名字: {name}"
+          - "&e&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      resetShopIcon:
+        materialName: "PAPER"
+        displayName: "&b&l&n重置图标"
+        lore:
+          - "&e&l重置当前商店的图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByIconName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索图标名字"
+        lore:
+          - "&e&l点击按图标的名字搜索图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageIconPageIconOptionPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回图标购买"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideIcon:
+        materialName: "GLASS"
+        displayName: "&b&l&n导航"
+        lore:
+          - "&a&l下侧的是图标"
+          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      iconInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&e&l图标名字：{name}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      useShopIcon:
+        materialName: "DIAMOND_ORE"
+        displayName: "&b&l&n使用"
+        lore:
+          - "&e&l点击使用图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    manageItemStockPageItemStockOptionPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回管理库存物品货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      depositItemStock:
+        materialName: "CHEST"
+        displayName: "&b&l&n存入"
+        lore:
+          - "&b&l点我存入"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      takeItemStock:
+        materialName: "ENDER_CHEST"
+        displayName: "&b&l&n取出"
+        lore:
+          - "&b&l点我取出"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      itemStockInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n信息"
+        lore:
+          - "&b&l剩余数量：{amount}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideItemStock:
+        materialName: "GLASS"
+        displayName: "&b&l&n物品货币"
+        lore:
+          - "&b&l上方是物品货币原样"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      deleteItemStock:
+        materialName: "BARRIER"
+        displayName: "&b&l&n删除"
+        lore:
+          - "&b&l点我删除"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageItemStockPage:
+      manageItemStockPageItemStockOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n库存"
+        lore:
+          - "&a&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      goBankLocation:
+        materialName: "ENDER_CHEST"
+        displayName: "&b&l&n前往货币银行坐标"
+        lore:
+          - "&e&l不去这里不能存取货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      createItemStock:
+        materialName: "CHEST"
+        displayName: "&b&l&n创建"
+        lore:
+          - "&e&l创建一个物品的库存"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageShopPage:
+
+      buyIconPage:
+        materialName: "DIAMOND_BLOCK"
+        displayName: "&b&l&n购买图标"
+        lore:
+          - "&e&l点击去购买图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回全部店铺界面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      manageShopPageShopOptionPage:
+        materialName: "BOOKSHELF"
+        displayName: "{owner_name} &b&l&n的商店"
+        lore:
+          - "&a&l店铺主人: {owner_name}"
+          - "&a&l店铺名字: {name}"
+          - "&b&l创建时间: {create_time}"
+          - "&d&l收藏数量: {collect_amount}"
+          - "&d&l浏览量: {page_view}"
+          - "&d&l人气: {popularity}"
+          - "&e&l热力值: {hot_value}"
+          - "&f&l点击进入店铺操作选项页"
+          - "&a&l以下是描述"
+          - "{(description)}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      createShop:
+        materialName: "ENDER_CHEST"
+        displayName: "&b&l&n创建商店"
+        lore:
+          - "&e&l点击我创建商店"
+        amount: 2
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      deleteShop:
+        materialName: "DIAMOND_SWORD"
+        displayName: "&b&l&n删除商店"
+        lore:
+          - "&e&l点击去管理我自己的商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByShopName:
+        materialName: "COMPASS"
+        displayName: "&b&l&n搜索店铺名字"
+        lore:
+          - "&e&l点击按店铺的名称搜索商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageShopPageShopOptionPage:
+      manageIconPage:
+        materialName: "APPLE"
+        displayName: "&b&l&n管理这个商店图标"
+        lore:
+          - "&e&l前往管理这个商店的图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      setShopName:
+        materialName: "NAME_TAG"
+        displayName: "&b&l&n设置名字"
+        lore:
+          - "&e&l设置商店名字"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回我的店铺界面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      manageGoodPage:
+        materialName: "CHEST"
+        displayName: "&b&l&n去店铺"
+        lore:
+          - "&e&l进入管理店铺"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setShopLocation:
+        materialName: "BEACON"
+        displayName: "&b&l&n设置店铺的实体坐标"
+        lore:
+          - "&e&l设置实体店铺"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      resetShopLocation:
+        materialName: "BEDROCK"
+        displayName: "&b&l&n重置店铺的实体坐标"
+        lore:
+          - "&e&l重置实体店铺"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      updateShopDescription:
+        materialName: "WRITTEN_BOOK"
+        displayName: "&b&l&n更新商店描述"
+        lore:
+          - "&e&l点击更新商店描述"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setShopDescription:
+        materialName: "BOOK"
+        displayName: "&b&l&n设置商店描述"
+        lore:
+          - "&e&l点击设置商店描述"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      resetShopDescription:
+        materialName: "WRITTEN_BOOK"
+        displayName: "&b&l&n重置设置商店描述"
+        lore:
+          - "&e&l重置设置商店描述"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      addShopDescription:
+        materialName: "WRITTEN_BOOK"
+        displayName: "&b&l&n添加设置商店描述"
+        lore:
+          - "&e&l点击添加设置商店描述"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      removeShopDescription:
+        materialName: "BARRIER"
+        displayName: "&b&l&n删除设置商店描述"
+        lore:
+          - "&e&l点击删除设置商店描述"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      shopCommentPage:
+        materialName: "ENCHANTED_BOOK"
+        displayName: "&b&l&n查看评论"
+        lore:
+          - "&e&l点击查看商店评论"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    manageTradeRecordPageTradeRecordOptionPage:
+      vaultCurrency:
+        materialName: "PAPER"
+        displayName: "&b&l&n金币"
+        lore:
+          - "&e&l金币货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      playerPointsCurrency:
+        materialName: "map"
+        displayName: "&b&l&n点券"
+        lore:
+          - "&e&l点券货币"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回图标购买"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideGoodAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n货币"
+        lore:
+          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&a&l上侧的是商品"
+          - "&a&l下侧的是货币"
+          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      tradeRecordInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&a&l老板: {merchant_name}"
+          - "&b&l顾客: {customer_name}"
+          - "&b&l交易时间: {trade_time}"
+          - "&b&l交易税率: {trade_tax_rate}"
+          - "&b&l交易类型: {good_type}"
+          - "&e&l数量：{trade_amount}"
+          - "&e&l是否为系统商店：{good_system}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+    manageTradeRecordPage:
+      manageTradeRecordPageTradeRecordOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n交易记录"
+        lore:
+          - "&a&l老板: {merchant_name}"
+          - "&b&l顾客: {customer_name}"
+          - "&b&l数量: {trade_amount}"
+          - "&b&l交易时间: {trade_time}"
+          - "&b&l交易税率: {trade_tax_rate}"
+          - "&b&l交易类型: {good_type}"
+          - "&e&l是否为系统商店：{good_system}"
+          - "&b&l点我查看详细信息"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&e&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&e&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&e&l返回上一个页面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]

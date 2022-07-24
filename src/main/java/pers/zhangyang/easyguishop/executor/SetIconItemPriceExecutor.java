@@ -6,54 +6,49 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import pers.zhangyang.easyguishop.base.ExecutorBase;
 import pers.zhangyang.easyguishop.exception.NotExistIconException;
 import pers.zhangyang.easyguishop.service.CommandService;
 import pers.zhangyang.easyguishop.service.impl.CommandServiceImpl;
-import pers.zhangyang.easyguishop.util.InventoryUtil;
-import pers.zhangyang.easyguishop.util.ItemStackUtil;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
-
-import java.sql.SQLException;
+import pers.zhangyang.easylibrary.base.ExecutorBase;
+import pers.zhangyang.easylibrary.util.ItemStackUtil;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.PlayerUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 public class SetIconItemPriceExecutor extends ExecutorBase {
 
-    public SetIconItemPriceExecutor(@NotNull CommandSender sender, boolean forcePlayer, @NotNull String[] args) {
-        super(sender, forcePlayer, args);
+    public SetIconItemPriceExecutor(@NotNull CommandSender sender, String cmdName, @NotNull String[] args) {
+        super(sender, cmdName, args);
     }
 
     @Override
     protected void run() {
-        if (args.length != 3) {
+        if (args.length != 2) {
             return;
         }
         Player player = (Player) sender;
         int price;
-        ItemStack itemStack = InventoryUtil.getItemInMainHand(player).clone();
+        ItemStack itemStack = PlayerUtil.getItemInMainHand(player).clone();
         itemStack.setAmount(1);
         if (itemStack.getType().equals(Material.AIR)) {
             MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
             return;
         }
         try {
-            price = Integer.parseInt(args[2]);
+            price = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
-            invalidArgument(args[2]);
+            MessageUtil.invalidArgument(sender, args[1]);
             return;
         }
         if (price < 0) {
-            invalidArgument(args[2]);
+            MessageUtil.invalidArgument(sender, args[1]);
             return;
         }
-        args[1]= ChatColor.translateAlternateColorCodes('&',args[1]);
-        CommandService guiService = (CommandService) new TransactionInvocationHandler(CommandServiceImpl.INSTANCE).getProxy();
+        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
+        CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
-            guiService.setIconItemPrice(args[1], price, ItemStackUtil.itemStackSerialize(itemStack));
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
+            guiService.setIconItemPrice(args[0], price, ItemStackUtil.itemStackSerialize(itemStack));
         } catch (NotExistIconException e) {
             MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.notExistIconWhenSetIconItemPrice"));
             return;

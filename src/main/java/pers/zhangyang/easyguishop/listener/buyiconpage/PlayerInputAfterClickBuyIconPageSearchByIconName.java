@@ -1,83 +1,25 @@
 package pers.zhangyang.easyguishop.listener.buyiconpage;
 
-import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import pers.zhangyang.easyguishop.EasyGuiShop;
 import pers.zhangyang.easyguishop.domain.BuyIconPage;
-import pers.zhangyang.easyguishop.util.MessageUtil;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easylibrary.base.FiniteInputListenerBase;
+import pers.zhangyang.easylibrary.util.MessageUtil;
 
-import java.sql.SQLException;
+public class PlayerInputAfterClickBuyIconPageSearchByIconName extends FiniteInputListenerBase {
 
-public class PlayerInputAfterClickBuyIconPageSearchByIconName implements Listener {
-
-    private final Player player;
     private final BuyIconPage allShopPage;
 
-    public PlayerInputAfterClickBuyIconPageSearchByIconName(Player player, BuyIconPage allShopPage) {
+    public PlayerInputAfterClickBuyIconPageSearchByIconName(Player player, OfflinePlayer owner, BuyIconPage allShopPage) {
+        super(player, owner, allShopPage, 1);
         this.allShopPage = allShopPage;
-        this.player = player;
-        Bukkit.getPluginManager().registerEvents(this, EasyGuiShop.instance);
-        player.closeInventory();
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToSearchByIconNameInBuyIconPage"));
     }
 
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    @Override
+    public void run() {
 
-        Player player = event.getPlayer();
-        if (!player.equals(this.player)) {
-            return;
-        }
-        event.setCancelled(true);
-        String input = event.getMessage();
-        if (input.equalsIgnoreCase(MessageYaml.INSTANCE.getInput("message.input.cancel"))) {
-            unregisterSelf();
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    try {
-                        allShopPage.refresh();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.runTask(EasyGuiShop.instance);
-
-            return;
-        }
-        unregisterSelf();
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    allShopPage.searchByIconName(input);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.runTask(EasyGuiShop.instance);
-
-
+        allShopPage.searchByIconName(messages[0]);
     }
-
-    private void unregisterSelf() {
-        AsyncPlayerChatEvent.getHandlerList().unregister(this);
-        PlayerQuitEvent.getHandlerList().unregister(this);
-    }
-
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        if (!event.getPlayer().equals(this.player)) {
-            return;
-        }
-        unregisterSelf();
-    }
-
-
 }

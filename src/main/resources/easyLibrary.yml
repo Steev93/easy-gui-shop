@@ -1,0 +1,11 @@
+
+daoPackage:
+  - "pers/zhangyang/easyguishop/dao"
+listenerPackage:
+  - "pers/zhangyang/easyguishop/listener"
+executorPackage:
+  - "pers/zhangyang/easyguishop/executor"
+yamlPackage:
+  - "pers/zhangyang/easyguishop/yaml"
+guiButtonHandlerPackage:
+  - "pers/zhangyang/easyguishop/listener"

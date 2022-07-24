@@ -52,7 +52,8 @@ gui:
     allShopPage:
       allShopPageShopOptionPage:
 
-        #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看，不可以是AIR
+        #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
+        #如果是AIR代表不显示相关按钮并且无法被点击
         materialName: "BOOKSHELF"
 
         #表示按钮的名称
@@ -80,7 +81,7 @@ gui:
 
         #用哪个模型数据 1.12及以前的版本不支持这个
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -89,7 +90,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -180,7 +181,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goLocation:
+      goShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
@@ -240,7 +241,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -249,7 +250,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -352,7 +353,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -361,7 +362,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -478,7 +479,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -487,7 +488,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -533,7 +534,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goLocation:
+      goShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
@@ -591,7 +592,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -600,7 +601,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -641,7 +642,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -650,7 +651,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -683,7 +684,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -692,7 +693,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -900,7 +901,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -909,7 +910,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -1057,7 +1058,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -1066,7 +1067,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -1122,7 +1123,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -1131,7 +1132,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
@@ -1348,7 +1349,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      next:
+      nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
@@ -1357,7 +1358,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      previous:
+      previousPage:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:

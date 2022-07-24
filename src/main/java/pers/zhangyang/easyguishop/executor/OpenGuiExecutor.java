@@ -3,29 +3,24 @@ package pers.zhangyang.easyguishop.executor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pers.zhangyang.easyguishop.base.ExecutorBase;
 import pers.zhangyang.easyguishop.domain.AllShopPage;
-
-import java.sql.SQLException;
+import pers.zhangyang.easylibrary.base.ExecutorBase;
 
 public class OpenGuiExecutor extends ExecutorBase {
-    public OpenGuiExecutor(@NotNull CommandSender sender, boolean forcePlayer, @NotNull String[] args) {
-        super(sender, forcePlayer, args);
+    public OpenGuiExecutor(@NotNull CommandSender sender, String cmdName, @NotNull String[] args) {
+        super(sender, cmdName, args);
     }
 
     @Override
     protected void run() {
-        if (args.length != 1) {
+        if (args.length != 0) {
             return;
         }
         Player player = (Player) sender;
-        AllShopPage allShopPage = new AllShopPage(player);
+        AllShopPage allShopPage = new AllShopPage(player, player);
 
-        try {
-            allShopPage.send();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        allShopPage.send();
 
 
     }

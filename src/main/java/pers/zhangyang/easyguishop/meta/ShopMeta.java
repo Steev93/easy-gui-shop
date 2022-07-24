@@ -6,9 +6,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class ShopMeta {
-    private final String uuid;
-    private final String ownerUuid;
-    private final long createTime;
+    private String uuid;
+    private String ownerUuid;
+    private long createTime;
     private String name;
     private int collectAmount;
     private String iconUuid;
@@ -17,6 +17,8 @@ public class ShopMeta {
     private int pageView;
     private String description;
 
+    public ShopMeta() {
+    }
 
     public ShopMeta(@NotNull String uuid, @NotNull String name, @NotNull String ownerUuid, long createTime,
                     int collectNumber, int popularity, int pageView) {

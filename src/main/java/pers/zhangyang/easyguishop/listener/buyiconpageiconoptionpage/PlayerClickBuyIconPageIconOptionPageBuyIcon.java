@@ -2,51 +2,35 @@ package pers.zhangyang.easyguishop.listener.buyiconpageiconoptionpage;
 
 import net.milkbowl.vault.economy.Economy;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easyguishop.domain.BuyIconPageIconOptionPage;
 import pers.zhangyang.easyguishop.exception.*;
 import pers.zhangyang.easyguishop.meta.IconMeta;
-import pers.zhangyang.easyguishop.other.playerpoints.PlayerPoints;
-import pers.zhangyang.easyguishop.other.vault.Vault;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.util.MessageUtil;
-import pers.zhangyang.easyguishop.util.TransactionInvocationHandler;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easylibrary.annotation.EventListener;
+import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
+import pers.zhangyang.easylibrary.other.playerpoints.PlayerPoints;
+import pers.zhangyang.easylibrary.other.vault.Vault;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.sql.SQLException;
-
+@EventListener
 public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
 
-    @EventHandler
+    @GuiDiscreteButtonHandler(guiPage = BuyIconPageIconOptionPage.class, slot = {40})
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
-        if (!(holder instanceof BuyIconPageIconOptionPage)) {
-            return;
-        }
-        int slot = event.getRawSlot();
-        if (slot != 40) {
-            return;
-        }
-        ItemStack itemStack = event.getCurrentItem();
-        if (itemStack == null || itemStack.getType().equals(Material.AIR)) {
-            return;
-        }
-        if (!(event.getWhoClicked() instanceof Player)) {
-            return;
-        }
 
         BuyIconPageIconOptionPage buyIconPageIconOptionPage = (BuyIconPageIconOptionPage) holder;
         Player player = (Player) event.getWhoClicked();
-        GuiService guiService = (GuiService) new TransactionInvocationHandler(GuiServiceImpl.INSTANCE).getProxy();
+        GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         IconMeta iconMeta = buyIconPageIconOptionPage.getIconMeta();
 
 
@@ -78,9 +62,6 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
                 buyIconPageIconOptionPage.send();
                 guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
                 buyIconPageIconOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return;
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
@@ -110,9 +91,6 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
                 buyIconPageIconOptionPage.send();
                 guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
                 buyIconPageIconOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return;
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
@@ -139,9 +117,6 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
                 guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
                 guiService.takeItemStock(player.getUniqueId().toString(), iconMeta.getCurrencyItemStack(), itemPrice);
                 buyIconPageIconOptionPage.send();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return;
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
