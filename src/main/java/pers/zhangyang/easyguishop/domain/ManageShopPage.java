@@ -73,7 +73,6 @@ public class ManageShopPage extends MultipleGuiPageBase implements BackAble {
         }
 
 
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageShopPage.previousPage");
             inventory.setItem(45, previous);
@@ -88,6 +87,7 @@ public class ManageShopPage extends MultipleGuiPageBase implements BackAble {
 
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

@@ -45,7 +45,6 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
         this.itemStockMetaList.clear();
         this.itemStockMetaList.addAll(guiService.listPlayerItemStock(owner.getUniqueId().toString()));
 
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.previousPage");
             inventory.setItem(45, previous);
@@ -59,6 +58,7 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
         } else {
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

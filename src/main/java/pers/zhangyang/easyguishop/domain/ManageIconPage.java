@@ -74,7 +74,6 @@ public class ManageIconPage extends MultipleGuiPageBase implements BackAble {
             this.pageIndex = maxIndex;
         }
 
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageIconPage.previousPage");
             inventory.setItem(45, previous);
@@ -89,6 +88,7 @@ public class ManageIconPage extends MultipleGuiPageBase implements BackAble {
 
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

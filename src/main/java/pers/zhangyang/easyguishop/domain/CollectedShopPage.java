@@ -62,7 +62,6 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
         this.shopMetaList.clear();
         this.shopMetaList.addAll(guiService.listPlayerCollectedShop(owner.getUniqueId().toString()));
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.previousPage");
             inventory.setItem(45, previous);
@@ -82,6 +81,7 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
         } else {
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

@@ -46,7 +46,6 @@ public class ManageTradeRecordPage extends SingleGuiPageBase implements BackAble
         this.tradeRecordMetaList.clear();
         this.tradeRecordMetaList.addAll(guiService.listPlayerTradeRecord(owner.getUniqueId().toString()));
 
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPage.previousPage");
             inventory.setItem(45, previous);
@@ -60,6 +59,7 @@ public class ManageTradeRecordPage extends SingleGuiPageBase implements BackAble
         } else {
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

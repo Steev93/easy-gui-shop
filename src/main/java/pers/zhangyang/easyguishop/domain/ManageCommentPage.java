@@ -49,7 +49,6 @@ public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
         this.shopCommentMetaList.clear();
         this.shopCommentMetaList.addAll(guiService.listPlayerComment(owner.getUniqueId().toString()));
 
-        refreshContent();
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageCommentPage.previousPage");
             inventory.setItem(45, previous);
@@ -63,6 +62,7 @@ public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
         } else {
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(this.inventory);
     }
 

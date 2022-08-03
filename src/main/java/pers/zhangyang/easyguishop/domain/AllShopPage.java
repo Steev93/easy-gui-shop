@@ -68,20 +68,20 @@ public class AllShopPage extends MultipleGuiPageBase {
             this.shopMetaList.addAll(guiService.listShop());
             this.shopMetaList.removeIf(shopMeta -> !Objects.requireNonNull(Bukkit.getOfflinePlayer(UUID.fromString(shopMeta.getOwnerUuid())).getName()).contains(searchContent));
         }
-        refreshContent();
+        int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
-        int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (pageIndex < maxIndex) {
             ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
+        refreshContent();
         viewer.openInventory(inventory);
     }
 

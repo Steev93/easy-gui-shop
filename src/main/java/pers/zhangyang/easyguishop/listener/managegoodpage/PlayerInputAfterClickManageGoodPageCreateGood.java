@@ -35,6 +35,10 @@ public class PlayerInputAfterClickManageGoodPageCreateGood extends FiniteInputLi
         }
         String buy = MessageYaml.INSTANCE.getInput("message.input.buy");
         String sell = MessageYaml.INSTANCE.getInput("message.input.sell");
+        System.out.println(messages[0]);
+        System.out.println(messages[1]);
+        System.out.println(buy);
+        System.out.println(sell);
         if (!messages[1].equalsIgnoreCase(buy) && !messages[1].equalsIgnoreCase(sell)) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.unknownType"));
             return;
