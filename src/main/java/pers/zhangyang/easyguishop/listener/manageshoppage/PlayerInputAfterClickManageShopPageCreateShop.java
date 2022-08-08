@@ -15,6 +15,8 @@ import pers.zhangyang.easylibrary.util.PermUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 import pers.zhangyang.easylibrary.util.UuidUtil;
 
+import java.util.List;
+
 public class PlayerInputAfterClickManageShopPageCreateShop extends FiniteInputListenerBase {
 
     private final ManageShopPage manageShopPage;
@@ -29,13 +31,20 @@ public class PlayerInputAfterClickManageShopPageCreateShop extends FiniteInputLi
     @Override
     public void run() {
 
+        Player onlineOwner=owner.getPlayer();
+        if (onlineOwner==null){
+            List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
+            MessageUtil.sendMessageTo(player, list);
+            return;
+        }
         int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', messages[0])).length();
 
-        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", player);
+        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", onlineOwner);
+
         if (perm == null) {
             perm = 0;
         }
-        if (perm < nameLength && !player.isOp()) {
+        if (perm < nameLength && !onlineOwner.isOp()) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopNameLengthWhenCreateShop"));
             return;
         }

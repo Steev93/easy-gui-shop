@@ -11,6 +11,8 @@ import pers.zhangyang.easylibrary.annotation.EventListener;
 import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 import pers.zhangyang.easylibrary.util.MessageUtil;
 
+import java.util.List;
+
 @EventListener
 public class PlayerClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice implements Listener {
 
@@ -21,11 +23,18 @@ public class PlayerClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice imp
 
         Player player = (Player) event.getWhoClicked();
 
+        ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
+
+        Player onlineOwner=manageGoodPageGoodOptionPage.getOwner().getPlayer();
+        if (onlineOwner==null){
+            List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
+            MessageUtil.sendMessageTo(player, list);
+            return;
+        }
         if (!player.hasPermission("EasyGuiShop.setGoodPlayerPointsPrice")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notPermissionWhenSetGoodPlayerPointsPrice"));
             return;
         }
-        ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         new PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice(player, manageGoodPageGoodOptionPage.getOwner(), manageGoodPageGoodOptionPage);
 
     }

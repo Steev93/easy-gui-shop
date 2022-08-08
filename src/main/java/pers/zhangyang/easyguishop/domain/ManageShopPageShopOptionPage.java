@@ -92,6 +92,7 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
         viewer.openInventory(inventory);
     }
 
+    @NotNull
     public ShopMeta getShopMeta() {
         return shopMeta;
     }

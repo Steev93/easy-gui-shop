@@ -16,6 +16,8 @@ import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.PlayerUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
+import java.util.List;
+
 public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice extends FiniteInputListenerBase {
 
     private final ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage;
@@ -28,6 +30,8 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice e
 
     @Override
     public void run() {
+
+
         ItemStack itemStack = PlayerUtil.getItemInMainHand(player).clone();
         itemStack.setAmount(1);
         if (itemStack.getType().equals(Material.AIR)) {

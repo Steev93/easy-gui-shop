@@ -28,9 +28,14 @@ public class OpenMuiExecutor extends ExecutorBase {
             MessageUtil.sendMessageTo(this.sender, list);
             return;
         }
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[0]);
+        Player target = Bukkit.getPlayer(args[0]);
+        if (target==null){
+            List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
+            MessageUtil.sendMessageTo(this.sender, list);
+            return;
+        }
         Player player = (Player) sender;
-        AllShopPage allShopPage = new AllShopPage(player, offlinePlayer);
+        AllShopPage allShopPage = new AllShopPage(player, target);
         allShopPage.send();
 
     }

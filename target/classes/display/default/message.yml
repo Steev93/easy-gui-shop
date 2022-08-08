@@ -75,6 +75,9 @@ message:
     notHookPlayerPoints:
       - "&c&l没有检测到PlayerPoints插件。"
 
+    notOnline:
+      - "&c&l玩家不在线。"
+
     #经常发生的失败提示，每个操作对应一个失败提示
     notNearBankLocationWhenTakeItemStock:
       - "&c&l请在货币银行坐标32范围内取出货币"

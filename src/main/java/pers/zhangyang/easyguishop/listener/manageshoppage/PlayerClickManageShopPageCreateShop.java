@@ -28,9 +28,17 @@ public class PlayerClickManageShopPageCreateShop implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
+        ManageShopPage manageShopPage = (ManageShopPage) holder;
+
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
-        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopAmount.", player);
+        Player onlineOwner=manageShopPage.getOwner().getPlayer();
+        if (onlineOwner==null){
+            List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
+            MessageUtil.sendMessageTo(player, list);
+            return;
+        }
+        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopAmount.", onlineOwner);
         if (perm == null) {
             perm = 0;
         }
@@ -38,11 +46,10 @@ public class PlayerClickManageShopPageCreateShop implements Listener {
 
         shopMetaList = guiService.listPlayerShop(player.getUniqueId().toString());
 
-        if (perm <= shopMetaList.size() && !player.isOp()) {
+        if (perm <= shopMetaList.size() && !onlineOwner.isOp()) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.beyondShopAmount"));
             return;
         }
-        ManageShopPage manageShopPage = (ManageShopPage) holder;
         new PlayerInputAfterClickManageShopPageCreateShop(player, manageShopPage.getOwner(), manageShopPage);
     }
 
