@@ -21,12 +21,6 @@ public class ReloadPluginExecutor extends ExecutorBase {
         if (args.length != 0) {
             return;
         }
-        Player player = (Player) sender;
-        Inventory inventory = Bukkit.createInventory(player, 54);
-        inventory.setItem(0, new ItemStack(Material.AIR));
-        System.out.println(inventory.getItem(0));
-        player.openInventory(inventory);
-
         MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getStringList("message.chat.reloadPlugin"));
     }
 }
