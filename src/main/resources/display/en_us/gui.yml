@@ -38,7 +38,7 @@ gui:
     manageShopPage: "&b&l&nManage Shop&e&l(Here are all your shop)"
     collectedShopPage: "&b&l&nCollected Shop&e&l(Here are all shop you collected)"
     shopCommentPage: "&b&l&nShop Comment&e&l(Here are all shop comment)"
-    manageCommentPage: "&b&l&nManage Comment&e&l(Here are all your comment)"
+    manageShopCommentPage: "&b&l&nManage Comment&e&l(Here are all your comment)"
     buyIconPage: "&b&l&nBuy Icon&e&l(Here are all icon)"
     manageIconPage: "&b&l&nManage Icon&e&l(Here are all your icon)"
     buyIconPageIconOptionPage: "&b&l&nBuy Icon Option&e&l(Here are some option)"
@@ -142,7 +142,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      manageCommentPage:
+      manageShopCommentPage:
         materialName: "MAP"
         displayName: "&b&l&nManage Comment"
         lore:
@@ -635,7 +635,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-    manageCommentPage:
+    manageShopCommentPage:
       deleteShopComment:
         materialName: "BARRIER"
         displayName: "{commenter_name} &b&l&n的评论"

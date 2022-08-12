@@ -38,7 +38,7 @@ public class PlayerClickManageShopPageCreateShop implements Listener {
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopAmount.", onlineOwner);
+        Integer perm = PermUtil.getMaxNumberPerm("EasyGuiShop.ShopAmount.", onlineOwner);
         if (perm == null) {
             perm = 0;
         }

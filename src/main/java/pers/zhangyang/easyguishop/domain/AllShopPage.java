@@ -198,7 +198,7 @@ public class AllShopPage extends MultipleGuiPageBase {
         ItemStack manager = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.manageShopPage");
         inventory.setItem(49, manager);
 
-        ItemStack myCommentPage = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.manageCommentPage");
+        ItemStack myCommentPage = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.manageShopCommentPage");
         inventory.setItem(52, myCommentPage);
         ItemStack collect = GuiYaml.INSTANCE.getButton("gui.button.allShopPage.collectedShopPage");
         inventory.setItem(48, collect);

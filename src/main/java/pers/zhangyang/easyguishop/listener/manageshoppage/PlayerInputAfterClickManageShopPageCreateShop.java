@@ -39,7 +39,7 @@ public class PlayerInputAfterClickManageShopPageCreateShop extends FiniteInputLi
         }
         int nameLength = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', messages[0])).length();
 
-        Integer perm = PermUtil.getNumberPerm("EasyGuiShop.ShopNameLength.", onlineOwner);
+        Integer perm = PermUtil.getMaxNumberPerm("EasyGuiShop.ShopNameLength.", onlineOwner);
 
         if (perm == null) {
             perm = 0;

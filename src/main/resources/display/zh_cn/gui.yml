@@ -33,7 +33,7 @@ gui:
     manageShopPage: "&b&l&n全部我的店铺&e&l(陈列了所有自己的店铺)"
     collectedShopPage: "&b&l&n全部收藏店铺&e&l(陈列了所有收藏的店铺)"
     shopCommentPage: "&b&l&n店铺的评论&e&l(陈列了店铺的所有评论)"
-    manageCommentPage: "&b&l&n我的评论&e&l(陈列了我的所有评论)"
+    manageShopCommentPage: "&b&l&n我的评论&e&l(陈列了我的所有评论)"
     buyIconPage: "&b&l&n购买图标&e&l(所有图标)"
     manageIconPage: "&b&l&n我的图标&e&l(所有我买过的图标)"
     buyIconPageIconOptionPage: "&b&l&n图标购买选项页&e&l(可进行的选项)"
@@ -135,7 +135,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      manageCommentPage:
+      manageShopCommentPage:
         materialName: "MAP"
         displayName: "&b&l&n我的评论"
         lore:
@@ -628,7 +628,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-    manageCommentPage:
+    manageShopCommentPage:
       deleteShopComment:
         materialName: "BARRIER"
         displayName: "{commenter_name} &b&l&n的评论"

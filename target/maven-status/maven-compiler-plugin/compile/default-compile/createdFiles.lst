@@ -117,7 +117,6 @@ pers\zhangyang\easyguishop\executor\SetIconLimitTimeExecutor.class
 pers\zhangyang\easyguishop\listener\allgoodpagegoodoptionpage\PlayerClickAllGoodPageGoodOptionPageTradeGood.class
 pers\zhangyang\easyguishop\exception\DuplicateTradeRecordException.class
 pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerClickCollectedShopPageCollectedShopPageShopOptionPage.class
-pers\zhangyang\easyguishop\domain\ManageCommentPage$1.class
 pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCollectShop.class
 pers\zhangyang\easyguishop\exception\NotMoreIconException.class
 pers\zhangyang\easyguishop\domain\ManageGoodPage.class
@@ -174,6 +173,7 @@ pers\zhangyang\easyguishop\domain\ManageItemStockPageItemStockOptionPage.class
 pers\zhangyang\easyguishop\executor\OpenMuiExecutor.class
 pers\zhangyang\easyguishop\executor\OpenGuiExecutor.class
 pers\zhangyang\easyguishop\meta\IconOwnerMeta.class
+pers\zhangyang\easyguishop\domain\ManageShopCommentPage.class
 pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageAllShopPageShopOptionPage.class
 pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerInputAfterClickCollectedShopPageSearchByShopOwnerName.class
 pers\zhangyang\easyguishop\listener\managecommentpage\PlayerClickManageCommentPageDeleteShopComment.class
@@ -198,8 +198,8 @@ pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickMana
 pers\zhangyang\easyguishop\exception\NotExistTradeRecordException.class
 pers\zhangyang\easyguishop\service\impl\BaseServiceImpl.class
 pers\zhangyang\easyguishop\listener\manageitemstockpage\PlayerClickManageItemStockPageManageItemStockPageItemStockOptionPage.class
+pers\zhangyang\easyguishop\domain\ManageShopCommentPage$1.class
 pers\zhangyang\easyguishop\dao\ShopCollectorDao.class
 pers\zhangyang\easyguishop\dao\GoodDao.class
 pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageRemoveShopDescription.class
 pers\zhangyang\easyguishop\listener\allgoodpage\PlayerClickAllGoodPageAllGoodPageGoodOptionPage.class
-pers\zhangyang\easyguishop\domain\ManageCommentPage.class

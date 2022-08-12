@@ -29,12 +29,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
+public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAble {
     private List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
     private int pageIndex;
 
-    public ManageCommentPage(GuiPage previousHolder, Player player) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageCommentPage"), player, previousHolder, previousHolder.getOwner());
+    public ManageShopCommentPage(GuiPage previousHolder, Player player) {
+        super(GuiYaml.INSTANCE.getString("gui.title.manageShopCommentPage"), player, previousHolder, previousHolder.getOwner());
         initMenuBarWithoutChangePage();
     }
 
@@ -50,14 +50,14 @@ public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
         this.shopCommentMetaList.addAll(guiService.listPlayerComment(owner.getUniqueId().toString()));
 
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageCommentPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopCommentMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageCommentPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
@@ -82,7 +82,7 @@ public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{commenter_name}", commenter.getName());
             rep.put("{comment_time}", TimeUtil.getTimeFromTimeMill(shopCommentMeta.getCommentTime()));
-            ItemStack itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageCommentPage.deleteShopComment");
+            ItemStack itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.deleteShopComment");
             Gson gson = new Gson();
             Type stringListType = new TypeToken<ArrayList<String>>() {
             }.getType();
@@ -97,7 +97,7 @@ public class ManageCommentPage extends MultipleGuiPageBase implements BackAble {
 
     //渲染当前页的菜单(不包括翻页)
     private void initMenuBarWithoutChangePage() {
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageCommentPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.back");
         inventory.setItem(49, back);
 
     }

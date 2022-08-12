@@ -6,7 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import pers.zhangyang.easyguishop.domain.AllShopPage;
-import pers.zhangyang.easyguishop.domain.ManageCommentPage;
+import pers.zhangyang.easyguishop.domain.ManageShopCommentPage;
 import pers.zhangyang.easylibrary.annotation.EventListener;
 import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 
@@ -20,9 +20,9 @@ public class PlayerClickAllShopPageManageCommentPage implements Listener {
 
         AllShopPage allShopPage = (AllShopPage) holder;
         Player player = (Player) event.getWhoClicked();
-        ManageCommentPage manageCommentPage = new ManageCommentPage(allShopPage, player);
+        ManageShopCommentPage manageShopCommentPage = new ManageShopCommentPage(allShopPage, player);
 
-        manageCommentPage.send();
+        manageShopCommentPage.send();
 
 
     }

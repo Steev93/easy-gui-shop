@@ -15,6 +15,7 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageAllGoodPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageResetGoodPrice.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageResetGoodLimitTime.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageShopCommentPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\OpenMuiExecutor.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\BaseService.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageShopPage.java
@@ -37,7 +38,6 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllGoodPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\GoodMeta.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\CorrectDatabaseExecutor.java
-C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageCommentPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistItemStockException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageTakeGood.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\ShopDao.java

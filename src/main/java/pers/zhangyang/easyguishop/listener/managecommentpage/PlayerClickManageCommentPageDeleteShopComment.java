@@ -8,7 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easyguishop.domain.ManageCommentPage;
+import pers.zhangyang.easyguishop.domain.ManageShopCommentPage;
 import pers.zhangyang.easyguishop.exception.NotExistShopCommentException;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
@@ -24,7 +24,7 @@ public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
-        if (!(holder instanceof ManageCommentPage)) {
+        if (!(holder instanceof ManageShopCommentPage)) {
             return;
         }
         int slot = event.getRawSlot();
@@ -40,15 +40,15 @@ public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
         }
 
         Player player = (Player) event.getWhoClicked();
-        ManageCommentPage manageCommentPage = (ManageCommentPage) holder;
+        ManageShopCommentPage manageShopCommentPage = (ManageShopCommentPage) holder;
 
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
 
         try {
-            manageCommentPage.send();
-            guiService.deleteShopComment(manageCommentPage.getShopCommentMetaList().get(slot).getUuid());
-            manageCommentPage.send();
+            manageShopCommentPage.send();
+            guiService.deleteShopComment(manageShopCommentPage.getShopCommentMetaList().get(slot).getUuid());
+            manageShopCommentPage.send();
         } catch (NotExistShopCommentException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopComment"));
             return;
