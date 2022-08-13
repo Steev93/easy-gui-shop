@@ -8,7 +8,7 @@ message:
     sell: "sell"
 
     #Required to create a store of type buy, default value if left blank
-    buy: "Buy"
+    buy: "buy"
 
     #Comments are submitted after multiple lines of comments.
     submit: "submit"
@@ -230,7 +230,7 @@ message:
     howToSearchByGoodNameInManageGoodPage:
       - "&a&lEnter the product name to complete the search, enter &f to cancel &a&l to cancel."
     howToCreateGood:
-      - "&a&lEnter the item name, transaction type (sell or acquire) in order to complete the creation (enter in order), enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the item name, transaction type (sell or buy) in order to complete the creation (enter in order), enter &f Cancel &a&l Cancel."
     howToDepositItemStock:
       - "&a&lEnter the quantity you want to deposit, enter &f Cancel &a&l Cancel."
     howToTakeItemStock:

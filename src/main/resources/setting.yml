@@ -22,8 +22,8 @@ setting:
   #Coordinates of the bank
   bankLocation:
 
-    #在哪一个世界
-    #In which world
+    #在哪一个世界，如果是不存在的世界，将采用默认值world
+    #In which world, if it does not exist, the default value world will be used
     worldName: world
 
     #x坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
