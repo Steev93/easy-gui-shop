@@ -40,7 +40,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodLimitTime e
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.setGoodLimitTime(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), price);
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;

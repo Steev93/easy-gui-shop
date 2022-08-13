@@ -1,27 +1,32 @@
 gui:
+  #第一个页面的返回按钮点击后执行的指令，格式为 way:command，其中的way指代执行的方式，command是命令，命令无需加/，
+  #执行方式有operator、console、self，分别代表以op身份执行（给玩家op然后执行然后取消玩家op）、控制台执行、自身执行
+  firstPageBackCommand:
+    - "self:bs"
+    - "self:cd"
 
   #gui中可替换的文字内容
   replace:
 
-    #当商店或者商品为系统补货时，将把库存显示为以下内容
+    #当商店或者商品为系统补货时，将把库存显示为以下内容，不填则采用默认值
     systemStock: "&d&l无限"
 
   #gui的一些选项
   option:
 
-    #如果店铺没有使用图标，是否显示为店主的头颅，开启这个功能可能会卡服，因为头颅材质占用网络资源
+    #如果店铺没有使用图标，是否显示为店主的头颅，开启这个功能可能会卡服，因为头颅材质占用网络资源，不填则采用默认值
     enableShopUsePlayerHead: false
 
-    #商品是否在Gui中显示为商品物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #商品是否在Gui中显示为商品物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
     enableGoodUseGoodItem: true
 
-    #图标是否使用图标物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #图标是否使用图标物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
     enableIconUseIconItem: true
 
-    #交易记录是否使用交易物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #交易记录是否使用交易物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
     enableTradeRecordUseTradeRecordItem: true
 
-    #货币库存是否使用货币物品的材质，如果是对应物品没有ItemMeta信息，则无效
+    #货币库存是否使用货币物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
     enableItemStockUseItemStockItem: true
 
   #gui页面的标题
@@ -32,7 +37,7 @@ gui:
     manageShopPageShopOptionPage: "&b&l&n店铺选项页&e&l(对该店铺可进行的选项)"
     manageShopPage: "&b&l&n全部我的店铺&e&l(陈列了所有自己的店铺)"
     collectedShopPage: "&b&l&n全部收藏店铺&e&l(陈列了所有收藏的店铺)"
-    shopCommentPage: "&b&l&n店铺的评论&e&l(陈列了店铺的所有评论)"
+    allShopCommentPage: "&b&l&n店铺的评论&e&l(陈列了店铺的所有评论)"
     manageShopCommentPage: "&b&l&n我的评论&e&l(陈列了我的所有评论)"
     buyIconPage: "&b&l&n购买图标&e&l(所有图标)"
     manageIconPage: "&b&l&n我的图标&e&l(所有我买过的图标)"
@@ -50,6 +55,15 @@ gui:
   #gui内的按钮
   button:
     allShopPage:
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回上一个界面"
+        lore:
+          - "&e&l返回"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
       allShopPageShopOptionPage:
 
         #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
@@ -113,15 +127,6 @@ gui:
         displayName: "&b&l&n管理商店"
         lore:
           - "&e&l点击去管理我自己的商店"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      collectedShopPage:
-        materialName: "PAPER"
-        displayName: "&b&l&n收藏的商店"
-        lore:
-          - "&a&l点击去查看我自己收藏的商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -217,7 +222,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      shopCommentPage:
+      allShopCommentPage:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:
@@ -570,7 +575,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      shopCommentPage:
+      allShopCommentPage:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:
@@ -579,7 +584,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-    shopCommentPage:
+    allShopCommentPage:
       shopComment:
         materialName: "FEATHER"
         displayName: "{commenter_name} &b&l&n的评论"
@@ -1087,6 +1092,15 @@ gui:
         customModelData: [ ]
     manageShopPage:
 
+      collectedShopPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n收藏的商店"
+        lore:
+          - "&a&l点击去查看我自己收藏的商店"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
       buyIconPage:
         materialName: "DIAMOND_BLOCK"
         displayName: "&b&l&n购买图标"
@@ -1268,7 +1282,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      shopCommentPage:
+      allShopCommentPage:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:

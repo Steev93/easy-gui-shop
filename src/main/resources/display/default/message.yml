@@ -1,16 +1,16 @@
 message:
   input:
 
-    #取消操作需要输入的
+    #取消操作需要输入的，不填或者为空则采用默认值
     cancel: "取消"
 
-    #出售类型商店创建需要输入的
+    #出售类型商店创建需要输入的，不填或者为空则采用默认值
     sell: "出售"
 
-    #收购类型商店创建需要输入的
+    #收购类型商店创建需要输入的，不填或者为空则采用默认值
     buy: "收购"
 
-    #评论时，评论完多行后提交需要输入的
+    #评论时，评论完多行后提交需要输入的，不填或者为空则采用默认值
     submit: "提交"
 
   chat:
@@ -43,7 +43,7 @@ message:
       - "&b&l/egs correctDatabase    对数据库的一些数据进行修复，删掉不合法的数据（使用前先备份数据）。"
       - "&b&l/egs reloadPlugin    重载。"
       - "&b&l/egs openGui    打开Gui界面。"
-      - "&b&l/egs openMui 玩家名字    打开Mui界面(管理玩家的Gui)。"
+      - "&b&l/egs openMui <玩家名字>    打开Mui界面(管理玩家的Gui)。"
       - "&b&l/egs createIcon <图标名字>    增加图标，需要手持物品。"
       - "&b&l/egs setIconVaultPrice <图标名字> <价格>    设置图标金币价格。"
       - "&b&l/egs setIconItemPrice <图标名字> <价格>    设置图标以物易物价格，需要手持物品。"
@@ -230,7 +230,7 @@ message:
     howToSearchByGoodNameInManageGoodPage:
       - "&a&l输入商品名字完成搜索，输入 &f取消 &a&l取消。"
     howToCreateGood:
-      - "&a&l依次输入商品名字、交易类型完成创建（依次回车），输入 &f取消 &a&l取消。"
+      - "&a&l依次输入商品名字、交易类型（出售或者收购）完成创建（依次回车），输入 &f取消 &a&l取消。"
     howToDepositItemStock:
       - "&a&l输入您要存入的数量，输入 &f取消 &a&l取消。"
     howToTakeItemStock:

@@ -103,7 +103,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);
                     tradeRecordMeta.setGoodVaultPrice(goodMeta.getVaultPrice());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    allGoodPageGoodOptionPage.send();
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -140,7 +139,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);
                     tradeRecordMeta.setGoodPlayerPointsPrice(goodMeta.getPlayerPointsPrice());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    allGoodPageGoodOptionPage.send();
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -159,16 +157,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
 
                 try {
                     double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.item");
-                    int beforeTax = itemPrice * amount;
-                    int tax = (int) Math.round(beforeTax * taxRate);
-                    int afterTax = beforeTax - tax;
-                    //检查钱
-                    if (!goodMeta.isSystem() && !guiService.hasItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax)) {
-                        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTradeGood"));
-                        return;
-                    }
+
                     //交易
-                    guiService.trade(goodMeta.getUuid(), amount, goodMeta);
+                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta,merchant.getUniqueId().toString(),owner.getUniqueId().toString());
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
                             allGoodPageGoodOptionPage.getShopMeta().getOwnerUuid(),
                             goodMeta.getGoodItemStack(), amount, goodMeta.isSystem(), System.currentTimeMillis(), goodMeta.getType(),
@@ -176,20 +167,16 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     tradeRecordMeta.setGoodItemPrice(goodMeta.getItemPrice());
                     tradeRecordMeta.setGoodCurrencyItemStack(goodMeta.getCurrencyItemStack());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    allGoodPageGoodOptionPage.send();
 
-                    //转钱
-
-                    if (!goodMeta.isSystem()) {
-                        guiService.takeItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
-                    }
-                    guiService.depositItemStock(owner.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), afterTax);
-                } catch (NotMoreItemStockException | NotMoreGoodException | DuplicateTradeRecordException | NotExistItemStockException ignored) {
+                } catch ( NotMoreGoodException | DuplicateTradeRecordException | NotEnoughItemStockException ignored) {
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
+                    return;
+                } catch (NotMoreItemStockException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTradeGood"));
                     return;
                 }
             }
@@ -197,7 +184,8 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
             //背包扣除物品
             PlayerUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), amount);
 
-        } else if (goodMeta.getType().equalsIgnoreCase("出售")) {
+        }
+        if (goodMeta.getType().equalsIgnoreCase("出售")) {
             //检查是不是有空间
             int space = PlayerUtil.checkSpace(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()));
             if (space < amount) {
@@ -227,7 +215,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);
                     tradeRecordMeta.setGoodVaultPrice(goodMeta.getVaultPrice());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    allGoodPageGoodOptionPage.send();
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -269,7 +256,6 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);
                     tradeRecordMeta.setGoodPlayerPointsPrice(goodMeta.getPlayerPointsPrice());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    allGoodPageGoodOptionPage.send();
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -290,32 +276,19 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
             }
             if (itemPrice != null) {
                 double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.item");
-                int beforeTax = itemPrice * amount;
-                int tax = (int) Math.round(beforeTax * taxRate);
-                int afterTax = beforeTax - tax;
                 //扣除货币
                 try {
-                    //检查钱
-                    if (!guiService.hasItemStock(owner.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax)) {
-                        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenTradeGood"));
-                        return;
-                    }
+
                     //交易
-                    guiService.trade(goodMeta.getUuid(), amount, goodMeta);
+                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta,merchant.getUniqueId().toString(),owner.getUniqueId().toString());
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
                             merchant.getUniqueId().toString(), goodMeta.getGoodItemStack(), amount, goodMeta.isSystem(),
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);
                     tradeRecordMeta.setGoodItemPrice(goodMeta.getItemPrice());
                     tradeRecordMeta.setGoodCurrencyItemStack(goodMeta.getCurrencyItemStack());
                     guiService.createTradeRecord(tradeRecordMeta);
-                    //扣钱
-                    guiService.takeItemStock(owner.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), beforeTax);
 
-                    if (!goodMeta.isSystem()) {
-                        guiService.depositItemStock(merchant.getUniqueId().toString(), goodMeta.getCurrencyItemStack(), afterTax);
-                    }
-                    allGoodPageGoodOptionPage.send();
-                } catch (NotMoreItemStockException | DuplicateTradeRecordException | NotExistItemStockException ignored) {
+                } catch (NotMoreItemStockException | DuplicateTradeRecordException ignored) {
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -324,6 +297,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     return;
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
+                    return;
+                } catch (NotEnoughItemStockException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenTradeGood"));
                     return;
                 }
 

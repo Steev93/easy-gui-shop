@@ -38,13 +38,14 @@ public class PlayerClickManageItemStockPageCreateItemStock implements Listener {
         ItemStack hand = PlayerUtil.getItemInMainHand(player).clone();
         hand.setAmount(1);
         ItemStockMeta itemStockMeta = new ItemStockMeta(player.getUniqueId().toString(), ItemStackUtil.itemStackSerialize(hand), 0);
+        assert manageItemStockPage != null;
         try {
-            manageItemStockPage.refresh();
             guiService.createItemStock(itemStockMeta);
-            manageItemStockPage.refresh();
         } catch (DuplicateItemStockException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateItemStock"));
             return;
+        }finally {
+            manageItemStockPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createItemStock"));
 

@@ -32,7 +32,6 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
     public BuyIconPage(GuiPage backPage, Player player) {
         super(GuiYaml.INSTANCE.getString("gui.title.buyIconPage"), player, backPage, backPage.getOwner());
         stats = BuyIconPageStatsEnum.NORMAL;
-        initMenuBarWithoutChangePage();
     }
 
     public void send() {
@@ -52,6 +51,7 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
 
     public void refresh() {
 
+        this.inventory.clear();
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         this.iconMetaList.clear();
@@ -66,28 +66,20 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
         }
 
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.previousPage");
             inventory.setItem(45, previous);
         } else {
 
             inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.nextPage");
             inventory.setItem(53, next);
         } else {
 
             inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
 
         this.iconMetaList = (PageUtil.page(pageIndex, 45, iconMetaList));
         //设置内容
@@ -112,34 +104,32 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
             ItemStack itemStack;
             if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableIconUseIconItem")) {
                 itemStack = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
-                ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.buyIconPageIconOptionPage");
+                ItemStack tem = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.buyIconPageIconOptionPage");
                 try {
                     ItemStackUtil.apply(tem, itemStack);
                 } catch (NotApplicableException e) {
                     itemStack = tem;
                 }
             } else {
-                itemStack = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.buyIconPageIconOptionPage");
+                itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.buyIconPageIconOptionPage");
             }
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
             inventory.setItem(i, itemStack);
         }
-    }
 
-    //渲染当前页的菜单(不包括翻页)
-    private void initMenuBarWithoutChangePage() {
-        ItemStack search = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.searchByIconName");
+
+        ItemStack search = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.searchByIconName");
         inventory.setItem(50, search);
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.buyIconPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPage.back");
         inventory.setItem(49, back);
+        viewer.openInventory(this.inventory);
     }
 
 
     public void nextPage() throws NotExistNextPageException {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
-        this.iconMetaList.clear();
-        this.iconMetaList.addAll(guiService.listIcon());
+        this.iconMetaList = guiService.listIcon();
         int maxIndex = PageUtil.computeMaxPageIndex(iconMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
             throw new NotExistNextPageException();

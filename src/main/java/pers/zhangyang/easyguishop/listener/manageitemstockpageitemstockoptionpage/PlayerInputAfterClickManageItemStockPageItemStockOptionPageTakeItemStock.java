@@ -50,7 +50,7 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItem
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.takeItemStock(owner.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
-            itemStockPageItemStockOptionPage.send();
+
         } catch (NotMoreItemStockException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStock"));
             return;

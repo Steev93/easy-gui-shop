@@ -31,7 +31,6 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
     public ManageItemStockPage(GuiPage previousHolder, Player player) {
         super(GuiYaml.INSTANCE.getString("gui.title.manageItemStockPage"), player, previousHolder, previousHolder.getOwner());
 
-        initMenuBarWithoutChangePage();
     }
 
     public void send() {
@@ -41,32 +40,28 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
 
 
     public void refresh() {
+
+        this.inventory.clear();
+
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.itemStockMetaList.clear();
         this.itemStockMetaList.addAll(guiService.listPlayerItemStock(owner.getUniqueId().toString()));
 
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         int maxIndex = PageUtil.computeMaxPageIndex(itemStockMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
+
         this.itemStockMetaList = (PageUtil.page(pageIndex, 45, itemStockMetaList));
         //设置内容
         for (int i = 0; i < 45; i++) {
@@ -78,35 +73,32 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
             ItemStack itemStack;
             if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableItemStockUseItemStockItem")) {
                 itemStack = ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack());
-                ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.manageItemStockPageItemStockOptionPage");
+                ItemStack tem = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.manageItemStockPageItemStockOptionPage");
                 try {
                     ItemStackUtil.apply(tem, itemStack);
                 } catch (NotApplicableException e) {
                     itemStack = tem;
                 }
             } else {
-                itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.manageItemStockPageItemStockOptionPage");
+                itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.manageItemStockPageItemStockOptionPage");
             }
             inventory.setItem(i, itemStack);
         }
-    }
 
-    //渲染当前页的菜单(不包括翻页)
-    private void initMenuBarWithoutChangePage() {
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.back");
+
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.back");
         inventory.setItem(49, back);
-        ItemStack createItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.createItemStock");
+        ItemStack createItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.createItemStock");
         inventory.setItem(51, createItemStock);
-        ItemStack goBankLocation = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPage.goBankLocation");
+        ItemStack goBankLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.goBankLocation");
         inventory.setItem(47, goBankLocation);
-
+        viewer.openInventory(this.inventory);
     }
 
 
     public void nextPage() throws NotExistNextPageException {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
-        this.itemStockMetaList.clear();
-        this.itemStockMetaList.addAll(guiService.listPlayerItemStock(owner.getUniqueId().toString()));
+        this.itemStockMetaList = guiService.listPlayerItemStock(owner.getUniqueId().toString());
         int maxIndex = PageUtil.computeMaxPageIndex(itemStockMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
             throw new NotExistNextPageException();

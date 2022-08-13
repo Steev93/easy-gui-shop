@@ -42,25 +42,25 @@ public class AllShopPageShopOptionPage extends SingleGuiPageBase implements Back
 
         this.inventory.clear();
         if (isCollected) {
-            ItemStack cancelCollect = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.cancelCollectShop");
+            ItemStack cancelCollect = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.cancelCollectShop");
             inventory.setItem(4, cancelCollect);
         } else {
-            ItemStack collect = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.collectShop");
+            ItemStack collect = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.collectShop");
             inventory.setItem(13, collect);
         }
-        ItemStack goShop = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.allGoodPage");
+        ItemStack goShop = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.allGoodPage");
         inventory.setItem(31, goShop);
         if (shopMeta.getLocation() != null) {
-            ItemStack goLocation = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.goShopLocation");
+            ItemStack goLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.goShopLocation");
             inventory.setItem(22, goLocation);
         }
 
 
-        ItemStack comment = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.commentShop");
+        ItemStack comment = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.commentShop");
         inventory.setItem(21, comment);
-        ItemStack lookComment = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.shopCommentPage");
+        ItemStack lookComment = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.allShopCommentPage");
         inventory.setItem(23, lookComment);
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.allShopPageShopOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(this.inventory);
     }

@@ -29,7 +29,7 @@ import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
+public class AllShopCommentPage extends MultipleGuiPageBase implements BackAble {
 
     private List<ShopCommentMeta> shopCommentMetaList = new ArrayList<>();
     private int pageIndex;
@@ -37,11 +37,10 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
     private String searchContent;
     private ShopMeta shopMeta;
 
-    public ShopCommentPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.shopCommentPage"), player, previousHolder, previousHolder.getOwner());
+    public AllShopCommentPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
+        super(GuiYaml.INSTANCE.getString("gui.title.allShopCommentPage"), player, previousHolder, previousHolder.getOwner());
         this.shopMeta = shopMeta;
         stats = ShopCommentPageStatsEnum.NORMAL;
-        initMenuBarWithoutChangePage();
     }
 
     public void send() {
@@ -60,6 +59,9 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
     }
 
     public void refresh() {
+
+        this.inventory.clear();
+
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
         if (this.shopMeta == null) {
@@ -100,26 +102,19 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
 
 
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
+
         this.shopCommentMetaList = (PageUtil.page(pageIndex, 45, shopCommentMetaList));
         //设置内容
         for (int i = 0; i < 45; i++) {
@@ -129,9 +124,9 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
             ShopCommentMeta shopCommentMeta = shopCommentMetaList.get(i);
             OfflinePlayer commenter = Bukkit.getOfflinePlayer(UUID.fromString(shopCommentMeta.getCommenterUuid()));
             HashMap<String, String> rep = new HashMap<>();
-            rep.put("{commenter_name}", commenter.getName());
+            rep.put("{commenter_name}", commenter.getName()==null?"/":commenter.getName());
             rep.put("{comment_time}", TimeUtil.getTimeFromTimeMill(shopCommentMeta.getCommentTime()));
-            ItemStack itemStack = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.shopComment");
+            ItemStack itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.shopComment");
             Gson gson = new Gson();
             Type stringListType = new TypeToken<ArrayList<String>>() {
             }.getType();
@@ -141,17 +136,16 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
             ReplaceUtil.replaceLore(itemStack, rep);
             inventory.setItem(i, itemStack);
         }
-    }
 
-    //渲染当前页的菜单(不包括翻页)
-    private void initMenuBarWithoutChangePage() {
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.back");
         inventory.setItem(49, back);
 
 
-        ItemStack search = GuiYaml.INSTANCE.getButton("gui.button.shopCommentPage.searchByCommenterName");
+        ItemStack search = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.searchByCommenterName");
         inventory.setItem(50, search);
+        viewer.openInventory(this.inventory);
     }
+
 
     public void nextPage() throws NotExistNextPageException {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
@@ -168,9 +162,8 @@ public class ShopCommentPage extends MultipleGuiPageBase implements BackAble {
             }
             return;
         }
-        shopCommentMetaList.clear();
         try {
-            shopCommentMetaList.addAll(guiService.listShopComment(shopMeta.getUuid()));
+            shopCommentMetaList = guiService.listShopComment(shopMeta.getUuid());
         } catch (NotExistShopException e) {
             if (backPage instanceof AllShopPageShopOptionPage) {
                 backPage.send();

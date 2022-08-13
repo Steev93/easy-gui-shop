@@ -30,10 +30,6 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
 
     }
 
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
 
     @Override
     public void refresh() {
@@ -47,16 +43,16 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
 
         this.inventory.clear();
 
-        ItemStack currencyGuide = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.guideGoodAndCurrency");
+        ItemStack currencyGuide = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.guideGoodAndCurrency");
         inventory.setItem(4, currencyGuide);
 
         HashMap<String, String> rep = new HashMap<>();
         ItemStack currency = null;
         if (goodMeta.getVaultPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.vaultCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.vaultCurrency");
             rep.put("{price}", String.valueOf(goodMeta.getVaultPrice()));
         } else if (goodMeta.getPlayerPointsPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.playerPointsCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.playerPointsCurrency");
             rep.put("{price}", String.valueOf(goodMeta.getPlayerPointsPrice()));
         } else if (goodMeta.getCurrencyItemStack() != null) {
             currency = ItemStackUtil.itemStackDeserialize(goodMeta.getCurrencyItemStack());
@@ -78,7 +74,7 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         } else {
             rep.put("{limit_time}", "\\");
         }
-        ItemStack information = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.goodInformation");
+        ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.goodInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);
         inventory.setItem(31, information);
@@ -86,39 +82,39 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         ItemStack icon = ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack());
         inventory.setItem(3, icon);
 
-        ItemStack deposit = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.depositGood");
+        ItemStack deposit = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.depositGood");
         inventory.setItem(21, deposit);
 
         if (goodMeta.getStock() > 0) {
-            ItemStack take = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.takeGood");
+            ItemStack take = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.takeGood");
             inventory.setItem(23, take);
         }
 
-        ItemStack setName = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.setGoodName");
+        ItemStack setName = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodName");
         inventory.setItem(22, setName);
 
-        ItemStack createVaultGood = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.setGoodVaultPrice");
+        ItemStack createVaultGood = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodVaultPrice");
         inventory.setItem(12, createVaultGood);
 
-        ItemStack createPlayerPointsGood = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.setGoodPlayerPointsPrice");
+        ItemStack createPlayerPointsGood = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodPlayerPointsPrice");
         inventory.setItem(13, createPlayerPointsGood);
 
-        ItemStack resetLimitTime = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.resetGoodLimitTime");
+        ItemStack resetLimitTime = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodLimitTime");
         inventory.setItem(39, resetLimitTime);
-        ItemStack resetPrice = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.resetGoodPrice");
+        ItemStack resetPrice = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodPrice");
         inventory.setItem(41, resetPrice);
 
-        ItemStack setLimitTime = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.setGoodLimitTime");
+        ItemStack setLimitTime = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodLimitTime");
         inventory.setItem(30, setLimitTime);
 
-        ItemStack changeTransactionType = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.toggleGoodType");
+        ItemStack changeTransactionType = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.toggleGoodType");
         inventory.setItem(32, changeTransactionType);
 
-        ItemStack createItemGood = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.setGoodItemPrice");
+        ItemStack createItemGood = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodItemPrice");
         inventory.setItem(14, createItemGood);
 
 
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(inventory);
     }

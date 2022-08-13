@@ -30,7 +30,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodName extend
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.setGoodName(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), messages[0]);
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;

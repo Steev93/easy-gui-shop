@@ -26,11 +26,9 @@ public class PlayerInputAfterClickManageGoodPageDeleteGood extends FiniteInputLi
 
     @Override
     public void run() {
-        manageGoodPage.refresh();
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.deleteGood(messages[0], manageGoodPage.getShopMeta().getUuid());
-            manageGoodPage.refresh();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGoodWhenDeleteGood"));
             return;

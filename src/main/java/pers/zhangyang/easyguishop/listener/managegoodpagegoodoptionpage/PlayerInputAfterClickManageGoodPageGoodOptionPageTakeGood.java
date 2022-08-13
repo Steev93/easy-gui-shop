@@ -55,7 +55,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood extends F
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.takeGood(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), amount);
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;

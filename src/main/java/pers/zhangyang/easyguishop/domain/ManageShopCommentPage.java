@@ -35,7 +35,7 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
 
     public ManageShopCommentPage(GuiPage previousHolder, Player player) {
         super(GuiYaml.INSTANCE.getString("gui.title.manageShopCommentPage"), player, previousHolder, previousHolder.getOwner());
-        initMenuBarWithoutChangePage();
+
     }
 
     public void send() {
@@ -45,32 +45,28 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
 
 
     public void refresh() {
+
+        this.inventory.clear();
+
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopCommentMetaList.clear();
         this.shopCommentMetaList.addAll(guiService.listPlayerComment(owner.getUniqueId().toString()));
 
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopCommentPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopCommentMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopCommentPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
+
         this.shopCommentMetaList = (PageUtil.page(pageIndex, 45, shopCommentMetaList));
         //设置内容
         for (int i = 0; i < 45; i++) {
@@ -80,9 +76,9 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
             ShopCommentMeta shopCommentMeta = shopCommentMetaList.get(i);
             OfflinePlayer commenter = Bukkit.getOfflinePlayer(UUID.fromString(shopCommentMeta.getCommenterUuid()));
             HashMap<String, String> rep = new HashMap<>();
-            rep.put("{commenter_name}", commenter.getName());
+            rep.put("{commenter_name}", commenter.getName()==null?"/": commenter.getName());
             rep.put("{comment_time}", TimeUtil.getTimeFromTimeMill(shopCommentMeta.getCommentTime()));
-            ItemStack itemStack = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.deleteShopComment");
+            ItemStack itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopCommentPage.deleteShopComment");
             Gson gson = new Gson();
             Type stringListType = new TypeToken<ArrayList<String>>() {
             }.getType();
@@ -93,20 +89,18 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
             ReplaceUtil.replaceLore(itemStack, rep);
             inventory.setItem(i, itemStack);
         }
-    }
 
-    //渲染当前页的菜单(不包括翻页)
-    private void initMenuBarWithoutChangePage() {
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageShopCommentPage.back");
+
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopCommentPage.back");
         inventory.setItem(49, back);
-
+        viewer.openInventory(this.inventory);
     }
 
 
     public void nextPage() throws NotExistNextPageException {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
-        this.shopCommentMetaList.clear();
-        this.shopCommentMetaList.addAll(guiService.listPlayerComment(owner.getUniqueId().toString()));
+
+        this.shopCommentMetaList = guiService.listPlayerComment(owner.getUniqueId().toString());
         int maxIndex = PageUtil.computeMaxPageIndex(shopCommentMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
             throw new NotExistNextPageException();

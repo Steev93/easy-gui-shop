@@ -30,11 +30,6 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
 
     }
 
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
-
     @Override
     public void refresh() {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
@@ -47,16 +42,16 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
 
         this.inventory.clear();
 
-        ItemStack currencyGuide = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.guideGoodAndCurrency");
+        ItemStack currencyGuide = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.guideGoodAndCurrency");
         inventory.setItem(13, currencyGuide);
 
         HashMap<String, String> rep = new HashMap<>();
         ItemStack currency = null;
         if (goodMeta.getVaultPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.vaultCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.vaultCurrency");
             rep.put("{price}", String.valueOf(goodMeta.getVaultPrice()));
         } else if (goodMeta.getPlayerPointsPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.playerPointsCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.playerPointsCurrency");
             rep.put("{price}", String.valueOf(goodMeta.getPlayerPointsPrice()));
         } else if (goodMeta.getCurrencyItemStack() != null) {
             currency = ItemStackUtil.itemStackDeserialize(goodMeta.getCurrencyItemStack());
@@ -78,7 +73,7 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
         } else {
             rep.put("{limit_time}", "\\");
         }
-        ItemStack information = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.goodInformation");
+        ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.goodInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);
         inventory.setItem(31, information);
@@ -90,12 +85,12 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
         if (currency != null) {
             if (goodMeta.getType().equalsIgnoreCase("收购")) {
                 if (goodMeta.getLimitTime() == null) {
-                    ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                    ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                     inventory.setItem(40, trade);
                 }
                 if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
 
-                    ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                    ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                     inventory.setItem(40, trade);
                 }
             }
@@ -103,23 +98,23 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
             if (goodMeta.getType().equalsIgnoreCase("出售")) {
                 if (goodMeta.isSystem()) {
                     if (goodMeta.getLimitTime() == null) {
-                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                         inventory.setItem(40, trade);
                     }
                     if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
 
-                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                         inventory.setItem(40, trade);
                     }
                 }
                 if (!goodMeta.isSystem() && goodMeta.getStock() > 0) {
                     if (goodMeta.getLimitTime() == null) {
-                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                         inventory.setItem(40, trade);
                     }
                     if (goodMeta.getLimitTime() != null && goodMeta.getLimitTime() * 1000 + goodMeta.getCreateTime() > System.currentTimeMillis()) {
 
-                        ItemStack trade = GuiYaml.INSTANCE.getButton("gui.button.allGoodPageGoodOptionPage.tradeGood");
+                        ItemStack trade = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.tradeGood");
                         inventory.setItem(40, trade);
                     }
                 }
@@ -128,7 +123,7 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
         }
 
 
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageGoodPageGoodOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(inventory);
     }

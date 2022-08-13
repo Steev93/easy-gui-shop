@@ -38,7 +38,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodPlayerPoint
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.setGoodPlayerPointsPrice(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), price);
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;

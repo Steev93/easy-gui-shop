@@ -25,8 +25,8 @@ public class PlayerClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice imp
 
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
 
-        Player onlineOwner=manageGoodPageGoodOptionPage.getOwner().getPlayer();
-        if (onlineOwner==null){
+        Player onlineOwner = manageGoodPageGoodOptionPage.getOwner().getPlayer();
+        if (onlineOwner == null) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
             MessageUtil.sendMessageTo(player, list);
             return;

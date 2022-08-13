@@ -27,7 +27,7 @@ public class CreateIconExecutor extends ExecutorBase {
             return;
         }
 
-        if (!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notPlayer");
             MessageUtil.sendMessageTo(this.sender, list);
             return;

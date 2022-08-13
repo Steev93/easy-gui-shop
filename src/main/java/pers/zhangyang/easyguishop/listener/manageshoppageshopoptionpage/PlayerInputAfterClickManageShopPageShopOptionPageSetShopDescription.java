@@ -35,7 +35,7 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription
 
         try {
             guiService.setShopDescription(shopMeta.getUuid(), new Gson().toJson(messageList));
-            manageShopPageShopOptionPage.send();
+
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;

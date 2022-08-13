@@ -26,14 +26,12 @@ public class PlayerInputAfterClickCollectedShopPageShopOptionPageCommentShop ext
 
     @Override
     public void run() {
-        collectedShopPageShopOptionPage.send();
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ShopCommentMeta shopCommentMeta = new ShopCommentMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
                 collectedShopPageShopOptionPage.getShopMeta().getUuid(), new Gson().toJson(messageList), System.currentTimeMillis());
         try {
             guiService.createShopComment(shopCommentMeta);
-            collectedShopPageShopOptionPage.send();
         } catch (DuplicateShopCommenterException ignored) {
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.commentShopInCollectedShopPageShopOptionPage"));

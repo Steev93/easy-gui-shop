@@ -26,15 +26,14 @@ public class PlayerInputAfterClickManageGoodPageCreateGood extends FiniteInputLi
 
     @Override
     public void run() {
-        manageGoodPage.refresh();
         ItemStack itemStack = PlayerUtil.getItemInMainHand(player).clone();
         itemStack.setAmount(1);
         if (itemStack.getType().equals(Material.AIR)) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
             return;
         }
-        String buy = MessageYaml.INSTANCE.getInput("message.input.buy");
-        String sell = MessageYaml.INSTANCE.getInput("message.input.sell");
+        String buy = MessageYaml.INSTANCE.getNonemptyStringDefault("message.input.buy");
+        String sell = MessageYaml.INSTANCE.getNonemptyStringDefault("message.input.sell");
         if (!messages[1].equalsIgnoreCase(buy) && !messages[1].equalsIgnoreCase(sell)) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.unknownType"));
             return;
@@ -44,7 +43,6 @@ public class PlayerInputAfterClickManageGoodPageCreateGood extends FiniteInputLi
                 false, 0, manageGoodPage.getShopMeta().getUuid());
         try {
             guiService.createGood(goodMeta);
-            manageGoodPage.refresh();
         } catch (DuplicateGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateGoodWhenCreateGood"));
             return;

@@ -30,13 +30,11 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
 
     }
 
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
 
     @Override
     public void refresh() {
+
+
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(shopMeta.getUuid());
         if (this.shopMeta == null) {
@@ -44,7 +42,7 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
             return;
         }
         this.inventory.clear();
-        ItemStack setLocation = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.setShopLocation");
+        ItemStack setLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.setShopLocation");
         inventory.setItem(22, setLocation);
         Gson gson = new Gson();
         Type stringListType = new TypeToken<ArrayList<String>>() {
@@ -52,42 +50,42 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
         List<String> stringList = gson.fromJson(shopMeta.getDescription(), stringListType);
 
         if (stringList != null && !stringList.isEmpty()) {
-            ItemStack setShopDescription = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.updateShopDescription");
+            ItemStack setShopDescription = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.updateShopDescription");
             inventory.setItem(30, setShopDescription);
         }
 
-        ItemStack setName = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.setShopName");
+        ItemStack setName = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.setShopName");
         inventory.setItem(21, setName);
 
-        ItemStack manageShop = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.manageGoodPage");
+        ItemStack manageShop = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.manageGoodPage");
         inventory.setItem(31, manageShop);
 
-        ItemStack searchOwner = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.manageIconPage");
+        ItemStack searchOwner = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.manageIconPage");
         inventory.setItem(40, searchOwner);
         if (shopMeta.getLocation() != null) {
-            ItemStack resetLocation = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.resetShopLocation");
+            ItemStack resetLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.resetShopLocation");
             inventory.setItem(39, resetLocation);
         }
 
         if (stringList != null && !stringList.isEmpty()) {
-            ItemStack resetShopDescription = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.resetShopDescription");
+            ItemStack resetShopDescription = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.resetShopDescription");
             inventory.setItem(41, resetShopDescription);
         }
 
 
-        ItemStack set = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.setShopDescription");
+        ItemStack set = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.setShopDescription");
         inventory.setItem(4, set);
-        ItemStack addShopDescription = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.addShopDescription");
+        ItemStack addShopDescription = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.addShopDescription");
         inventory.setItem(13, addShopDescription);
 
 
         if (stringList != null && !stringList.isEmpty()) {
-            ItemStack removeShopDescription = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.removeShopDescription");
+            ItemStack removeShopDescription = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.removeShopDescription");
             inventory.setItem(32, removeShopDescription);
         }
-        ItemStack lookComment = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.shopCommentPage");
+        ItemStack lookComment = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.allShopCommentPage");
         inventory.setItem(23, lookComment);
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageShopPageShopOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(inventory);
     }

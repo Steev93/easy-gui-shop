@@ -1,11 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easylibrary.base.ExecutorBase;

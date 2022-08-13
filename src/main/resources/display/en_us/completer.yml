@@ -1,6 +1,6 @@
 completer:
 
-  #When /easyGuiShop is entered, you will be prompted to complete the following contents
+  #When you type /easyGuiShop you will be prompted to complete the following
   easyGuiShop:
     - "help"
     - "reloadPlugin"
@@ -23,62 +23,62 @@ completer:
     - "setShopSystem"
     - "setIconSystem"
 
-  #When /easyGuiShop plusShopPopularity is entered, you will be prompted to complete the following contents
+  #当输入了/easyGuiShop plusShopPopularity后将提示补全以下内容
   easyGuiShopPlusPopularity:
-    - "<ShopName>"
+    - "<商店名字>"
 
-  #When /easyGuiShop plusShopPopularity value is entered, you will be prompted to complete the following contents
+  #当输入了/easyGuiShop plusShopPopularity 值后将提示补全以下内容
   easyGuiShopPlusPopularity$:
-    - "<Amount>"
+    - "<数量>"
 
   easyGuiShopOpenMui:
-    - "<PlayerName>"
+    - "<玩家名字>"
 
   easyGuiShopSubtractPopularity:
-    - "<ShopName>"
+    - "<商店>"
   easyGuiShopSubtractPopularity$:
-    - "<Amount>"
+    - "<数量>"
   easyGuiShopDeleteIcon:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopCreateIcon:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconVaultPrice:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconVaultPrice$:
-    - "<Price>"
+    - "<价格>"
   easyGuiShopSetIconPlayerPointsPrice:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconPlayerPointsPrice$:
-    - "<Price>"
+    - "<价格>"
   easyGuiShopSetIconItemPrice:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconItemPrice$:
-    - "<Price>"
+    - "<价格>"
   easyGuiShopSetIconName:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconName$:
-    - "<NewName>"
+    - "<新名字>"
   easyGuiShopSetIconStock:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconStock$:
-    - "<Amount>"
+    - "<数量>"
   easyGuiShopSetIconSystem:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconSystem$:
     - "<true|false>"
   easyGuiShopSetShopSystem:
-    - "<ShopName>"
+    - "<店铺名字>"
   easyGuiShopSetShopSystem$:
     - "<true|false>"
   easyGuiShopSetGoodSystem:
-    - "<ShopName>"
+    - "<店铺名字>"
   easyGuiShopSetGoodSystem$:
-    - "<GoodName>"
+    - "<商品名字>"
   easyGuiShopSetGoodSystem$$:
     - "<true|false>"
   easyGuiShopSetIconLimitTime:
-    - "<IconName>"
+    - "<图标名字>"
   easyGuiShopSetIconLimitTime$:
-    - "<Time>"
+    - "<时间>"
   easyGuiShopResetIconLimitTime:
-    - "<IconName>"
+    - "<图标名字>"

@@ -50,7 +50,7 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositI
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         guiService.depositItemStock(owner.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
-        itemStockPageItemStockOptionPage.send();
+
 
         PlayerUtil.removeItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.depositItemStock"));

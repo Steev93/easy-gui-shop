@@ -16,8 +16,6 @@ import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.PlayerUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-import java.util.List;
-
 public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice extends FiniteInputListenerBase {
 
     private final ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage;
@@ -36,9 +34,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice e
         itemStack.setAmount(1);
         if (itemStack.getType().equals(Material.AIR)) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notItemInMainHand"));
-
-            manageGoodPageGoodOptionPage.send();
-
             return;
         }
 
@@ -57,7 +52,6 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice e
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
             guiService.setGoodItemPrice(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), price, ItemStackUtil.itemStackSerialize(itemStack));
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;

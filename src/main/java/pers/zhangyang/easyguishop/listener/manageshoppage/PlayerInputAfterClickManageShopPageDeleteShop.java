@@ -31,7 +31,6 @@ public class PlayerInputAfterClickManageShopPageDeleteShop extends FiniteInputLi
 
         try {
             guiService.deleteShop(messages[0]);
-            manageShopPage.refresh();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;

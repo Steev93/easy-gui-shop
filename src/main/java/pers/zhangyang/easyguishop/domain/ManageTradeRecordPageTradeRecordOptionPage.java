@@ -33,11 +33,6 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
     }
 
 
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
-
     @Override
     public void refresh() {
 
@@ -49,16 +44,16 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         }
 
         this.inventory.clear();
-        ItemStack currencyGuide = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPageTradeRecordOptionPage.guideGoodAndCurrency");
+        ItemStack currencyGuide = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageTradeRecordPageTradeRecordOptionPage.guideGoodAndCurrency");
         inventory.setItem(13, currencyGuide);
 
         HashMap<String, String> rep = new HashMap<>();
         ItemStack currency = null;
         if (tradeRecordMeta.getGoodVaultPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPageTradeRecordOptionPage.vaultCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageTradeRecordPageTradeRecordOptionPage.vaultCurrency");
             rep.put("{price}", String.valueOf(tradeRecordMeta.getGoodVaultPrice()));
         } else if (tradeRecordMeta.getGoodPlayerPointsPrice() != null) {
-            currency = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPageTradeRecordOptionPage.playerPointsCurrency");
+            currency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageTradeRecordPageTradeRecordOptionPage.playerPointsCurrency");
             rep.put("{price}", String.valueOf(tradeRecordMeta.getGoodPlayerPointsPrice()));
         } else if (tradeRecordMeta.getGoodCurrencyItemStack() != null) {
             currency = ItemStackUtil.itemStackDeserialize(tradeRecordMeta.getGoodCurrencyItemStack());
@@ -68,8 +63,8 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         }
         OfflinePlayer merchant = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getMerchantUuid()));
         OfflinePlayer customer = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getCustomerUuid()));
-        rep.put("{merchant_name}", String.valueOf(merchant.getName()));
-        rep.put("{customer_name}", String.valueOf(customer.getName()));
+        rep.put("{merchant_name}", merchant.getName()==null?"/":merchant.getName());
+        rep.put("{customer_name}", merchant.getName()==null?"/":merchant.getName());
         rep.put("{good_system}", String.valueOf(tradeRecordMeta.isGoodSystem()));
         rep.put("{good_type}", tradeRecordMeta.getGoodType());
         rep.put("{trade_amount}", String.valueOf(tradeRecordMeta.getTradeAmount()));
@@ -77,7 +72,7 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         inventory.setItem(22, currency);
         rep.put("{trade_time}", TimeUtil.getTimeFromTimeMill(tradeRecordMeta.getTradeTime()));
 
-        ItemStack information = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPageTradeRecordOptionPage.tradeRecordInformation");
+        ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageTradeRecordPageTradeRecordOptionPage.tradeRecordInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);
         inventory.setItem(31, information);
@@ -86,7 +81,7 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         inventory.setItem(4, icon);
 
 
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageTradeRecordPageTradeRecordOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageTradeRecordPageTradeRecordOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(this.inventory);
     }

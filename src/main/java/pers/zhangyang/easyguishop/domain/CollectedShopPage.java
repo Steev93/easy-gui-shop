@@ -37,7 +37,6 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
     public CollectedShopPage(GuiPage backPage, Player viewer) {
         super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPage"), viewer, backPage, backPage.getOwner());
         stats = CollectedShopPageEnum.NORMAL;
-        initMenuBarWithoutChangePage();
     }
 
 
@@ -58,12 +57,13 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
     public void refresh() {
 
+        this.inventory.clear();
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         this.shopMetaList.clear();
         this.shopMetaList.addAll(guiService.listPlayerCollectedShop(owner.getUniqueId().toString()));
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.previousPage");
             inventory.setItem(45, previous);
         } else {
             inventory.setItem(45, null);
@@ -76,21 +76,12 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.nextPage");
             inventory.setItem(53, next);
         } else {
             inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
         this.shopMetaList = (PageUtil.page(pageIndex, 45, shopMetaList));
         //设置内容
         for (int i = 0; i < 45; i++) {
@@ -100,26 +91,26 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
             ShopMeta shopMeta = shopMetaList.get(i);
             OfflinePlayer owner = Bukkit.getOfflinePlayer(UUID.fromString(shopMeta.getOwnerUuid()));
             HashMap<String, String> rep = new HashMap<>();
-            rep.put("{owner_name}", String.valueOf(owner.getName()));
+            rep.put("{owner_name}", owner.getName() == null ? "/" : owner.getName());
+
             rep.put("{name}", shopMeta.getName());
             rep.put("{collect_amount}", String.valueOf(shopMeta.getCollectAmount()));
             rep.put("{create_time}", TimeUtil.getTimeFromTimeMill(shopMeta.getCreateTime()));
             rep.put("{popularity}", String.valueOf(shopMeta.getPopularity()));
             rep.put("{page_view}", String.valueOf(shopMeta.getPageView()));
-            rep.put("{hot_value}", String.valueOf(shopMeta.getPageView() * SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.pageView")
-                    + shopMeta.getPopularity() * SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.popularity")
-                    + shopMeta.getCollectAmount() * SettingYaml.INSTANCE.getHotValueCoefficient("setting.hotValueCoefficient.collectAmount")));
+            rep.put("{hot_value}", String.valueOf(shopMeta.getPageView() * SettingYaml.INSTANCE.getNonnegativeIntegerDefault("setting.hotValueCoefficient.pageView")
+                    + shopMeta.getPopularity() * SettingYaml.INSTANCE.getNonnegativeIntegerDefault("setting.hotValueCoefficient.popularity")
+                    + shopMeta.getCollectAmount() * SettingYaml.INSTANCE.getNonnegativeIntegerDefault("setting.hotValueCoefficient.collectAmount")));
             ItemStack itemStack;
 
             if (shopMeta.getIconUuid() != null) {
-                GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
                 IconMeta iconMeta = guiService.getIcon(shopMeta.getIconUuid());
                 if (iconMeta == null) {
                     refresh();
                     return;
                 }
                 itemStack = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
-                ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
+                ItemStack tem = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
                 try {
                     ItemStackUtil.apply(tem, itemStack);
                 } catch (NotApplicableException e) {
@@ -129,14 +120,14 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
             } else {
                 if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableShopUsePlayerHead")) {
                     itemStack = PlayerUtil.getPlayerSkullItem(owner);
-                    ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
+                    ItemStack tem = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
                     try {
                         ItemStackUtil.apply(tem, itemStack);
                     } catch (NotApplicableException e) {
                         itemStack = tem;
                     }
                 } else {
-                    itemStack = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
+                    itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.collectedShopPageShopOptionPage");
                 }
             }
 
@@ -149,19 +140,19 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
             ReplaceUtil.replaceLore(itemStack, rep);
             inventory.setItem(i, itemStack);
         }
-    }
-    //渲染当前页的菜单(不包括翻页)
 
-    private void initMenuBarWithoutChangePage() {
-        ItemStack search = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.searchByShopName");
+
+        ItemStack search = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.searchByShopName");
         inventory.setItem(47, search);
 
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.back");
         inventory.setItem(49, back);
 
-        ItemStack searchOwner = GuiYaml.INSTANCE.getButton("gui.button.collectedShopPage.searchByShopOwnerName");
+        ItemStack searchOwner = GuiYaml.INSTANCE.getButtonDefault("gui.button.collectedShopPage.searchByShopOwnerName");
         inventory.setItem(51, searchOwner);
+        viewer.openInventory(this.inventory);
     }
+
 
     public void send() {
         this.stats = CollectedShopPageEnum.NORMAL;
@@ -172,8 +163,7 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
     public void nextPage() throws NotExistNextPageException {
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
-        this.shopMetaList.clear();
-        this.shopMetaList.addAll(guiService.listPlayerCollectedShop(owner.getUniqueId().toString()));
+        this.shopMetaList = guiService.listPlayerCollectedShop(owner.getUniqueId().toString());
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
         if (maxIndex <= pageIndex) {
             throw new NotExistNextPageException();

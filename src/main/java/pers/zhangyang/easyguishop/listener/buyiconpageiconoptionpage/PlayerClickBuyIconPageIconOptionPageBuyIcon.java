@@ -47,6 +47,10 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
         Integer playerPointsPrice = iconMeta.getPlayerPointsPrice();
         Economy vault = Vault.hook();
         PlayerPointsAPI playerPoints = PlayerPoints.hook();
+        if (vaultPrice==null&&playerPointsPrice==null&&itemPrice==null){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPrice"));
+            return;
+        }
         if (vaultPrice != null) {
             if (vault == null) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookVault"));
@@ -59,9 +63,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
 
             //得到图标
             try {
-                buyIconPageIconOptionPage.send();
                 guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
-                buyIconPageIconOptionPage.send();
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
@@ -74,10 +76,13 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             } catch (StateChangeException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                 return;
+            }finally {
+                buyIconPageIconOptionPage.send();
             }
 
             vault.withdrawPlayer(player, vaultPrice);
-        } else if (playerPointsPrice != null) {
+        }
+        if (playerPointsPrice != null) {
             if (playerPoints == null) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookPlayerPoints"));
                 return;
@@ -88,9 +93,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             }
             //得到图标
             try {
-                buyIconPageIconOptionPage.send();
                 guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
-                buyIconPageIconOptionPage.send();
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
@@ -103,20 +106,16 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             } catch (StateChangeException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                 return;
+            }finally {
+                buyIconPageIconOptionPage.send();
             }
 
             playerPoints.take(player.getUniqueId(), playerPointsPrice);
-        } else if (itemPrice != null) {
+        }
+        if (itemPrice != null) {
             //得到图标
             try {
-                buyIconPageIconOptionPage.send();
-                if (!guiService.hasItemStock(player.getUniqueId().toString(), iconMeta.getCurrencyItemStack(), itemPrice)) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenBuyIcon"));
-                    return;
-                }
-                guiService.buyIcon(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
-                guiService.takeItemStock(player.getUniqueId().toString(), iconMeta.getCurrencyItemStack(), itemPrice);
-                buyIconPageIconOptionPage.send();
+                guiService.buyIconItem(player.getUniqueId().toString(), iconMeta.getUuid(), iconMeta);
             } catch (DuplicateIconOwnerException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateIconOwnerWhenBuyIcon"));
                 return;
@@ -129,12 +128,12 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             } catch (StateChangeException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                 return;
-            } catch (NotMoreItemStockException | NotExistItemStockException ignored) {
+            } catch (NotEnoughItemStockException e) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenBuyIcon"));
+                return;
             }
-        } else {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPrice"));
-            return;
         }
+
 
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.buyIcon"));
 

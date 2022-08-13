@@ -32,8 +32,8 @@ public class PlayerClickManageShopPageCreateShop implements Listener {
 
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
-        Player onlineOwner=manageShopPage.getOwner().getPlayer();
-        if (onlineOwner==null){
+        Player onlineOwner = manageShopPage.getOwner().getPlayer();
+        if (onlineOwner == null) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
             MessageUtil.sendMessageTo(player, list);
             return;

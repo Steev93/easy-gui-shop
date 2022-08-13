@@ -12,14 +12,14 @@ import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
 import pers.zhangyang.easyguishop.yaml.GuiYaml;
 import pers.zhangyang.easylibrary.base.BackAble;
 import pers.zhangyang.easylibrary.base.GuiPage;
-import pers.zhangyang.easylibrary.base.MultipleGuiPageBase;
+import pers.zhangyang.easylibrary.base.SingleGuiPageBase;
 import pers.zhangyang.easylibrary.util.ItemStackUtil;
 import pers.zhangyang.easylibrary.util.ReplaceUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 import java.util.HashMap;
 
-public class ManageIconPageIconOptionPage extends MultipleGuiPageBase implements BackAble {
+public class ManageIconPageIconOptionPage extends SingleGuiPageBase implements BackAble {
     private IconMeta iconMeta;
     private ShopMeta shopMeta;
 
@@ -30,11 +30,6 @@ public class ManageIconPageIconOptionPage extends MultipleGuiPageBase implements
 
     }
 
-
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
 
     @Override
     public void refresh() {
@@ -54,13 +49,13 @@ public class ManageIconPageIconOptionPage extends MultipleGuiPageBase implements
         }
 
         this.inventory.clear();
-        ItemStack currencyGuide = GuiYaml.INSTANCE.getButton("gui.button.manageIconPageIconOptionPage.guideIcon");
+        ItemStack currencyGuide = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageIconPageIconOptionPage.guideIcon");
         inventory.setItem(13, currencyGuide);
 
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{name}", iconMeta.getName());
 
-        ItemStack information = GuiYaml.INSTANCE.getButton("gui.button.manageIconPageIconOptionPage.iconInformation");
+        ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageIconPageIconOptionPage.iconInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);
         inventory.setItem(31, information);
@@ -68,11 +63,11 @@ public class ManageIconPageIconOptionPage extends MultipleGuiPageBase implements
         ItemStack icon = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
         inventory.setItem(22, icon);
 
-        ItemStack buyIcon = GuiYaml.INSTANCE.getButton("gui.button.manageIconPageIconOptionPage.useShopIcon");
+        ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageIconPageIconOptionPage.useShopIcon");
         inventory.setItem(40, buyIcon);
 
 
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.buyIconPageIconOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(this.inventory);
     }

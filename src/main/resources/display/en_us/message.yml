@@ -1,25 +1,25 @@
 message:
   input:
 
-    #To cancel the operation, you need to enter
+    # input required to cancel the operation, if not filled or empty, the default value is used
     cancel: "cancel"
 
-    #Sales type store creation requires input
+    #Sell type store creation required input, if not filled or empty, default value is used
     sell: "sell"
 
-    #Purchase type store creation requires input
-    buy: "buy"
+    #Required to create a store of type buy, default value if left blank
+    buy: "Buy"
 
-    #When commenting, submit the required input after commenting on multiple lines
+    #Comments are submitted after multiple lines of comments.
     submit: "submit"
 
   chat:
     failureGetLatestVersion:
-      - "&c&l获得EasyGuiShop最新版本失败。"
+      - "&c&lFailed to get the latest version of EasyGuiShop."
     notPlayer:
-      - "&c&l您不是玩家，不能执行这条命令。"
+      - "&c&lYou are not a player and cannot execute this command."
     notPermission:
-      - "&c&l您缺少权限 &f{permission}。"
+      - "&c&lYou are missing permission &f{permission}."
     enablePlugin:
       - "&a╭━━━╮╱╱╱╱╱╱╱╱╱╭━━━╮╱╱╱╭━━━┳╮"
       - "&a┃╭━━╯╱╱╱╱╱╱╱╱╱┃╭━╮┃╱╱╱┃╭━╮┃┃"
@@ -35,371 +35,370 @@ message:
       - "&c┃╰━━┫╭╮┣━━┃╰━╯┃╰┻━┃╰╯┃┃╰━╯┃┃┃┃╰╯┃╰╯┃"
       - "&c╰━━━┻╯╰┻━━┻━╮╭┻━━━┻━━┻┻━━━┻╯╰┻━━┫╭━╯"
     correctYaml:
-      - "&b&l已修正所有Yaml文件缺少和多余键值。"
+      - "&b&l has fixed all Yaml files for missing and redundant keys."
     help:
-      - "&b&l====帮助列表===="
-      - "&b&l/egs help    查看帮助。"
-      - "&b&l/egs correctYaml    对所有Yaml进行更正，不会自动载入，请执行后执行reload。"
-      - "&b&l/egs correctDatabase    对数据库的一些数据进行修复，删掉不合法的数据（使用前先备份数据）。"
-      - "&b&l/egs reloadPlugin    重载。"
-      - "&b&l/egs openGui    打开Gui界面。"
-      - "&b&l/egs openMui 玩家名字    打开Mui界面(管理玩家的Gui)。"
-      - "&b&l/egs createIcon <图标名字>    增加图标，需要手持物品。"
-      - "&b&l/egs setIconVaultPrice <图标名字> <价格>    设置图标金币价格。"
-      - "&b&l/egs setIconItemPrice <图标名字> <价格>    设置图标以物易物价格，需要手持物品。"
-      - "&b&l/egs setIconPlayerPointsPrice <图标名字> <价格>    设置图标点券价格。"
-      - "&b&l/egs setIconStock <图标名字> <数量>    设置图标库存。"
-      - "&b&l/egs setIconLimitTime <图标名字> <时间>    设置图标限购时间。"
-      - "&b&l/egs resetIconLimitTime <图标名字>    重置图标限购时间。"
-      - "&b&l/egs setIconSystem <图标名字> <true|false>    设置图标系统补货。"
-      - "&b&l/egs setShopSystem <商店名字> <true|false>    设置店铺系统补货。"
-      - "&b&l/egs setGoodSystem <商店名字> <商品名字> <true|false>    设置商品系统补货。"
-      - "&b&l/egs setIconName <图标名字> <名字>    设置图标名字。"
-      - "&b&l/egs deleteIcon <图标名字>    删除图标。"
-      - "&b&l/egs plusShopPopularity <商店名字> <数量>    增加店铺人气。"
-      - "&b&l/egs subtractShopPopularity <商店名字> <数量>    减少店铺人气。"
+      - "&b&l==== help list ===="
+      - "&b&l/egs help View help."
+      - "&b&l/egs correctYaml Make corrections to all Yaml, will not load automatically, please execute reload after execution."
+      - "&b&l/egs correctDatabase Make corrections to some data in the database, delete data that is not legal (backup data before using)."
+      - "&b&l/egs reloadPlugin Reload."
+      - "&b&l/egs openGui Open the Gui interface."
+      - "&b&l/egs openMui <player name> Opens the Mui interface (manages the player's Gui)."
+      - "&b&l/egs createIcon <icon name> Add icon, requires handheld item."
+      - "&b&l/egs setIconVaultPrice <icon name> <price> Set icon gold price."
+      - "&b&l/egs setIconItemPrice <icon name> <price> Set icon barter price, requires handheld item."
+      - "&b&l/egs setIconPlayerPointsPrice <icon name> <price> Set icon points price."
+      - "&b&l/egs setIconStock <icon name> <quantity> Set icon stock."
+      - "&b&l/egs setIconLimitTime <icon name> <time> Sets the icon limit time."
+      - "&b&l/egs resetIconLimitTime <icon name> Reset icon limit time."
+      - "&b&l/egs setIconSystem <icon name> <true|false> Set icon system replenishment."
+      - "&b&l/egs setShopSystem <store name> <true|false> Set the store system replenishment."
+      - "&b&l/egs setGoodSystem <store name> <item name> <true|false> Set the item system to restock."
+      - "&b&l/egs setIconName <icon name> <name> Set icon name."
+      - "&b&l/egs deleteIcon <icon name> Delete icon."
+      - "&b&l/egs plusShopPopularity <shop name> <quantity> Increase store popularity."
+      - "&b&l/egs subtractShopPopularity <store name> <number> Decrease store popularity."
     invalidArgument:
-      - "&c&l无效参数 &f{argument}。"
+      - "&c&l invalid argument &f{argument}."
     notifyVersion:
-      - "&b&lEasyGuiShop的当前版本是 &f{current_version}，&b&l最新版本是 &f{latest_version}。"
+      - "&b&lThe current version of EasyGuiShop is &f{current_version}, &b&lthe latest version is &f{latest_version}."
     notItemInMainHand:
-      - "&c&l请在主手拿着物品。"
+      - "&c&lPlease hold the item in the main hand."
     invalidNumber:
-      - "&c&l无效的数字。"
+      - "&c&lInvalid number."
     notExistNextPage:
-      - "&c没有下一页了"
+      - "&c&l has no next page."
     notExistPreviousPage:
-      - "&c没有上一页了"
+      - "&c has no previous page"
     notHookVault:
-      - "&c&l没有检测到Vault插件和基于Vault的经济插件。"
+      - "&c&l No Vault plugins and Vault-based economy plugins detected."
     notHookPlayerPoints:
-      - "&c&l没有检测到PlayerPoints插件。"
+      - "&c&l No PlayerPoints plugin detected."
 
     notOnline:
-      - "&c&l玩家不在线。"
+      - "&c&lThe player is not online."
 
-    #Frequently occurring failure prompt, each operation corresponds to a failure prompt
+    #Frequent failure hints, one failure hint for each action
     notNearBankLocationWhenTakeItemStock:
-      - "&c&l请在货币银行坐标32范围内取出货币"
+      - "&c&lPlease take out currency within coordinates 32 of the currency bank"
     notNearBankLocationWhenDepositItemStock:
-      - "&c&l请在货币银行坐标32范围内存入货币"
+      - "&c&lPlease deposit currency within the currency bank coordinates 32"
     notSetShopLocationWhenTakeGood:
-      - "&c&l请在取出商品前设置商店的实体坐标"
+      - "&c&lPlease set the physical coordinates of the store before taking out the goods"
     notNearShopLocationWhenTakeGood:
-      - "&c&l请在商店实体坐标32范围内取出商品"
+      - "&c&lPlease take the item within the physical coordinates of the store 32"
     notSetShopLocationWhenDepositGood:
-      - "&c&l请在存入商品前设置商店的实体坐标"
+      - "&c&lPlease set the physical coordinates of the store before depositing the goods"
     notNearShopLocationWhenDepositGood:
-      - "&c&l请在商店实体坐标32范围内存入商品"
+      - "&c&lPlease deposit items within the 32 range of the store's physical coordinates"
     notPermissionWhenSetGoodVaultPrice:
-      - "&c&l缺少权限EasyGuiShop.setGoodVaultPrice"
+      - "&c&lLack of permissionEasyGuiShop.setGoodVaultPrice"
     notPermissionWhenSetGoodItemPrice:
-      - "&c&l缺少权限EasyGuiShop.setGoodItemPrice"
+      - "&c&lLack of permission EasyGuiShop.setGoodItemPrice"
     notPermissionWhenSetGoodPlayerPointsPrice:
-      - "&c&l缺少权限EasyGuiShop.setGoodPlayerPointsPrice"
+      - "&c&lLack of permission EasyGuiShop.setGoodPlayerPointsPrice"
     notEnoughGoodWhenTradeGood:
-      - "&c&l您没有足够的商品来卖。"
+      - "&c&lYou don't have enough goods to sell."
     notMoreVaultWhenTradeGood:
-      - "&c&l店主没有足够的金币了。"
+      - "&c&lThe store owner doesn't have enough gold left."
     notMorePlayerPointsWhenTradeGood:
-      - "&c&l店主没有足够的点券了。"
+      - "&c&l shopkeeper doesn't have enough points left."
     notEnoughVaultWhenTradeGood:
-      - "&c&l您没有足够的金币来购买这个商品。"
+      - "&c&lYou don't have enough gold to buy this item."
     notEnoughPlayerPointsWhenTradeGood:
-      - "&c&l您没有足够的点券来购买这个商品。"
+      - "&c&lYou do not have enough points to buy this item."
     notEnoughItemStockWhenTradeGood:
-      - "&c&l您没有足够的物品货币来购买这个商品。"
+      - "&c&lYou do not have enough item currency to buy this item."
     notMoreItemStockWhenTradeGood:
-      - "&c&l商店没有足够的物品货币了。"
+      - "&c&lThe store doesn't have enough item currency left."
     notEnoughSpaceWhenTradeGood:
-      - "&c&l您背包没有足够的空间来存放购买的物品。"
+      - "&c&lYou don't have enough space in your backpack to store the purchased item."
     notEnoughVaultWhenBuyIcon:
-      - "&c&l您没有足够的金币来购买这个图标。"
+      - "&c&lYou don't have enough gold to buy this icon."
     notEnoughPlayerPointsWhenBuyIcon:
-      - "&c&l您没有足够的点券来购买这个图标。"
+      - "&c&lYou do not have enough points to buy this icon."
     notEnoughItemStockWhenBuyIcon:
-      - "&c&l您没有足够的物品货币来购买这个图标。"
+      - "&c&lYou do not have enough item currency to buy this icon."
     duplicateIconOwnerWhenBuyIcon:
-      - "&c&l您不能重复购买这个图标。"
+      - "&c&lYou cannot duplicate this icon."
     duplicateGoodWhenCreateGood:
-      - "&c&l这个商品名字已经存在了，换个名字试试。"
+      - "&c&lThis product name already exists, try a different name."
     notExistGoodWhenDeleteGood:
-      - "&c&l没有在这个商店找到叫这个名字的商品。"
+      - "&c&lNo items with this name were found in this store."
     goodNotEmpty:
-      - "&c&l商品剩余不是空的，不能删除。"
+      - "&c&lThe remaining items are not empty and cannot be deleted."
     notEnoughGoodWhenDeposit:
-      - "&c&l您没有足够的商品来存入。"
+      - "&c&l You do not have enough items to deposit."
     duplicateGoodWhenSetGoodName:
-      - "&c&l在这个店铺已经有这个名字的商品了。"
+      - "&c&lThere are already items with this name in this store."
     notEnoughSpaceWhenTakeGood:
-      - "&c&l没有空间来取出商品。"
+      - "&c&l has no space to take out the item."
     duplicateItemStock:
-      - "&c&l已经创建过这个库存了"
+      - "&c&l has already created this stock"
     itemStockNotEmpty:
-      - "&c&l库存不是空的，不能删除"
+      - "&c&l inventory is not empty and cannot be deleted"
     beyondShopNameLengthWhenCreateShop:
-      - "&c&l商店的名字长度已经超出了您能创建的长度。"
+      - "&c&lThe length of the store name has exceeded the length you can create."
     beyondShopNameLengthWhenSetShopName:
-      - "&c&l商店的名字长度已经超出了您能修改的长度。"
+      - "The &c&l shop name length has exceeded the length you can modify."
     beyondShopAmount:
-      - "&c&l商店的数量已经超出了您能创建的数量。"
+      - "The number of &c&l stores has exceeded the number you can create."
     duplicateShopWhenCreateShop:
-      - "&c&l已经有叫这个名字的店铺了，换个名字"
+      - "&c&l There are already stores with this name, change it"
     shopNotEmpty:
-      - "&c&l店铺不为空，不能删除。"
+      - "&c&l store is not empty, can't delete."
     duplicateShopWhenSetShopName:
-      - "&c&l已经有这个名字的店铺了"
+      - "&c&l already has a store with this name"
     unknownType:
-      - "&c&l未知的交易类型。"
+      - "&c&l unknown transaction type."
     notEnoughSpaceWhenTakeItemStock:
-      - "&c&l没有更多的空间来拿出货币物品"
+      - "&c&l has no more space to take out monetary items"
     notEnoughItemStockWhenDepositItemStock:
-      - "&c&l您背包里没有足够的物品货币。"
+      - "&c&lYou don't have enough item currency in your backpack."
 
-    #The following failure prompts, which are not easy to occur,
-    #are common and often caused by the GUI not being refreshed in time, with a low probability of occurrence
+    #The following are often very unlikely failure hints that are shared, often because the GUI is not refreshed in time, the probability of occurrence is not high
     notSetPrice:
-      - "&c&l没有设置价格。"
+      - "&c&l did not set the price."
     notMoreItemStock:
-      - "&c&l没有足够的货币物品"
+      - "&c&l don't have enough currency items"
     notMoreIcon:
-      - "&c&l没有足够的图标了。"
+      - "&c&l don't have enough icons left."
     notMoreGood:
-      - "&c&l没有足够的商品了。"
+      - "&c&l don't have enough items left."
     exceedLimitTime:
-      - "&c&l不能交易了，超出了限定的交易时间。"
+      - "&c&l can't trade anymore, exceeded the limited trading time."
     notExistItemStock:
-      - "&c&l不存在的货币库存。"
+      - "&c&l does not have any currency stock."
     notExistGood:
-      - "&c&l不存在的商品。"
+      - "Goods that &c&l does not exist."
     duplicateShopCollector:
-      - "&c&l重复的商店收藏记录。"
+      - "&c&l Duplicate shop collection records."
     notExistShopCollector:
-      - "&c&l不存在的商店收藏记录。"
+      - "&c&l Non-existent shop collection records."
     notExistIcon:
-      - "&c&l不存在的图标。"
+      - "&c&l nonexistent icons."
     stateChange:
-      - "&c&l状态改变。"
+      - "&c&l state change."
     notExistLocation:
-      - "&c&l不存在的坐标。"
+      - "&c&l non-existent coordinates."
     notExistShopComment:
-      - "&c&l评论不存在。"
+      - "&c&l comment does not exist."
     duplicateShopCommenter:
-      - "&c&l重复的评论。"
+      - "&c&l duplicate comment."
     notExistShop:
-      - "&c&l不存在的店铺。"
+      - "&c&l Non-existent store."
     notExistLine:
-      - "&c&l不存在的行。"
+      - "&c&l nonexistent line."
 
-    #Comand failure prompt, one prompt for each operation
+    # command failure hints, one hint per operation
     notExistShopWhenPlusPopularity:
-      - "&c&l不存在的店铺，不能添加人气。"
+      - "&c&l does not exist for the store, cannot add popularity."
     notExistShopWhenSubtractPopularity:
-      - "&c&l不存在的店铺，不能添加人气。"
+      - "&c&l does not exist in the store, can not add popularity."
     notExistShopWhenSetGoodSystem:
-      - "&c&l不存在的店铺，不能设置系统补货。"
+      - "&c&l non-existent shops, can't set system replenishment."
     notExistShopWhenSetShopSystem:
-      - "&c&l不存在的店铺，不能设置系统补货。"
+      - "&c&l non-existent stores, can not set system replenishment."
     notExistGoodWhenSetGoodSystem:
-      - "&c&l不存在的商品，不能设置系统补货。"
+      - "&c&l does not exist for goods, can not set system replenishment."
     notExistIconWhenSetIconItemPrice:
-      - "&c&l不存在这个图标，无法设置以物易物价格。"
+      - "&c&l does not exist for this icon, cannot set barter price."
     notExistIconWhenSetIconPlayerPointsPrice:
-      - "&c&l不存在这个图标，无法设置点券价格。"
+      - "&c&lThis icon does not exist, cannot set point price."
     notExistIconWhenSetIconVaultPrice:
-      - "&c&l不存在这个图标，无法设置金币价格。"
+      - "&c&lThis icon does not exist to set the price of gold."
     notExistIconWhenSetIconLimitTime:
-      - "&c&l不存在这个图标，无法设置时间。"
+      - "&c&lThis icon does not exist, can't set time."
     notExistIconWhenSetIconStock:
-      - "&c&l不存在这个图标，无法设置库存。"
+      - "&c&lThis icon does not exist, cannot set stock."
     notExistIconWhenSetIconSystem:
-      - "&c&l不存在这个图标，无法设置系统补货。"
+      - "&c&lThis icon does not exist to set system replenishment."
     notExistIconWhenDeleteIcon:
-      - "&c&l不存在这个图标，无法删除。"
+      - "&c&lThis icon does not exist and cannot be deleted."
     notMorePopularity:
-      - "&c&l该店铺没有更多人气了。"
+      - "&c&lThe store has no more popularity."
     duplicateIconWhenCreate:
-      - "&c&l重复的图标，不能创建。"
+      - "&c&l Duplicate icon that cannot be created."
     duplicateIconWhenSetName:
-      - "&c&l不能改名，已经有这个名字的图标了。"
+      - "&c&l can not change the name, there is already an icon with this name."
 
 
 
-    #Tutorial operation tips, each operation corresponds to one
+    # of tutorial actions prompted, each action corresponds to a
     howToSearchByShopNameInManageShopPage:
-      - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the store name to complete the search, enter &fCancel &a&lCancel."
     howToSearchByGoodNameInManageGoodPage:
-      - "&a&l输入商品名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the product name to complete the search, enter &f to cancel &a&l to cancel."
     howToCreateGood:
-      - "&a&l依次输入商品名字、交易类型完成创建（依次回车），输入 &f取消 &a&l取消。"
+      - "&a&lEnter the item name, transaction type (sell or acquire) in order to complete the creation (enter in order), enter &f Cancel &a&l Cancel."
     howToDepositItemStock:
-      - "&a&l输入您要存入的数量，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the quantity you want to deposit, enter &f Cancel &a&l Cancel."
     howToTakeItemStock:
-      - "&a&l输入您要取出的数量，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the quantity you want to take out, enter &fCancel &a&lCancel."
     howToAddShopDescription:
-      - "&a&l输入您要增加一行的描述，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the description you want to add a line to, enter &f Cancel &a&l Cancel."
     howToUpdateShopDescription:
-      - "&a&l依次输入行数、描述（依次回车），输入 &f取消 &a&l取消。"
+      - "&a&lEnter the number of rows and descriptions in order (enter in sequence), enter &f Cancel &a&l Cancel."
     howToSetShopDescription:
-      - "&a&l依次输入每行描述（依次回车），输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
+      - "&a&lEnter each line description in turn (enter in turn), enter &f Cancel &a&l Cancel, enter &f Submit &a&l Submit."
     howToDeleteGood:
-      - "&a&l输入商品名字完成删除，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the product name to complete the deletion, enter &fCancel &a&lCancel."
     howToCreateShop:
-      - "&a&l输入店铺名字完成创建，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the name of the store to complete the creation, enter &f Cancel &a&l Cancel."
     howToDeleteShop:
-      - "&a&l输入店铺名字完成删除，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop name to finish deleting, enter &fCancel &a&lCancel."
     howToSearchByGoodNameInAllGoodPage:
-      - "&a&l输入商品名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the product name to complete the search, enter &fCancel &a&lCancel."
     howToSearchByShopNameInAllShopPage:
-      - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop name to complete the search, enter &fCancel &a&lCancel."
     howToSearchByShopOwnerNameInAllShopPage:
-      - "&a&l输入店主名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop owner name to complete the search, enter &fCancel &a&lCancel."
     howToTrade:
-      - "&a&l输入要交易的数量完成交易，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the quantity to trade to complete the trade, enter &fCancel &a&lCancel."
     hotToCommentShopInAllShopPageShopOptionPage:
-      - "&a&l依次输入多行评论内容完成评论（依次回车），输入 &f取消 &a&l取消，输入&f提交 &a&l提交。"
+      - "&a&lEnter multiple lines of comment content in sequence to complete the comment (enter in sequence), enter &f Cancel &a&l Cancel, enter &f Submit &a&l Submit."
     howToSearchByIconNameInBuyIconPage:
-      - "&a&l输入图标名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&l enter the icon name to complete the search, enter &f cancel &a&l cancel."
     howToSearchByIconNameInManageIconPage:
-      - "&a&l输入图标名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the icon name to complete the search, enter &f to cancel &a&l to cancel."
     howToSearchByShopNameInCollectedShopPage:
-      - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop name to complete the search, enter &f to cancel &a&l to cancel."
     howToSearchByShopOwnerNameInCollectedShopPage:
-      - "&a&l输入店主名字完成搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop owner name to complete the search, enter &fCancel &a&lCancel."
     howToCommentShopInCollectedShopPageShopOptionPage:
-      - "&a&l输入评论内容完成评论，输入 &f取消 &a&l取消。"
+      - "&a&lEnter comments in order to complete the comment (enter in order), enter &f Cancel &a&l Cancel."
     howToSetGoodPlayerPointsPrice:
-      - "&a&l输入价格，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the price, enter &fCancel &a&lCancel."
     howToSearchByCommenterName:
-      - "&a&l输入评论者的名字搜索，输入 &f取消 &a&l取消。"
+      - "&a&lEnter commenter's name to search, enter &f Cancel &a&l Cancel."
     howToSetGoodItemPrice:
-      - "&a&l输入价格，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the price, enter &fCancel &a&lCancel."
     howToSetGoodLimitTime:
-      - "&a&l输入限制交易时间，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the limit transaction time, enter &fCancel &a&lCancel."
     howToSetGoodVaultPrice:
-      - "&a&l输入价格，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the price, enter &fCancel &a&lCancel."
     howToSetShopName:
-      - "&a&l输入店铺名字，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the shop name, enter &fCancel &a&lCancel."
     howToSetGoodName:
-      - "&a&l输入商品名字，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the product name, enter &fCancel &a&lCancel."
     howToDepositGood:
-      - "&a&l输入存入的数量，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the quantity deposited, enter &fCancel &a&lCancel."
     howToTakeGood:
-      - "&a&l输入取出的数量，输入 &f取消 &a&l取消。"
+      - "&a&lEnter the quantity taken out, enter &fCancel &a&lCancel."
 
-    #Prompt for successful operation, one for each operation
+    #successful operations hint, each operation corresponds to a hint
     cancelCollectShopInAllShopPageShopOptionPage:
-      - "&b&l您取消了收藏该店铺。"
+      - "&b&lYou canceled the collection of this store."
     collectShopInAllShopPageShopOptionPage:
-      - "&b&l您收藏了该店铺。"
+      - "&b&lYou favorited the store."
     goShopLocationInAllShopPageShopOptionPage:
-      - "&b&l您传送到了店铺坐标。"
+      - "&b&lYou teleported to the store coordinates."
     buyIcon:
-      - "&b&l您购买了图标。"
+      - "&b&lYou purchased the icon."
     cancelCollectShopInCollectedShopPageShopOptionPage:
-      - "&b&l您取消了收藏该店铺。"
+      - "&b&lYou canceled the collect shop."
     collectShopInCollectedShopPageShopOptionPage:
-      - "&b&l您收藏了该店铺。"
+      - "&b&lYou have favorited the store."
     goShopLocationInCollectedShopPageShopOptionPage:
-      - "&b&l您传送到店铺坐标。"
+      - "&b&lYou teleported to the store coordinates."
     toggleGoodType:
-      - "&b&l您切换了商店交易类型。"
+      - "&b&lYou toggled the store transaction type."
     setGoodVaultPrice:
-      - "&b&l您设置商品为了金币价格。"
+      - "&b&lYou set the item in order to the price of gold."
     setGoodPlayerPointsPrice:
-      - "&b&l您设置商品为了点券价格。"
+      - "&b&lYou set the item to the price of points."
     setGoodItemPrice:
-      - "&b&l您设置商品为了以物易物价格。"
+      - "&b&lYou set the item to barter price."
     setGoodLimitTime:
-      - "&b&l您设置了商品的限购时间。"
+      - "&b&lYou set the item's limited time."
     useShopIcon:
-      - "&b&l您使用了该图标。"
+      - "&b&lYou used the icon."
     resetShopIcon:
-      - "&b&l您重置了该店铺的图标。"
+      - "&b&lYou reset the icon for this store."
     resetShopLocation:
-      - "&b&l您重置了店铺坐标。"
+      - "&b&lYou reset the shop coordinates."
     resetShopDescription:
-      - "&b&l您重置了店铺描述。"
+      - "&b&lYou reset the shop description."
     setShopLocation:
-      - "&b&l您设置了实体店坐标。"
+      - "&b&lYou set the physical store coordinates."
     addShopDescription:
-      - "&b&l您添加了商店描述。"
+      - "&b&lYou added the shop description."
     setShopDescription:
-      - "&b&l您设置了商店描述。"
+      - "&b&lYou set the shop description."
     removeShopDescription:
-      - "&b&l您删除了商店描述。"
+      - "&b&lYou removed the shop description."
     updateShopDescription:
-      - "&b&l您更新了商店描述。"
+      - "&b&lYou updated the shop description."
     takeItemStock:
-      - "&b&l您取出了货币库存。"
+      - "&b&lYou removed the currency stock."
     depositItemStock:
-      - "&b&l您存入了货币库存。"
+      - "&b&lYou deposited the currency stock."
     tradeGood:
-      - "&b&l您交易成功。"
+      - "&b&lYou traded successfully."
     commentShopInAllShopPageShopOptionPage:
-      - "&b&l您评论成功。"
+      - "&b&lYou commented successfully."
     commentShopInCollectedShopPageShopOptionPage:
-      - "&b&l您评论成功。"
+      - "&b&lYour comment was successful."
     deleteShopComment:
-      - "&b&l您删除评论成功。"
+      - "&b&lYou deleted the comment successfully."
     createShop:
-      - "&b&l您创建商店成功。"
+      - "&b&lYou created the store successfully."
     deleteShop:
-      - "&b&l您删除商店成功。"
+      - "&b&lYou deleted the store successfully."
     deleteItemStock:
-      - "&b&l您删除了货币库存。"
+      - "&b&lYou deleted the currency stock."
     createItemStock:
-      - "&b&l您创建了货币库存。"
+      - "&b&lYou created the currency stock."
     setGoodName:
-      - "&b&l您设置了商品名字。"
+      - "&b&lYou set the item name."
     setShopName:
-      - "&b&l您设置了店铺名字。"
+      - "&b&lYou set the shop name."
     createGood:
-      - "&b&l您创建了商品。"
+      - "&b&lYou created the product."
     deleteGood:
-      - "&b&l您删除了商品。"
+      - "&b&lYou deleted the product."
     depositGood:
-      - "&b&l您存入了商品。"
+      - "&b&lYou deposited an item."
     takeGood:
-      - "&b&l您取出了商品。"
+      - "&b&lYou removed the item."
     resetGoodLimitTime:
-      - "&b&l您重置了商品限购时间。"
+      - "&b&lYou reset the item limit time."
     resetGoodPrce:
-      - "&b&l您重置了商品价格。"
+      - "&b&lYou reset the item price."
     goBankLocation:
-      - "&b&l您前往了货币银行坐标。"
+      - "&b&lYou went to the currency bank coordinates."
 
-    #Prompt for successful operation of the command, and each operation corresponds to a prompt
+    #Command success hints, one for each action
     setIconSystem:
-      - "&b&l设置了图标为系统补货。"
+      - "&b&l set the icon for system replenishment."
     setIconStock:
-      - "&b&l设置了图标的库存。"
+      - "&b&l set the icon in stock."
     setGoodSystem:
-      - "&b&l设置了商品为系统补货。"
+      - "&b&l sets the item to be restocked for the system."
     setShopSystem:
-      - "&b&l设置了店铺为系统补货。"
+      - "&b&l sets the shop to restock for the system."
     resetIconLimitTime:
-      - "&b&l重置了图标限购时间。"
+      - "&b&l resets the icon limit time."
     reloadPlugin:
-      - "&b&l重载成功。"
+      - "&b&l Reloaded successfully."
     setIconName:
-      - "&b&l设置了图标名字。"
+      - "&b&l set the icon name."
     plusShopPopularity:
-      - "&b&l成功添加了人气。"
+      - "&b&l added popularity successfully."
     subtractShopPopularity:
-      - "&b&l成功减少了人气。"
+      - "&b&l successfully reduced the popularity."
     createIcon:
-      - "&b&l创建了图标"
+      - "&b&l created icon"
     deleteIcon:
-      - "&b&l删除了图标"
+      - "&b&l deleted the icon"
     setIconVaultPrice:
-      - "&b&l成功设置了价格。"
+      - "&b&l successfully set the price."
     setIconPlayerPointsPrice:
-      - "&b&l成功设置了价格。"
+      - "&b&lSuccessfully set the price."
     setIconItemPrice:
-      - "&b&l成功设置了价格。"
+      - "&b&l set the price successfully."
     setIconLimitTime:
-      - "&b&l成功设置了限购时间。"
+      - "&b&lSuccessfully set the limit time."
     correctDatabase:
-      - "&b&l成功修复了数据库的数据。"
+      - "&b&l successfully fixed the data in the database."
 

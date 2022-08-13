@@ -88,6 +88,7 @@ public class IconMeta {
         this.limitTime = limitTime;
     }
 
+    @Nullable
     public Integer getItemPrice() {
         return itemPrice;
     }

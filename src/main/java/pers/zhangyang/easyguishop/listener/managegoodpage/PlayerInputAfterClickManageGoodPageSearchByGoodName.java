@@ -19,7 +19,6 @@ public class PlayerInputAfterClickManageGoodPageSearchByGoodName extends FiniteI
 
     @Override
     public void run() {
-
         manageGoodPage.searchByGooName(messages[0]);
     }
 }

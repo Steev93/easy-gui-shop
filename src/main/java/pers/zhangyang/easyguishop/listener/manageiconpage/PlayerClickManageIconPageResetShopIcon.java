@@ -27,14 +27,14 @@ public class PlayerClickManageIconPageResetShopIcon implements Listener {
         ManageIconPage manageIconPage = (ManageIconPage) holder;
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
+        assert manageIconPage != null;
         try {
-            assert manageIconPage != null;
-            manageIconPage.refresh();
             guiService.resetShopIcon(manageIconPage.getShopMeta().getUuid());
-            manageIconPage.refresh();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
+        }finally {
+            manageIconPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetShopIcon"));
 

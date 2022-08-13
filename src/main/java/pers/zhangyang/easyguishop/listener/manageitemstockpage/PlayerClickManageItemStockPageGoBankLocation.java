@@ -21,7 +21,7 @@ public class PlayerClickManageItemStockPageGoBankLocation implements Listener {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
 
-        Location location = SettingYaml.INSTANCE.getLocation("setting.bankLocation");
+        Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
         Player player = (Player) event.getWhoClicked();
         player.teleport(location);
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.goBankLocation"));

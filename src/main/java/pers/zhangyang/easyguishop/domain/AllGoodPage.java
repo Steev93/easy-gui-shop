@@ -35,7 +35,6 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
         super(GuiYaml.INSTANCE.getString("gui.title.allGoodPage"), viewer, backPage, backPage.getOwner());
         this.shopMeta = shopMeta;
         stats = ManageShopPageStatsEnum.NORMAL;
-        initMenuBarWithoutChangePage();
     }
 
     public void send() {
@@ -54,6 +53,8 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
 
 
     public void refresh() {
+
+        this.inventory.clear();
 
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         this.shopMeta = guiService.getShop(this.shopMeta.getUuid());
@@ -82,33 +83,20 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
         if (stats.equals(ManageShopPageStatsEnum.SEARCH_SHOP_NAME)) {
             this.goodMetaList.removeIf(shopMeta2 -> !shopMeta2.getName().contains(searchContent));
         }
-        int maxIndex = PageUtil.computeMaxPageIndex(this.goodMetaList.size(), 45);
 
+        int maxIndex = PageUtil.computeMaxPageIndex(this.goodMetaList.size(), 45);
         if (pageIndex > maxIndex) {
             this.pageIndex = maxIndex;
         }
-
         if (pageIndex > 0) {
-            ItemStack previous = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.previousPage");
+            ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.previousPage");
             inventory.setItem(45, previous);
-        } else {
-            inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
-            ItemStack next = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.nextPage");
+            ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.nextPage");
             inventory.setItem(53, next);
-        } else {
-            inventory.setItem(53, null);
         }
-        refreshContent();
-        viewer.openInventory(this.inventory);
-    }
 
-    //根据shopMetaList渲染当前页的0-44
-    private void refreshContent() {
-        for (int i = 0; i < 45; i++) {
-            inventory.setItem(i, null);
-        }
 
         this.goodMetaList = (PageUtil.page(pageIndex, 45, goodMetaList));
         //设置内容
@@ -134,27 +122,26 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
             ItemStack itemStack;
             if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableGoodUseGoodItem")) {
                 itemStack = ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack());
-                ItemStack tem = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.allGoodPageGoodOptionPage");
+                ItemStack tem = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.allGoodPageGoodOptionPage");
                 try {
                     ItemStackUtil.apply(tem, itemStack);
                 } catch (NotApplicableException e) {
                     itemStack = tem;
                 }
             } else {
-                itemStack = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.allGoodPageGoodOptionPage");
+                itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.allGoodPageGoodOptionPage");
             }
             ReplaceUtil.replaceDisplayName(itemStack, rep);
             ReplaceUtil.replaceLore(itemStack, rep);
             inventory.setItem(i, itemStack);
         }
-    }
 
-    //渲染当前页的菜单(不包括翻页)
-    private void initMenuBarWithoutChangePage() {
-        ItemStack search = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.searchByGoodName");
+
+        ItemStack search = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.searchByGoodName");
         inventory.setItem(47, search);
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.allGoodPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPage.back");
         inventory.setItem(49, back);
+        viewer.openInventory(this.inventory);
     }
 
 
@@ -170,9 +157,8 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
             }
             return;
         }
-        this.goodMetaList.clear();
         try {
-            this.goodMetaList.addAll(guiService.listShopGood(this.shopMeta.getUuid()));
+            this.goodMetaList = guiService.listShopGood(this.shopMeta.getUuid());
         } catch (NotExistShopException e) {
             if (backPage instanceof AllShopPageShopOptionPage) {
                 backPage.send();

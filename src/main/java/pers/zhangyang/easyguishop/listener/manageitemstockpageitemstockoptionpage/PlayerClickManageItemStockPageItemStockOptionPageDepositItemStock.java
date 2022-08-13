@@ -40,7 +40,7 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDepositItemStock i
         if (itemStockMeta == null) {
             return;
         }
-        Location location = SettingYaml.INSTANCE.getLocation("setting.bankLocation");
+        Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
         if (location.getWorld() == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
             return;
@@ -49,7 +49,7 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDepositItemStock i
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
             return;
         }
-        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getRange("setting.manageItemStockRange")) {
+        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getNonnegativeDoubleDefault("setting.manageItemStockRange")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
             return;
         }

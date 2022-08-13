@@ -22,6 +22,7 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerClickCollectedShopPageSearchByShopName.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\ShopMeta.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPageSearchByIconName.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppage\PlayerClickManageShopPageCollectedShopPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconStockExecutor.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\enumration\AllShopPageStatsEnum.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCancelCollectShop.java
@@ -79,7 +80,6 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodLimitTime.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\GoodNotEmptyException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\EasyGuiShop.java
-C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageCollectedShopPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistTradeRecordException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\buyiconpageiconoptionpage\PlayerClickBuyIconPageIconOptionPageBuyIcon.java
@@ -120,6 +120,7 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCommentShop.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerInputAfterClickAllShopPageSearchByShopName.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\CommandService.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllShopCommentPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\BuyIconPageIconOptionPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconSystemExecutor.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPageManageIconPageIconOptionPage.java
@@ -141,6 +142,7 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageManageItemStockPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconItemPriceExecutor.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock.java
+C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotEnoughItemStockException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\buyiconpage\PlayerInputAfterClickBuyIconPageSearchByIconName.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpage\PlayerInputAfterClickManageGoodPageDeleteGood.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\OpenGuiExecutor.java
@@ -185,7 +187,6 @@ C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguisho
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistIconException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\DuplicateIconOwnerException.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allgoodpage\PlayerClickAllGoodPageSearchByGoodName.java
-C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ShopCommentPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllGoodPageGoodOptionPage.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageSetShopDescription.java
 C:\Users\ZhangYang\Desktop\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpage\PlayerClickManageGoodPageDeleteGood.java

@@ -31,8 +31,8 @@ public class PlayerInputAfterClickManageShopPageCreateShop extends FiniteInputLi
     @Override
     public void run() {
 
-        Player onlineOwner=owner.getPlayer();
-        if (onlineOwner==null){
+        Player onlineOwner = owner.getPlayer();
+        if (onlineOwner == null) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -55,7 +55,6 @@ public class PlayerInputAfterClickManageShopPageCreateShop extends FiniteInputLi
 
         try {
             guiService.createShop(shopMeta);
-            manageShopPage.refresh();
         } catch (DuplicateShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopWhenCreateShop"));
             return;

@@ -26,10 +26,6 @@ public class ManageItemStockPageItemStockOptionPage extends SingleGuiPageBase im
         this.itemStockMeta = shopMeta;
     }
 
-    //根据Shop的情况来设置Button
-    public void send() {
-        refresh();
-    }
 
     @Override
     public void refresh() {
@@ -42,27 +38,27 @@ public class ManageItemStockPageItemStockOptionPage extends SingleGuiPageBase im
         this.inventory.clear();
         ItemStack itemStock = ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack());
         inventory.setItem(4, itemStock);
-        ItemStack guideItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.guideItemStock");
+        ItemStack guideItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.guideItemStock");
         inventory.setItem(13, guideItemStock);
 
-        ItemStack information = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.itemStockInformation");
+        ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.itemStockInformation");
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{amount}", String.valueOf(itemStockMeta.getAmount()));
         ReplaceUtil.replaceDisplayName(information, rep);
         ReplaceUtil.replaceLore(information, rep);
         inventory.setItem(31, information);
-        ItemStack depositItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.depositItemStock");
+        ItemStack depositItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.depositItemStock");
         inventory.setItem(22, depositItemStock);
 
         if (itemStockMeta.getAmount() > 0) {
-            ItemStack takeItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.takeItemStock");
+            ItemStack takeItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.takeItemStock");
             inventory.setItem(21, takeItemStock);
         }
         if (itemStockMeta.getAmount() <= 0) {
-            ItemStack deleteItemStock = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.deleteItemStock");
+            ItemStack deleteItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.deleteItemStock");
             inventory.setItem(23, deleteItemStock);
         }
-        ItemStack back = GuiYaml.INSTANCE.getButton("gui.button.manageItemStockPageItemStockOptionPage.back");
+        ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.back");
         inventory.setItem(49, back);
 
 

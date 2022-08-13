@@ -6,7 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import pers.zhangyang.easyguishop.domain.AllShopPageShopOptionPage;
-import pers.zhangyang.easyguishop.domain.ShopCommentPage;
+import pers.zhangyang.easyguishop.domain.AllShopCommentPage;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easylibrary.annotation.EventListener;
 import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
@@ -23,7 +23,7 @@ public class PlayerClickAllShopPageShopOptionPageShopCommentPage implements List
         Player player = (Player) event.getWhoClicked();
         AllShopPageShopOptionPage allShopPageShopOptionPage = (AllShopPageShopOptionPage) holder;
         ShopMeta shopMeta = allShopPageShopOptionPage.getShopMeta();
-        ShopCommentPage allShopPageShopOptionPageShopCommentPage = new ShopCommentPage(allShopPageShopOptionPage, player, shopMeta);
+        AllShopCommentPage allShopPageShopOptionPageShopCommentPage = new AllShopCommentPage(allShopPageShopOptionPage, player, shopMeta);
         allShopPageShopOptionPageShopCommentPage.send();
 
 

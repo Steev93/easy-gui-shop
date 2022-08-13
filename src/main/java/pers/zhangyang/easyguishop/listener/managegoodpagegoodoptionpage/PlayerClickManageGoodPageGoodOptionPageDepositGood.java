@@ -53,7 +53,7 @@ public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Liste
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenDepositGood"));
             return;
         }
-        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getRange("setting.manageGoodRange")) {
+        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getNonnegativeDoubleDefault("setting.manageGoodRange")) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenDepositGood"));
             return;
         }

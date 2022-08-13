@@ -1,4 +1,4 @@
-package pers.zhangyang.easyguishop.listener.allshoppage;
+package pers.zhangyang.easyguishop.listener.manageshoppage;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -7,17 +7,18 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import pers.zhangyang.easyguishop.domain.AllShopPage;
 import pers.zhangyang.easyguishop.domain.CollectedShopPage;
+import pers.zhangyang.easyguishop.domain.ManageShopPage;
 import pers.zhangyang.easylibrary.annotation.EventListener;
 import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 
 @EventListener
-public class PlayerClickAllShopPageCollectedShopPage implements Listener {
+public class PlayerClickManageShopPageCollectedShopPage implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = AllShopPage.class, slot = {48})
+    @GuiDiscreteButtonHandler(guiPage = ManageShopPage.class, slot = {46})
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
-        AllShopPage allShopPage = (AllShopPage) holder;
+        ManageShopPage allShopPage = (ManageShopPage) holder;
         Player player = (Player) event.getWhoClicked();
 
 

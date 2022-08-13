@@ -1,7 +1,6 @@
 package pers.zhangyang.easyguishop.executor;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -23,13 +22,13 @@ public class OpenMuiExecutor extends ExecutorBase {
             return;
         }
 
-        if (!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notPlayer");
             MessageUtil.sendMessageTo(this.sender, list);
             return;
         }
         Player target = Bukkit.getPlayer(args[0]);
-        if (target==null){
+        if (target == null) {
             List<String> list = MessageYaml.INSTANCE.getStringList("message.chat.notOnline");
             MessageUtil.sendMessageTo(this.sender, list);
             return;
