@@ -31,7 +31,7 @@ public class PlayerClickCollectedShopPageShopOptionPageTeleportShopLocation impl
         }
 
         player.teleport(LocationUtil.deserializeLocation(shopMeta.getLocation()));
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.goShopLocationInCollectedShopPageShopOptionPage"));
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.teleportShopLocationInCollectedShopPageShopOptionPage"));
 
 
     }

@@ -24,7 +24,7 @@ public class PlayerClickManageItemStockPageTeleportBankLocation implements Liste
         Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
         Player player = (Player) event.getWhoClicked();
         player.teleport(location);
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.goBankLocation"));
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.teleportBankLocation"));
 
     }
 

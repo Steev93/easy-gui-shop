@@ -291,7 +291,7 @@ message:
       - "&b&l您取消了收藏该店铺。"
     collectShopInAllShopPageShopOptionPage:
       - "&b&l您收藏了该店铺。"
-    goShopLocationInAllShopPageShopOptionPage:
+    teleportShopLocationInAllShopPageShopOptionPage:
       - "&b&l您传送到了店铺坐标。"
     buyIcon:
       - "&b&l您购买了图标。"
@@ -299,7 +299,7 @@ message:
       - "&b&l您取消了收藏该店铺。"
     collectShopInCollectedShopPageShopOptionPage:
       - "&b&l您收藏了该店铺。"
-    goShopLocationInCollectedShopPageShopOptionPage:
+    teleportShopInCollectedShopPageShopOptionPage:
       - "&b&l您传送到店铺坐标。"
     toggleGoodType:
       - "&b&l您切换了商店交易类型。"
@@ -365,7 +365,7 @@ message:
       - "&b&l您重置了商品限购时间。"
     resetGoodPrce:
       - "&b&l您重置了商品价格。"
-    goBankLocation:
+    teleportBankLocation:
       - "&b&l您前往了货币银行坐标。"
 
     #指令成功操作提示，每个操作对应一个提示

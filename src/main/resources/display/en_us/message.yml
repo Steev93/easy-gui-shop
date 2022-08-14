@@ -291,7 +291,7 @@ message:
       - "&b&lYou canceled the collection of this store."
     collectShopInAllShopPageShopOptionPage:
       - "&b&lYou favorited the store."
-    goShopLocationInAllShopPageShopOptionPage:
+    teleportShopLocationInAllShopPageShopOptionPage:
       - "&b&lYou teleported to the store coordinates."
     buyIcon:
       - "&b&lYou purchased the icon."
@@ -299,7 +299,7 @@ message:
       - "&b&lYou canceled the collect shop."
     collectShopInCollectedShopPageShopOptionPage:
       - "&b&lYou have favorited the store."
-    goShopLocationInCollectedShopPageShopOptionPage:
+    teleportShopLocationInCollectedShopPageShopOptionPage:
       - "&b&lYou teleported to the store coordinates."
     toggleGoodType:
       - "&b&lYou toggled the store transaction type."
@@ -365,7 +365,7 @@ message:
       - "&b&lYou reset the item limit time."
     resetGoodPrce:
       - "&b&lYou reset the item price."
-    goBankLocation:
+    teleportBankLocation:
       - "&b&lYou went to the currency bank coordinates."
 
     #Command success hints, one for each action

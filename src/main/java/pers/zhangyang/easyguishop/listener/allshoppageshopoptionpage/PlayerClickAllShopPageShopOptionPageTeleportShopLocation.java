@@ -32,7 +32,7 @@ public class PlayerClickAllShopPageShopOptionPageTeleportShopLocation implements
         }
 
         player.teleport(LocationUtil.deserializeLocation(shopMeta.getLocation()));
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.goShopLocationInAllShopPageShopOptionPage"));
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.teleportShopLocationInAllShopPageShopOptionPage"));
     }
 
 }
