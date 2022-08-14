@@ -186,7 +186,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goShopLocation:
+      teleportShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
@@ -539,7 +539,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goShopLocation:
+      teleportShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
@@ -1045,7 +1045,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      goBankLocation:
+      teleportBankLocation:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n前往货币银行坐标"
         lore:

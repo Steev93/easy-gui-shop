@@ -51,7 +51,7 @@ public class AllShopPageShopOptionPage extends SingleGuiPageBase implements Back
         ItemStack goShop = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.allGoodPage");
         inventory.setItem(31, goShop);
         if (shopMeta.getLocation() != null) {
-            ItemStack goLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.goShopLocation");
+            ItemStack goLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.teleportShopLocation");
             inventory.setItem(22, goLocation);
         }
 

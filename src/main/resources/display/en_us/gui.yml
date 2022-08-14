@@ -186,7 +186,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goShopLocation:
+      teleportShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n goShop's physical coordinates"
         lore:
@@ -539,7 +539,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
-      goShopLocation:
+      teleportShopLocation:
         materialName: "BEACON"
         displayName: "&b&l&n goShop's physical coordinates"
         lore:
@@ -1045,7 +1045,7 @@ gui:
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      goBankLocation:
+      teleportBankLocation:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&nGo to currency bank coordinates"
         lore:

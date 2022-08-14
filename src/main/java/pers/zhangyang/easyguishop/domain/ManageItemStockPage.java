@@ -90,7 +90,7 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
         inventory.setItem(49, back);
         ItemStack createItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.createItemStock");
         inventory.setItem(51, createItemStock);
-        ItemStack goBankLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.goBankLocation");
+        ItemStack goBankLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPage.teleportBankLocation");
         inventory.setItem(47, goBankLocation);
         viewer.openInventory(this.inventory);
     }
