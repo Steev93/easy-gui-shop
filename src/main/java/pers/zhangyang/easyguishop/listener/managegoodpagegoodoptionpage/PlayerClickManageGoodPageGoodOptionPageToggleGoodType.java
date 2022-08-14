@@ -28,12 +28,14 @@ public class PlayerClickManageGoodPageGoodOptionPageToggleGoodType implements Li
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         try {
-            manageGoodPageGoodOptionPage.send();
             guiService.changeGoodTransactionType(manageGoodPageGoodOptionPage.getGoodMeta().getUuid());
-            manageGoodPageGoodOptionPage.send();
+
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;
+        }finally {
+
+            manageGoodPageGoodOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.toggleGoodType"));
 

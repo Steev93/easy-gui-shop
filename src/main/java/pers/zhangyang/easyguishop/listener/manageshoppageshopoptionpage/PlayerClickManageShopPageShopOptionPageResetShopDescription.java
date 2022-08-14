@@ -32,12 +32,12 @@ public class PlayerClickManageShopPageShopOptionPageResetShopDescription impleme
 
 
         try {
-            manageShopPageShopOptionPage.send();
             guiService.resetShopDescription(shopMeta.getUuid());
-            manageShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
+        }finally {
+            manageShopPageShopOptionPage.refresh();
         }
 
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetShopDescription"));

@@ -30,15 +30,15 @@ public class PlayerClickManageIconPageIconOptionPageUseShopIcon implements Liste
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         try {
-            manageIconPage.send();
             guiService.useShopIcon(manageIconPage.getIconMeta().getUuid(), manageIconPage.getShopMeta().getUuid());
-            manageIconPage.send();
         } catch (NotExistIconException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistIcon"));
             return;
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
+        }finally {
+            manageIconPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.useShopIcon"));
 

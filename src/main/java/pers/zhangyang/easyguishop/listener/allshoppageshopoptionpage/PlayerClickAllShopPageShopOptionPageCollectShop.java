@@ -34,15 +34,15 @@ public class PlayerClickAllShopPageShopOptionPageCollectShop implements Listener
         assert allShopPageShopOptionPage != null;
         ShopCollectorMeta shopCollectorMeta = new ShopCollectorMeta(allShopPageShopOptionPage.getShopMeta().getUuid(), player.getUniqueId().toString());
         try {
-            allShopPageShopOptionPage.send();
             guiService.collectShop(shopCollectorMeta);
-            allShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (DuplicateShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollector"));
             return;
+        }finally {
+            allShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.collectShopInAllShopPageShopOptionPage"));
 

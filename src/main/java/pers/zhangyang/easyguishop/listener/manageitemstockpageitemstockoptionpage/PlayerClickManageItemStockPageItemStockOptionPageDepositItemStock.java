@@ -33,9 +33,9 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDepositItemStock i
 
         ItemStockMeta itemStockMeta;
 
-        manageItemStockPageItemStockOptionPage.send();
+        manageItemStockPageItemStockOptionPage.refresh();
         itemStockMeta = guiService.getItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
-        manageItemStockPageItemStockOptionPage.send();
+        manageItemStockPageItemStockOptionPage.refresh();
 
         if (itemStockMeta == null) {
             return;

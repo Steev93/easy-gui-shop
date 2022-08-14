@@ -32,9 +32,10 @@ public class PlayerClickManageGoodPageGoodOptionPageDepositGood implements Liste
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ShopMeta shopMeta;
-        manageGoodPageGoodOptionPage.send();
+        assert manageGoodPageGoodOptionPage != null;
+        manageGoodPageGoodOptionPage.refresh();
         shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
-        manageGoodPageGoodOptionPage.send();
+        manageGoodPageGoodOptionPage.refresh();
 
         if (shopMeta == null) {
             return;

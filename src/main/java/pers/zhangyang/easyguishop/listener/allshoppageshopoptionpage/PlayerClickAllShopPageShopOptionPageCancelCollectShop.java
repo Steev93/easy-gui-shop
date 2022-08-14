@@ -30,17 +30,17 @@ public class PlayerClickAllShopPageShopOptionPageCancelCollectShop implements Li
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         AllShopPageShopOptionPage allShopPageShopOptionPage = (AllShopPageShopOptionPage) holder;
 
+        assert allShopPageShopOptionPage != null;
         try {
-            assert allShopPageShopOptionPage != null;
-            allShopPageShopOptionPage.send();
             guiService.cancelCollectShop(player.getUniqueId().toString(), allShopPageShopOptionPage.getShopMeta().getUuid());
-            allShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (NotExistShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopCollector"));
             return;
+        }finally {
+            allShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.cancelCollectShopInAllShopPageShopOptionPage"));
 

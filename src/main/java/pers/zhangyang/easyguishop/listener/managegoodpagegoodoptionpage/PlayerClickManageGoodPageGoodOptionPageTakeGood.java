@@ -32,9 +32,9 @@ public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ShopMeta shopMeta;
-        manageGoodPageGoodOptionPage.send();
+        manageGoodPageGoodOptionPage.refresh();
         shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
-        manageGoodPageGoodOptionPage.send();
+        manageGoodPageGoodOptionPage.refresh();
 
         if (shopMeta == null) {
             return;

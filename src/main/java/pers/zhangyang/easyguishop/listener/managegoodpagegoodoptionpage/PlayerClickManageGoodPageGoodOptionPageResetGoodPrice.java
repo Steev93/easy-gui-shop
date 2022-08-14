@@ -27,14 +27,15 @@ public class PlayerClickManageGoodPageGoodOptionPageResetGoodPrice implements Li
         Player player = (Player) event.getWhoClicked();
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
+        assert manageGoodPageGoodOptionPage != null;
         try {
-            assert manageGoodPageGoodOptionPage != null;
-            manageGoodPageGoodOptionPage.send();
             guiService.resetGoodPrice(manageGoodPageGoodOptionPage.getGoodMeta().getUuid());
-            manageGoodPageGoodOptionPage.send();
+
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;
+        }finally {
+            manageGoodPageGoodOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetGoodPrice"));
 

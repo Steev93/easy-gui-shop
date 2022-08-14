@@ -32,15 +32,15 @@ public class PlayerClickManageShopPageShopOptionPageRemoveShopDescription implem
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         try {
-            manageShopPageShopOptionPage.send();
             guiService.removeShopDescription(shopMeta.getUuid());
-            manageShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (NotExistLineException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLine"));
             return;
+        }finally {
+            manageShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.removeShopDescription"));
 

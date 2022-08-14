@@ -46,12 +46,12 @@ public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
 
 
         try {
-            manageShopCommentPage.send();
             guiService.deleteShopComment(manageShopCommentPage.getShopCommentMetaList().get(slot).getUuid());
-            manageShopCommentPage.send();
         } catch (NotExistShopCommentException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopComment"));
             return;
+        }finally {
+            manageShopCommentPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.deleteShopComment"));
 

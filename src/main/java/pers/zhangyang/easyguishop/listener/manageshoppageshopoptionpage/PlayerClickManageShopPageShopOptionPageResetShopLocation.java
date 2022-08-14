@@ -31,12 +31,12 @@ public class PlayerClickManageShopPageShopOptionPageResetShopLocation implements
         ShopMeta shopMeta = manageShopPageShopOptionPage.getShopMeta();
 
         try {
-            manageShopPageShopOptionPage.send();
             guiService.resetShopLocation(shopMeta.getUuid());
-            manageShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
+        }finally {
+            manageShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetShopLocation"));
 

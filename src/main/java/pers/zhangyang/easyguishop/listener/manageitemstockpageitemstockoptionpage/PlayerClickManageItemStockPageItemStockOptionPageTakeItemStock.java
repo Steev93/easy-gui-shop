@@ -32,9 +32,9 @@ public class PlayerClickManageItemStockPageItemStockOptionPageTakeItemStock impl
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ItemStockMeta itemStockMeta;
-        manageItemStockPageItemStockOptionPage.send();
+        manageItemStockPageItemStockOptionPage.refresh();
         itemStockMeta = guiService.getItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
-        manageItemStockPageItemStockOptionPage.send();
+        manageItemStockPageItemStockOptionPage.refresh();
         if (itemStockMeta == null) {
             return;
         }

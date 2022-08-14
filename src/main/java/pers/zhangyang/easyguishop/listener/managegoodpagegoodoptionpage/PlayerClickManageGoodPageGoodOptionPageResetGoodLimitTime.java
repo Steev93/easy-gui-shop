@@ -27,12 +27,13 @@ public class PlayerClickManageGoodPageGoodOptionPageResetGoodLimitTime implement
         ManageGoodPageGoodOptionPage manageGoodPageGoodOptionPage = (ManageGoodPageGoodOptionPage) holder;
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         try {
-            manageGoodPageGoodOptionPage.send();
             guiService.setGoodLimitTime(manageGoodPageGoodOptionPage.getGoodMeta().getUuid(), null);
-            manageGoodPageGoodOptionPage.send();
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;
+        }finally {
+
+            manageGoodPageGoodOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetGoodLimitTime"));
 

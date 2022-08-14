@@ -33,15 +33,15 @@ public class PlayerClickCollectedShopPageShopOptionPageCollectShop implements Li
         ShopCollectorMeta shopCollectorMeta = new ShopCollectorMeta(collectedShopPageShopPotionPage.getShopMeta().getUuid(), player.getUniqueId().toString());
 
         try {
-            collectedShopPageShopPotionPage.send();
             guiService.collectShop(shopCollectorMeta);
-            collectedShopPageShopPotionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (DuplicateShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollector"));
             return;
+        }finally {
+            collectedShopPageShopPotionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.collectShopInCollectedShopPageShopOptionPage"));
 

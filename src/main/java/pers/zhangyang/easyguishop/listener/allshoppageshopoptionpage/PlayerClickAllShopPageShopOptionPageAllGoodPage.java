@@ -33,11 +33,11 @@ public class PlayerClickAllShopPageShopOptionPageAllGoodPage implements Listener
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         AllGoodPage allGoodPage = new AllGoodPage(allShopPageShopOptionPage, player, shopMeta);
         try {
-            allGoodPage.send();
             guiService.viewShop(shopMeta.getUuid(), 1);
-            allGoodPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
+        }finally {
+            allGoodPage.send();
         }
     }
 

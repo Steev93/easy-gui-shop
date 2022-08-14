@@ -28,15 +28,15 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDeleteItemStock im
         Player player = (Player) event.getWhoClicked();
         ManageItemStockPageItemStockOptionPage manageItemStockPageItemStockOptionPage = (ManageItemStockPageItemStockOptionPage) holder;
         try {
-            manageItemStockPageItemStockOptionPage.send();
             guiService.deleteItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
-            manageItemStockPageItemStockOptionPage.send();
         } catch (NotExistItemStockException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStock"));
             return;
         } catch (ItemStockNotEmptyException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.itemStockNotEmpty"));
             return;
+        }finally {
+            manageItemStockPageItemStockOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.deleteItemStock"));
 

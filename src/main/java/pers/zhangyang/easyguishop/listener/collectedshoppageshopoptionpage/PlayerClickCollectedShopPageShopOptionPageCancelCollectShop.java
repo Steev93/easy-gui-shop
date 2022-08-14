@@ -28,17 +28,18 @@ public class PlayerClickCollectedShopPageShopOptionPageCancelCollectShop impleme
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         CollectedShopPageShopOptionPage collectedShopPageShopPotionPage = (CollectedShopPageShopOptionPage) holder;
 
+        assert collectedShopPageShopPotionPage != null;
 
         try {
-            collectedShopPageShopPotionPage.send();
             guiService.cancelCollectShop(player.getUniqueId().toString(), collectedShopPageShopPotionPage.getShopMeta().getUuid());
-            collectedShopPageShopPotionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (NotExistShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopCollector"));
             return;
+        }finally {
+            collectedShopPageShopPotionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.cancelCollectShopInCollectedShopPageShopOptionPage"));
 

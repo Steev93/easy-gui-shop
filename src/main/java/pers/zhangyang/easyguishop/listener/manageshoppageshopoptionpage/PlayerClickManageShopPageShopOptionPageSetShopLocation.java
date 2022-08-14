@@ -33,12 +33,12 @@ public class PlayerClickManageShopPageShopOptionPageSetShopLocation implements L
 
 
         try {
-            manageShopPageShopOptionPage.send();
             guiService.setShopLocation(shopMeta.getUuid(), LocationUtil.serializeLocation(player.getLocation()));
-            manageShopPageShopOptionPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
+        }finally {
+            manageShopPageShopOptionPage.refresh();
         }
 
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.setShopLocation"));

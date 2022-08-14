@@ -33,11 +33,12 @@ public class PlayerClickCollectedShopPageShopOptionPageAllGoodPage implements Li
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
         AllGoodPage allGoodPage = new AllGoodPage(collectedShopPageShopPotionPage, player, shopMeta);
         try {
-            allGoodPage.send();
             guiService.viewShop(shopMeta.getUuid(), 1);
-            allGoodPage.send();
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
+        }finally {
+
+            allGoodPage.send();
         }
 
     }
