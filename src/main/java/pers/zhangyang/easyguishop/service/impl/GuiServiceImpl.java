@@ -792,14 +792,6 @@ public class GuiServiceImpl implements GuiService {
     }
 
 
-    @Override
-    public boolean hasItemStock(String playerUuid, String itemStack, int amount) {
-        ItemStockMeta itemStockMeta = new ItemStockDao().getByPlayerUuidAndItemStack(playerUuid, itemStack);
-        if (itemStockMeta == null) {
-            return false;
-        }
-        return itemStockMeta.getAmount() >= amount;
-    }
 
     @Override
     public void resetGoodPrice(String goodUuid) throws NotExistGoodException {

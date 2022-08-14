@@ -112,7 +112,6 @@ public interface GuiService {
 
     void takeGood(String goodUuid, int amount) throws NotMoreGoodException, NotExistGoodException;
 
-    boolean hasItemStock(String playerUuid, String itemStack, int amount);
 
     void resetGoodPrice(String goodUuid) throws NotExistGoodException;
 
