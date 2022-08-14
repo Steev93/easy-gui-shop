@@ -37,7 +37,6 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\ShopDao.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageIconPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageDepositGood.java
-E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageGoLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\OpenGuiExecutor.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageIconPageIconOptionPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\ReloadPluginExecutor.java
@@ -77,7 +76,6 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageSetGoodLimitTime.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\ShopCollectorMeta.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood.java
-E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpage\PlayerClickManageItemStockPageGoBankLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppage\PlayerClickManageShopPageBuyIconPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageAllShopPageShopOptionPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageAddShopDescription.java
@@ -90,7 +88,6 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageSetShopName.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetShopSystemExecutor.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppage\PlayerClickManageShopPageCreateShop.java
-E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageGoLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageCommentShop.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\IconDao.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\ShopCommentMeta.java
@@ -125,8 +122,10 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\GuiService.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\IconOwnerDao.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerInputAfterClickCollectedShopPageSearchByShopOwnerName.java
+E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpage\PlayerClickManageItemStockPageTeleportBankLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageGoodPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageAllGoodPage.java
+E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageTeleportShopLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPageManageIconPageIconOptionPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageSetShopLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllGoodPage.java
@@ -181,6 +180,7 @@ E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\Bu
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageShopCommentPage.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerClickCollectedShopPageSearchByShopName.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerInputAfterClickManageIconPageSearchByIconName.java
+E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageTeleportShopLocation.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescription.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpage\PlayerInputAfterClickManageGoodPageCreateGood.java
 E:\IdeaProjects\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\ResetIconLimitTimeExecutor.java
