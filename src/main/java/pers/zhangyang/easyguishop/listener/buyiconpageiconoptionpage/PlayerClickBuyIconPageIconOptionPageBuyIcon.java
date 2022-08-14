@@ -47,7 +47,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
         Integer playerPointsPrice = iconMeta.getPlayerPointsPrice();
         Economy vault = Vault.hook();
         PlayerPointsAPI playerPoints = PlayerPoints.hook();
-        if (vaultPrice==null&&playerPointsPrice==null&&itemPrice==null){
+        if (vaultPrice == null && playerPointsPrice == null && itemPrice == null) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPrice"));
             return;
         }
@@ -76,7 +76,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             } catch (StateChangeException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                 return;
-            }finally {
+            } finally {
                 buyIconPageIconOptionPage.send();
             }
 
@@ -106,7 +106,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
             } catch (StateChangeException e) {
                 MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                 return;
-            }finally {
+            } finally {
                 buyIconPageIconOptionPage.send();
             }
 

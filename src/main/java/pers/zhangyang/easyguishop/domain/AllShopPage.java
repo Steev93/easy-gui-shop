@@ -206,10 +206,10 @@ public class AllShopPage extends MultipleGuiPageBase implements BackAble {
 
     @Override
     public void back() {
-        List<String> cmdList= GuiYaml.INSTANCE.getStringList("gui.firstPageBackCommand");
-        if (cmdList==null){
+        List<String> cmdList = GuiYaml.INSTANCE.getStringList("gui.firstPageBackCommand");
+        if (cmdList == null) {
             return;
         }
-        CommandUtil.dispatchCommandList(viewer,cmdList);
+        CommandUtil.dispatchCommandList(viewer, cmdList);
     }
 }

@@ -33,7 +33,7 @@ public class PlayerClickManageIconPageResetShopIcon implements Listener {
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
-        }finally {
+        } finally {
             manageIconPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetShopIcon"));

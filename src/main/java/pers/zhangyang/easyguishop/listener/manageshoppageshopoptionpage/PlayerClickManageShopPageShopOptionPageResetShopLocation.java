@@ -35,7 +35,7 @@ public class PlayerClickManageShopPageShopOptionPageResetShopLocation implements
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
-        }finally {
+        } finally {
             manageShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetShopLocation"));

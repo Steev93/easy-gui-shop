@@ -35,7 +35,7 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDeleteItemStock im
         } catch (ItemStockNotEmptyException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.itemStockNotEmpty"));
             return;
-        }finally {
+        } finally {
             manageItemStockPageItemStockOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.deleteItemStock"));

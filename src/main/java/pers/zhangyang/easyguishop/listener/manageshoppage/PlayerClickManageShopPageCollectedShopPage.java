@@ -5,7 +5,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import pers.zhangyang.easyguishop.domain.AllShopPage;
 import pers.zhangyang.easyguishop.domain.CollectedShopPage;
 import pers.zhangyang.easyguishop.domain.ManageShopPage;
 import pers.zhangyang.easylibrary.annotation.EventListener;

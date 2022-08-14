@@ -37,7 +37,7 @@ public class PlayerClickManageShopPageShopOptionPageSetShopLocation implements L
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
-        }finally {
+        } finally {
             manageShopPageShopOptionPage.refresh();
         }
 

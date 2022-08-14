@@ -36,7 +36,7 @@ public class PlayerClickAllShopPageShopOptionPageAllGoodPage implements Listener
             guiService.viewShop(shopMeta.getUuid(), 1);
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
-        }finally {
+        } finally {
             allGoodPage.send();
         }
     }

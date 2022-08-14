@@ -63,6 +63,7 @@ public interface GuiService {
     GoodMeta getGood(String goodUuid);
 
     void buyIcon(String playerUuid, String iconUuid, IconMeta oldIconMeta) throws NotExistIconException, NotMoreIconException, StateChangeException, DuplicateIconOwnerException;
+
     void buyIconItem(String playerUuid, String iconUuid, IconMeta oldIconMeta) throws NotExistIconException, NotMoreIconException, StateChangeException, DuplicateIconOwnerException, NotEnoughItemStockException;
 
     void useShopIcon(String iconUuid, String shopUuid) throws NotExistIconException, NotExistShopException;
@@ -98,7 +99,8 @@ public interface GuiService {
     void changeGoodTransactionType(String goodUuid) throws NotExistGoodException;
 
     void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, NotMoreGoodException, StateChangeException;
-    void tradeItem(String goodUuid, int amount, GoodMeta old,String merchantUuid,String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException;
+
+    void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException;
 
     void createTradeRecord(TradeRecordMeta tradeRecordMeta) throws DuplicateTradeRecordException;
 

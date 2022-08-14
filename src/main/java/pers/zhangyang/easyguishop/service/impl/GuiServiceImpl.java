@@ -397,12 +397,12 @@ public class GuiServiceImpl implements GuiService {
         if (itemStockMeta == null) {
             throw new NotEnoughItemStockException();
         }
-        if (itemStockMeta.getAmount()<iconMeta.getItemPrice()) {
+        if (itemStockMeta.getAmount() < iconMeta.getItemPrice()) {
             throw new NotEnoughItemStockException();
         }
         //货币扣除
-        itemStockMeta.setAmount(itemStockMeta.getAmount()- iconMeta.getItemPrice());
-        new ItemStockDao().deleteByPlayerUuidAndItemStack(playerUuid,iconMeta.getCurrencyItemStack());
+        itemStockMeta.setAmount(itemStockMeta.getAmount() - iconMeta.getItemPrice());
+        new ItemStockDao().deleteByPlayerUuidAndItemStack(playerUuid, iconMeta.getCurrencyItemStack());
         new ItemStockDao().insert(itemStockMeta);
 
         if (!iconMeta.isSystem()) {
@@ -632,7 +632,7 @@ public class GuiServiceImpl implements GuiService {
     }
 
     @Override
-    public void tradeItem(String goodUuid, int amount, GoodMeta old,String merchantUuid,String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException {
+    public void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException {
         GoodMeta goodMeta = new GoodDao().getByUuid(goodUuid);
         if (goodMeta == null) {
             throw new NotExistGoodException();
@@ -686,12 +686,13 @@ public class GuiServiceImpl implements GuiService {
             }
 
             //顾客货币增加
-            if (itemStockMetaCustomer==null){
-                itemStockMetaCustomer=new ItemStockMeta(customUuid,goodMeta.getCurrencyItemStack(),0);
+            if (itemStockMetaCustomer == null) {
+                itemStockMetaCustomer = new ItemStockMeta(customUuid, goodMeta.getCurrencyItemStack(), 0);
             }
-            itemStockMetaCustomer.setAmount(itemStockMetaCustomer.getAmount()+ afterTax);
+            itemStockMetaCustomer.setAmount(itemStockMetaCustomer.getAmount() + afterTax);
 
-        }if (goodMeta.getType().equalsIgnoreCase("出售")) {
+        }
+        if (goodMeta.getType().equalsIgnoreCase("出售")) {
 
             if (itemStockMetaCustomer == null) {
                 throw new NotEnoughItemStockException();
@@ -700,7 +701,7 @@ public class GuiServiceImpl implements GuiService {
                 throw new NotEnoughItemStockException();
             }
             //顾客货币减少
-            itemStockMetaCustomer.setAmount(itemStockMetaCustomer.getAmount()- beforeTax);
+            itemStockMetaCustomer.setAmount(itemStockMetaCustomer.getAmount() - beforeTax);
 
 
             if (!goodMeta.isSystem()) {
@@ -708,7 +709,7 @@ public class GuiServiceImpl implements GuiService {
                 if (itemStockMetaMerchant == null) {
                     itemStockMetaMerchant = new ItemStockMeta(merchantUuid, goodMeta.getCurrencyItemStack(), 0);
                 }
-            itemStockMetaMerchant.setAmount(itemStockMetaMerchant.getAmount()+ afterTax);
+                itemStockMetaMerchant.setAmount(itemStockMetaMerchant.getAmount() + afterTax);
             }
 
         }

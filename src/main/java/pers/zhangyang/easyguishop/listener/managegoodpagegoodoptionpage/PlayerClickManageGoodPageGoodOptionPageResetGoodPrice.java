@@ -34,7 +34,7 @@ public class PlayerClickManageGoodPageGoodOptionPageResetGoodPrice implements Li
         } catch (NotExistGoodException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;
-        }finally {
+        } finally {
             manageGoodPageGoodOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.resetGoodPrice"));

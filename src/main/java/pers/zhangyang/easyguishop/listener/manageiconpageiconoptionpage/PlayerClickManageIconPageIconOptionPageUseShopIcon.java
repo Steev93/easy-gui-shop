@@ -37,7 +37,7 @@ public class PlayerClickManageIconPageIconOptionPageUseShopIcon implements Liste
         } catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
-        }finally {
+        } finally {
             manageIconPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.useShopIcon"));

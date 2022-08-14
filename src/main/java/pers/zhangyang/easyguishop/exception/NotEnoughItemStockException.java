@@ -1,4 +1,4 @@
 package pers.zhangyang.easyguishop.exception;
 
-public class NotEnoughItemStockException extends Exception{
+public class NotEnoughItemStockException extends Exception {
 }

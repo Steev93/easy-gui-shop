@@ -38,7 +38,7 @@ public class PlayerClickCollectedShopPageShopOptionPageCancelCollectShop impleme
         } catch (NotExistShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopCollector"));
             return;
-        }finally {
+        } finally {
             collectedShopPageShopPotionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.cancelCollectShopInCollectedShopPageShopOptionPage"));

@@ -63,8 +63,8 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         }
         OfflinePlayer merchant = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getMerchantUuid()));
         OfflinePlayer customer = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getCustomerUuid()));
-        rep.put("{merchant_name}", merchant.getName()==null?"/":merchant.getName());
-        rep.put("{customer_name}", merchant.getName()==null?"/":merchant.getName());
+        rep.put("{merchant_name}", merchant.getName() == null ? "/" : merchant.getName());
+        rep.put("{customer_name}", merchant.getName() == null ? "/" : merchant.getName());
         rep.put("{good_system}", String.valueOf(tradeRecordMeta.isGoodSystem()));
         rep.put("{good_type}", tradeRecordMeta.getGoodType());
         rep.put("{trade_amount}", String.valueOf(tradeRecordMeta.getTradeAmount()));

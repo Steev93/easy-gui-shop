@@ -74,9 +74,9 @@ public class ManageTradeRecordPage extends MultipleGuiPageBase implements BackAb
             OfflinePlayer merchant = Bukkit.getOfflinePlayer(UUID.fromString(shopCommentMeta.getMerchantUuid()));
             OfflinePlayer customer = Bukkit.getOfflinePlayer(UUID.fromString(shopCommentMeta.getCustomerUuid()));
             HashMap<String, String> rep = new HashMap<>();
-            rep.put("{merchant_name}", merchant.getName()==null?"/":merchant.getName());
-            
-            rep.put("{customer_name}", merchant.getName()==null?"/":merchant.getName());
+            rep.put("{merchant_name}", merchant.getName() == null ? "/" : merchant.getName());
+
+            rep.put("{customer_name}", merchant.getName() == null ? "/" : merchant.getName());
             rep.put("{good_system}", String.valueOf(shopCommentMeta.isGoodSystem()));
             rep.put("{trade_tax_rate}", String.valueOf(shopCommentMeta.getTradeTaxRate()));
             rep.put("{trade_amount}", String.valueOf(shopCommentMeta.getTradeAmount()));

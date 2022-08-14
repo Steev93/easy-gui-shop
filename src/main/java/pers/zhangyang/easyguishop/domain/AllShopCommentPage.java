@@ -124,7 +124,7 @@ public class AllShopCommentPage extends MultipleGuiPageBase implements BackAble 
             ShopCommentMeta shopCommentMeta = shopCommentMetaList.get(i);
             OfflinePlayer commenter = Bukkit.getOfflinePlayer(UUID.fromString(shopCommentMeta.getCommenterUuid()));
             HashMap<String, String> rep = new HashMap<>();
-            rep.put("{commenter_name}", commenter.getName()==null?"/":commenter.getName());
+            rep.put("{commenter_name}", commenter.getName() == null ? "/" : commenter.getName());
             rep.put("{comment_time}", TimeUtil.getTimeFromTimeMill(shopCommentMeta.getCommentTime()));
             ItemStack itemStack = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.shopComment");
             Gson gson = new Gson();

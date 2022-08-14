@@ -41,7 +41,7 @@ public class PlayerClickAllShopPageShopOptionPageCollectShop implements Listener
         } catch (DuplicateShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollector"));
             return;
-        }finally {
+        } finally {
             allShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.collectShopInAllShopPageShopOptionPage"));

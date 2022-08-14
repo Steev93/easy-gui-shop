@@ -159,7 +159,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     double taxRate = SettingYaml.INSTANCE.getTax("setting.tax.item");
 
                     //交易
-                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta,merchant.getUniqueId().toString(),owner.getUniqueId().toString());
+                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta, merchant.getUniqueId().toString(), owner.getUniqueId().toString());
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
                             allGoodPageGoodOptionPage.getShopMeta().getOwnerUuid(),
                             goodMeta.getGoodItemStack(), amount, goodMeta.isSystem(), System.currentTimeMillis(), goodMeta.getType(),
@@ -168,7 +168,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     tradeRecordMeta.setGoodCurrencyItemStack(goodMeta.getCurrencyItemStack());
                     guiService.createTradeRecord(tradeRecordMeta);
 
-                } catch ( NotMoreGoodException | DuplicateTradeRecordException | NotEnoughItemStockException ignored) {
+                } catch (NotMoreGoodException | DuplicateTradeRecordException | NotEnoughItemStockException ignored) {
                 } catch (NotExistGoodException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
@@ -280,7 +280,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                 try {
 
                     //交易
-                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta,merchant.getUniqueId().toString(),owner.getUniqueId().toString());
+                    guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta, merchant.getUniqueId().toString(), owner.getUniqueId().toString());
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
                             merchant.getUniqueId().toString(), goodMeta.getGoodItemStack(), amount, goodMeta.isSystem(),
                             System.currentTimeMillis(), goodMeta.getType(), taxRate);

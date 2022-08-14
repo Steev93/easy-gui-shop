@@ -39,7 +39,7 @@ public class PlayerClickManageShopPageShopOptionPageRemoveShopDescription implem
         } catch (NotExistLineException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLine"));
             return;
-        }finally {
+        } finally {
             manageShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.removeShopDescription"));
