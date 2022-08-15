@@ -22,7 +22,6 @@ public class ResetIconLimitTimeExecutor extends ExecutorBase {
         if (args.length != 2) {
             return;
         }
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
             guiService.setIconLimitTime(args[0], null);

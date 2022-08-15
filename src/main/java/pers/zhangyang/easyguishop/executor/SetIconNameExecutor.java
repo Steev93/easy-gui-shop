@@ -23,8 +23,6 @@ public class SetIconNameExecutor extends ExecutorBase {
         if (args.length != 2) {
             return;
         }
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
-        args[1] = ChatColor.translateAlternateColorCodes('&', args[1]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
             guiService.setIconName(args[0], args[1]);

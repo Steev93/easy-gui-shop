@@ -38,7 +38,6 @@ public class CreateIconExecutor extends ExecutorBase {
             return;
         }
 
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         ItemStack itemStack = PlayerUtil.getItemInMainHand(player);
         IconMeta iconMeta = new IconMeta(UuidUtil.getUUID(), args[0], System.currentTimeMillis(), 0,
                 ItemStackUtil.itemStackSerialize(itemStack), false);

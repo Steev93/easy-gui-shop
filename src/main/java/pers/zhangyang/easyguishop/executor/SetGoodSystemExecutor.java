@@ -28,8 +28,6 @@ public class SetGoodSystemExecutor extends ExecutorBase {
             MessageUtil.invalidArgument(sender, args[2]);
             return;
         }
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
-        args[1] = ChatColor.translateAlternateColorCodes('&', args[1]);
         boolean system = Boolean.parseBoolean(args[2]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {

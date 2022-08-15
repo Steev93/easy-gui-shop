@@ -27,7 +27,6 @@ public class SetShopSystemExecutor extends ExecutorBase {
             MessageUtil.invalidArgument(sender, args[1]);
             return;
         }
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         boolean system = Boolean.parseBoolean(args[1]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {

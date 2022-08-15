@@ -28,7 +28,6 @@ public class SetIconSystemExecutor extends ExecutorBase {
             return;
         }
         boolean system = Boolean.parseBoolean(args[1]);
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
             guiService.setIconSystem(args[0], system);

@@ -22,7 +22,6 @@ public class DeleteIconExecutor extends ExecutorBase {
             return;
         }
 
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
             guiService.deleteIcon(args[0]);

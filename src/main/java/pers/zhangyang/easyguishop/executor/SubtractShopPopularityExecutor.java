@@ -33,7 +33,6 @@ public class SubtractShopPopularityExecutor extends ExecutorBase {
             MessageUtil.invalidArgument(sender, args[1]);
             return;
         }
-        args[0] = ChatColor.translateAlternateColorCodes('&', args[0]);
         CommandService guiService = (CommandService) new TransactionInvocationHandler(new CommandServiceImpl()).getProxy();
         try {
             guiService.subtractShopPopularity(args[0], amount);
