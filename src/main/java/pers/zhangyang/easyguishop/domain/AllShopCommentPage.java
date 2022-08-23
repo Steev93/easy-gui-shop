@@ -38,7 +38,7 @@ public class AllShopCommentPage extends MultipleGuiPageBase implements BackAble 
     private ShopMeta shopMeta;
 
     public AllShopCommentPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.allShopCommentPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.allShopCommentPage"), player, previousHolder, previousHolder.getOwner(),54);
         this.shopMeta = shopMeta;
         stats = ShopCommentPageStatsEnum.NORMAL;
     }
@@ -210,5 +210,19 @@ public class AllShopCommentPage extends MultipleGuiPageBase implements BackAble 
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

@@ -26,7 +26,7 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
     private TradeRecordMeta tradeRecordMeta;
 
     public ManageTradeRecordPageTradeRecordOptionPage(GuiPage previousHolder, Player player, TradeRecordMeta iconMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageTradeRecordPageTradeRecordOptionPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageTradeRecordPageTradeRecordOptionPage"), player, previousHolder, previousHolder.getOwner(),54);
 
         this.tradeRecordMeta = iconMeta;
 
@@ -64,7 +64,7 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
         OfflinePlayer merchant = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getMerchantUuid()));
         OfflinePlayer customer = Bukkit.getOfflinePlayer(UUID.fromString(tradeRecordMeta.getCustomerUuid()));
         rep.put("{merchant_name}", merchant.getName() == null ? "/" : merchant.getName());
-        rep.put("{customer_name}", merchant.getName() == null ? "/" : merchant.getName());
+        rep.put("{customer_name}", merchant.getName() == null ? "/" : customer.getName());
         rep.put("{good_system}", String.valueOf(tradeRecordMeta.isGoodSystem()));
         rep.put("{good_type}", tradeRecordMeta.getGoodType());
         rep.put("{trade_amount}", String.valueOf(tradeRecordMeta.getTradeAmount()));
@@ -100,5 +100,10 @@ public class ManageTradeRecordPageTradeRecordOptionPage extends SingleGuiPageBas
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

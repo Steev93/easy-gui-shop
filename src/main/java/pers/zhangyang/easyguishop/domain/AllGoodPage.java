@@ -32,7 +32,7 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
     private ShopMeta shopMeta;
 
     public AllGoodPage(GuiPage backPage, Player viewer, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.allGoodPage"), viewer, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.allGoodPage"), viewer, backPage, backPage.getOwner(),54);
         this.shopMeta = shopMeta;
         stats = ManageShopPageStatsEnum.NORMAL;
     }
@@ -185,6 +185,20 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
         refresh();
     }
 
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
+    }
+
     public ShopMeta getShopMeta() {
         return shopMeta;
     }
@@ -208,5 +222,7 @@ public class AllGoodPage extends MultipleGuiPageBase implements BackAble {
     public void back() {
         backPage.refresh();
     }
+
+
 }
 

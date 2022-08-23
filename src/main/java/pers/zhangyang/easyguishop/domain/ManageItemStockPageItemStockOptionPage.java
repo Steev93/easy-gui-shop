@@ -22,7 +22,7 @@ public class ManageItemStockPageItemStockOptionPage extends SingleGuiPageBase im
     private ItemStockMeta itemStockMeta;
 
     public ManageItemStockPageItemStockOptionPage(GuiPage previousHolder, Player player, ItemStockMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageItemStockPageItemStockOptionPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageItemStockPageItemStockOptionPage"), player, previousHolder, previousHolder.getOwner(),54);
         this.itemStockMeta = shopMeta;
     }
 
@@ -82,5 +82,10 @@ public class ManageItemStockPageItemStockOptionPage extends SingleGuiPageBase im
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

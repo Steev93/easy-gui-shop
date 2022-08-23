@@ -29,7 +29,8 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
     private int pageIndex;
 
     public ManageItemStockPage(GuiPage previousHolder, Player player) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageItemStockPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageItemStockPage"), player, previousHolder,
+                previousHolder.getOwner(),54);
 
     }
 
@@ -134,5 +135,18 @@ public class ManageItemStockPage extends MultipleGuiPageBase implements BackAble
     @Override
     public void back() {
         backPage.refresh();
+    }
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

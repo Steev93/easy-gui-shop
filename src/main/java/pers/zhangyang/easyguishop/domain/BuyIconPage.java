@@ -30,7 +30,7 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
     private String searchContent;
 
     public BuyIconPage(GuiPage backPage, Player player) {
-        super(GuiYaml.INSTANCE.getString("gui.title.buyIconPage"), player, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.buyIconPage"), player, backPage, backPage.getOwner(),54);
         stats = BuyIconPageStatsEnum.NORMAL;
     }
 
@@ -165,5 +165,19 @@ public class BuyIconPage extends MultipleGuiPageBase implements BackAble {
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

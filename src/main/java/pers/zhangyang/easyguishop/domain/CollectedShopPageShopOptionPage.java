@@ -19,7 +19,7 @@ public class CollectedShopPageShopOptionPage extends SingleGuiPageBase implement
     private ShopMeta shopMeta;
 
     public CollectedShopPageShopOptionPage(GuiPage backPage, Player viewer, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPageShopOptionPage"), viewer, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPageShopOptionPage"), viewer, backPage, backPage.getOwner(),54);
         this.shopMeta = shopMeta;
 
     }
@@ -84,6 +84,13 @@ public class CollectedShopPageShopOptionPage extends SingleGuiPageBase implement
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }
 

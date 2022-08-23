@@ -24,7 +24,7 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
     private ShopMeta shopMeta;
 
     public ManageShopPageShopOptionPage(GuiPage previousHolder, Player player, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageShopPageShopOptionPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageShopPageShopOptionPage"), player, previousHolder, previousHolder.getOwner(),54);
 
         this.shopMeta = shopMeta;
 
@@ -109,6 +109,11 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }
 

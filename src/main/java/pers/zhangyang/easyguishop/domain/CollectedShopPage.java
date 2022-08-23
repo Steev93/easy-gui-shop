@@ -35,7 +35,7 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
     private String searchContent;
 
     public CollectedShopPage(GuiPage backPage, Player viewer) {
-        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPage"), viewer, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPage"), viewer, backPage, backPage.getOwner(),54);
         stats = CollectedShopPageEnum.NORMAL;
     }
 
@@ -198,5 +198,20 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

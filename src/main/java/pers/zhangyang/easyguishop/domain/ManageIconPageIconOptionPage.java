@@ -24,7 +24,7 @@ public class ManageIconPageIconOptionPage extends SingleGuiPageBase implements B
     private ShopMeta shopMeta;
 
     public ManageIconPageIconOptionPage(GuiPage previousHolder, Player player, IconMeta iconMeta, ShopMeta shopMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageIconPageIconOptionPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageIconPageIconOptionPage"), player, previousHolder, previousHolder.getOwner(),54);
         this.iconMeta = iconMeta;
         this.shopMeta = shopMeta;
 
@@ -93,5 +93,10 @@ public class ManageIconPageIconOptionPage extends SingleGuiPageBase implements B
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

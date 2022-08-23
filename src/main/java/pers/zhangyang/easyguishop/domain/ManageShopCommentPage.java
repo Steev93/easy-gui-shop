@@ -34,7 +34,7 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
     private int pageIndex;
 
     public ManageShopCommentPage(GuiPage previousHolder, Player player) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageShopCommentPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageShopCommentPage"), player, previousHolder, previousHolder.getOwner(),54);
 
     }
 
@@ -136,5 +136,18 @@ public class ManageShopCommentPage extends MultipleGuiPageBase implements BackAb
     @Override
     public void back() {
         backPage.refresh();
+    }
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

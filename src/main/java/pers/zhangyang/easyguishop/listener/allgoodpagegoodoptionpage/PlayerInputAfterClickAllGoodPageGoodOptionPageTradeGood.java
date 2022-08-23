@@ -161,7 +161,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     //交易
                     guiService.tradeItem(goodMeta.getUuid(), amount, goodMeta, merchant.getUniqueId().toString(), owner.getUniqueId().toString());
                     TradeRecordMeta tradeRecordMeta = new TradeRecordMeta(UuidUtil.getUUID(), owner.getUniqueId().toString(),
-                            allGoodPageGoodOptionPage.getShopMeta().getOwnerUuid(),
+                            merchant.getUniqueId().toString(),
                             goodMeta.getGoodItemStack(), amount, goodMeta.isSystem(), System.currentTimeMillis(), goodMeta.getType(),
                             taxRate);
                     tradeRecordMeta.setGoodItemPrice(goodMeta.getItemPrice());

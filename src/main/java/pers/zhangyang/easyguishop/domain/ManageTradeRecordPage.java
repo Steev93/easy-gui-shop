@@ -30,7 +30,7 @@ public class ManageTradeRecordPage extends MultipleGuiPageBase implements BackAb
     private int pageIndex;
 
     public ManageTradeRecordPage(GuiPage previousHolder, Player player) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageTradeRecordPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageTradeRecordPage"), player, previousHolder, previousHolder.getOwner(),54);
 
     }
 
@@ -76,7 +76,7 @@ public class ManageTradeRecordPage extends MultipleGuiPageBase implements BackAb
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{merchant_name}", merchant.getName() == null ? "/" : merchant.getName());
 
-            rep.put("{customer_name}", merchant.getName() == null ? "/" : merchant.getName());
+            rep.put("{customer_name}", merchant.getName() == null ? "/" : customer.getName());
             rep.put("{good_system}", String.valueOf(shopCommentMeta.isGoodSystem()));
             rep.put("{trade_tax_rate}", String.valueOf(shopCommentMeta.getTradeTaxRate()));
             rep.put("{trade_amount}", String.valueOf(shopCommentMeta.getTradeAmount()));
@@ -144,5 +144,18 @@ public class ManageTradeRecordPage extends MultipleGuiPageBase implements BackAb
     @Override
     public void back() {
         backPage.refresh();
+    }
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

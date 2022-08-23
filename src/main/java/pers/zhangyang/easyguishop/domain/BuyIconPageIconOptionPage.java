@@ -23,7 +23,7 @@ public class BuyIconPageIconOptionPage extends SingleGuiPageBase implements Back
     private IconMeta iconMeta;
 
     public BuyIconPageIconOptionPage(GuiPage backPage, Player player, IconMeta iconMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.buyIconPageIconOptionPage"), player, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.buyIconPageIconOptionPage"), player, backPage, backPage.getOwner(),54);
         this.iconMeta = iconMeta;
     }
 
@@ -125,5 +125,12 @@ public class BuyIconPageIconOptionPage extends SingleGuiPageBase implements Back
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

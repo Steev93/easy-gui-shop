@@ -24,7 +24,7 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
     private GoodMeta goodMeta;
 
     public ManageGoodPageGoodOptionPage(GuiPage previousHolder, Player player, ShopMeta shopMeta, GoodMeta goodMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.manageGoodPageGoodOptionPage"), player, previousHolder, previousHolder.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.manageGoodPageGoodOptionPage"), player, previousHolder, previousHolder.getOwner(),54);
         this.shopMeta = shopMeta;
         this.goodMeta = goodMeta;
 
@@ -140,5 +140,12 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

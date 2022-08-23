@@ -24,7 +24,7 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
     private GoodMeta goodMeta;
 
     public AllGoodPageGoodOptionPage(GuiPage backPage, Player player, ShopMeta shopMeta, GoodMeta goodMeta) {
-        super(GuiYaml.INSTANCE.getString("gui.title.allGoodPageGoodOptionPage"), player, backPage, backPage.getOwner());
+        super(GuiYaml.INSTANCE.getString("gui.title.allGoodPageGoodOptionPage"), player, backPage, backPage.getOwner(),54);
         this.shopMeta = shopMeta;
         this.goodMeta = goodMeta;
 
@@ -149,5 +149,10 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
     @Override
     public void back() {
         backPage.refresh();
+    }
+
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }

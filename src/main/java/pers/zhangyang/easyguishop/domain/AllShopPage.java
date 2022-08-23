@@ -33,7 +33,7 @@ public class AllShopPage extends MultipleGuiPageBase implements BackAble {
     private String searchContent;
 
     public AllShopPage(Player player, OfflinePlayer owner) {
-        super(GuiYaml.INSTANCE.getString("gui.title.allShopPage"), player, null, owner);
+        super(GuiYaml.INSTANCE.getString("gui.title.allShopPage"), player, null, owner,54);
         stats = AllShopPageStatsEnum.NORMAL;
     }
 
@@ -211,5 +211,19 @@ public class AllShopPage extends MultipleGuiPageBase implements BackAble {
             return;
         }
         CommandUtil.dispatchCommandList(viewer, cmdList);
+    }
+
+    @Override
+    public int getPreviousPageSlot() {
+        return 45;
+    }
+
+    @Override
+    public int getNextPageSlot() {
+        return 53;
+    }
+    @Override
+    public int getBackSlot() {
+        return 49;
     }
 }
