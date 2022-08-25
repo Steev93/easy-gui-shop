@@ -40,8 +40,6 @@ public class PlayerClickCollectedShopPageShopOptionPageCollectShop implements Li
         } catch (DuplicateShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollector"));
             return;
-        } finally {
-            collectedShopPageShopPotionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.collectShopInCollectedShopPageShopOptionPage"));
 

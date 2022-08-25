@@ -44,8 +44,6 @@ public class PlayerClickManageItemStockPageCreateItemStock implements Listener {
         } catch (DuplicateItemStockException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateItemStock"));
             return;
-        } finally {
-            manageItemStockPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.createItemStock"));
 

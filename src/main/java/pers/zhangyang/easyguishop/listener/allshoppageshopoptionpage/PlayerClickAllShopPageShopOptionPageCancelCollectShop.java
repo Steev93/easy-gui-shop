@@ -39,8 +39,6 @@ public class PlayerClickAllShopPageShopOptionPageCancelCollectShop implements Li
         } catch (NotExistShopCollectorException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopCollector"));
             return;
-        } finally {
-            allShopPageShopOptionPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.cancelCollectShopInAllShopPageShopOptionPage"));
 

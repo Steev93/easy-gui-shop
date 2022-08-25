@@ -41,8 +41,6 @@ public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
         } catch (NotExistShopCommentException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShopComment"));
             return;
-        } finally {
-            manageShopCommentPage.refresh();
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.deleteShopComment"));
 
