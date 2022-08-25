@@ -225,7 +225,12 @@ public class CommandServiceImpl implements CommandService {
             try {
                 String data = s.getLocation();
                 if (data != null) {
-                    LocationUtil.deserializeLocation(data);
+                   Location location= LocationUtil.deserializeLocation(data);
+                   if (location.getWorld()==null){
+                       new ShopDao().deleteByUuid(s.getUuid());
+                       s.setLocation(null);
+                       new ShopDao().insert(s);
+                   }
                 }
             } catch (Exception e) {
                 new ShopDao().deleteByUuid(s.getUuid());
