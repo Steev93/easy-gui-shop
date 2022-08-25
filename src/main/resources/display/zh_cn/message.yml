@@ -79,6 +79,8 @@ message:
       - "&c&l玩家不在线。"
 
     #经常发生的失败提示，每个操作对应一个失败提示
+    shopLocationWorldBlackList:
+      - "&C&l店铺坐标黑名单，禁止把店铺坐标设置在这个世界"
     notEnoughVaultWhenBuyShopPopularity:
       - "&C&l钱不够，买不起人气"
     notExistLineWhenUpdateShopDescription:

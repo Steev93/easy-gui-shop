@@ -19,6 +19,8 @@ import pers.zhangyang.easylibrary.util.LocationUtil;
 import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
+import java.util.List;
+
 @EventListener
 public class PlayerClickManageShopPageShopOptionPageSetShopLocation implements Listener {
 
@@ -37,6 +39,12 @@ public class PlayerClickManageShopPageShopOptionPageSetShopLocation implements L
         shopMeta=guiService.getShop(shopMeta.getUuid());
         if (shopMeta==null){
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
+            return;
+        }
+
+        List<String> worldBlackList=SettingYaml.INSTANCE.getStringList("setting.shopLocationWorldBlackList");
+        if (worldBlackList!=null&&worldBlackList.contains(player.getWorld().getName())){
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.shopLocationWorldBlackList"));
             return;
         }
 

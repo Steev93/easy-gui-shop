@@ -25,6 +25,11 @@ setting:
   # If you leave it blank, it means that this restriction is not enabled
   manageGoodRange: 32
 
+  #哪些世界禁止设置店铺坐标
+  # Which worlds prohibit setting store coordinates
+  shopLocationWorldBlackList:
+    - "world_not_known"
+
   #距离银行坐标多少范围内，才可以存取物品货币库存，必须非负，如果填错，采用默认值32，如果不填，则意味着不开启这个限制
   # How far from the bank coordinates can access the item currency inventory, must be non-negative,
   #if you fill in the wrong , using the default value of 32

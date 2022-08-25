@@ -10,12 +10,14 @@ import pers.zhangyang.easyguishop.dao.*;
 import pers.zhangyang.easyguishop.exception.*;
 import pers.zhangyang.easyguishop.meta.*;
 import pers.zhangyang.easyguishop.service.CommandService;
+import pers.zhangyang.easyguishop.yaml.SettingYaml;
 import pers.zhangyang.easylibrary.util.ItemStackUtil;
 import pers.zhangyang.easylibrary.util.LocationUtil;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CommandServiceImpl implements CommandService {
 
@@ -204,23 +206,11 @@ public class CommandServiceImpl implements CommandService {
     @Override
     public void correctDatabase() {
 
-        //修理Shop表的序列化数据
-        List<ShopMeta> shopMetaList = new ShopDao().list();
-        for (ShopMeta s : shopMetaList) {
-            if (s.getLocation()==null) {
-            continue;
-            }
-            Location location=LocationUtil.deserializeLocation(s.getLocation());
-            if (location==null){
-                s.setLocation(null);
-                new ShopDao().deleteByUuid(s.getUuid());
-                new ShopDao().insert(s);
-            }
-        }
+
 
 
         //修理Shop表的序列化数据
-         shopMetaList = new ShopDao().list();
+        List<ShopMeta>  shopMetaList = new ShopDao().list();
         for (ShopMeta s : shopMetaList) {
             Gson gson = new Gson();
             Type stringListType = new TypeToken<ArrayList<String>>() {
@@ -242,6 +232,14 @@ public class CommandServiceImpl implements CommandService {
                 s.setLocation(null);
                 new ShopDao().insert(s);
             }
+
+            List<String> wb= SettingYaml.INSTANCE.getStringList("setting.shopLocationWorldBlackList");
+            if (wb!=null&&s.getLocation()!=null&&wb.contains(Objects.requireNonNull(LocationUtil.deserializeLocation(s.getLocation()).getWorld()).getName())){
+                new ShopDao().deleteByUuid(s.getUuid());
+                s.setLocation(null);
+                new ShopDao().insert(s);
+            }
+
         }
 
         //修理Good表的序列化数据

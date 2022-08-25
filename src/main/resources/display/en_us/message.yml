@@ -79,6 +79,8 @@ message:
       - "&c&lThe player is not online."
 
     #Frequent failure hints, one failure hint for each action
+    shopLocationWorldBlackList:
+      - "&C&l store coordinates blacklist, forbid to set store coordinates in this world"
     notEnoughVaultWhenBuyShopPopularity:
       - "&C&l don't have enough money to buy popularity"
     notExistLineWhenUpdateShopDescription:
