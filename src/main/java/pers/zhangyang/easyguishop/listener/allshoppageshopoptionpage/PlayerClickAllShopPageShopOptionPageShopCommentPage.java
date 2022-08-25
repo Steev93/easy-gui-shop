@@ -15,7 +15,7 @@ import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 @EventListener
 public class PlayerClickAllShopPageShopOptionPageShopCommentPage implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = AllShopPageShopOptionPage.class, slot = {23})
+    @GuiDiscreteButtonHandler(guiPage = AllShopPageShopOptionPage.class, slot = {23},closeGui = false,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

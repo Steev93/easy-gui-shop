@@ -16,7 +16,7 @@ import java.util.List;
 @EventListener
 public class PlayerClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {13})
+    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {13},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

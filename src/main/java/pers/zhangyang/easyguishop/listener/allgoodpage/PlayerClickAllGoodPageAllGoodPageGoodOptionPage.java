@@ -13,7 +13,7 @@ import pers.zhangyang.easylibrary.annotation.GuiSerialButtonHandler;
 @EventListener
 public class PlayerClickAllGoodPageAllGoodPageGoodOptionPage implements Listener {
 
-    @GuiSerialButtonHandler(guiPage = AllGoodPage.class, from = 0, to = 44)
+    @GuiSerialButtonHandler(guiPage = AllGoodPage.class, from = 0, to = 44,closeGui = false,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         int slot = event.getRawSlot();
         AllGoodPage allGoodPage = (AllGoodPage) event.getInventory().getHolder();
@@ -24,8 +24,6 @@ public class PlayerClickAllGoodPageAllGoodPageGoodOptionPage implements Listener
         GoodMeta goodMeta = allGoodPage.getGoodMetaList().get(slot);
         AllGoodPageGoodOptionPage allGoodPageGoodOptionPage = new AllGoodPageGoodOptionPage(allGoodPage, player, shopMeta, goodMeta);
         allGoodPageGoodOptionPage.send();
-
-
     }
 
 }

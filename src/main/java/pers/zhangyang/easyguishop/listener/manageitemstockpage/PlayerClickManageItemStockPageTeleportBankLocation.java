@@ -16,7 +16,7 @@ import pers.zhangyang.easylibrary.util.MessageUtil;
 @EventListener
 public class PlayerClickManageItemStockPageTeleportBankLocation implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageItemStockPage.class, slot = {47})
+    @GuiDiscreteButtonHandler(guiPage = ManageItemStockPage.class, slot = {47},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

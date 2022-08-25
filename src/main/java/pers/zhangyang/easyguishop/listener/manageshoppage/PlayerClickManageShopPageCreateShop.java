@@ -21,7 +21,7 @@ import java.util.List;
 @EventListener
 public class PlayerClickManageShopPageCreateShop implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageShopPage.class, slot = {48})
+    @GuiDiscreteButtonHandler(guiPage = ManageShopPage.class, slot = {48},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

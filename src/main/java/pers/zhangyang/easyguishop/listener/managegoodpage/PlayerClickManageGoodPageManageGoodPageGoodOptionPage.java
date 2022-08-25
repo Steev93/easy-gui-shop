@@ -15,7 +15,7 @@ import pers.zhangyang.easylibrary.annotation.GuiSerialButtonHandler;
 @EventListener
 public class PlayerClickManageGoodPageManageGoodPageGoodOptionPage implements Listener {
 
-    @GuiSerialButtonHandler(guiPage = ManageGoodPage.class, from = 0, to = 44)
+    @GuiSerialButtonHandler(guiPage = ManageGoodPage.class, from = 0, to = 44,closeGui = false,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

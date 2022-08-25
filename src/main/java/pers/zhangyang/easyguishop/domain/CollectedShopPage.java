@@ -9,7 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import pers.zhangyang.easyguishop.enumration.CollectedShopPageEnum;
+import pers.zhangyang.easyguishop.enumration.CollectedShopPageStatsEnum;
 import pers.zhangyang.easyguishop.meta.IconMeta;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
@@ -31,24 +31,24 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
     private List<ShopMeta> shopMetaList = new ArrayList<>();
     private int pageIndex;
-    private CollectedShopPageEnum stats;
+    private CollectedShopPageStatsEnum stats;
     private String searchContent;
 
     public CollectedShopPage(GuiPage backPage, Player viewer) {
         super(GuiYaml.INSTANCE.getString("gui.title.collectedShopPage"), viewer, backPage, backPage.getOwner(),54);
-        stats = CollectedShopPageEnum.NORMAL;
+        stats = CollectedShopPageStatsEnum.NORMAL;
     }
 
 
     public void searchByShopName(@NotNull String name) {
-        this.stats = CollectedShopPageEnum.SEARCH_SHOP_NAME;
+        this.stats = CollectedShopPageStatsEnum.SEARCH_SHOP_NAME;
         this.searchContent = name;
         this.pageIndex = 0;
         refresh();
     }
 
     public void searchByShopOwnerName(@NotNull String ownerName) {
-        this.stats = CollectedShopPageEnum.SEARCH_OWNER_NAME;
+        this.stats = CollectedShopPageStatsEnum.SEARCH_OWNER_NAME;
         this.searchContent = ownerName;
         this.pageIndex = 0;
         refresh();
@@ -68,10 +68,10 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
         } else {
             inventory.setItem(45, null);
         }
-        if (stats.equals(CollectedShopPageEnum.SEARCH_SHOP_NAME)) {
+        if (stats.equals(CollectedShopPageStatsEnum.SEARCH_SHOP_NAME)) {
             this.shopMetaList.removeIf(shopMeta -> !shopMeta.getName().contains(searchContent));
         }
-        if (stats.equals(CollectedShopPageEnum.SEARCH_OWNER_NAME)) {
+        if (stats.equals(CollectedShopPageStatsEnum.SEARCH_OWNER_NAME)) {
             this.shopMetaList.removeIf(shopMeta -> !Objects.requireNonNull(Bukkit.getOfflinePlayer(UUID.fromString(shopMeta.getOwnerUuid())).getName()).contains(searchContent));
         }
         int maxIndex = PageUtil.computeMaxPageIndex(shopMetaList.size(), 45);
@@ -155,7 +155,7 @@ public class CollectedShopPage extends MultipleGuiPageBase implements BackAble {
 
 
     public void send() {
-        this.stats = CollectedShopPageEnum.NORMAL;
+        this.stats = CollectedShopPageStatsEnum.NORMAL;
         this.searchContent = null;
         this.pageIndex = 0;
         refresh();

@@ -14,30 +14,21 @@ import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easylibrary.annotation.EventListener;
+import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
+import pers.zhangyang.easylibrary.annotation.GuiSerialButtonHandler;
 import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
 @EventListener
 public class PlayerClickManageCommentPageDeleteShopComment implements Listener {
 
-    @EventHandler
+    @GuiSerialButtonHandler(guiPage = ManageShopCommentPage.class,from = 0,to = 44,closeGui = false,refreshGui = true)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
-        if (!(holder instanceof ManageShopCommentPage)) {
-            return;
-        }
+
         int slot = event.getRawSlot();
-        if (slot < 0 || slot > 44) {
-            return;
-        }
-        ItemStack itemStack = event.getCurrentItem();
-        if (itemStack == null || itemStack.getType().equals(Material.AIR)) {
-            return;
-        }
-        if (!(event.getWhoClicked() instanceof Player)) {
-            return;
-        }
+
 
         Player player = (Player) event.getWhoClicked();
         ManageShopCommentPage manageShopCommentPage = (ManageShopCommentPage) holder;

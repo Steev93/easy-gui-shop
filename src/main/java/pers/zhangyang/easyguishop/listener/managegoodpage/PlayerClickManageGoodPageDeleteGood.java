@@ -12,7 +12,7 @@ import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 @EventListener
 public class PlayerClickManageGoodPageDeleteGood implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageGoodPage.class, slot = {50})
+    @GuiDiscreteButtonHandler(guiPage = ManageGoodPage.class, slot = {50},closeGui = true,refreshGui = true)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

@@ -10,7 +10,7 @@ import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 @EventListener
 public class PlayerClickAllGoodPageSearchByGoodName implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = AllGoodPage.class, slot = {47})
+    @GuiDiscreteButtonHandler(guiPage = AllGoodPage.class, slot = {47},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         AllGoodPage allGoodPage = (AllGoodPage) event.getInventory().getHolder();
         Player player = (Player) event.getWhoClicked();
