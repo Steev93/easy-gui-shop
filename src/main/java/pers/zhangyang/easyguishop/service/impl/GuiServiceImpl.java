@@ -9,6 +9,8 @@ import pers.zhangyang.easyguishop.exception.*;
 import pers.zhangyang.easyguishop.meta.*;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.yaml.SettingYaml;
+import pers.zhangyang.easylibrary.util.MessageUtil;
+import pers.zhangyang.easylibrary.yaml.MessageYaml;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -181,7 +183,7 @@ public class GuiServiceImpl implements GuiService {
     }
 
     @Override
-    public void addShopDescription(String shopUuid, String d) throws NotExistShopException {
+    public void addShopDescription(String shopUuid, String d,int lineIndex) throws NotExistShopException, NotExistLineException {
         ShopMeta shopMeta = new ShopDao().getByUuid(shopUuid);
         if (shopMeta == null) {
             throw new NotExistShopException();
@@ -193,16 +195,27 @@ public class GuiServiceImpl implements GuiService {
         }.getType();
         List<String> stringList = gson.fromJson(shopMeta.getDescription(), stringListType);
         if (stringList != null) {
-            stringList.add(d);
+
+
+            if (lineIndex!=0&&lineIndex!=stringList.size()&&lineIndex>stringList.size()){
+                throw new NotExistLineException();
+            }
+            stringList.add(lineIndex,d);
+
         } else {
-            stringList = Collections.singletonList(d);
+            if (lineIndex==0){
+
+                stringList = Collections.singletonList(d);
+            }else {
+                throw new NotExistLineException();
+            }
         }
         shopMeta.setShopDescription(gson.toJson(stringList));
         new ShopDao().insert(shopMeta);
     }
 
     @Override
-    public void removeShopDescription(String shopUuid) throws NotExistShopException, NotExistLineException {
+    public void removeShopDescription(String shopUuid,int lineIndex) throws NotExistShopException, NotExistLineException {
         ShopMeta shopMeta = new ShopDao().getByUuid(shopUuid);
         if (shopMeta == null) {
             throw new NotExistShopException();
@@ -213,6 +226,9 @@ public class GuiServiceImpl implements GuiService {
         }.getType();
         List<String> stringList = gson.fromJson(shopMeta.getDescription(), stringListType);
         if (stringList == null || stringList.isEmpty()) {
+            throw new NotExistLineException();
+        }
+        if (stringList.size()-1<lineIndex){
             throw new NotExistLineException();
         }
         stringList.remove(stringList.size() - 1);
@@ -805,6 +821,24 @@ public class GuiServiceImpl implements GuiService {
         goodMeta.setItemPrice(null);
         new GoodDao().deleteByUuid(goodMeta.getUuid());
         new GoodDao().insert(goodMeta);
+    }
+
+    @Override
+    public void plusShopPopularity(String shopUuid, int amount) throws NotExistShopException {
+        if (amount < 0) {
+            throw new IllegalArgumentException();
+        }
+        ShopMeta shopMeta = new ShopDao().getByUuid(shopUuid);
+        if (shopMeta == null) {
+            throw new NotExistShopException();
+        }
+        if (Integer.MAX_VALUE - shopMeta.getPopularity() >= amount) {
+            shopMeta.setPopularity(shopMeta.getPopularity() + amount);
+        } else {
+            shopMeta.setPopularity(Integer.MAX_VALUE);
+        }
+        new ShopDao().deleteByUuid(shopMeta.getUuid());
+        new ShopDao().insert(shopMeta);
     }
 
     @Override

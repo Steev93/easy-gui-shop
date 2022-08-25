@@ -8,14 +8,27 @@ setting:
   #This modification will not take effect until the server is restarted or the plugin is reinstalled by other plugin
   display: "default"
 
-  #距离实体店铺坐标多少范围内，才可以存取商品，必须非负，如果填错或者不填，采用默认值32
+
+  #每个人气的Vault花费，必须是小数形式，必须是非负数，如果填错，默认值，如果不填，代表不开启购买花费功能
+  #关闭此功能时记得因此页面中按钮的显示
+  #Vault spend per popularity, must be in decimal form, must be non-negative, if you fill in the wrong, the default value, if not, means do not turn on the purchase spend function
+  #Remember to turn off this function so that the display of the button in the page
+  perPopularityCost: 50.0
+
+  #设置店铺坐标的Vault花费，必须是小数形式，必须是非负数，如果填错，默认值，如果不填，代表不开启此功能
+  # Set the store coordinates of the Vault spend, must be a decimal form, must be non-negative, if you fill in the wrong, the default value, if not, means do not open this function
+  setShopLocationCost: 50.0
+
+  #距离实体店铺坐标多少范围内，才可以存取商品，必须非负，如果填错，采用默认值32，如果不填，则意味着不开启这个限制
   # How far from the physical store coordinates to access the goods, must be non-negative,
-  # if you fill in the wrong or do not fill in, using the default value of 32
+  # if you fill in the wrong, using the default value of 32
+  # If you leave it blank, it means that this restriction is not enabled
   manageGoodRange: 32
 
-  #距离银行坐标多少范围内，才可以存取物品货币库存，必须非负，如果填错或者不填，采用默认值32
+  #距离银行坐标多少范围内，才可以存取物品货币库存，必须非负，如果填错，采用默认值32，如果不填，则意味着不开启这个限制
   # How far from the bank coordinates can access the item currency inventory, must be non-negative,
-  #if you fill in the wrong or do not fill in, using the default value of 32
+  #if you fill in the wrong , using the default value of 32
+  # If you leave it blank, it means that this restriction is not enabled
   manageItemStockRange: 32
 
   #银行的坐标

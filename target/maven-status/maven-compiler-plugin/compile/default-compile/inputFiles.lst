@@ -51,11 +51,13 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\ma
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\ShopCollectorDao.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\ShopCommentMeta.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageBuyShopPopularity.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageSetShopDescription.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerInputAfterClickCollectedShopPageSearchByShopOwnerName.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\GoodDao.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\EasyGuiShop.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconLimitTimeExecutor.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageBuyShopPopularity.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageResetShopDescription.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpage\PlayerClickManageGoodPageCreateGood.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\dao\ShopDao.java
@@ -72,6 +74,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\N
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\enumration\AllShopPageStatsEnum.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPageManageIconPageIconOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCollectShop.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\PlayerQuit.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SubtractShopPopularityExecutor.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\buyiconpage\PlayerClickBuyIconPageBuyIconPageIconOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistItemStockException.java
@@ -106,6 +109,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\Se
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageShopPageShopOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodPlayerPointsPrice.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\CommandService.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageRemoveShopDescription.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppage\PlayerClickCollectedShopPageCollectedShopPageShopOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\yaml\GuiYaml.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\StateChangeException.java
@@ -119,6 +123,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\ma
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\service\impl\GuiServiceImpl.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\OpenMuiExecutor.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageShopCommentPage.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\manager\GamerManager.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\DuplicateShopCommenterException.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\CorrectDatabaseExecutor.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\DuplicateTradeRecordException.java
@@ -127,6 +132,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\ma
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodItemPrice.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllShopCommentPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistIconException.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\Gamer.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotExistShopCommentException.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\AllShopPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\DuplicateShopException.java

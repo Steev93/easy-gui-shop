@@ -41,19 +41,17 @@ public class AllShopPageShopOptionPage extends SingleGuiPageBase implements Back
         }
 
         this.inventory.clear();
-        if (isCollected) {
             ItemStack cancelCollect = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.cancelCollectShop");
             inventory.setItem(4, cancelCollect);
-        } else {
+
             ItemStack collect = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.collectShop");
             inventory.setItem(13, collect);
-        }
+
         ItemStack goShop = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.allGoodPage");
         inventory.setItem(31, goShop);
-        if (shopMeta.getLocation() != null) {
             ItemStack goLocation = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.teleportShopLocation");
             inventory.setItem(22, goLocation);
-        }
+
 
 
         ItemStack comment = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopPageShopOptionPage.commentShop");

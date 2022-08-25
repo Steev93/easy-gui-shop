@@ -32,26 +32,31 @@ public class PlayerClickManageItemStockPageItemStockOptionPageTakeItemStock impl
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ItemStockMeta itemStockMeta;
-        manageItemStockPageItemStockOptionPage.refresh();
+        assert manageItemStockPageItemStockOptionPage != null;
         itemStockMeta = guiService.getItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
-        manageItemStockPageItemStockOptionPage.refresh();
-        if (itemStockMeta == null) {
-            return;
-        }
-        Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
-        if (location.getWorld() == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
-            return;
-        }
-        if (!location.getWorld().equals(player.getLocation().getWorld())) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
-            return;
-        }
-        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getNonnegativeDoubleDefault("setting.manageItemStockRange")) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
-            return;
-        }
 
+
+        Double range=SettingYaml.INSTANCE.getNonnegativeDouble("setting.manageItemStockRange");
+
+        if (range!=null) {
+            if (itemStockMeta == null) {
+                return;
+            }
+            Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
+            if (location.getWorld() == null) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
+                return;
+            }
+            if (!location.getWorld().equals(player.getLocation().getWorld())) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
+                return;
+            }
+            if (location.distance(player.getLocation()) > range) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenTakeItemStock"));
+                return;
+            }
+
+        }
 
         new PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItemStock(player,
                 manageItemStockPageItemStockOptionPage.getOwner(), manageItemStockPageItemStockOptionPage.getItemStockMeta(),

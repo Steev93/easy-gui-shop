@@ -51,7 +51,7 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageUpdateShopDescript
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (NotExistLineException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLine"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLineWhenUpdateShopDescription"));
             return;
         }
 

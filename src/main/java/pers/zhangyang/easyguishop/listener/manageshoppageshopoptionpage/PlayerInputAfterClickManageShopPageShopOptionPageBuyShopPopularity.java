@@ -9,20 +9,22 @@ import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
 import pers.zhangyang.easyguishop.yaml.MessageYaml;
+import pers.zhangyang.easyguishop.yaml.SettingYaml;
 import pers.zhangyang.easylibrary.base.FiniteInputListenerBase;
+import pers.zhangyang.easylibrary.other.vault.Vault;
 import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-public class PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription extends FiniteInputListenerBase {
+public class PlayerInputAfterClickManageShopPageShopOptionPageBuyShopPopularity extends FiniteInputListenerBase {
 
     private final ShopMeta shopMeta;
     private final ManageShopPageShopOptionPage manageShopPageShopOptionPage;
 
-    public PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription(Player player, OfflinePlayer owner, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
-        super(player, owner, manageShopPage, 2);
+    public PlayerInputAfterClickManageShopPageShopOptionPageBuyShopPopularity(Player player, OfflinePlayer owner, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
+        super(player, owner, manageShopPage, 1);
         this.manageShopPageShopOptionPage = manageShopPage;
         this.shopMeta = shopMeta;
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToAddShopDescription"));
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToBuyShopPopularity"));
     }
 
 
@@ -36,25 +38,44 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
-        lineIndex=lineIndex-1;
         if (lineIndex<0){
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.invalidNumber"));
             return;
         }
-
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
 
-        try {
-            guiService.addShopDescription(shopMeta.getUuid(), messages[1],lineIndex);
-        } catch (NotExistShopException e) {
+        if (guiService.getShop(shopMeta.getUuid())==null){
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
-            return;
-        } catch (NotExistLineException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLineWhenAddShopDescription"));
             return;
         }
 
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.addShopDescription"));
+
+
+        Double perCost= SettingYaml.INSTANCE.getNonnegativeDouble("setting.perPopularityCost");
+
+        if (perCost!=null){
+
+            if (Vault.hook()==null){
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notHookVault"));
+                return;
+            }
+            if (Vault.hook().getBalance(owner)<perCost*lineIndex){
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughVaultWhenBuyShopPopularity"));
+                return;
+            }
+            Vault.hook().withdrawPlayer(owner,perCost*lineIndex);
+
+        }
+
+
+
+        try {
+            guiService.plusShopPopularity(shopMeta.getUuid(), lineIndex);
+        }  catch (NotExistShopException e) {
+            e.printStackTrace();
+        }
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.buyShopPopularity"));
+
     }
 }

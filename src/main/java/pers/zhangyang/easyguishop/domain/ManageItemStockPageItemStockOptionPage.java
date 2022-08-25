@@ -50,14 +50,12 @@ public class ManageItemStockPageItemStockOptionPage extends SingleGuiPageBase im
         ItemStack depositItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.depositItemStock");
         inventory.setItem(22, depositItemStock);
 
-        if (itemStockMeta.getAmount() > 0) {
             ItemStack takeItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.takeItemStock");
             inventory.setItem(21, takeItemStock);
-        }
-        if (itemStockMeta.getAmount() <= 0) {
+
             ItemStack deleteItemStock = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.deleteItemStock");
             inventory.setItem(23, deleteItemStock);
-        }
+
         ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageItemStockPageItemStockOptionPage.back");
         inventory.setItem(49, back);
 

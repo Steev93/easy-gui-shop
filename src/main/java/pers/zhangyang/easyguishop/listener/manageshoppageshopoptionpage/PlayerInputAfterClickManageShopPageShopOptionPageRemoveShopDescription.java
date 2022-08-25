@@ -13,16 +13,16 @@ import pers.zhangyang.easylibrary.base.FiniteInputListenerBase;
 import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-public class PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription extends FiniteInputListenerBase {
+public class PlayerInputAfterClickManageShopPageShopOptionPageRemoveShopDescription extends FiniteInputListenerBase {
 
     private final ShopMeta shopMeta;
     private final ManageShopPageShopOptionPage manageShopPageShopOptionPage;
 
-    public PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription(Player player, OfflinePlayer owner, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
-        super(player, owner, manageShopPage, 2);
+    public PlayerInputAfterClickManageShopPageShopOptionPageRemoveShopDescription(Player player, OfflinePlayer owner, ShopMeta shopMeta, ManageShopPageShopOptionPage manageShopPage) {
+        super(player, owner, manageShopPage, 1);
         this.manageShopPageShopOptionPage = manageShopPage;
         this.shopMeta = shopMeta;
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToAddShopDescription"));
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.howToRemoveShopDescription"));
     }
 
 
@@ -46,15 +46,15 @@ public class PlayerInputAfterClickManageShopPageShopOptionPageAddShopDescription
 
 
         try {
-            guiService.addShopDescription(shopMeta.getUuid(), messages[1],lineIndex);
-        } catch (NotExistShopException e) {
+            guiService.removeShopDescription(shopMeta.getUuid(), lineIndex);
+        }  catch (NotExistShopException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (NotExistLineException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLineWhenAddShopDescription"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLineWhenRemoveShopDescription"));
             return;
         }
+        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.removeShopDescription"));
 
-        MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.addShopDescription"));
     }
 }

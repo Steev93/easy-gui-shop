@@ -32,31 +32,33 @@ public class PlayerClickManageGoodPageGoodOptionPageTakeGood implements Listener
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
         ShopMeta shopMeta;
-        manageGoodPageGoodOptionPage.refresh();
         shopMeta = guiService.getShop(manageGoodPageGoodOptionPage.getShopMeta().getUuid());
-        manageGoodPageGoodOptionPage.refresh();
 
         if (shopMeta == null) {
             return;
         }
 
-        String locationData = shopMeta.getLocation();
-        if (locationData == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetShopLocationWhenTakeGood"));
-            return;
-        }
-        Location location = LocationUtil.deserializeLocation(shopMeta.getLocation());
-        if (location.getWorld() == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
-            return;
-        }
-        if (!location.getWorld().equals(player.getLocation().getWorld())) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
-            return;
-        }
-        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getNonnegativeDoubleDefault("setting.manageGoodRange")) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
-            return;
+        Double range=SettingYaml.INSTANCE.getNonnegativeDouble("setting.manageGoodRange");
+
+        if (range!=null) {
+            String locationData = shopMeta.getLocation();
+            if (locationData == null) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetShopLocationWhenTakeGood"));
+                return;
+            }
+            Location location = LocationUtil.deserializeLocation(shopMeta.getLocation());
+            if (location.getWorld() == null) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+                return;
+            }
+            if (!location.getWorld().equals(player.getLocation().getWorld())) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+                return;
+            }
+            if (location.distance(player.getLocation()) > range) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearShopLocationWhenTakeGood"));
+                return;
+            }
         }
 
         new PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood(player, manageGoodPageGoodOptionPage.getOwner(), manageGoodPageGoodOptionPage);

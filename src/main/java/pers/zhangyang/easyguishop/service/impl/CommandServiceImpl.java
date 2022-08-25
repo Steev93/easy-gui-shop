@@ -3,6 +3,7 @@ package pers.zhangyang.easyguishop.service.impl;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easyguishop.dao.*;
@@ -202,8 +203,24 @@ public class CommandServiceImpl implements CommandService {
 
     @Override
     public void correctDatabase() {
+
         //修理Shop表的序列化数据
         List<ShopMeta> shopMetaList = new ShopDao().list();
+        for (ShopMeta s : shopMetaList) {
+            if (s.getLocation()==null) {
+            continue;
+            }
+            Location location=LocationUtil.deserializeLocation(s.getLocation());
+            if (location==null){
+                s.setLocation(null);
+                new ShopDao().deleteByUuid(s.getUuid());
+                new ShopDao().insert(s);
+            }
+        }
+
+
+        //修理Shop表的序列化数据
+         shopMetaList = new ShopDao().list();
         for (ShopMeta s : shopMetaList) {
             Gson gson = new Gson();
             Type stringListType = new TypeToken<ArrayList<String>>() {

@@ -104,14 +104,10 @@ public class AllShopCommentPage extends MultipleGuiPageBase implements BackAble 
         if (pageIndex > 0) {
             ItemStack previous = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.previousPage");
             inventory.setItem(45, previous);
-        } else {
-            inventory.setItem(45, null);
         }
         if (pageIndex < maxIndex) {
             ItemStack next = GuiYaml.INSTANCE.getButtonDefault("gui.button.allShopCommentPage.nextPage");
             inventory.setItem(53, next);
-        } else {
-            inventory.setItem(53, null);
         }
 
 

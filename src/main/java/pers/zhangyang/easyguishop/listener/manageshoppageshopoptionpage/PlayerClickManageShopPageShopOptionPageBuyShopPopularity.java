@@ -6,21 +6,17 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import pers.zhangyang.easyguishop.domain.ManageShopPageShopOptionPage;
-import pers.zhangyang.easyguishop.exception.NotExistLineException;
-import pers.zhangyang.easyguishop.exception.NotExistShopException;
 import pers.zhangyang.easyguishop.meta.ShopMeta;
 import pers.zhangyang.easyguishop.service.GuiService;
 import pers.zhangyang.easyguishop.service.impl.GuiServiceImpl;
-import pers.zhangyang.easyguishop.yaml.MessageYaml;
 import pers.zhangyang.easylibrary.annotation.EventListener;
 import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
-import pers.zhangyang.easylibrary.util.MessageUtil;
 import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 
-@EventListener
-public class PlayerClickManageShopPageShopOptionPageRemoveShopDescription implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageShopPageShopOptionPage.class, slot = {32},closeGui = true,refreshGui = false)
+@EventListener
+public class PlayerClickManageShopPageShopOptionPageBuyShopPopularity implements Listener {
+    @GuiDiscreteButtonHandler(guiPage = ManageShopPageShopOptionPage.class, slot = {3},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
@@ -31,8 +27,9 @@ public class PlayerClickManageShopPageShopOptionPageRemoveShopDescription implem
         ShopMeta shopMeta = manageShopPageShopOptionPage.getShopMeta();
         GuiService guiService = (GuiService) new TransactionInvocationHandler(new GuiServiceImpl()).getProxy();
 
-       new PlayerInputAfterClickManageShopPageShopOptionPageRemoveShopDescription(player,manageShopPageShopOptionPage.getOwner(),
-               shopMeta,manageShopPageShopOptionPage);
-    }
+        new PlayerInputAfterClickManageShopPageShopOptionPageBuyShopPopularity(player,manageShopPageShopOptionPage.getOwner(),
+                shopMeta,manageShopPageShopOptionPage);
 
+
+    }
 }

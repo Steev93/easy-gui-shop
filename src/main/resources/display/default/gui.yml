@@ -1183,6 +1183,15 @@ gui:
           - "HIDE_DESTROYS"
         customModelData: [ ]
     manageShopPageShopOptionPage:
+      buyShopPopularity:
+        materialName: "DIAMOND"
+        displayName: "&b&l&n购买人气"
+        lore:
+          - "&e&l点击去购买人气"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
       manageIconPage:
         materialName: "APPLE"
         displayName: "&b&l&n管理这个商店图标"

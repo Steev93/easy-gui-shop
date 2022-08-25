@@ -53,6 +53,7 @@ pers\zhangyang\easyguishop\exception\NotMoreGoodException.class
 pers\zhangyang\easyguishop\listener\buyiconpage\PlayerInputAfterClickBuyIconPageSearchByIconName.class
 pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageCommentShop.class
 pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerClickManageItemStockPageItemStockOptionPageTakeItemStock.class
+pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageRemoveShopDescription.class
 pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerClickManageItemStockPageItemStockOptionPageDeleteItemStock.class
 pers\zhangyang\easyguishop\yaml\SettingYaml.class
 pers\zhangyang\easyguishop\exception\ItemStockNotEmptyException.class
@@ -109,6 +110,7 @@ pers\zhangyang\easyguishop\exception\NotExistLineException.class
 pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageSetGoodItemPrice.class
 pers\zhangyang\easyguishop\listener\allshoppage\PlayerInputAfterClickAllShopPageSearchByShopName.class
 pers\zhangyang\easyguishop\domain\ManageTradeRecordPage.class
+pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerInputAfterClickManageShopPageShopOptionPageBuyShopPopularity.class
 pers\zhangyang\easyguishop\meta\IconMeta.class
 pers\zhangyang\easyguishop\listener\managetraderecordpage\PlayerClickManageTradeRecordPageManageTradeRecordPageTradeRecordOptionPage.class
 pers\zhangyang\easyguishop\domain\CollectedShopPage.class
@@ -135,6 +137,7 @@ pers\zhangyang\easyguishop\domain\ManageIconPageIconOptionPage.class
 pers\zhangyang\easyguishop\meta\ItemStockMeta.class
 pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock.class
 pers\zhangyang\easyguishop\listener\shopcommentpage\PlayerClickShopCommentPageSearchByCommenter.class
+pers\zhangyang\easyguishop\listener\PlayerQuit.class
 pers\zhangyang\easyguishop\exception\NotExistShopException.class
 pers\zhangyang\easyguishop\service\impl\GuiServiceImpl$2.class
 pers\zhangyang\easyguishop\enumration\BuyIconPageStatsEnum.class
@@ -148,9 +151,11 @@ pers\zhangyang\easyguishop\enumration\ManageShopPageStatsEnum.class
 pers\zhangyang\easyguishop\executor\SetShopSystemExecutor.class
 pers\zhangyang\easyguishop\domain\ManageShopPage$1.class
 pers\zhangyang\easyguishop\executor\SetIconSystemExecutor.class
+pers\zhangyang\easyguishop\manager\GamerManager.class
 pers\zhangyang\easyguishop\listener\allgoodpagegoodoptionpage\PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood.class
 pers\zhangyang\easyguishop\executor\PlusShopPopularityExecutor.class
 pers\zhangyang\easyguishop\domain\AllGoodPage.class
+pers\zhangyang\easyguishop\domain\Gamer.class
 pers\zhangyang\easyguishop\enumration\ShopCommentPageStatsEnum.class
 pers\zhangyang\easyguishop\service\impl\GuiServiceImpl$3.class
 pers\zhangyang\easyguishop\executor\CreateIconExecutor.class
@@ -180,6 +185,7 @@ pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickC
 pers\zhangyang\easyguishop\listener\managegoodpage\PlayerClickManageGoodPageDeleteGood.class
 pers\zhangyang\easyguishop\meta\ShopMeta.class
 pers\zhangyang\easyguishop\exception\GoodNotEmptyException.class
+pers\zhangyang\easyguishop\listener\manageshoppageshopoptionpage\PlayerClickManageShopPageShopOptionPageBuyShopPopularity.class
 pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCancelCollectShop.class
 pers\zhangyang\easyguishop\executor\SetIconStockExecutor.class
 pers\zhangyang\easyguishop\exception\StateChangeException.class

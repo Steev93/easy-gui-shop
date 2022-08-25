@@ -77,31 +77,14 @@ public class BuyIconPageIconOptionPage extends SingleGuiPageBase implements Back
         ItemStack icon = ItemStackUtil.itemStackDeserialize(iconMeta.getIconItemStack());
         inventory.setItem(4, icon);
 
-        if (currency != null) {
-            if (iconMeta.isSystem()) {
-                if (iconMeta.getLimitTime() == null) {
-                    ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.buyIcon");
+        ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.buyIcon");
                     inventory.setItem(40, buyIcon);
-                }
-                if (iconMeta.getLimitTime() != null && iconMeta.getLimitTime() * 1000 + iconMeta.getCreateTime() > System.currentTimeMillis()) {
-                    ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.buyIcon");
-                    inventory.setItem(40, buyIcon);
-                }
-            }
-
-            if (!iconMeta.isSystem() && iconMeta.getStock() > 0) {
-                if (iconMeta.getLimitTime() == null) {
-                    ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.buyIcon");
-                    inventory.setItem(40, buyIcon);
-                }
-                if (iconMeta.getLimitTime() != null && iconMeta.getLimitTime() * 1000 + iconMeta.getCreateTime() > System.currentTimeMillis()) {
-                    ItemStack buyIcon = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.buyIcon");
-                    inventory.setItem(40, buyIcon);
-                }
-            }
 
 
-        }
+
+
+
+
 
         ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.buyIconPageIconOptionPage.back");
         inventory.setItem(49, back);

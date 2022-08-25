@@ -34,9 +34,9 @@ public interface GuiService {
 
     void deleteShop(String shopUuid) throws NotExistShopException, ShopNotEmptyException;
 
-    void addShopDescription(String shopUuid, String d) throws NotExistShopException;
+    void addShopDescription(String shopUuid, String d,int line) throws NotExistShopException, NotExistLineException;
 
-    void removeShopDescription(String shopUuid) throws NotExistShopException, NotExistLineException;
+    void removeShopDescription(String shopUuid,int line) throws NotExistShopException, NotExistLineException;
 
     void updateShopDescription(String shopUuid, int line, String d) throws NotExistShopException, NotExistLineException;
 
@@ -115,5 +115,6 @@ public interface GuiService {
 
     void resetGoodPrice(String goodUuid) throws NotExistGoodException;
 
+    void plusShopPopularity(String shopUuid,int value) throws NotExistShopException;
     void setShopDescription(String shopUuid, String descriptionJson) throws NotExistShopException;
 }

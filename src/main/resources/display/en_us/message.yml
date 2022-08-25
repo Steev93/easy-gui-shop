@@ -79,6 +79,18 @@ message:
       - "&c&lThe player is not online."
 
     #Frequent failure hints, one failure hint for each action
+    notEnoughVaultWhenBuyShopPopularity:
+      - "&C&l don't have enough money to buy popularity"
+    notExistLineWhenUpdateShopDescription:
+      - "&c&l nonexistent line."
+    notExistLineWhenRemoveShopDescription:
+      - "&c&l nonexistent line."
+    notExistLineWhenAddShopDescription:
+      - "&C&l non-existent row, can't add"
+    tooFastInAllShopPageShopOptionPage:
+      - "&C&l two transfers are too short"
+    tooFastInCollectedShopPageShopOptionPage:
+      - "&C&l two transports are too short"
     notNearBankLocationWhenTakeItemStock:
       - "&c&lPlease take out currency within coordinates 32 of the currency bank"
     notNearBankLocationWhenDepositItemStock:
@@ -187,8 +199,6 @@ message:
       - "&c&l duplicate comment."
     notExistShop:
       - "&c&l Non-existent store."
-    notExistLine:
-      - "&c&l nonexistent line."
 
     # command failure hints, one hint per operation
     notExistShopWhenPlusPopularity:
@@ -225,6 +235,10 @@ message:
 
 
     # of tutorial actions prompted, each action corresponds to a
+    howToBuyShopPopularity:
+      - "&A&lEnter the quantity purchased to complete the purchase, enter &f to cancel &b&l to cancel"
+    howToRemoveShopDescription:
+      - "&a&lEnter the number of rows you want to delete, enter &f to cancel &a&l to cancel."
     howToSearchByShopNameInManageShopPage:
       - "&a&lEnter the store name to complete the search, enter &fCancel &a&lCancel."
     howToSearchByGoodNameInManageGoodPage:
@@ -236,7 +250,7 @@ message:
     howToTakeItemStock:
       - "&a&lEnter the quantity you want to take out, enter &fCancel &a&lCancel."
     howToAddShopDescription:
-      - "&a&lEnter the description you want to add a line to, enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the number of lines you want to add and a description, enter &f to cancel &a&l to cancel."
     howToUpdateShopDescription:
       - "&a&lEnter the number of rows and descriptions in order (enter in sequence), enter &f Cancel &a&l Cancel."
     howToSetShopDescription:
@@ -287,6 +301,8 @@ message:
       - "&a&lEnter the quantity taken out, enter &fCancel &a&lCancel."
 
     #successful operations hint, each operation corresponds to a hint
+    buyShopPopularity:
+      - "&C&l purchased popularity"
     cancelCollectShopInAllShopPageShopOptionPage:
       - "&b&lYou canceled the collection of this store."
     collectShopInAllShopPageShopOptionPage:

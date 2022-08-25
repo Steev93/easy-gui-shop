@@ -33,25 +33,28 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDepositItemStock i
 
         ItemStockMeta itemStockMeta;
 
-        manageItemStockPageItemStockOptionPage.refresh();
         itemStockMeta = guiService.getItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
-        manageItemStockPageItemStockOptionPage.refresh();
 
-        if (itemStockMeta == null) {
-            return;
-        }
-        Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
-        if (location.getWorld() == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
-            return;
-        }
-        if (!location.getWorld().equals(player.getLocation().getWorld())) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
-            return;
-        }
-        if (location.distance(player.getLocation()) > SettingYaml.INSTANCE.getNonnegativeDoubleDefault("setting.manageItemStockRange")) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
-            return;
+
+        Double range=SettingYaml.INSTANCE.getNonnegativeDouble("setting.manageItemStockRange");
+
+        if (range!=null) {
+            if (itemStockMeta == null) {
+                return;
+            }
+            Location location = SettingYaml.INSTANCE.getLocationDefault("setting.bankLocation");
+            if (location.getWorld() == null) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
+                return;
+            }
+            if (!location.getWorld().equals(player.getLocation().getWorld())) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
+                return;
+            }
+            if (location.distance(player.getLocation()) > range) {
+                MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notNearBankLocationWhenDepositItemStock"));
+                return;
+            }
         }
 
 

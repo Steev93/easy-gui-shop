@@ -85,10 +85,9 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         ItemStack deposit = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.depositGood");
         inventory.setItem(21, deposit);
 
-        if (goodMeta.getStock() > 0) {
             ItemStack take = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.takeGood");
             inventory.setItem(23, take);
-        }
+
 
         ItemStack setName = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodName");
         inventory.setItem(22, setName);

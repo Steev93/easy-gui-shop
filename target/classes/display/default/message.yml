@@ -79,6 +79,20 @@ message:
       - "&c&l玩家不在线。"
 
     #经常发生的失败提示，每个操作对应一个失败提示
+    notEnoughVaultWhenBuyShopPopularity:
+      - "&C&l钱不够，买不起人气"
+    notExistLineWhenUpdateShopDescription:
+      - "&C&l不存在的行"
+    notExistLineWhenRemoveShopDescription:
+      - "&c&l不存在的行。"
+    notExistLineWhenAddShopDescription:
+      - "&C&l不存在的行，无法添加"
+    tooFastInAllShopPageShopOptionPage:
+      - "&C&l两次传送的时间太短了"
+    tooFastInCollectedShopPageShopOptionPage:
+      - "&C&l两次传送的时间太短了"
+    notEnoughVaultWhenSetShopLocation:
+      - "&C&l没有足够的金币来设置店铺坐标"
     notNearBankLocationWhenTakeItemStock:
       - "&c&l请在货币银行坐标32范围内取出货币"
     notNearBankLocationWhenDepositItemStock:
@@ -187,8 +201,6 @@ message:
       - "&c&l重复的评论。"
     notExistShop:
       - "&c&l不存在的店铺。"
-    notExistLine:
-      - "&c&l不存在的行。"
 
     #指令失败提示，每个操作一个提示
     notExistShopWhenPlusPopularity:
@@ -225,6 +237,8 @@ message:
 
 
     #教程操作提示的，每个操作对应一个
+    howToBuyShopPopularity:
+      - "&A&l输入购买的数量完成购买，输入 &f取消 &b&l取消"
     howToSearchByShopNameInManageShopPage:
       - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
     howToSearchByGoodNameInManageGoodPage:
@@ -236,7 +250,9 @@ message:
     howToTakeItemStock:
       - "&a&l输入您要取出的数量，输入 &f取消 &a&l取消。"
     howToAddShopDescription:
-      - "&a&l输入您要增加一行的描述，输入 &f取消 &a&l取消。"
+      - "&a&l输入您要增加的行数和描述，输入 &f取消 &a&l取消。"
+    howToRemoveShopDescription:
+      - "&a&l输入您要删除的行数，输入 &f取消 &a&l取消。"
     howToUpdateShopDescription:
       - "&a&l依次输入行数、描述（依次回车），输入 &f取消 &a&l取消。"
     howToSetShopDescription:
@@ -287,6 +303,8 @@ message:
       - "&a&l输入取出的数量，输入 &f取消 &a&l取消。"
 
     #成功操作提示，每个操作对应一个提示
+    buyShopPopularity:
+      - "&C&l购买了人气"
     cancelCollectShopInAllShopPageShopOptionPage:
       - "&b&l您取消了收藏该店铺。"
     collectShopInAllShopPageShopOptionPage:
