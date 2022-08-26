@@ -165,7 +165,7 @@ message:
       - "&c&l店铺不为空，不能删除。"
     duplicateShopWhenSetShopName:
       - "&c&l已经有这个名字的店铺了"
-    unknownType:
+    unknownGoodType:
       - "&c&l未知的交易类型。"
     notEnoughSpaceWhenTakeItemStock:
       - "&c&l没有更多的空间来拿出货币物品"

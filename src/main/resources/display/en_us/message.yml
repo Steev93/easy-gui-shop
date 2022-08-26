@@ -163,7 +163,7 @@ message:
       - "&c&l store is not empty, can't delete."
     duplicateShopWhenSetShopName:
       - "&c&l already has a store with this name"
-    unknownType:
+    unknownGoodType:
       - "&c&l unknown transaction type."
     notEnoughSpaceWhenTakeItemStock:
       - "&c&l has no more space to take out monetary items"
