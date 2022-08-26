@@ -53,7 +53,7 @@ public class BaseServiceImpl implements BaseService {
 
 
     @Override
-    public void transform2_8_0() {
+    public void transform2_8_1() {
         try {
             //从2.0.0到2.2.4的 如果存在version表并且版本小于2.2.4，需要更新
             DatabaseMetaData metaData = getConnection().getMetaData();
@@ -64,7 +64,7 @@ public class BaseServiceImpl implements BaseService {
             VersionDao versionDao = new VersionDao();
             VersionMeta versionMeta = versionDao.get();
             assert versionMeta != null;
-            if (!VersionUtil.isOlderThan(versionMeta.getBig(), versionMeta.getMiddle(), versionMeta.getSmall(), 2, 8, 0)) {
+            if (!VersionUtil.isOlderThan(versionMeta.getBig(), versionMeta.getMiddle(), versionMeta.getSmall(), 2, 8, 1)) {
                 return;
             }
 
@@ -100,7 +100,7 @@ public class BaseServiceImpl implements BaseService {
 
 
             versionDao.delete();
-            versionDao.insert(new VersionMeta(2, 8, 0));
+            versionDao.insert(new VersionMeta(2, 8, 1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
