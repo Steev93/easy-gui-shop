@@ -170,37 +170,50 @@ message:
     notEnoughItemStockWhenDepositItemStock:
       - "&c&lYou don't have enough item currency in your backpack."
 
-    #The following are often very unlikely failure hints that are shared, often because the GUI is not refreshed in time, the probability of occurrence is not high
-    notSetPrice:
-      - "&c&l did not set the price."
-    notMoreItemStock:
-      - "&c&l don't have enough currency items"
+
+    notSetPriceWhenBuyIcon:
+      - "&c&l No price set to buy icon."
+    notSetPriceWhenTrade:
+      - "&c&lNo price set, can't trade."
+    notMoreItemStockWhenTakeItemStock:
+      - "&c&l do not have enough currency items"
     notMoreIcon:
       - "&c&l don't have enough icons left."
-    notMoreGood:
-      - "&c&l don't have enough items left."
-    exceedLimitTime:
-      - "&c&l can't trade anymore, exceeded the limited trading time."
-    notExistItemStock:
-      - "&c&l does not have any currency stock."
-    notExistGood:
-      - "Goods that &c&l does not exist."
-    duplicateShopCollector:
+    notMoreGoodWhenTradeGood:
+      - "&c&l doesn't have enough goods anymore."
+    notMoreGoodWhenTakeGood:
+      - "&c&l ran out of enough items."
+    exceedLimitTimeWhenBuyIcon:
+      - "&c&l can't trade anymore, beyond the limited trade time."
+    exceedLimitTimeWhenTradeGood:
+      - "&c&l could not be traded for more than the limited trading time."
+    notExistItemStockWhenTakeItemStock:
+      - "&c&l does not exist for currency stock."
+    notExistItemStockWhenDepositItemStock:
+      - "&c&lNotExistItemStock."
+    duplicateShopCollectorInAllShopPageShopOptionPage:
       - "&c&l Duplicate shop collection records."
-    notExistShopCollector:
-      - "&c&l Non-existent shop collection records."
-    notExistIcon:
-      - "&c&l nonexistent icons."
-    stateChange:
-      - "&c&l state change."
-    notExistLocation:
+    duplicateShopCollectorInCollectedShopPageShopOptionPage:
+      - "&c&l duplicate shop collection records."
+    notExistShopCollectorInCollectedShopPageShopOptionPage:
+      - "&c&l Non-existent store collection records."
+    notExistShopCollectorInAllShopPageShopOptionPage:
+      - "&c&l Non-existent store collection records."
+    notExistLocationInAllShopPageShopOptionPage:
+      - "&c&l Non-existent coordinates."
+    notExistLocationInCollectedShopPageShopOptionPage:
       - "&c&l non-existent coordinates."
     notExistShopComment:
       - "&c&l comment does not exist."
-    duplicateShopCommenter:
-      - "&c&l duplicate comment."
+    # The following are often very unlikely failure hints, is shared, often because the GUI is not refreshed in a timely manner caused by the probability of occurrence is not high
+    notExistGood:
+      - "&c&l does not exist for the product."
+    notExistIcon:
+      - "&c&l non-existent icon."
+    stateChange:
+      - "&c&l state change."
     notExistShop:
-      - "&c&l Non-existent store."
+      - "&c&l non-existent store."
 
     # command failure hints, one hint per operation
     notExistShopWhenPlusPopularity:

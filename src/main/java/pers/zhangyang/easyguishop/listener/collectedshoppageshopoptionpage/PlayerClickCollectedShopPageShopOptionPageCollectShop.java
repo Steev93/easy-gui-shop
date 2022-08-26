@@ -38,7 +38,7 @@ public class PlayerClickCollectedShopPageShopOptionPageCollectShop implements Li
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistShop"));
             return;
         } catch (DuplicateShopCollectorException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollector"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.duplicateShopCollectorInCollectedShopPageShopOptionPage"));
             return;
         }
         MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.collectShopInCollectedShopPageShopOptionPage"));

@@ -31,7 +31,7 @@ public class PlayerClickCollectedShopPageShopOptionPageTeleportShopLocation impl
         assert collectedShopPageShopPotionPage != null;
         ShopMeta shopMeta = collectedShopPageShopPotionPage.getShopMeta();
         if (shopMeta.getLocation() == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLocation"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLocationInCollectedShopPageShopOptionPage"));
             return;
         }
 

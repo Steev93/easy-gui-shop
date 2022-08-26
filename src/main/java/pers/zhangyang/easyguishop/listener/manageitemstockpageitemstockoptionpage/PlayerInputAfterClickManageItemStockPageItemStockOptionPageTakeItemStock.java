@@ -52,10 +52,10 @@ public class PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItem
             guiService.takeItemStock(owner.getUniqueId().toString(), itemStockMeta.getItemStack(), amount);
 
         } catch (NotMoreItemStockException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStock"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTakeItemStock"));
             return;
         } catch (NotExistItemStockException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStock"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStockWhenTakeItemStock"));
             return;
         }
         PlayerUtil.addItem(player, ItemStackUtil.itemStackDeserialize(itemStockMeta.getItemStack()), amount);

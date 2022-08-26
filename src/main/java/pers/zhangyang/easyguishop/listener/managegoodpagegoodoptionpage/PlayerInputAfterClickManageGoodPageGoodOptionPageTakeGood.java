@@ -59,7 +59,7 @@ public class PlayerInputAfterClickManageGoodPageGoodOptionPageTakeGood extends F
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
             return;
         } catch (NotMoreGoodException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGood"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGoodWhenTakeGood"));
             return;
         }
         PlayerUtil.addItem(player, ItemStackUtil.itemStackDeserialize(goodMeta.getGoodItemStack()), amount);

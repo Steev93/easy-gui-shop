@@ -32,7 +32,7 @@ public class PlayerClickAllShopPageShopOptionPageTeleportShopLocation implements
         assert allShopPageShopOptionPage != null;
         ShopMeta shopMeta = allShopPageShopOptionPage.getShopMeta();
         if (shopMeta.getLocation() == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLocation"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistLocationInAllShopPageShopOptionPage"));
             return;
         }
 

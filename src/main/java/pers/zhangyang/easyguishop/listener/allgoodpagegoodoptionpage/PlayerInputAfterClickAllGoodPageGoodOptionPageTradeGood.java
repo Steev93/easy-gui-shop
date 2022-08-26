@@ -55,7 +55,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
         //限购时间
         Integer limitTime = goodMeta.getLimitTime();
         if (limitTime != null && limitTime * 1000 + goodMeta.getCreateTime() < System.currentTimeMillis()) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.exceedLimitTime"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.exceedLimitTimeWhenTradeGood"));
             return;
         }
 
@@ -68,7 +68,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
         OfflinePlayer merchant = Bukkit.getOfflinePlayer(UUID.fromString(allGoodPageGoodOptionPage.getShopMeta().getOwnerUuid()));
 
         if (vaultPrice == null && itemPrice == null && playerPointsPrice == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPrice"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPriceWhenTrade"));
             return;
         }
 
@@ -220,7 +220,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     return;
                 } catch (DuplicateTradeRecordException ignored) {
                 } catch (NotMoreGoodException e) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGood"));
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGoodWhenTradeGood"));
                     return;
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
@@ -261,7 +261,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     return;
                 } catch (DuplicateTradeRecordException ignored) {
                 } catch (NotMoreGoodException e) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGood"));
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGoodWhenTradeGood"));
                     return;
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
@@ -293,7 +293,7 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistGood"));
                     return;
                 } catch (NotMoreGoodException e) {
-                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGood"));
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreGoodWhenTradeGood"));
                     return;
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));

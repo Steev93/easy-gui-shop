@@ -52,6 +52,53 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
+    public void transform2_7_1() {
+        try {
+        //从2.0.0到2.2.4的 如果存在version表并且版本小于2.2.4，需要更新
+        DatabaseMetaData metaData = getConnection().getMetaData();
+        ResultSet rs = metaData.getTables(null, null, "version", null);
+        if (!rs.next()) {
+            return;
+        }
+        VersionDao versionDao = new VersionDao();
+        VersionMeta versionMeta = versionDao.get();
+        assert versionMeta != null;
+        if (!VersionUtil.isOlderThan(versionMeta.getBig(), versionMeta.getMiddle(), versionMeta.getSmall(), 2, 7, 1)) {
+            return;
+        }
+
+
+
+        List<IconMeta> iconMetaList = new IconDao().list();
+        for (IconMeta iconMeta : iconMetaList) {
+            iconMeta.setName(ChatColor.translateAlternateColorCodes('&', iconMeta.getName()));
+            new IconDao().deleteByUuid(iconMeta.getUuid());
+            new IconDao().insert(iconMeta);
+        }
+
+            List<ShopMeta> shopMetaList = new ShopDao().list();
+            for (ShopMeta shopMeta : shopMetaList) {
+                shopMeta.setName(ChatColor.translateAlternateColorCodes('&', shopMeta.getName()));
+                new ShopDao().deleteByUuid(shopMeta.getUuid());
+                new ShopDao().insert(shopMeta);
+            }
+
+            List<GoodMeta> goodMetaList = new GoodDao().list();
+            for (GoodMeta goodMeta : goodMetaList) {
+                goodMeta.setName(ChatColor.translateAlternateColorCodes('&', goodMeta.getName()));
+                new GoodDao().deleteByUuid(goodMeta.getUuid());
+                new GoodDao().insert(goodMeta);
+            }
+
+
+        versionDao.delete();
+        versionDao.insert(new VersionMeta(2, 7, 1));
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    }
+
+    @Override
     public void transform2_0_0() {
         try {
             //从1.3.11更新到2.0.0的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新

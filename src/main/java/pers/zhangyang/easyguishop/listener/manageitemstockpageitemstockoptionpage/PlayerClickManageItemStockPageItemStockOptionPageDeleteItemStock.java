@@ -30,7 +30,7 @@ public class PlayerClickManageItemStockPageItemStockOptionPageDeleteItemStock im
         try {
             guiService.deleteItemStock(player.getUniqueId().toString(), manageItemStockPageItemStockOptionPage.getItemStockMeta().getItemStack());
         } catch (NotExistItemStockException e) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStock"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notExistItemStockWhenDepositItemStock"));
             return;
         } catch (ItemStockNotEmptyException e) {
             MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.itemStockNotEmpty"));

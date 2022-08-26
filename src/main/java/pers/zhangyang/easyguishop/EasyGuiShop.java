@@ -14,6 +14,7 @@ public class EasyGuiShop extends EasyPlugin {
         BaseService pluginService = (BaseService) new TransactionInvocationHandler(new BaseServiceImpl()).getProxy();
         pluginService.transform2_0_0();
         pluginService.transform2_2_4();
+        pluginService.transform2_7_1();
 
         // bStats统计信息
         new Metrics(EasyGuiShop.instance, 14803);

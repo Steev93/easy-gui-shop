@@ -172,35 +172,47 @@ message:
     notEnoughItemStockWhenDepositItemStock:
       - "&c&l您背包里没有足够的物品货币。"
 
-    #下面这几个往往是很不容易发生的失败提示，是共用的,往往因为GUI没及时刷新导致的，发生概率不高
-    notSetPrice:
-      - "&c&l没有设置价格。"
-    notMoreItemStock:
+    notSetPriceWhenBuyIcon:
+      - "&c&l没有设置价格，无法购买图标。"
+    notSetPriceWhenTrade:
+      - "&c&l没有设置价格，无法交易。"
+    notMoreItemStockWhenTakeItemStock:
       - "&c&l没有足够的货币物品"
     notMoreIcon:
       - "&c&l没有足够的图标了。"
-    notMoreGood:
+    notMoreGoodWhenTradeGood:
       - "&c&l没有足够的商品了。"
-    exceedLimitTime:
+    notMoreGoodWhenTakeGood:
+      - "&c&l没有足够的商品了。"
+    exceedLimitTimeWhenBuyIcon:
       - "&c&l不能交易了，超出了限定的交易时间。"
-    notExistItemStock:
+    exceedLimitTimeWhenTradeGood:
+      - "&c&l不能交易了，超出了限定的交易时间。"
+    notExistItemStockWhenTakeItemStock:
       - "&c&l不存在的货币库存。"
+    notExistItemStockWhenDepositItemStock:
+      - "&c&l不存在的货币库存。"
+    duplicateShopCollectorInAllShopPageShopOptionPage:
+      - "&c&l重复的商店收藏记录。"
+    duplicateShopCollectorInCollectedShopPageShopOptionPage:
+      - "&c&l重复的商店收藏记录。"
+    notExistShopCollectorInCollectedShopPageShopOptionPage:
+      - "&c&l不存在的商店收藏记录。"
+    notExistShopCollectorInAllShopPageShopOptionPage:
+      - "&c&l不存在的商店收藏记录。"
+    notExistLocationInAllShopPageShopOptionPage:
+      - "&c&l不存在的坐标。"
+    notExistLocationInCollectedShopPageShopOptionPage:
+      - "&c&l不存在的坐标。"
+    notExistShopComment:
+      - "&c&l评论不存在。"
+    #下面这几个往往是很不容易发生的失败提示，是共用的,往往因为GUI没及时刷新导致的，发生概率不高
     notExistGood:
       - "&c&l不存在的商品。"
-    duplicateShopCollector:
-      - "&c&l重复的商店收藏记录。"
-    notExistShopCollector:
-      - "&c&l不存在的商店收藏记录。"
     notExistIcon:
       - "&c&l不存在的图标。"
     stateChange:
       - "&c&l状态改变。"
-    notExistLocation:
-      - "&c&l不存在的坐标。"
-    notExistShopComment:
-      - "&c&l评论不存在。"
-    duplicateShopCommenter:
-      - "&c&l重复的评论。"
     notExistShop:
       - "&c&l不存在的店铺。"
 

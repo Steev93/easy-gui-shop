@@ -37,7 +37,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
         //检查是否限购
         Integer limitTime = iconMeta.getLimitTime();
         if (limitTime != null && limitTime * 1000 + iconMeta.getCreateTime() < System.currentTimeMillis()) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.exceedLimitTime"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.exceedLimitTimeWhenBuyIcon"));
             return;
         }
 
@@ -48,7 +48,7 @@ public class PlayerClickBuyIconPageIconOptionPageBuyIcon implements Listener {
         Economy vault = Vault.hook();
         PlayerPointsAPI playerPoints = PlayerPoints.hook();
         if (vaultPrice == null && playerPointsPrice == null && itemPrice == null) {
-            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPrice"));
+            MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notSetPriceWhenBuyIcon"));
             return;
         }
         if (vaultPrice != null) {
