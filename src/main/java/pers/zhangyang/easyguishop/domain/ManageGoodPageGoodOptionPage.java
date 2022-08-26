@@ -74,6 +74,12 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         } else {
             rep.put("{limit_time}", "\\");
         }
+
+        if (goodMeta.getLimitFrequency() != null) {
+            rep.put("{limit_frequency}", String.valueOf(goodMeta.getLimitFrequency()));
+        } else {
+            rep.put("{limit_frequency}", "\\");
+        }
         ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.goodInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);
@@ -113,6 +119,10 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         inventory.setItem(14, createItemGood);
 
 
+        ItemStack resetGoodLimitFrequency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodLimitFrequency");
+        inventory.setItem(38, resetGoodLimitFrequency);
+        ItemStack setGoodLimitFrequency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodLimitFrequency");
+        inventory.setItem(42, setGoodLimitFrequency);
         ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(inventory);

@@ -8,4 +8,5 @@ public interface BaseService {
 
 
     void transform2_7_1();
+    void transform2_8_0();
 }

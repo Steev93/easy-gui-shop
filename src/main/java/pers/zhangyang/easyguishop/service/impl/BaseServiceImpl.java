@@ -99,6 +99,37 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
+    public void transform2_8_0() {
+        try {
+            //从2.0.0到2.2.4的 如果存在version表并且版本小于2.2.4，需要更新
+            DatabaseMetaData metaData = getConnection().getMetaData();
+            ResultSet rs = metaData.getTables(null, null, "version", null);
+            if (!rs.next()) {
+                return;
+            }
+            VersionDao versionDao = new VersionDao();
+            VersionMeta versionMeta = versionDao.get();
+            assert versionMeta != null;
+            if (!VersionUtil.isOlderThan(versionMeta.getBig(), versionMeta.getMiddle(), versionMeta.getSmall(), 2, 8, 0)) {
+                return;
+            }
+
+
+            PreparedStatement ps=getConnection().prepareStatement("" +
+                    "ALTER TABLE good ADD " +
+                    "limit_frequency INT ");
+            ps.executeUpdate();
+
+
+
+            versionDao.delete();
+            versionDao.insert(new VersionMeta(2, 8, 0));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void transform2_0_0() {
         try {
             //从1.3.11更新到2.0.0的 如果不存在version并且存在update_table时，说明是2.0.0以前的版本 需要更新

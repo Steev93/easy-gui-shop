@@ -119,6 +119,11 @@ public class ManageGoodPage extends MultipleGuiPageBase implements BackAble {
             } else {
                 rep.put("{limit_time}", "\\");
             }
+            if (goodMeta.getLimitFrequency() != null) {
+                rep.put("{limit_frequency}", String.valueOf(goodMeta.getLimitFrequency()));
+            } else {
+                rep.put("{limit_frequency}", "\\");
+            }
             rep.put("{create_time}", TimeUtil.getTimeFromTimeMill(goodMeta.getCreateTime()));
             ItemStack itemStack;
             if (GuiYaml.INSTANCE.getBooleanDefault("gui.option.enableGoodUseGoodItem")) {

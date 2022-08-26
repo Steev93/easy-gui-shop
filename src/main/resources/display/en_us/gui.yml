@@ -240,6 +240,7 @@ gui:
           - "&c&l transaction type: {type}"
           - "&c&lStock: {stock}"
           - "&c&lLimit time: {limit_time}"
+          - "&e&lLimit_trade_amount: {limit_frequency} "
           - "&c&lCreate time: {create_time}"
           - "&e&lClick for details"
         amount: 1
@@ -331,6 +332,7 @@ gui:
           - "&e&lPrice: {price}"
           - "&e&lStock: {stock}"
           - "&e&lLimit_time: {limit_time} seconds"
+          - "&e&lLimit_trade_amount: {limit_frequency} "
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -683,6 +685,7 @@ gui:
           - "&c&l transaction type: {type}"
           - "&c&lStock: {stock}"
           - "&c&lLimit time: {limit_time}"
+          - "&e&lLimit_trade_amount: {limit_frequency} "
           - "&c&lCreate time: {create_time}"
           - "&e&lClick for details"
         amount: 1
@@ -744,6 +747,24 @@ gui:
           - "HIDE_DESTROYS"
         customModelData: [ ]
     manageGoodPageGoodOptionPage:
+      setGoodLimitFrequency:
+        materialName: "PAPER"
+        displayName: "&b&l&nSetting transaction amount"
+        lore:
+          - "&e&lclick me to set the transaction amount"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      resetGoodLimitFrequency:
+        materialName: "PAPER"
+        displayName: "&b&l&nResetTransactionLimit"
+        lore:
+          - "&e&lclick me to reset the transaction amount"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
       resetGoodPrice:
         materialName: "PAPER"
         displayName: "&b&l&nResetGoodPrice"
@@ -837,6 +858,7 @@ gui:
           - "&e&lPrice: {price}"
           - "&e&lStock: {stock}"
           - "&e&lLimit_time: {limit_time} seconds"
+          - "&e&lLimit_trade_amount: {limit_frequency} "
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"

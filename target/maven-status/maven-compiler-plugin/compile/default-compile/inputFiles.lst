@@ -14,6 +14,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\IconMe
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\OpenGuiExecutor.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerInputAfterClickManageItemStockPageItemStockOptionPageDepositItemStock.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageCollectShop.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageSetGoodLimitFrequency.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppage\PlayerInputAfterClickManageShopPageSearchByShopName.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCommentShop.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageManageShopPage.java
@@ -71,6 +72,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\ma
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpageitemstockoptionpage\PlayerInputAfterClickManageItemStockPageItemStockOptionPageTakeItemStock.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\domain\ManageGoodPageGoodOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotEnoughItemStockException.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageResetGoodLimitFrequency.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\enumration\AllShopPageStatsEnum.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageiconpage\PlayerClickManageIconPageManageIconPageIconOptionPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageCollectShop.java
@@ -84,6 +86,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\IconOw
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allgoodpagegoodoptionpage\PlayerClickAllGoodPageGoodOptionPageTradeGood.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppage\PlayerClickAllShopPageSearchByShopOwnerName.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageitemstockpage\PlayerClickManageItemStockPageManageItemStockPageItemStockOptionPage.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\exception\NotMoreLimitFrequencyException.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageShopCommentPage.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\buyiconpage\PlayerClickBuyIconPageSearchByIconName.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\PlusShopPopularityExecutor.java
@@ -117,6 +120,7 @@ D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\meta\ItemSt
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\executor\SetIconPlayerPointsPriceExecutor.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\collectedshoppageshopoptionpage\PlayerClickCollectedShopPageShopOptionPageCancelCollectShop.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allgoodpage\PlayerInputAfterClickAllGoodPageSearchByGoodName.java
+D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerInputAfterClickManageGoodPageGoodOptionPageSetGoodLimitFrequency.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\manageshoppage\PlayerClickManageShopPageDeleteShop.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\allshoppageshopoptionpage\PlayerClickAllShopPageShopOptionPageTeleportShopLocation.java
 D:\repository\easy-gui-shop\src\main\java\pers\zhangyang\easyguishop\listener\managegoodpagegoodoptionpage\PlayerClickManageGoodPageGoodOptionPageResetGoodLimitTime.java

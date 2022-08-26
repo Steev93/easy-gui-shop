@@ -240,6 +240,7 @@ gui:
           - "&c&l交易类型: {type}"
           - "&c&l库存: {stock}"
           - "&c&l限购时间: {limit_time}"
+          - "&c&l限购额度: {limit_frequency}"
           - "&c&l创建时间: {create_time}"
           - "&e&l点击查看详情"
         amount: 1
@@ -331,6 +332,7 @@ gui:
           - "&e&l价格：{price}"
           - "&e&l库存：{stock}"
           - "&e&l限购时间：{limit_time} 秒"
+          - "&c&l限购额度: {limit_frequency}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -683,6 +685,7 @@ gui:
           - "&c&l交易类型: {type}"
           - "&c&l库存: {stock}"
           - "&c&l限购时间: {limit_time}"
+          - "&c&l限购额度: {limit_frequency}"
           - "&c&l创建时间: {create_time}"
           - "&e&l点击查看详情"
         amount: 1
@@ -744,6 +747,24 @@ gui:
           - "HIDE_DESTROYS"
         customModelData: [ ]
     manageGoodPageGoodOptionPage:
+      setGoodLimitFrequency:
+        materialName: "PAPER"
+        displayName: "&b&l&n设置交易额度"
+        lore:
+          - "&e&l点我设置交易额度"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      resetGoodLimitFrequency:
+        materialName: "PAPER"
+        displayName: "&b&l&n重置交易额度"
+        lore:
+          - "&e&l点我重置交易额度"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
       resetGoodPrice:
         materialName: "PAPER"
         displayName: "&b&l&n重置商品价格"
@@ -837,6 +858,7 @@ gui:
           - "&e&l价格：{price}"
           - "&e&l库存：{stock}"
           - "&e&l限购时间：{limit_time} 秒"
+          - "&c&l限购额度: {limit_frequency}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"

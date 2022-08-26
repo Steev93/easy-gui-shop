@@ -171,7 +171,8 @@ message:
       - "&c&l没有更多的空间来拿出货币物品"
     notEnoughItemStockWhenDepositItemStock:
       - "&c&l您背包里没有足够的物品货币。"
-
+    notMoreLimitFrequency:
+      - "&C&l没有更多的交易额度了"
     notSetPriceWhenBuyIcon:
       - "&c&l没有设置价格，无法购买图标。"
     notSetPriceWhenTrade:
@@ -315,8 +316,14 @@ message:
       - "&a&l输入存入的数量，输入 &f取消 &a&l取消。"
     howToTakeGood:
       - "&a&l输入取出的数量，输入 &f取消 &a&l取消。"
+    howToSetGoodLimitFrequency:
+      - "&a&l输入交易额度限制的数量，输入 &f取消 &a&l取消。"
 
     #成功操作提示，每个操作对应一个提示
+    setGoodLimitFrequency:
+      - "&c&l设置了交易数量额度"
+    resetGoodLimitFrequency:
+      - "&c&l重置了交易数量额度"
     buyShopPopularity:
       - "&C&l购买了人气"
     cancelCollectShopInAllShopPageShopOptionPage:

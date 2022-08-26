@@ -617,7 +617,7 @@ public class GuiServiceImpl implements GuiService {
     }
 
     @Override
-    public void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, StateChangeException, NotMoreGoodException {
+    public void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, StateChangeException, NotMoreGoodException, NotMoreLimitFrequencyException {
         GoodMeta goodMeta = new GoodDao().getByUuid(goodUuid);
         if (goodMeta == null) {
             throw new NotExistGoodException();
@@ -625,10 +625,15 @@ public class GuiServiceImpl implements GuiService {
         if (!old.equals(goodMeta)) {
             throw new StateChangeException();
         }
+        if (goodMeta.getLimitFrequency()!=null&&goodMeta.getLimitFrequency()<amount) {
+            throw new NotMoreLimitFrequencyException();
+        }
         if (goodMeta.isSystem()) {
             return;
         }
-
+        if (goodMeta.getLimitFrequency()!=null) {
+            goodMeta.setLimitFrequency(goodMeta.getLimitFrequency() - amount);
+        }
 
         if (goodMeta.getType().equalsIgnoreCase("收购") && !goodMeta.isSystem()) {
             if (amount > Integer.MAX_VALUE - goodMeta.getStock()) {
@@ -648,7 +653,7 @@ public class GuiServiceImpl implements GuiService {
     }
 
     @Override
-    public void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException {
+    public void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException, NotMoreLimitFrequencyException {
         GoodMeta goodMeta = new GoodDao().getByUuid(goodUuid);
         if (goodMeta == null) {
             throw new NotExistGoodException();
@@ -656,11 +661,13 @@ public class GuiServiceImpl implements GuiService {
         if (!old.equals(goodMeta)) {
             throw new StateChangeException();
         }
-        if (goodMeta.isSystem()) {
-            return;
+        if (goodMeta.getLimitFrequency()!=null&&goodMeta.getLimitFrequency()<amount) {
+            throw new NotMoreLimitFrequencyException();
         }
 
-
+        if (goodMeta.getLimitFrequency()!=null) {
+            goodMeta.setLimitFrequency(goodMeta.getLimitFrequency() - amount);
+        }
         if (goodMeta.getType().equalsIgnoreCase("收购") && !goodMeta.isSystem()) {
             if (amount > Integer.MAX_VALUE - goodMeta.getStock()) {
                 goodMeta.setStock(Integer.MAX_VALUE);
@@ -677,7 +684,7 @@ public class GuiServiceImpl implements GuiService {
         }
 
 
-        //货币检查
+        //货币检查和扣除
         assert goodMeta.getCurrencyItemStack() != null;
         assert goodMeta.getItemPrice() != null;
 
@@ -839,6 +846,21 @@ public class GuiServiceImpl implements GuiService {
         }
         new ShopDao().deleteByUuid(shopMeta.getUuid());
         new ShopDao().insert(shopMeta);
+    }
+
+    @Override
+    public void setGoodLimitFrequency(String goodUuid, Integer amount) throws NotExistGoodException {
+
+        if (amount!=null&&amount < 0) {
+            throw new IllegalArgumentException();
+        }
+        GoodMeta goodMeta = new GoodDao().getByUuid(goodUuid);
+        if (goodMeta == null) {
+            throw new NotExistGoodException();
+        }
+        goodMeta.setLimitFrequency(amount);
+        new GoodDao().deleteByUuid(goodMeta.getUuid());
+        new GoodDao().insert(goodMeta);
     }
 
     @Override

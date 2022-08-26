@@ -110,6 +110,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
+                    return;
                 }
                 //扣除货币
                 vault.depositPlayer(owner, afterTax);
@@ -146,6 +149,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
+                    return;
                 }
                 playerPoints.give(owner.getUniqueId(), afterTax);
 
@@ -177,6 +183,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     return;
                 } catch (NotMoreItemStockException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreItemStockWhenTradeGood"));
+                    return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
                     return;
                 }
             }
@@ -225,6 +234,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
+                    return;
                 }
                 vault.withdrawPlayer(owner, beforeTax);
                 if (!goodMeta.isSystem()) {
@@ -266,6 +278,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                 } catch (StateChangeException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.stateChange"));
                     return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
+                    return;
                 }
                 playerPoints.take(owner.getUniqueId(), beforeTax);
 
@@ -300,6 +315,9 @@ public class PlayerInputAfterClickAllGoodPageGoodOptionPageTradeGood extends Fin
                     return;
                 } catch (NotEnoughItemStockException e) {
                     MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notEnoughItemStockWhenTradeGood"));
+                    return;
+                } catch (NotMoreLimitFrequencyException e) {
+                    MessageUtil.sendMessageTo(player, MessageYaml.INSTANCE.getStringList("message.chat.notMoreLimitFrequency"));
                     return;
                 }
 

@@ -73,6 +73,11 @@ public class AllGoodPageGoodOptionPage extends SingleGuiPageBase implements Back
         } else {
             rep.put("{limit_time}", "\\");
         }
+        if (goodMeta.getLimitFrequency() != null) {
+            rep.put("{limit_frequency}", String.valueOf(goodMeta.getLimitFrequency()));
+        } else {
+            rep.put("{limit_frequency}", "\\");
+        }
         ItemStack information = GuiYaml.INSTANCE.getButtonDefault("gui.button.allGoodPageGoodOptionPage.goodInformation");
         ReplaceUtil.replaceLore(information, rep);
         ReplaceUtil.replaceDisplayName(information, rep);

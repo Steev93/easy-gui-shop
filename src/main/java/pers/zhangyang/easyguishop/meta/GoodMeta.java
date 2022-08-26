@@ -20,6 +20,16 @@ public class GoodMeta {
     private Double vaultPrice;
     private Integer playerPointsPrice;
 
+    private Integer limitFrequency;
+
+    public Integer getLimitFrequency() {
+        return limitFrequency;
+    }
+
+    public void setLimitFrequency(Integer limitFrequency) {
+        this.limitFrequency = limitFrequency;
+    }
+
     public GoodMeta() {
     }
 
@@ -142,11 +152,11 @@ public class GoodMeta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GoodMeta goodMeta = (GoodMeta) o;
-        return createTime == goodMeta.createTime && system == goodMeta.system && stock == goodMeta.stock && Objects.equals(uuid, goodMeta.uuid) && Objects.equals(shopUuid, goodMeta.shopUuid) && Objects.equals(name, goodMeta.name) && Objects.equals(GoodItemStack, goodMeta.GoodItemStack) && Objects.equals(type, goodMeta.type) && Objects.equals(limitTime, goodMeta.limitTime) && Objects.equals(currencyItemStack, goodMeta.currencyItemStack) && Objects.equals(itemPrice, goodMeta.itemPrice) && Objects.equals(vaultPrice, goodMeta.vaultPrice) && Objects.equals(playerPointsPrice, goodMeta.playerPointsPrice);
+        return createTime == goodMeta.createTime && system == goodMeta.system && stock == goodMeta.stock && Objects.equals(uuid, goodMeta.uuid) && Objects.equals(shopUuid, goodMeta.shopUuid) && Objects.equals(name, goodMeta.name) && Objects.equals(GoodItemStack, goodMeta.GoodItemStack) && Objects.equals(type, goodMeta.type) && Objects.equals(limitTime, goodMeta.limitTime) && Objects.equals(currencyItemStack, goodMeta.currencyItemStack) && Objects.equals(itemPrice, goodMeta.itemPrice) && Objects.equals(vaultPrice, goodMeta.vaultPrice) && Objects.equals(playerPointsPrice, goodMeta.playerPointsPrice) && Objects.equals(limitFrequency, goodMeta.limitFrequency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, createTime, shopUuid, name, GoodItemStack, type, system, stock, limitTime, currencyItemStack, itemPrice, vaultPrice, playerPointsPrice);
+        return Objects.hash(uuid, createTime, shopUuid, name, GoodItemStack, type, system, stock, limitTime, currencyItemStack, itemPrice, vaultPrice, playerPointsPrice, limitFrequency);
     }
 }

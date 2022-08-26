@@ -98,9 +98,9 @@ public interface GuiService {
 
     void changeGoodTransactionType(String goodUuid) throws NotExistGoodException;
 
-    void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, NotMoreGoodException, StateChangeException;
+    void trade(String goodUuid, int amount, GoodMeta old) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreLimitFrequencyException;
 
-    void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException;
+    void tradeItem(String goodUuid, int amount, GoodMeta old, String merchantUuid, String customUuid) throws NotExistGoodException, NotMoreGoodException, StateChangeException, NotMoreItemStockException, NotEnoughItemStockException, NotMoreLimitFrequencyException;
 
     void createTradeRecord(TradeRecordMeta tradeRecordMeta) throws DuplicateTradeRecordException;
 
@@ -116,5 +116,6 @@ public interface GuiService {
     void resetGoodPrice(String goodUuid) throws NotExistGoodException;
 
     void plusShopPopularity(String shopUuid,int value) throws NotExistShopException;
+    void setGoodLimitFrequency(String goodUuid,Integer value) throws NotExistGoodException;
     void setShopDescription(String shopUuid, String descriptionJson) throws NotExistShopException;
 }

@@ -169,8 +169,8 @@ message:
       - "&c&l has no more space to take out monetary items"
     notEnoughItemStockWhenDepositItemStock:
       - "&c&lYou don't have enough item currency in your backpack."
-
-
+    notMoreLimitFrequency:
+      - "&C&l doesn't have any more trading credits."
     notSetPriceWhenBuyIcon:
       - "&c&l No price set to buy icon."
     notSetPriceWhenTrade:
@@ -314,8 +314,12 @@ message:
       - "&a&lEnter the quantity deposited, enter &fCancel &a&lCancel."
     howToTakeGood:
       - "&a&lEnter the quantity taken out, enter &fCancel &a&lCancel."
+    howToSetGoodLimitFrequency:
+      - "&a&lEnter the number of transaction limits, enter &fCancel &a&lCancel."
 
-    #successful operations hint, each operation corresponds to a hint
+    #successful operation prompts, one for each operation
+    setGoodLimitFrequency:
+      - "&c&l set the transaction quantity amount"
     buyShopPopularity:
       - "&C&l purchased popularity"
     cancelCollectShopInAllShopPageShopOptionPage:

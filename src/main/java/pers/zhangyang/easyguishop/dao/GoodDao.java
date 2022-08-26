@@ -30,7 +30,8 @@ public class GoodDao extends DaoBase {
                     "currency_item_stack TEXT ," +
                     "item_price INT ," +
                     "vault_price DOUBLE ," +
-                    "player_points_price INT " +
+                    "player_points_price INT ," +
+                    "limit_frequency INT " +
                     ")");
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -42,8 +43,8 @@ public class GoodDao extends DaoBase {
         try {
             PreparedStatement ps = getConnection().prepareStatement("" +
                     "INSERT INTO good (uuid,`name`,good_item_stack,`type`,create_time,`system`,stock,shop_uuid,limit_time," +
-                    "currency_item_stack,item_price,vault_price,player_points_price)" +
-                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "currency_item_stack,item_price,vault_price,player_points_price,limit_frequency)" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, goodMeta.getUuid());
             ps.setString(2, goodMeta.getName());
             ps.setString(3, goodMeta.getGoodItemStack());
@@ -57,6 +58,7 @@ public class GoodDao extends DaoBase {
             ps.setObject(11, goodMeta.getItemPrice());
             ps.setObject(12, goodMeta.getVaultPrice());
             ps.setObject(13, goodMeta.getPlayerPointsPrice());
+            ps.setObject(14, goodMeta.getLimitFrequency());
             return ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
