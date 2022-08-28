@@ -1,6 +1,7 @@
 gui:
   #第一个页面的返回按钮点击后执行的指令，格式为 way:command，其中的way指代执行的方式，command是命令，命令无需加/，
   #执行方式有operator、console、self，分别代表以op身份执行（给玩家op然后执行然后取消玩家op）、控制台执行、自身执行
+  #支持Papi变量
   firstPageBackCommand:
     - "self:bs"
     - "self:cd"
@@ -9,7 +10,7 @@ gui:
   replace:
 
     #当商店或者商品为系统补货时，将把库存显示为以下内容，不填则采用默认值
-    systemStock: "&d&l无限"
+    systemStock: "无限"
 
   #gui的一些选项
   option:
@@ -17,74 +18,66 @@ gui:
     #如果店铺没有使用图标，是否显示为店主的头颅，开启这个功能可能会卡服，因为头颅材质占用网络资源，不填则采用默认值
     enableShopUsePlayerHead: false
 
-    #商品是否在Gui中显示为商品物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
+    #商品是否在Gui中显示为商品物品的材质，不填则采用默认值
     enableGoodUseGoodItem: true
 
-    #图标是否使用图标物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
+    #图标是否使用图标物品的材质，不填则采用默认值
     enableIconUseIconItem: true
 
-    #交易记录是否使用交易物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
+    #交易记录是否使用交易物品的材质，不填则采用默认值
     enableTradeRecordUseTradeRecordItem: true
 
-    #货币库存是否使用货币物品的材质，如果是对应物品没有ItemMeta信息，则无效，不填则采用默认值
+    #货币库存是否使用货币物品的材质，不填则采用默认值
     enableItemStockUseItemStockItem: true
 
   #gui页面的标题
   title:
-    allShopPage: "&b&l&n全部店铺&e&l(陈列了所有的店铺)"
-    allShopPageShopOptionPage: "&b&l&n店铺选项页&e&l(对该店铺可进行的选项)"
-    collectedShopPageShopOptionPage: "&b&l&n店铺选项页&e&l(对该店铺可进行的选项)"
-    manageShopPageShopOptionPage: "&b&l&n店铺选项页&e&l(对该店铺可进行的选项)"
-    manageShopPage: "&b&l&n全部我的店铺&e&l(陈列了所有自己的店铺)"
-    collectedShopPage: "&b&l&n全部收藏店铺&e&l(陈列了所有收藏的店铺)"
-    allShopCommentPage: "&b&l&n店铺的评论&e&l(陈列了店铺的所有评论)"
-    manageShopCommentPage: "&b&l&n我的评论&e&l(陈列了我的所有评论)"
-    buyIconPage: "&b&l&n购买图标&e&l(所有图标)"
-    manageIconPage: "&b&l&n我的图标&e&l(所有我买过的图标)"
-    buyIconPageIconOptionPage: "&b&l&n图标购买选项页&e&l(可进行的选项)"
-    allGoodPage: "&b&l&n全部商品&e&l(陈列了所有的商品)"
-    manageItemStockPageItemStockOptionPage: "&b&l&n库存选项页&e&l(可进行的选项)"
-    manageGoodPage: "&b&l&n管理商品&e&l(陈列了所有自己的商品)"
-    manageGoodPageGoodOptionPage: "&b&l&n商品选项页&e&l(可进行的选项)"
-    manageItemStockPage: "&b&l&n管理以物易物货币库存&e&l(陈列了所有以物易物货币库存)"
-    allGoodPageGoodOptionPage: "&b&l&n商品选项页&e&l(可进行的选项)"
-    manageTradeRecordPage: "&b&l&n交易记录&e&l(跟自己有关的交易记录)"
-    manageTradeRecordPageTradeRecordOptionPage: "&b&l&n交易记录选项&e&l(可进行的选项)"
-    manageIconPageIconOptionPage: "&b&l&n管理图标选项页&e&l(可进行的选项)"
+    allShopPage: "&b&l&n全部的店铺"
+    allShopPageShopOptionPage: "&b&l&n店铺的操作选项"
+    collectedShopPageShopOptionPage: "&b&l&n店铺的操作选项"
+    manageShopPageShopOptionPage: "&b&l&n店铺的操作选项"
+    manageShopPage: "&b&l&n管理我的店铺"
+    collectedShopPage: "&b&l&n我收藏的店铺"
+    allShopCommentPage: "&b&l&n这家店铺的评论"
+    manageShopCommentPage: "&b&l&n我对其他店铺的评论"
+    buyIconPage: "&b&l&n购买店铺图标"
+    manageIconPage: "&b&l&n我购买过的图标"
+    buyIconPageIconOptionPage: "&b&l&n图标的操作选项"
+    allGoodPage: "&b&l&n这家店铺的商品"
+    manageItemStockPageItemStockOptionPage: "&b&l&n物品库存的操作选项"
+    manageGoodPage: "&b&l&n管理店铺商品"
+    manageGoodPageGoodOptionPage: "&b&l&n商品的操作选项"
+    manageItemStockPage: "&b&l&n管理物品货币库存"
+    allGoodPageGoodOptionPage: "&b&l&n商品的操作选项"
+    manageTradeRecordPage: "&b&l&n我的交易记录"
+    manageTradeRecordPageTradeRecordOptionPage: "&b&l&n交易记录的操作选项"
+    manageIconPageIconOptionPage: "&b&l&n图标的操作选项"
 
   #gui内的按钮
   button:
     allShopPage:
-      back:
-        materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
-        lore:
-          - "&e&l返回"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
       allShopPageShopOptionPage:
 
         #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
-        #如果是AIR代表不显示相关按钮并且无法被点击
+        #如果是AIR代表不显示相关按钮并且无法被点击，如果不填或填错，采用默认值
         materialName: "BOOKSHELF"
 
         #表示按钮的名称
-        displayName: "&b&l&n商店 &f&l{name}"
+        displayName: "&b&l&n商店"
 
         #表示按钮的描述，lore中可以用的变量，除了{()}括起来的，都可以用在displayName中
         lore:
-          - "&a&l店铺主人: {owner_name}"
-          - "&b&l店铺名字: {name}"
-          - "&c&l创建时间: {create_time}"
-          - "&d&l收藏数量: {collect_amount}"
-          - "&e&l浏览量: {page_view}"
-          - "&f&l人气: {popularity}"
-          - "&a&l热力值: {hot_value}"
-          - "&b&l点击进入操作选项页"
-          - "&c&l以下是描述"
-          - "{(description)}"
+          - "&a&l商店名字: &f{name}"
+          - "&b&l店铺主人: &f{owner_name}"
+          - "&c&l店铺名字: &f{name}"
+          - "&d&l创建时间: &f{create_time}"
+          - "&e&l收藏数量: &f{collect_amount}"
+          - "&f&l浏览量: &f{page_view}"
+          - "&a&l人气: &f{popularity}"
+          - "&b&l热力值: &f{hot_value}"
+          - "&c&l点击进入操作选项页"
+          - "&d&l以下是描述"
+          - "&f{(description)}"
 
         #表示数量
         amount: 1
@@ -95,11 +88,20 @@ gui:
 
         #用哪个模型数据 1.12及以前的版本不支持这个
         customModelData: [ ]
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&a&l返回上一个界面"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
       nextPage:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -108,7 +110,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -117,7 +119,7 @@ gui:
         materialName: "EMERALD"
         displayName: "&b&l&n我的交易记录"
         lore:
-          - "&a&l点击去管理我的交易记录"
+          - "&a&l前往我的交易记录页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -126,7 +128,7 @@ gui:
         materialName: "DIAMOND_PICKAXE"
         displayName: "&b&l&n管理商店"
         lore:
-          - "&e&l点击去管理我自己的商店"
+          - "&a&l前往管理我自己的商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -135,7 +137,7 @@ gui:
         materialName: "IRON_BLOCK"
         displayName: "&b&l&n管理库存"
         lore:
-          - "&e&l管理库存"
+          - "&a&l前往管理我的物品库存"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -144,7 +146,7 @@ gui:
         materialName: "MAP"
         displayName: "&b&l&n我的评论"
         lore:
-          - "&a&l点击查看我的评论"
+          - "&a&l查看我的评论"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -153,7 +155,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索店铺名字"
         lore:
-          - "&e&l点击按店铺的名称搜索商店"
+          - "&a&l按店铺的名称搜索商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -162,7 +164,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索店主"
         lore:
-          - "&e&l点击按店主的名字搜索商店"
+          - "&a&l按店主的名字搜索商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -170,9 +172,9 @@ gui:
     allShopPageShopOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回全部店铺界面"
+          - "&a&l返回全部店铺界面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -181,7 +183,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n去店铺"
         lore:
-          - "&e&l进入店铺"
+          - "&a&l进入店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -190,7 +192,7 @@ gui:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
-          - "&e&l前往实体店铺"
+          - "&a&l前往实体店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -199,7 +201,7 @@ gui:
         materialName: "LEVER"
         displayName: "&b&l&n收藏商店"
         lore:
-          - "&e&l点击收藏商店"
+          - "&a&l收藏商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -208,7 +210,7 @@ gui:
         materialName: "TORCH"
         displayName: "&b&l&n取消收藏"
         lore:
-          - "&e&l点击取消收藏商店"
+          - "&a&l取消收藏商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -217,7 +219,7 @@ gui:
         materialName: "FEATHER"
         displayName: "&b&l&n评论商店"
         lore:
-          - "&e&l点击评论商店"
+          - "&a&l点击评论商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -226,7 +228,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:
-          - "&e&l点击查看商店评论"
+          - "&a&l查看商店评论"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -234,15 +236,15 @@ gui:
     allGoodPage:
       allGoodPageGoodOptionPage:
         materialName: "PAPER"
-        displayName: "&b&l&n商品名字：&f{name}"
+        displayName: "&b&l&n商品"
         lore:
-          - "&c&l商品名字: {name}"
-          - "&c&l交易类型: {type}"
-          - "&c&l库存: {stock}"
-          - "&c&l限购时间: {limit_time}"
-          - "&c&l限购额度: {limit_frequency}"
-          - "&c&l创建时间: {create_time}"
-          - "&e&l点击查看详情"
+          - "&a&l商品名字: &f{name}"
+          - "&b&l交易类型: &f{type}"
+          - "&c&l库存: &f{stock}"
+          - "&d&l限购时间: &f{limit_time}"
+          - "&e&l限购额度: &f{limit_frequency}"
+          - "&f&l创建时间: &f{create_time}"
+          - "&a&l点击查看详情"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -251,7 +253,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -260,7 +262,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -269,7 +271,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -278,7 +280,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索商品名字"
         lore:
-          - "&e&l点击按商品的名字搜索商品"
+          - "&a&l按商品的名字搜索商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -286,9 +288,9 @@ gui:
     allGoodPageGoodOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回管理商品"
+          - "&a&l返回管理商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -297,7 +299,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n金币"
         lore:
-          - "&e&l金币货币"
+          - "&a&l金币货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -306,7 +308,7 @@ gui:
         materialName: "map"
         displayName: "&b&l&n点券"
         lore:
-          - "&e&l点券货币"
+          - "&a&l点券货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -315,10 +317,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n货币"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l上侧的是商品"
-          - "&a&l下侧的是货币"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l上侧的是商品"
+          - "&c&l下侧的是货币"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -327,12 +329,12 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n具体信息"
         lore:
-          - "&c&l商品名字: {name}"
-          - "&c&l交易类型: {type}"
-          - "&e&l价格：{price}"
-          - "&e&l库存：{stock}"
-          - "&e&l限购时间：{limit_time} 秒"
-          - "&c&l限购额度: {limit_frequency}"
+          - "&a&l商品名字: &f{name}"
+          - "&b&l交易类型: &f{type}"
+          - "&c&l价格：&f{price}"
+          - "&d&l库存：&f{stock}"
+          - "&e&l限购时间：&f{limit_time} 秒"
+          - "&f&l限购额度: &f{limit_frequency}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -341,7 +343,7 @@ gui:
         materialName: "NETHER_STAR"
         displayName: "&b&l&n交易"
         lore:
-          - "&b&l点我交易"
+          - "&a&l交易商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -349,12 +351,12 @@ gui:
     buyIconPage:
       buyIconPageIconOptionPage:
         materialName: "PAPER"
-        displayName: "&b&l&n图标：&f{name}"
+        displayName: "&b&l&n图标"
         lore:
-          - "&c&l图标名字: {name}"
-          - "&c&l创建时间: {create_time}"
-          - "&c&l库存: {stock}"
-          - "&c&l限购时间: {limit_time}"
+          - "&a&l图标名字: &f{name}"
+          - "&b&l创建时间: &f{create_time}"
+          - "&c&l库存: &f{stock}"
+          - "&d&l限购时间: &f{limit_time}"
           - "&e&l点击查看详情"
         amount: 1
         itemFlag:
@@ -364,7 +366,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -373,7 +375,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -382,7 +384,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -391,7 +393,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索图标名字"
         lore:
-          - "&e&l点击按图标的名字搜索图标"
+          - "&a&l按图标的名字搜索图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -401,7 +403,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n金币"
         lore:
-          - "&e&l金币货币"
+          - "&a&l金币货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -410,16 +412,16 @@ gui:
         materialName: "map"
         displayName: "&b&l&n点券"
         lore:
-          - "&e&l点券货币"
+          - "&a&l点券货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回图标购买"
+          - "&a&l返回图标购买"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -428,10 +430,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n货币"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l上侧的是图标"
-          - "&a&l下侧的是货币"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l上侧的是图标"
+          - "&c&l下侧的是货币"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -440,11 +442,11 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n具体信息"
         lore:
-          - "&e&l图标名字：{name}"
-          - "&e&l创建时间：{create_time}"
-          - "&e&l价格：{price}"
-          - "&e&l库存：{stock}"
-          - "&e&l限购时间：{limit_time} 秒"
+          - "&a&l图标名字：&f{name}"
+          - "&b&l创建时间：&f{create_time}"
+          - "&c&l价格：&f{price}"
+          - "&d&l库存：&f{stock}"
+          - "&e&l限购时间：&f{limit_time} 秒"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -453,7 +455,7 @@ gui:
         materialName: "NETHER_STAR"
         displayName: "&b&l&n购买"
         lore:
-          - "&e&l点击购买图标"
+          - "&a&l购买图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -461,27 +463,27 @@ gui:
     collectedShopPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回全部店铺界面"
+          - "&a&l返回全部店铺界面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       collectedShopPageShopOptionPage:
         materialName: "BOOKSHELF"
-        displayName: "{owner_name} &b&l&n的商店"
+        displayName: "&b&l&n商店"
         lore:
-          - "&a&l店铺主人: {owner_name}"
-          - "&a&l店铺名字: {name}"
-          - "&b&l创建时间: {create_time}"
-          - "&d&l收藏数量: {collect_amount}"
-          - "&d&l浏览量: {page_view}"
-          - "&d&l人气: {popularity}"
-          - "&e&l热力值: {hot_value}"
-          - "&f&l点击查看店铺操作选项"
-          - "&a&l以下是描述"
-          - "{(description)}"
+          - "&a&l店铺主人: &f{owner_name}"
+          - "&b&l店铺名字: &f{name}"
+          - "&c&l创建时间: &f{create_time}"
+          - "&d&l收藏数量: &f{collect_amount}"
+          - "&e&l浏览量: &f{page_view}"
+          - "&f&l人气: &f{popularity}"
+          - "&a&l热力值: &f{hot_value}"
+          - "&b&l点击查看店铺操作选项"
+          - "&c&l以下是描述"
+          - "&d{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -490,7 +492,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -499,7 +501,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -508,7 +510,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索店铺名字"
         lore:
-          - "&e&l点击按店铺的名称搜索商店"
+          - "&a&l按店铺的名称搜索商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -517,7 +519,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索店主"
         lore:
-          - "&e&l点击按店主的名字搜索商店"
+          - "&a&l按店主的名字搜索商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -525,9 +527,9 @@ gui:
     collectedShopPageShopOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回我的收藏店铺界面"
+          - "&a&l返回我的收藏店铺界面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -536,7 +538,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n去店铺"
         lore:
-          - "&e&l进入店铺"
+          - "&a&l进入店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -545,7 +547,7 @@ gui:
         materialName: "BEACON"
         displayName: "&b&l&n去店铺的实体坐标"
         lore:
-          - "&e&l前往实体店铺"
+          - "&a&l前往实体店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -554,7 +556,7 @@ gui:
         materialName: "TORCH"
         displayName: "&b&l&n取消收藏"
         lore:
-          - "&e&l点击取消收藏商店"
+          - "&a&l取消收藏商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -563,7 +565,7 @@ gui:
         materialName: "LEVER"
         displayName: "&b&l&n收藏"
         lore:
-          - "&e&l点击收藏商店"
+          - "&a&l收藏商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -572,7 +574,7 @@ gui:
         materialName: "FEATHER"
         displayName: "&b&l&n评论商店"
         lore:
-          - "&e&l点击评论商店"
+          - "&a&l评论商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -581,7 +583,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:
-          - "&e&l点击查看商店评论"
+          - "&a&l查看商店评论"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -589,12 +591,12 @@ gui:
     allShopCommentPage:
       shopComment:
         materialName: "FEATHER"
-        displayName: "{commenter_name} &b&l&n的评论"
+        displayName: "&b&l&n评论"
         lore:
-          - "&a&l评论人: {commenter_name}"
-          - "&b&l评论时间: {comment_time}"
+          - "&a&l评论人: &f{commenter_name}"
+          - "&b&l评论时间: &f{comment_time}"
           - "&c&l以下是评论"
-          - "{(content)}"
+          - "&d{(content)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -603,7 +605,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -612,7 +614,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -621,7 +623,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索玩家的评论"
         lore:
-          - "&e&l点击按玩家的名字搜索评论"
+          - "&a&l按玩家的名字搜索评论"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -630,7 +632,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -638,13 +640,13 @@ gui:
     manageShopCommentPage:
       deleteShopComment:
         materialName: "BARRIER"
-        displayName: "{commenter_name} &b&l&n的评论"
+        displayName: "&b&l&n评论"
         lore:
-          - "&a&l评论人: {commenter_name}"
-          - "&b&l评论时间: {comment_time}"
+          - "&a&l评论人: &f{commenter_name}"
+          - "&b&l评论时间: &f{comment_time}"
           - "&c&l点击删除评论"
           - "&d&l以下是评论"
-          - "{(content)}"
+          - "&e{(content)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -653,7 +655,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -662,7 +664,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -671,7 +673,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -679,15 +681,15 @@ gui:
     manageGoodPage:
       manageGoodPageGoodOptionPage:
         materialName: "CHEST"
-        displayName: "&b&l&n商品名字：&f{name}"
+        displayName: "&b&l&n商品"
         lore:
-          - "&c&l商品名字: {name}"
-          - "&c&l交易类型: {type}"
-          - "&c&l库存: {stock}"
-          - "&c&l限购时间: {limit_time}"
-          - "&c&l限购额度: {limit_frequency}"
-          - "&c&l创建时间: {create_time}"
-          - "&e&l点击查看详情"
+          - "&a&l商品名字: &f{name}"
+          - "&b&l交易类型: &f{type}"
+          - "&c&l库存: &f{stock}"
+          - "&d&l限购时间: &f{limit_time}"
+          - "&e&l限购额度: &f{limit_frequency}"
+          - "&f&l创建时间: &f{create_time}"
+          - "&a&l点击查看详情"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -696,7 +698,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -705,7 +707,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -714,7 +716,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -723,7 +725,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索商品名字"
         lore:
-          - "&e&l点击按商品的名字搜索商品"
+          - "&a&l按商品的名字搜索商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -732,7 +734,7 @@ gui:
         materialName: "DIAMOND"
         displayName: "&b&l&n创建商品"
         lore:
-          - "&e&l点击我创建商品"
+          - "&a&l创建商品"
         amount: 2
         itemFlag:
           - "HIDE_DESTROYS"
@@ -741,7 +743,7 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&n删除商品"
         lore:
-          - "&e&l点击去删除商品"
+          - "&a&l删除商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -751,7 +753,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n设置交易额度"
         lore:
-          - "&e&l点我设置交易额度"
+          - "&a&l设置交易额度"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -760,7 +762,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n重置交易额度"
         lore:
-          - "&e&l点我重置交易额度"
+          - "&a&l重置交易额度"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -769,7 +771,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n重置商品价格"
         lore:
-          - "&e&l点我重置商品价格"
+          - "&a&l重置商品价格"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -778,7 +780,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n重置限购时间"
         lore:
-          - "&e&l点我重置限购时间"
+          - "&a&l重置限购时间"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -787,7 +789,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n金币"
         lore:
-          - "&e&l金币货币"
+          - "&a&l金币货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -796,7 +798,7 @@ gui:
         materialName: "map"
         displayName: "&b&l&n点券"
         lore:
-          - "&e&l点券货币"
+          - "&a&l点券货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -805,7 +807,7 @@ gui:
         materialName: "NAME_TAG"
         displayName: "&b&l&n设置名字"
         lore:
-          - "&e&l点击设置商品名字"
+          - "&a&l点击设置商品名字"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -814,7 +816,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n存入"
         lore:
-          - "&e&l存入商品"
+          - "&a&l存入商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -823,125 +825,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n取出"
         lore:
-          - "&e&l取出商品"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      back:
-        materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
-        lore:
-          - "&e&l返回管理商品"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      guideGoodAndCurrency:
-        materialName: "GLASS"
-        displayName: "&b&l&n货币"
-        lore:
-          - "&b&l左侧的是商品"
-          - "&a&l<<<<<<<<<<<<"
-          - "&a&l右侧的是货币"
-          - "&b&l>>>>>>>>>>>>"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      goodInformation:
-        materialName: "PAINTING"
-        displayName: "&b&l&n具体信息"
-        lore:
-          - "&c&l商品名字: {name}"
-          - "&c&l交易类型: {type}"
-          - "&e&l价格：{price}"
-          - "&e&l库存：{stock}"
-          - "&e&l限购时间：{limit_time} 秒"
-          - "&c&l限购额度: {limit_frequency}"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      toggleGoodType:
-        materialName: "STONE_BUTTON"
-        displayName: "&b&l&n切换交易类型"
-        lore:
-          - "&b&l点我切换交易类型"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodLimitTime:
-        materialName: "SAND"
-        displayName: "&b&l&n设置限购时间"
-        lore:
-          - "&b&l点我设置限购时间"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodVaultPrice:
-        materialName: "PAPER"
-        displayName: "&b&l&n设置为金币"
-        lore:
-          - "&b&l点我设置金币商品"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodPlayerPointsPrice:
-        materialName: "MAP"
-        displayName: "&b&l&n设置为点券"
-        lore:
-          - "&b&l点我设置点券商品"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      setGoodItemPrice:
-        materialName: "EMERALD_BLOCK"
-        displayName: "&b&l&n设置为以物易物"
-        lore:
-          - "&b&l点我设置以物易物商品"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-    manageIconPage:
-      manageIconPageIconOptionPage:
-        materialName: "PAPER"
-        displayName: "&b&l&n图标：&f{name}"
-        lore:
-          - "&c&l图标名字: {name}"
-          - "&e&l点击查看详情"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      resetShopIcon:
-        materialName: "PAPER"
-        displayName: "&b&l&n重置图标"
-        lore:
-          - "&e&l重置当前商店的图标"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      nextPage:
-        materialName: "BOOK"
-        displayName: "&b&l&n下一页"
-        lore:
-          - "&e&l前往下一页"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      previousPage:
-        materialName: "BOOK"
-        displayName: "&b&l&n上一页"
-        lore:
-          - "&e&l前往上一页"
+          - "&a&l取出商品"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -950,7 +834,125 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回管理商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideGoodAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n货币"
+        lore:
+          - "&a&l左侧的是商品"
+          - "&b&l<<<<<<<<<<<<"
+          - "&c&l右侧的是货币"
+          - "&d&l>>>>>>>>>>>>"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goodInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n具体信息"
+        lore:
+          - "&a&l商品名字: &f{name}"
+          - "&b&l交易类型: &f{type}"
+          - "&c&l价格：&f{price}"
+          - "&d&l库存：&f{stock}"
+          - "&e&l限购时间：&f{limit_time} 秒"
+          - "&f&l限购额度: &f{limit_frequency}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      toggleGoodType:
+        materialName: "STONE_BUTTON"
+        displayName: "&b&l&n切换交易类型"
+        lore:
+          - "&a&l切换交易类型"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodLimitTime:
+        materialName: "SAND"
+        displayName: "&b&l&n设置限购时间"
+        lore:
+          - "&a&l设置限购时间"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodVaultPrice:
+        materialName: "PAPER"
+        displayName: "&b&l&n设置为金币"
+        lore:
+          - "&a&l设置金币商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodPlayerPointsPrice:
+        materialName: "MAP"
+        displayName: "&b&l&n设置为点券"
+        lore:
+          - "&a&l设置点券商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      setGoodItemPrice:
+        materialName: "EMERALD_BLOCK"
+        displayName: "&b&l&n设置为以物易物"
+        lore:
+          - "&a&l设置以物易物商品"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageIconPage:
+      manageIconPageIconOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n图标"
+        lore:
+          - "&a&l图标名字: &f{name}"
+          - "&b&l点击查看详情"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      resetShopIcon:
+        materialName: "PAPER"
+        displayName: "&b&l&n重置图标"
+        lore:
+          - "&a&l重置当前商店的图标"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n下一页"
+        lore:
+          - "&a&l前往下一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&n上一页"
+        lore:
+          - "&a&l前往上一页"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n返回"
+        lore:
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -959,7 +961,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索图标名字"
         lore:
-          - "&e&l点击按图标的名字搜索图标"
+          - "&a&l按图标的名字搜索图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -967,9 +969,9 @@ gui:
     manageIconPageIconOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回图标购买"
+          - "&a&l返回图标购买"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -988,7 +990,7 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n具体信息"
         lore:
-          - "&e&l图标名字：{name}"
+          - "&a&l图标名字：{name}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -997,7 +999,7 @@ gui:
         materialName: "DIAMOND_ORE"
         displayName: "&b&l&n使用"
         lore:
-          - "&e&l点击使用图标"
+          - "&a&l使用图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1005,9 +1007,9 @@ gui:
     manageItemStockPageItemStockOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回管理库存物品货币"
+          - "&a&l返回管理库存物品货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1016,7 +1018,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n存入"
         lore:
-          - "&b&l点我存入"
+          - "&a&l存入物品货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1025,7 +1027,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n取出"
         lore:
-          - "&b&l点我取出"
+          - "&a&l取出物品货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1034,7 +1036,7 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n信息"
         lore:
-          - "&b&l剩余数量：{amount}"
+          - "&a&l剩余数量：&f{amount}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1043,7 +1045,7 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n物品货币"
         lore:
-          - "&b&l上方是物品货币原样"
+          - "&a&l上方是物品货币原样"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1052,7 +1054,7 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&n删除"
         lore:
-          - "&b&l点我删除"
+          - "&a&l删除物品货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1071,7 +1073,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n前往货币银行坐标"
         lore:
-          - "&e&l不去这里不能存取货币"
+          - "&a&l不去这里不能存取货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1080,7 +1082,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n创建"
         lore:
-          - "&e&l创建一个物品的库存"
+          - "&a&l创建一个物品的库存"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1089,7 +1091,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1098,7 +1100,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1107,7 +1109,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1118,7 +1120,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n收藏的商店"
         lore:
-          - "&a&l点击去查看我自己收藏的商店"
+          - "&a&l查看我自己收藏的商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1127,34 +1129,34 @@ gui:
         materialName: "DIAMOND_BLOCK"
         displayName: "&b&l&n购买图标"
         lore:
-          - "&e&l点击去购买图标"
+          - "&a&l购买图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回全部店铺界面"
+          - "&a&l返回全部店铺界面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       manageShopPageShopOptionPage:
         materialName: "BOOKSHELF"
-        displayName: "{owner_name} &b&l&n的商店"
+        displayName: "&b&l&n商店"
         lore:
-          - "&a&l店铺主人: {owner_name}"
-          - "&a&l店铺名字: {name}"
-          - "&b&l创建时间: {create_time}"
-          - "&d&l收藏数量: {collect_amount}"
-          - "&d&l浏览量: {page_view}"
-          - "&d&l人气: {popularity}"
-          - "&e&l热力值: {hot_value}"
-          - "&f&l点击进入店铺操作选项页"
-          - "&a&l以下是描述"
-          - "{(description)}"
+          - "&a&l店铺主人: &f{owner_name}"
+          - "&b&l店铺名字: &f{name}"
+          - "&c&l创建时间: &f{create_time}"
+          - "&d&l收藏数量: &f{collect_amount}"
+          - "&e&l浏览量: &f{page_view}"
+          - "&f&l人气: &f{popularity}"
+          - "&a&l热力值: &f{hot_value}"
+          - "&b&l点击进入店铺操作选项页"
+          - "&c&l以下是描述"
+          - "&d&l{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1163,7 +1165,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1172,7 +1174,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1181,7 +1183,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n创建商店"
         lore:
-          - "&e&l点击我创建商店"
+          - "&a&l创建商店"
         amount: 2
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1190,7 +1192,7 @@ gui:
         materialName: "DIAMOND_SWORD"
         displayName: "&b&l&n删除商店"
         lore:
-          - "&e&l点击去管理我自己的商店"
+          - "&a&l管理我自己的商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1199,7 +1201,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&n搜索店铺名字"
         lore:
-          - "&e&l点击按店铺的名称搜索商店"
+          - "&a&l按店铺的名称搜索商店"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1209,7 +1211,7 @@ gui:
         materialName: "DIAMOND"
         displayName: "&b&l&n购买人气"
         lore:
-          - "&e&l点击去购买人气"
+          - "&a&l花费金币购买人气"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1218,7 +1220,7 @@ gui:
         materialName: "APPLE"
         displayName: "&b&l&n管理这个商店图标"
         lore:
-          - "&e&l前往管理这个商店的图标"
+          - "&a&l前往管理这个商店的图标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1227,16 +1229,16 @@ gui:
         materialName: "NAME_TAG"
         displayName: "&b&l&n设置名字"
         lore:
-          - "&e&l设置商店名字"
+          - "&a&l设置商店名字"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回我的店铺界面"
+          - "&a&l返回我的店铺界面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1245,7 +1247,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n去店铺"
         lore:
-          - "&e&l进入管理店铺"
+          - "&a&l进入管理店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1254,7 +1256,7 @@ gui:
         materialName: "BEACON"
         displayName: "&b&l&n设置店铺的实体坐标"
         lore:
-          - "&e&l设置实体店铺"
+          - "&a&l设置实体店铺坐标"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1263,7 +1265,7 @@ gui:
         materialName: "BEDROCK"
         displayName: "&b&l&n重置店铺的实体坐标"
         lore:
-          - "&e&l重置实体店铺"
+          - "&a&l重置实体店铺"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1272,7 +1274,7 @@ gui:
         materialName: "WRITTEN_BOOK"
         displayName: "&b&l&n更新商店描述"
         lore:
-          - "&e&l点击更新商店描述"
+          - "&a&l点击更新商店描述"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1281,7 +1283,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n设置商店描述"
         lore:
-          - "&e&l点击设置商店描述"
+          - "&a&l点击设置商店描述"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1290,7 +1292,7 @@ gui:
         materialName: "WRITTEN_BOOK"
         displayName: "&b&l&n重置设置商店描述"
         lore:
-          - "&e&l重置设置商店描述"
+          - "&a&l重置设置商店描述"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1299,7 +1301,7 @@ gui:
         materialName: "WRITTEN_BOOK"
         displayName: "&b&l&n添加设置商店描述"
         lore:
-          - "&e&l点击添加设置商店描述"
+          - "&a&l点击添加设置商店描述"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1308,7 +1310,7 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&n删除设置商店描述"
         lore:
-          - "&e&l点击删除设置商店描述"
+          - "&a&l点击删除设置商店描述"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1317,7 +1319,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&n查看评论"
         lore:
-          - "&e&l点击查看商店评论"
+          - "&a&l点击查看商店评论"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1327,7 +1329,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n金币"
         lore:
-          - "&e&l金币货币"
+          - "&a&l金币货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1336,16 +1338,16 @@ gui:
         materialName: "map"
         displayName: "&b&l&n点券"
         lore:
-          - "&e&l点券货币"
+          - "&a&l点券货币"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&n返回上一个界面"
+        displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回图标购买"
+          - "&a&l返回图标购买"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1354,10 +1356,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n货币"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l上侧的是商品"
-          - "&a&l下侧的是货币"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l上侧的是商品"
+          - "&c&l下侧的是货币"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1366,13 +1368,13 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n具体信息"
         lore:
-          - "&a&l老板: {merchant_name}"
-          - "&b&l顾客: {customer_name}"
-          - "&b&l交易时间: {trade_time}"
-          - "&b&l交易税率: {trade_tax_rate}"
-          - "&b&l交易类型: {good_type}"
-          - "&e&l数量：{trade_amount}"
-          - "&e&l是否为系统商店：{good_system}"
+          - "&a&l老板: &f{merchant_name}"
+          - "&b&l顾客: &f{customer_name}"
+          - "&c&l交易时间: &f{trade_time}"
+          - "&d&l交易税率: &f{trade_tax_rate}"
+          - "&e&l交易类型: &f{good_type}"
+          - "&f&l数量：{trade_amount}"
+          - "&a&l是否为系统商店：{good_system}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1382,14 +1384,14 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n交易记录"
         lore:
-          - "&a&l老板: {merchant_name}"
-          - "&b&l顾客: {customer_name}"
-          - "&b&l数量: {trade_amount}"
-          - "&b&l交易时间: {trade_time}"
-          - "&b&l交易税率: {trade_tax_rate}"
-          - "&b&l交易类型: {good_type}"
-          - "&e&l是否为系统商店：{good_system}"
-          - "&b&l点我查看详细信息"
+          - "&a&l老板: &f{merchant_name}"
+          - "&b&l顾客: &f{customer_name}"
+          - "&c&l数量: &f{trade_amount}"
+          - "&d&l交易时间: &f{trade_time}"
+          - "&e&l交易税率: &f{trade_tax_rate}"
+          - "&f&l交易类型: &f{good_type}"
+          - "&a&l是否为系统商店：{good_system}"
+          - "&b&l查看详细信息"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1398,7 +1400,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n下一页"
         lore:
-          - "&e&l前往下一页"
+          - "&a&l前往下一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1407,7 +1409,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n上一页"
         lore:
-          - "&e&l前往上一页"
+          - "&a&l前往上一页"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1416,7 +1418,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n返回"
         lore:
-          - "&e&l返回上一个页面"
+          - "&a&l返回上一个页面"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"

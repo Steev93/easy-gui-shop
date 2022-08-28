@@ -1,16 +1,16 @@
 message:
   input:
 
-    #取消操作需要输入的，不填或者为空则采用默认值
+    #取消操作需要输入的，不可以是""，不填或者填错则采用默认值
     cancel: "取消"
 
-    #出售类型商店创建需要输入的，不填或者为空则采用默认值
+    #出售类型商店创建需要输入的，不可以是""，不填或者填错则采用默认值
     sell: "出售"
 
-    #收购类型商店创建需要输入的，不填或者为空则采用默认值
+    #收购类型商店创建需要输入的，不可以是""，不填或者填错则采用默认值
     buy: "收购"
 
-    #评论时，评论完多行后提交需要输入的，不填或者为空则采用默认值
+    #评论时，评论完多行后提交需要输入的，不可以是""，不填或者填错则采用默认值
     submit: "提交"
 
   chat:
@@ -60,8 +60,6 @@ message:
       - "&b&l/egs subtractShopPopularity <商店名字> <数量>    减少店铺人气。"
     invalidArgument:
       - "&c&l无效参数 &f{argument}。"
-    notifyVersion:
-      - "&b&lEasyGuiShop的当前版本是 &f{current_version}，&b&l最新版本是 &f{latest_version}。"
     notItemInMainHand:
       - "&c&l请在主手拿着物品。"
     invalidNumber:
@@ -74,9 +72,10 @@ message:
       - "&c&l没有检测到Vault插件和基于Vault的经济插件。"
     notHookPlayerPoints:
       - "&c&l没有检测到PlayerPoints插件。"
-
     notOnline:
       - "&c&l玩家不在线。"
+    notifyVersion:
+      - "&b&lEasyGuiShop的当前版本是 &f{current_version}，&b&l最新版本是 &f{latest_version}。"
 
     #经常发生的失败提示，每个操作对应一个失败提示
     shopLocationWorldBlackList:
@@ -325,7 +324,7 @@ message:
     resetGoodLimitFrequency:
       - "&c&l重置了交易数量额度"
     buyShopPopularity:
-      - "&C&l购买了人气"
+      - "&b&l购买了人气"
     cancelCollectShopInAllShopPageShopOptionPage:
       - "&b&l您取消了收藏该店铺。"
     collectShopInAllShopPageShopOptionPage:

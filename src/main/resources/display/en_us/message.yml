@@ -1,21 +1,22 @@
 message:
   input:
 
-    # input required to cancel the operation, if not filled or empty, the default value is used
-    cancel: "cancel"
+    # Cancelled operation need to be entered, not "", not filled in or filled in the wrong value will be the default value
+    cancel: "Cancel"
 
-    #Sell type store creation required input, if not filled or empty, default value is used
+    #Sale type store creation input required, cannot be "", if not filled or incorrectly filled, the default value is used
     sell: "sell"
 
-    #Required to create a store of type buy, default value if left blank
-    buy: "buy"
+    #The type of store to be created for the buy type, cannot be "", if not filled or incorrectly filled, the default value will be used
+    buy: "Acquire"
 
-    #Comments are submitted after multiple lines of comments.
+    #Comments are required to be submitted after multiple lines of comments, cannot be "", default value if not filled or incorrectly filled
     submit: "submit"
 
+  #The following support Papi variables
   chat:
     failureGetLatestVersion:
-      - "&c&lFailed to get the latest version of EasyGuiShop."
+      - "&c&l Failed to get the latest version of EasyGuiShop."
     notPlayer:
       - "&c&lYou are not a player and cannot execute this command."
     notPermission:
@@ -35,7 +36,7 @@ message:
       - "&c┃╰━━┫╭╮┣━━┃╰━╯┃╰┻━┃╰╯┃┃╰━╯┃┃┃┃╰╯┃╰╯┃"
       - "&c╰━━━┻╯╰┻━━┻━╮╭┻━━━┻━━┻┻━━━┻╯╰┻━━┫╭━╯"
     correctYaml:
-      - "&b&l has fixed all Yaml files for missing and redundant keys."
+      - "&b&l has fixed all missing and redundant keys in Yaml files."
     help:
       - "&b&l==== help list ===="
       - "&b&l/egs help View help."
@@ -59,9 +60,7 @@ message:
       - "&b&l/egs plusShopPopularity <shop name> <quantity> Increase store popularity."
       - "&b&l/egs subtractShopPopularity <store name> <number> Decrease store popularity."
     invalidArgument:
-      - "&c&l invalid argument &f{argument}."
-    notifyVersion:
-      - "&b&lThe current version of EasyGuiShop is &f{current_version}, &b&lthe latest version is &f{latest_version}."
+      - "&c&lInvalidArgument &f{argument}."
     notItemInMainHand:
       - "&c&lPlease hold the item in the main hand."
     invalidNumber:
@@ -74,29 +73,32 @@ message:
       - "&c&l No Vault plugins and Vault-based economy plugins detected."
     notHookPlayerPoints:
       - "&c&l No PlayerPoints plugin detected."
-
     notOnline:
-      - "&c&lThe player is not online."
+      - "&c&lPlayer is not online."
+    notifyVersion:
+      - "&b&lThe current version of EasyGuiShop is &f{current_version}, &b&lThe latest version is &f{latest_version}."
 
-    #Frequent failure hints, one failure hint for each action
+    # frequently occurring failure hints, one failure hint for each operation
     shopLocationWorldBlackList:
-      - "&C&l store coordinates blacklist, forbid to set store coordinates in this world"
+      - "&C&l shop coordinates blacklist, forbid to set store coordinates in this world"
     notEnoughVaultWhenBuyShopPopularity:
-      - "&C&l don't have enough money to buy popularity"
+      - "&C&l don't have enough money to buy Popularity"
     notExistLineWhenUpdateShopDescription:
-      - "&c&l nonexistent line."
+      - "&C&l Non-existent line"
     notExistLineWhenRemoveShopDescription:
-      - "&c&l nonexistent line."
+      - "&c&l non-existent rows."
     notExistLineWhenAddShopDescription:
-      - "&C&l non-existent row, can't add"
+      - "&C&l does not exist for rows that cannot be added"
     tooFastInAllShopPageShopOptionPage:
       - "&C&l two transfers are too short"
     tooFastInCollectedShopPageShopOptionPage:
       - "&C&l two transports are too short"
+    notEnoughVaultWhenSetShopLocation:
+      - "&C&l don't have enough gold to set the shop coordinates"
     notNearBankLocationWhenTakeItemStock:
-      - "&c&lPlease take out currency within coordinates 32 of the currency bank"
+      - "&c&lPlease take out currency within the currency bank coordinates of 32"
     notNearBankLocationWhenDepositItemStock:
-      - "&c&lPlease deposit currency within the currency bank coordinates 32"
+      - "&c&lPlease enter currency in the currency bank coordinates 32 range"
     notSetShopLocationWhenTakeGood:
       - "&c&lPlease set the physical coordinates of the store before taking out the goods"
     notNearShopLocationWhenTakeGood:
@@ -162,19 +164,19 @@ message:
     shopNotEmpty:
       - "&c&l store is not empty, can't delete."
     duplicateShopWhenSetShopName:
-      - "&c&l already has a store with this name"
+      - "&c&l already has a shop with this name"
     unknownGoodType:
       - "&c&l unknown transaction type."
     notEnoughSpaceWhenTakeItemStock:
-      - "&c&l has no more space to take out monetary items"
+      - "&c&lNo more space to take out monetary items"
     notEnoughItemStockWhenDepositItemStock:
       - "&c&lYou don't have enough item currency in your backpack."
     notMoreLimitFrequency:
-      - "&C&l doesn't have any more trading credits."
+      - "&c&l There is no more trade quota"
     notSetPriceWhenBuyIcon:
-      - "&c&l No price set to buy icon."
+      - "&c&l has no price set to buy icons."
     notSetPriceWhenTrade:
-      - "&c&lNo price set, can't trade."
+      - "&c&lNo price set, unable to trade."
     notMoreItemStockWhenTakeItemStock:
       - "&c&l do not have enough currency items"
     notMoreIcon:
@@ -196,11 +198,11 @@ message:
     duplicateShopCollectorInCollectedShopPageShopOptionPage:
       - "&c&l duplicate shop collection records."
     notExistShopCollectorInCollectedShopPageShopOptionPage:
-      - "&c&l Non-existent store collection records."
+      - "&c&l Non-existent store collection record."
     notExistShopCollectorInAllShopPageShopOptionPage:
-      - "&c&l Non-existent store collection records."
+      - "&c&l non-existent store collection records."
     notExistLocationInAllShopPageShopOptionPage:
-      - "&c&l Non-existent coordinates."
+      - "&c&l nonexistent coordinates."
     notExistLocationInCollectedShopPageShopOptionPage:
       - "&c&l non-existent coordinates."
     notExistShopComment:
@@ -215,7 +217,7 @@ message:
     notExistShop:
       - "&c&l non-existent store."
 
-    # command failure hints, one hint per operation
+    # command failure prompts, one for each operation
     notExistShopWhenPlusPopularity:
       - "&c&l does not exist for the store, cannot add popularity."
     notExistShopWhenSubtractPopularity:
@@ -233,7 +235,7 @@ message:
     notExistIconWhenSetIconVaultPrice:
       - "&c&lThis icon does not exist to set the price of gold."
     notExistIconWhenSetIconLimitTime:
-      - "&c&lThis icon does not exist, can't set time."
+      - "&c&lThis icon does not exist, can't set the time."
     notExistIconWhenSetIconStock:
       - "&c&lThis icon does not exist, cannot set stock."
     notExistIconWhenSetIconSystem:
@@ -251,29 +253,29 @@ message:
 
     # of tutorial actions prompted, each action corresponds to a
     howToBuyShopPopularity:
-      - "&A&lEnter the quantity purchased to complete the purchase, enter &f to cancel &b&l to cancel"
-    howToRemoveShopDescription:
-      - "&a&lEnter the number of rows you want to delete, enter &f to cancel &a&l to cancel."
+      - "&A&lEnter the number of purchases to complete the purchase, enter &fCancel &b&lCancel"
     howToSearchByShopNameInManageShopPage:
-      - "&a&lEnter the store name to complete the search, enter &fCancel &a&lCancel."
+      - "&a&lEnter the name of the store to complete the search, enter &f Cancel &a&l Cancel."
     howToSearchByGoodNameInManageGoodPage:
       - "&a&lEnter the product name to complete the search, enter &f to cancel &a&l to cancel."
     howToCreateGood:
-      - "&a&lEnter the item name, transaction type (sell or buy) in order to complete the creation (enter in order), enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the item name, transaction type (sell or acquire) in order to complete the creation (enter in order), enter &f Cancel &a&l Cancel."
     howToDepositItemStock:
       - "&a&lEnter the quantity you want to deposit, enter &f Cancel &a&l Cancel."
     howToTakeItemStock:
       - "&a&lEnter the quantity you want to take out, enter &fCancel &a&lCancel."
     howToAddShopDescription:
-      - "&a&lEnter the number of lines you want to add and a description, enter &f to cancel &a&l to cancel."
+      - "&a&lEnter the number of rows you want to add and the description, enter &f Cancel &a&l Cancel."
+    howToRemoveShopDescription:
+      - "&a&lEnter the number of rows you want to remove, enter &f Cancel &a&l Cancel."
     howToUpdateShopDescription:
-      - "&a&lEnter the number of rows and descriptions in order (enter in sequence), enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the number of rows, description in order (enter in sequence), enter &f Cancel &a&l Cancel."
     howToSetShopDescription:
       - "&a&lEnter each line description in turn (enter in turn), enter &f Cancel &a&l Cancel, enter &f Submit &a&l Submit."
     howToDeleteGood:
       - "&a&lEnter the product name to complete the deletion, enter &fCancel &a&lCancel."
     howToCreateShop:
-      - "&a&lEnter the name of the store to complete the creation, enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the name of the store to complete creation, enter &f Cancel &a&lCancel."
     howToDeleteShop:
       - "&a&lEnter the shop name to finish deleting, enter &fCancel &a&lCancel."
     howToSearchByGoodNameInAllGoodPage:
@@ -283,7 +285,7 @@ message:
     howToSearchByShopOwnerNameInAllShopPage:
       - "&a&lEnter the shop owner name to complete the search, enter &fCancel &a&lCancel."
     howToTrade:
-      - "&a&lEnter the quantity to trade to complete the trade, enter &fCancel &a&lCancel."
+      - "&a&lEnter the quantity to be traded to complete the trade, enter &fCancel &a&lCancel."
     hotToCommentShopInAllShopPageShopOptionPage:
       - "&a&lEnter multiple lines of comment content in sequence to complete the comment (enter in sequence), enter &f Cancel &a&l Cancel, enter &f Submit &a&l Submit."
     howToSearchByIconNameInBuyIconPage:
@@ -295,9 +297,9 @@ message:
     howToSearchByShopOwnerNameInCollectedShopPage:
       - "&a&lEnter the shop owner name to complete the search, enter &fCancel &a&lCancel."
     howToCommentShopInCollectedShopPageShopOptionPage:
-      - "&a&lEnter comments in order to complete the comment (enter in order), enter &f Cancel &a&l Cancel."
+      - "&a&lEnter the comment in order to complete the comment (enter in order), enter &f Cancel &a&l Cancel."
     howToSetGoodPlayerPointsPrice:
-      - "&a&lEnter the price, enter &fCancel &a&lCancel."
+      - "&a&l enter price, enter &f cancel &a&l cancel."
     howToSearchByCommenterName:
       - "&a&lEnter commenter's name to search, enter &f Cancel &a&l Cancel."
     howToSetGoodItemPrice:
@@ -315,15 +317,17 @@ message:
     howToTakeGood:
       - "&a&lEnter the quantity taken out, enter &fCancel &a&lCancel."
     howToSetGoodLimitFrequency:
-      - "&a&lEnter the number of transaction limits, enter &fCancel &a&lCancel."
+      - "&a&lEnter the number of transaction limits, enter &f Cancel &a&l Cancel."
 
     #successful operation prompts, one for each operation
     setGoodLimitFrequency:
       - "&c&l set the transaction quantity amount"
+    resetGoodLimitFrequency:
+      - "&c&l resetGoodLimitFrequency"
     buyShopPopularity:
-      - "&C&l purchased popularity"
+      - "&b&lboughtPopularity"
     cancelCollectShopInAllShopPageShopOptionPage:
-      - "&b&lYou canceled the collection of this store."
+      - "&b&lYou canceled CollectShop."
     collectShopInAllShopPageShopOptionPage:
       - "&b&lYou favorited the store."
     teleportShopLocationInAllShopPageShopOptionPage:
@@ -333,13 +337,13 @@ message:
     cancelCollectShopInCollectedShopPageShopOptionPage:
       - "&b&lYou canceled the collect shop."
     collectShopInCollectedShopPageShopOptionPage:
-      - "&b&lYou have favorited the store."
-    teleportShopLocationInCollectedShopPageShopOptionPage:
+      - "&b&lYou favorited the store."
+    teleportShopInCollectedShopPageShopOptionPage:
       - "&b&lYou teleported to the store coordinates."
     toggleGoodType:
       - "&b&lYou toggled the store transaction type."
     setGoodVaultPrice:
-      - "&b&lYou set the item in order to the price of gold."
+      - "&b&lYou setGoodVaultPrice."
     setGoodPlayerPointsPrice:
       - "&b&lYou set the item to the price of points."
     setGoodItemPrice:
@@ -401,9 +405,9 @@ message:
     resetGoodPrce:
       - "&b&lYou reset the item price."
     teleportBankLocation:
-      - "&b&lYou went to the currency bank coordinates."
+      - "&b&lYou traveled to the currency bank coordinates."
 
-    #Command success hints, one for each action
+    #Command successful operation prompts, one for each operation
     setIconSystem:
       - "&b&l set the icon for system replenishment."
     setIconStock:

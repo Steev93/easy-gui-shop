@@ -1,90 +1,83 @@
 gui:
-  #The command to be executed after the return button on the first page is clicked. The format is way: command, where way refers to the execution mode, and command is a command. The command does not need to add /
-  #The execution methods are operator, console and self, which respectively represent the execution as op (give the player OP and then execute and then cancel the player OP), console execution and player execution
+  # the first page of the return button clicked after the execution of the command, the format of way:command, where the way refers to the way of execution, command is the command, the command does not need to add /.
+  # execution methods are operator, console, self, respectively, representing execution as op (to the player op and then execute and then cancel the player op), console execution, self execution
+  #Papi variables are supported
   firstPageBackCommand:
     - "self:bs"
     - "self:cd"
 
-  # replaceable text content in gui
+  #Text content that can be replaced in gui
   replace:
 
-    #When the store or item is system replenished, it will display the stock as the following, or use the default value if it is not filled in
-    systemStock: "&d&l Unlimited"
+    #When the store or item is system replenished, it will display the stock as the following, or use the default value if not filled
+    systemStock: "unlimited"
 
-  #Some options of gui
+  #Some options in the gui
   option:
 
-    # If the store does not use the icon, whether to display as the store owner's head, enable this function may be card service, because the head material occupies network resources, do not fill in the default value
+    #If the store does not use the icon, whether to display as the store owner's head, turn on this function may be card service, because the head material occupies network resources, do not fill in the default value
     enableShopUsePlayerHead: false
 
-    #Whether the goods are displayed in Gui as the goods item material, if the corresponding item does not have ItemMeta information, it is invalid, do not fill in the default value
+    #Whether or not the goods are displayed in Gui as the goods item material, if not filled, the default value is used
     enableGoodUseGoodItem: true
 
-    #If the item does not have ItemMeta information, it is invalid, if not, the default value is used.
+    #Whether to use icon item material for icons, or default if not filled
     enableIconUseIconItem: true
 
-    #If the corresponding item does not have ItemMeta information, it is invalid, if not, the default value is used.
+    #If not, the default value is used.
     enableTradeRecordUseTradeRecordItem: true
 
-    #If or not the corresponding item does not have ItemMeta information, it is invalid, if not, the default value is used.
+    #Whether to use the material of the currency item for currency inventory, or the default value if not filled
     enableItemStockUseItemStockItem: true
 
-  # Title of the gui page
+  #Title of gui page
   title:
-    allShopPage: "&b&l&nAll Shops&e&l(Displayed all stores)"
-    allShopPageShopOptionPage: "&b&l&nStoreOptionPage&e&l(options available for this store)"
-    collectedShopPageShopOptionPage: "&b&l&nStoreOptionPage&e&l(options available for this store)"
-    manageShopPageShopOptionPage: "&b&l&nStoreOptionPage&e&l(options available for this store)"
-    manageShopPage: "&b&l&nAll My Stores&e&l(displays all your own stores)"
-    collectedShopPage: "&b&l&nAll Collected Shops&e&l(shows all collected stores)"
-    allShopCommentPage: "&b&l&nThe comments of the shop&e&l(Displayed all comments of the store)"
-    manageShopCommentPage: "&b&l&nMyComment&e&l(displays all my comments)"
-    buyIconPage: "&b&l&nBuy Icons&e&l(all icons)"
-    manageIconPage: "&b&l&nMyIcons&e&l(all icons I've bought)"
-    buyIconPageIconOptionPage: "&b&l&nIcon buying options page&e&l(options available)"
-    allGoodPage: "&b&l&nAll Goods&e&l(all goods displayed)"
-    manageItemStockPageItemStockOptionPage: "&b&l&nStockOptionPage&e&l(options that can be performed)"
-    manageGoodPage: "&b&l&nManageItems&e&l(displays all your own items)"
-    manageGoodPageGoodOptionPage: "&b&l&nMerchandiseOptionPage&e&l(options that can be performed)"
-    manageItemStockPage: "&b&l&nManage Barter Currency Inventory&e&l (displays all barter currency inventory)"
-    allGoodPageGoodOptionPage: "&b&l&nMerchandiseOptionPage&e&l(options available)"
-    manageTradeRecordPage: "&b&l&nTradeRecord&e&l(Trade records related to yourself)"
-    manageTradeRecordPageTradeRecordOptionPage: "&b&l&nTradeRecordOption&e&l(available options)"
-    manageIconPageIconOptionPage: "&b&l&nManageIconOptionPage&e&l(options that can be performed)"
+    allShopPage: "&b&l&nAll Shops"
+    allShopPageShopOptionPage: "&b&l&nStore action options"
+    collectedShopPageShopOptionPage: "&b&l&nStore action options"
+    manageShopPageShopOptionPage: "&b&l&nStoreOptions"
+    manageShopPage: "&b&l&nManage My Shop"
+    collectedShopPage: "&b&l&nMyCollectedShops"
+    allShopCommentPage: "&b&l&nComments for this store"
+    manageShopCommentPage: "&b&l&nMy comments on other stores"
+    buyIconPage: "&b&l&nBuy Shop Icons"
+    manageIconPage: "&b&l&nIcons I've purchased"
+    buyIconPageIconOptionPage: "&b&l&nIcon manipulation options"
+    allGoodPage: "&b&l&nThis store's products"
+    manageItemStockPageItemStockOptionPage: "&b&l&nOptions for item stock"
+    manageGoodPage: "&b&l&nManage store items"
+    manageGoodPageGoodOptionPage: "&b&l&nOption options for items"
+    manageItemStockPage: "&b&l&nManage item currency inventory"
+    allGoodPageGoodOptionPage: "&b&l&nOptions for items"
+    manageTradeRecordPage: "&b&l&nMyTradeRecord"
+    manageTradeRecordPageTradeRecordOptionPage: "&b&l&nTradeRecordOptionPage"
+    manageIconPageIconOptionPage: "&b&l&nIcon's action options"
 
-  #buttons within the gui
+  #Buttons within the gui
   button:
     allShopPage:
-      back:
-        materialName: "REDSTONE"
-        displayName: "&b&l&nBack"
-        lore:
-          - "&e&lBack"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
       allShopPageShopOptionPage:
 
         # indicates the material of the button, to know the material name, please go to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
-        #If AIR means the button is not displayed and cannot be clicked
+        #If AIR means the button is not displayed and cannot be clicked, if not filled or filled wrong, the default value is used
         materialName: "BOOKSHELF"
 
         #Indicates the name of the button
-        displayName: "&b&l&n store &f&l{name}"
+        displayName: "&b&l&n store"
 
-        # indicates the description of the button, all the variables that can be used in lore, except those enclosed in {()}, can be used in displayName
+        # indicates the description of the button, all the variables available in lore, except those enclosed in {()}, can be used in displayName
         lore:
-          - "&a&l store owner: {owner_name}"
-          - "&b&lStore name: {name}"
-          - "&c&lCreation time: {create_time}"
-          - "&d&lCollected_amount: {collect_amount}"
-          - "&e&lViews: {page_view}"
-          - "&f&lPopularity: {popularity}"
-          - "&a&lHeat value: {hot_value}"
-          - "&b&lClick to action options page"
-          - "&c&lHere is the description"
-          - "{(description)}"
+          - "&a&l store name: &f{name}"
+          - "&b&l store owner: &f{owner_name}"
+          - "&c&lStore name: &f{name}"
+          - "&d&lTime created: &f{create_time}"
+          - "&e&lCollected_amount: &f{collect_amount}"
+          - "&f&lViews: &f{page_view}"
+          - "&a&lPopularity: &f{popularity}"
+          - "&b&lHeat value: &f{hot_value}"
+          - "&c&lClick to action options page"
+          - "&d&lHere is the description"
+          - "&f{(description)}"
 
         # indicates the amount
         amount: 1
@@ -95,11 +88,20 @@ gui:
 
         #which model data to use 1.12 and previous versions do not support this
         customModelData: [ ]
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&n return"
+        lore:
+          - "&a&lReturn to previous screen"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
       nextPage:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -108,7 +110,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -117,7 +119,7 @@ gui:
         materialName: "EMERALD"
         displayName: "&b&l&nMyTradeRecord"
         lore:
-          - "&a&lClick to manage my trade records"
+          - "&a&lGo to my trade record page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -126,7 +128,7 @@ gui:
         materialName: "DIAMOND_PICKAXE"
         displayName: "&b&l&n manageShop"
         lore:
-          - "&e&lClick to manage my own store"
+          - "&a&lGo to manage my own store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -135,7 +137,7 @@ gui:
         materialName: "IRON_BLOCK"
         displayName: "&b&l&nManageStock"
         lore:
-          - "&e&l&managed inventory"
+          - "&a&lGo to manage my item inventory"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -144,7 +146,7 @@ gui:
         materialName: "MAP"
         displayName: "&b&l&nMy Comments"
         lore:
-          - "&a&lClick to view my comment"
+          - "&a&lView My Comments"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -153,7 +155,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearchShopName"
         lore:
-          - "&e&lClick to search for stores by store name"
+          - "&a&lSearch by store name for stores"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -162,7 +164,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearchShopOwner"
         lore:
-          - "&e&lClick to search for a store by owner's name"
+          - "&a&lSearchShopByShopOwnerName"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -170,9 +172,9 @@ gui:
     allShopPageShopOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to allShopPage"
+          - "&a&lReturn to allShopPage"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -181,16 +183,16 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n go to store"
         lore:
-          - "&e&lGo to store"
+          - "&a&lGo to store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       teleportShopLocation:
         materialName: "BEACON"
-        displayName: "&b&l&n goShop's physical coordinates"
+        displayName: "&b&l&n go to the physical coordinates of the store"
         lore:
-          - "&e&l go to physical store"
+          - "&a&l go to physical store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -199,7 +201,7 @@ gui:
         materialName: "LEVER"
         displayName: "&b&l&ncollectShop"
         lore:
-          - "&e&lClick to collectShop"
+          - "&a&l&collectShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -208,7 +210,7 @@ gui:
         materialName: "TORCH"
         displayName: "&b&l&nCancelCollect"
         lore:
-          - "&e&lClick to cancelCollectShop"
+          - "&a&lCancelCollectShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -217,7 +219,7 @@ gui:
         materialName: "FEATHER"
         displayName: "&b&l&n commentShop"
         lore:
-          - "&e&lClick on commentShop"
+          - "&a&lClick on commentShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -226,7 +228,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&nView Comments"
         lore:
-          - "&e&lClick to view shop comment"
+          - "&a&lViewShopComment"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -234,15 +236,15 @@ gui:
     allGoodPage:
       allGoodPageGoodOptionPage:
         materialName: "PAPER"
-        displayName: "&b&l&nCommodityName: &f{name}"
+        displayName: "&b&l&n commodities"
         lore:
-          - "&c&lItemName: {name}"
-          - "&c&l transaction type: {type}"
-          - "&c&lStock: {stock}"
-          - "&c&lLimit time: {limit_time}"
-          - "&e&lLimit_trade_amount: {limit_frequency} "
-          - "&c&lCreate time: {create_time}"
-          - "&e&lClick for details"
+          - "&a&lMerchandise name: &f{name}"
+          - "&b&l transaction type: &f{type}"
+          - "&c&lStock: &f{stock}"
+          - "&d&lLimit time: &f{limit_time}"
+          - "&e&lLimit_frequency: &f{limit_frequency}"
+          - "&f&lCreation time: &f{create_time}"
+          - "&a&lClick for details"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -251,7 +253,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -260,7 +262,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -269,16 +271,16 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       searchByGoodName:
         materialName: "COMPASS"
-        displayName: "&b&l&nSearch by item name"
+        displayName: "&b&l&nSearch by product name"
         lore:
-          - "&e&lClick to search for a product by its name"
+          - "&a&lSearch by product name for product"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -286,9 +288,9 @@ gui:
     allGoodPageGoodOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to manage items"
+          - "&a&lReturnManagedProducts"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -297,16 +299,16 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n gold coins"
         lore:
-          - "&e&l gold currency"
+          - "&a&l gold coins currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       playerPointsCurrency:
         materialName: "map"
-        displayName: "&b&l&nPoints"
+        displayName: "&b&l&n pointsCurrency"
         lore:
-          - "&e&l point currency"
+          - "&a&l points currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -315,10 +317,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n currency"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l top side is goods"
-          - "&a&l lower side is currency"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l top side is goods"
+          - "&c&l lower side is currency"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -327,12 +329,12 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n specific information"
         lore:
-          - "&c&lItem name: {name}"
-          - "&c&l transaction type: {type}"
-          - "&e&lPrice: {price}"
-          - "&e&lStock: {stock}"
-          - "&e&lLimit_time: {limit_time} seconds"
-          - "&e&lLimit_trade_amount: {limit_frequency} "
+          - "&a&lItem name: &f{name}"
+          - "&b&ltransaction type: &f{type}"
+          - "&c&lPrice: &f{price}"
+          - "&d&lStock: &f{stock}"
+          - "&e&lLimit_time: &f{limit_time} seconds"
+          - "&f&lLimit_frequency: &f{limit_frequency}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -341,7 +343,7 @@ gui:
         materialName: "NETHER_STAR"
         displayName: "&b&l&n trade"
         lore:
-          - "&b&l dot me trade"
+          - "&a&l trade goods"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -349,12 +351,12 @@ gui:
     buyIconPage:
       buyIconPageIconOptionPage:
         materialName: "PAPER"
-        displayName: "&b&l&n icon: &f{name}"
+        displayName: "&b&l&n icon"
         lore:
-          - "&c&l icon name: {name}"
-          - "&c&lCreate time: {create_time}"
-          - "&c&l inventory: {stock}"
-          - "&c&lLimit_time: {limit_time}"
+          - "&a&l icon name: &f{name}"
+          - "&b&lCreate time: &f{create_time}"
+          - "&c&lStock: &f{stock}"
+          - "&d&lLimit time: &f{limit_time}"
           - "&e&lClick for details"
         amount: 1
         itemFlag:
@@ -364,7 +366,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -373,7 +375,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -382,7 +384,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -391,7 +393,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearch by icon name"
         lore:
-          - "&e&lClick to search for icons by their names"
+          - "&a&l Search for icons by their names"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -401,7 +403,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n GOLD"
         lore:
-          - "&e&l gold currency"
+          - "&a&l gold coins currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -410,16 +412,16 @@ gui:
         materialName: "map"
         displayName: "&b&l&n pointsCurrency"
         lore:
-          - "&e&l points currency"
+          - "&a&l points currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to icon purchase"
+          - "&a&l return icon purchase"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -428,10 +430,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n currency"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l top side is icon"
-          - "&a&l lower side is currency"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l top side is icon"
+          - "&c&l lower side is currency"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -440,11 +442,11 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n specific information"
         lore:
-          - "&e&l icon name: {name}"
-          - "&e&lCreation time: {create_time}"
-          - "&e&lPrice: {price}"
-          - "&e&lStock: {stock}"
-          - "&e&lLimit_time: {limit_time} seconds"
+          - "&a&l icon name: &f{name}"
+          - "&b&lCreation time: &f{create_time}"
+          - "&c&lPrice: &f{price}"
+          - "&d&lStock: &f{stock}"
+          - "&e&lLimit_time: &f{limit_time} seconds"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -453,7 +455,7 @@ gui:
         materialName: "NETHER_STAR"
         displayName: "&b&l&nbuy"
         lore:
-          - "&e&lClick to buy icon"
+          - "&a&l buy icon"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -461,27 +463,27 @@ gui:
     collectedShopPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to All Shops screen"
+          - "&a&lReturn to All Shops screen"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       collectedShopPageShopOptionPage:
         materialName: "BOOKSHELF"
-        displayName: "{owner_name} &b&l&n's store"
+        displayName: "&b&l&n store"
         lore:
-          - "&a&l shop owner: {owner_name}"
-          - "&a&l store name: {name}"
-          - "&b&lCreation time: {create_time}"
-          - "&d&lCollection_amount: {collect_amount}"
-          - "&d&lViews: {page_view}"
-          - "&d&lPopularity: {popularity}"
-          - "&e&lHeat value: {hot_value}"
-          - "&f&lClick to see store action options"
-          - "&a&lHere is the description"
-          - "{(description)}"
+          - "&a&lStoreOwner: &f{owner_name}"
+          - "&b&lStore name: &f{name}"
+          - "&c&lCreation time: &f{create_time}"
+          - "&d&lCollection count: &f{collect_amount}"
+          - "&e&lViews: &f{page_view}"
+          - "&f&lPopularity: &f{popularity}"
+          - "&a&lHeat value: &f{hot_value}"
+          - "&b&lClick to see store action options"
+          - "&c&lHere are the descriptions"
+          - "&d{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -490,7 +492,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -499,7 +501,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -508,7 +510,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearchShopName"
         lore:
-          - "&e&lClick to search for a store by its name"
+          - "&a&lSearch by store name for stores"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -517,7 +519,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearchShopOwner"
         lore:
-          - "&e&lClick to search for a store by owner's name"
+          - "&a&lSearchShopByShopOwnerName"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -525,9 +527,9 @@ gui:
     collectedShopPageShopOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to my Collected Shops screen"
+          - "&a&lReturn to My Collected Shops screen"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -536,16 +538,16 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n go to store"
         lore:
-          - "&e&lGo to store"
+          - "&a&lGo to store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       teleportShopLocation:
         materialName: "BEACON"
-        displayName: "&b&l&n goShop's physical coordinates"
+        displayName: "&b&l&n go to the physical coordinates of the store"
         lore:
-          - "&e&l go to physical store"
+          - "&a&l go to physical store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -554,7 +556,7 @@ gui:
         materialName: "TORCH"
         displayName: "&b&l&nCancelCollect"
         lore:
-          - "&e&lClick to cancelCollectShop"
+          - "&a&lCancelCollectShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -563,7 +565,7 @@ gui:
         materialName: "LEVER"
         displayName: "&b&l&n collection"
         lore:
-          - "&e&lClick to collectShop"
+          - "&a&l collectShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -572,7 +574,7 @@ gui:
         materialName: "FEATHER"
         displayName: "&b&l&n commentShop"
         lore:
-          - "&e&lClick on commentShop"
+          - "&a&l commentShop"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -581,7 +583,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&nView Comments"
         lore:
-          - "&e&lClick to view shop comment"
+          - "&a&lViewShopComment"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -589,12 +591,12 @@ gui:
     allShopCommentPage:
       shopComment:
         materialName: "FEATHER"
-        displayName: "{commenter_name} &b&l&n's comments"
+        displayName: "&b&l&n comment"
         lore:
-          - "&a&l commenter: {commenter_name}"
-          - "&b&lComment time: {comment_time}"
+          - "&a&lCommenter: &f{commenter_name}"
+          - "&b&lComment time: &f{comment_time}"
           - "&c&lThe following are comments"
-          - "{(content)}"
+          - "&d{(content)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -603,7 +605,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -612,7 +614,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -621,7 +623,7 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearch for player comments"
         lore:
-          - "&e&lClick to search for comments by player's name"
+          - "&a&lSearch for comments by player's name"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -630,7 +632,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&n return"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -638,13 +640,13 @@ gui:
     manageShopCommentPage:
       deleteShopComment:
         materialName: "BARRIER"
-        displayName: "{commenter_name} &b&l&n's comments"
+        displayName: "&b&l&n comment"
         lore:
-          - "&a&lCommenter: {commenter_name}"
-          - "&b&lComment time: {comment_time}"
+          - "&a&lCommenter: &f{commenter_name}"
+          - "&b&lComment time: &f{comment_time}"
           - "&c&lClick to delete comment"
           - "&d&lThe following are comments"
-          - "{(content)}"
+          - "&e{(content)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -653,7 +655,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -662,7 +664,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -671,7 +673,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -679,15 +681,15 @@ gui:
     manageGoodPage:
       manageGoodPageGoodOptionPage:
         materialName: "CHEST"
-        displayName: "&b&l&nCommodity name: &f{name}"
+        displayName: "&b&l&n commodities"
         lore:
-          - "&c&lItemName: {name}"
-          - "&c&l transaction type: {type}"
-          - "&c&lStock: {stock}"
-          - "&c&lLimit time: {limit_time}"
-          - "&e&lLimit_trade_amount: {limit_frequency} "
-          - "&c&lCreate time: {create_time}"
-          - "&e&lClick for details"
+          - "&a&lItemName: &f{name}"
+          - "&b&l transaction type: &f{type}"
+          - "&c&lStock: &f{stock}"
+          - "&d&lLimit time: &f{limit_time}"
+          - "&e&lLimit_frequency: &f{limit_frequency}"
+          - "&f&lCreation time: &f{create_time}"
+          - "&a&lClick for details"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -696,7 +698,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -705,7 +707,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -714,16 +716,16 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       searchByGoodName:
         materialName: "COMPASS"
-        displayName: "&b&l&nSearch by item name"
+        displayName: "&b&l&nSearch by product name"
         lore:
-          - "&e&lClick to search for a product by its name"
+          - "&a&lSearch by product name for product"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -732,7 +734,7 @@ gui:
         materialName: "DIAMOND"
         displayName: "&b&l&ncreateGood"
         lore:
-          - "&e&lClick me to create a product"
+          - "&a&l createGood"
         amount: 2
         itemFlag:
           - "HIDE_DESTROYS"
@@ -741,7 +743,63 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&ndeleteGood"
         lore:
-          - "&e&lClick to delete item"
+          - "&a&l deleteGood"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+    manageIconPage:
+      manageIconPageIconOptionPage:
+        materialName: "PAPER"
+        displayName: "&b&l&n icon"
+        lore:
+          - "&a&lIconName: &f{name}"
+          - "&b&lClick for details"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      resetShopIcon:
+        materialName: "PAPER"
+        displayName: "&b&l&n reset icon"
+        lore:
+          - "&a&l reset the current shop icon"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      nextPage:
+        materialName: "BOOK"
+        displayName: "&b&l&nnextPage"
+        lore:
+          - "&a&lGo to the next page"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      previousPage:
+        materialName: "BOOK"
+        displayName: "&b&l&nPreviousPage"
+        lore:
+          - "&a&lGo to previous page"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      back:
+        materialName: "REDSTONE"
+        displayName: "&b&l&nReturn"
+        lore:
+          - "&a&lReturn to previous page"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
+      searchByIconName:
+        materialName: "COMPASS"
+        displayName: "&b&l&nSearch by icon name"
+        lore:
+          - "&a&l Search for icons by their names"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -751,16 +809,16 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&nSetting transaction amount"
         lore:
-          - "&e&lclick me to set the transaction amount"
+          - "&a&l set transaction amount"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       resetGoodLimitFrequency:
         materialName: "PAPER"
-        displayName: "&b&l&nResetTransactionLimit"
+        displayName: "&b&l&nResetTransactionFrequency"
         lore:
-          - "&e&lclick me to reset the transaction amount"
+          - "&a&l reset transaction amount"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -769,16 +827,16 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&nResetGoodPrice"
         lore:
-          - "&e&lclick me to resetGoodPrice"
+          - "&a&lResetGoodPrice"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       resetGoodLimitTime:
         materialName: "PAPER"
-        displayName: "&b&l&nResetGoodLimitTime"
+        displayName: "&b&l&nResetLimitTime"
         lore:
-          - "&e&lclick me to resetGoodLimitTime"
+          - "&a&lResetGoodLimitTime"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -787,7 +845,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n gold coins"
         lore:
-          - "&e&l gold currency"
+          - "&a&l gold currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -796,7 +854,7 @@ gui:
         materialName: "map"
         displayName: "&b&l&n pointsCurrency"
         lore:
-          - "&e&l points currency"
+          - "&a&l points currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -805,7 +863,7 @@ gui:
         materialName: "NAME_TAG"
         displayName: "&b&l&n setName"
         lore:
-          - "&e&lClick to set the product name"
+          - "&a&lClick to set the product name"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -814,7 +872,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n deposit"
         lore:
-          - "&e&l depositGood"
+          - "&a&l depositGood"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -823,125 +881,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n taken out"
         lore:
-          - "&e&l take out goods"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      back:
-        materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
-        lore:
-          - "&e&lReturn to manage products"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      guideGoodAndCurrency:
-        materialName: "GLASS"
-        displayName: "&b&l&n currency"
-        lore:
-          - "&b&l left is the commodity"
-          - "&a&l<<<<<<<<<<<<"
-          - "&a&l right-hand side is currency"
-          - "&b&l>>>>>>>>>>>>"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      goodInformation:
-        materialName: "PAINTING"
-        displayName: "&b&l&n specific information"
-        lore:
-          - "&c&lItem name: {name}"
-          - "&c&l transaction type: {type}"
-          - "&e&lPrice: {price}"
-          - "&e&lStock: {stock}"
-          - "&e&lLimit_time: {limit_time} seconds"
-          - "&e&lLimit_trade_amount: {limit_frequency} "
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      toggleGoodType:
-        materialName: "STONE_BUTTON"
-        displayName: "&b&l&n toggle transaction type"
-        lore:
-          - "&b&lclick me to toggle transaction type"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodLimitTime:
-        materialName: "SAND"
-        displayName: "&b&l&n setLimitTime"
-        lore:
-          - "&b&lClick me to setGoodLimitTime"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodVaultPrice:
-        materialName: "PAPER"
-        displayName: "&b&l&n set to gold"
-        lore:
-          - "&b&lClick me to setGoodVaultPrice"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: []
-      setGoodPlayerPointsPrice:
-        materialName: "MAP"
-        displayName: "&b&l&n set to points"
-        lore:
-          - "&b&l&n setGoodPlayerPointsPrice"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      setGoodItemPrice:
-        materialName: "EMERALD_BLOCK"
-        displayName: "&b&l&n set to barter"
-        lore:
-          - "&b&lclick me to set the barter item"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-    manageIconPage:
-      manageIconPageIconOptionPage:
-        materialName: "PAPER"
-        displayName: "&b&l&n icon: &f{name}"
-        lore:
-          - "&c&l icon name: {name}"
-          - "&e&lClick for details"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      resetShopIcon:
-        materialName: "PAPER"
-        displayName: "&b&l&n reset icon"
-        lore:
-          - "&e&l reset the current shop icon"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      nextPage:
-        materialName: "BOOK"
-        displayName: "&b&l&nnextPage"
-        lore:
-          - "&e&lGo to the next page"
-        amount: 1
-        itemFlag:
-          - "HIDE_DESTROYS"
-        customModelData: [ ]
-      previousPage:
-        materialName: "BOOK"
-        displayName: "&b&l&nPreviousPage"
-        lore:
-          - "&e&lGo to previous page"
+          - "&a&l take out goods"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -950,16 +890,78 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&l returns managed goods"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      guideGoodAndCurrency:
+        materialName: "GLASS"
+        displayName: "&b&l&n currency"
+        lore:
+          - "&a&l left is commodity"
+          - "&b&l<<<<<<<<<<<<"
+          - "&c&l right-hand side is currency"
+          - "&d&l>>>>>>>>>>>>"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      goodInformation:
+        materialName: "PAINTING"
+        displayName: "&b&l&n specific information"
+        lore:
+          - "&a&lItem name: &f{name}"
+          - "&b&ltransaction type: &f{type}"
+          - "&c&lPrice: &f{price}"
+          - "&d&lStock: &f{stock}"
+          - "&e&lLimit_time: &f{limit_time} seconds"
+          - "&f&lLimit_frequency: &f{limit_frequency}"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      toggleGoodType:
+        materialName: "STONE_BUTTON"
+        displayName: "&b&l&n toggle transaction type"
+        lore:
+          - "&a&l toggle transaction type"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodLimitTime:
+        materialName: "SAND"
+        displayName: "&b&l&n setLimitTime"
+        lore:
+          - "&a&l setGoodLimitTime"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodVaultPrice:
+        materialName: "PAPER"
+        displayName: "&b&l&n set to gold"
+        lore:
+          - "&a&l setGoodVaultPrice"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: []
+      setGoodPlayerPointsPrice:
+        materialName: "MAP"
+        displayName: "&b&l&n set to points"
+        lore:
+          - "&a&l setGoodPlayerPointsPrice"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
-      searchByIconName:
-        materialName: "COMPASS"
-        displayName: "&b&l&nSearch by icon name"
+      setGoodItemPrice:
+        materialName: "EMERALD_BLOCK"
+        displayName: "&b&l&n set to barter"
         lore:
-          - "&e&lClick to search for icons by their names"
+          - "&a&l setGoodItemPrice"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -967,9 +969,9 @@ gui:
     manageIconPageIconOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to icon purchase"
+          - "&a&l return icon purchase"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -988,7 +990,7 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n specific information"
         lore:
-          - "&e&l iconName: {name}"
+          - "&a&l icon name: {name}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -997,7 +999,7 @@ gui:
         materialName: "DIAMOND_ORE"
         displayName: "&b&l&n use"
         lore:
-          - "&e&lClick to use icon"
+          - "&a&l use icon"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1005,9 +1007,9 @@ gui:
     manageItemStockPageItemStockOptionPage:
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to manage inventory item currency"
+          - "&a&l return manageItemStock currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1016,7 +1018,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&n deposit"
         lore:
-          - "&b&l dot me deposit"
+          - "&a&l deposit item currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1025,7 +1027,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&n removed"
         lore:
-          - "&b&lclick me to take out"
+          - "&a&l take out item currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1034,7 +1036,7 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n information"
         lore:
-          - "&b&l remaining quantity: {amount}"
+          - "&a&lRemaining quantity: &f{amount}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1043,7 +1045,7 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&nItemCurrency"
         lore:
-          - "&b&l above is the item currency as is"
+          - "&a&l above is the item currency as is"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1052,7 +1054,7 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&n delete"
         lore:
-          - "&b&lclick me to delete"
+          - "&a&l delete item currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1071,7 +1073,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&nGo to currency bank coordinates"
         lore:
-          - "&e&l don't go here can't access currency"
+          - "&a&l don't go here can't access currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1080,7 +1082,7 @@ gui:
         materialName: "CHEST"
         displayName: "&b&l&ncreate"
         lore:
-          - "&e&lCreate an item stock"
+          - "&a&l create an item stock"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1089,7 +1091,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1098,7 +1100,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1107,7 +1109,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1118,7 +1120,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&ncollectedShop"
         lore:
-          - "&a&lClick to view my own collected stores"
+          - "&a&lView my own collected stores"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1127,34 +1129,34 @@ gui:
         materialName: "DIAMOND_BLOCK"
         displayName: "&b&l&nBuy Icon"
         lore:
-          - "&e&lClick to buy icon"
+          - "&a&lbuy icon"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&n return"
         lore:
-          - "&e&lReturn to all store screens"
+          - "&a&lReturn to all store screens"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
       manageShopPageShopOptionPage:
         materialName: "BOOKSHELF"
-        displayName: "{owner_name} &b&l&n's store"
+        displayName: "&b&l&n store"
         lore:
-          - "&a&l shop owner: {owner_name}"
-          - "&a&l store name: {name}"
-          - "&b&lCreation time: {create_time}"
-          - "&d&lCollection_amount: {collect_amount}"
-          - "&d&lViews: {page_view}"
-          - "&d&lPopularity: {popularity}"
-          - "&e&lHeat value: {hot_value}"
-          - "&f&lClick to store action options page"
-          - "&a&lHere is the description"
-          - "{(description)}"
+          - "&a&lStoreOwner: &f{owner_name}"
+          - "&b&lStore name: &f{name}"
+          - "&c&lCreation time: &f{create_time}"
+          - "&d&lCollection count: &f{collect_amount}"
+          - "&e&lViews: &f{page_view}"
+          - "&f&lPopularity: &f{popularity}"
+          - "&a&lHeat value: &f{hot_value}"
+          - "&b&lClick to store action options page"
+          - "&c&lHere is the description"
+          - "&d&l{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1163,7 +1165,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1172,7 +1174,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1181,7 +1183,7 @@ gui:
         materialName: "ENDER_CHEST"
         displayName: "&b&l&nCreateShop"
         lore:
-          - "&e&lClick me to create a store"
+          - "&a&l createShop"
         amount: 2
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1190,7 +1192,7 @@ gui:
         materialName: "DIAMOND_SWORD"
         displayName: "&b&l&ndeleteShop"
         lore:
-          - "&e&lClick to manage my own store"
+          - "&a&lManage my own store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1199,17 +1201,26 @@ gui:
         materialName: "COMPASS"
         displayName: "&b&l&nSearchShopName"
         lore:
-          - "&e&lClick to search for a store by its name"
+          - "&a&lSearchByShopName"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: [ ]
     manageShopPageShopOptionPage:
+      buyShopPopularity:
+        materialName: "DIAMOND"
+        displayName: "&b&l&nbuyPopularity"
+        lore:
+          - "&a&l spend gold to buy Popularity"
+        amount: 1
+        itemFlag:
+          - "HIDE_DESTROYS"
+        customModelData: [ ]
       manageIconPage:
         materialName: "APPLE"
         displayName: "&b&l&nManage this store icon"
         lore:
-          - "&e&lGo to manage this store icon"
+          - "&a&lGo to manage this store icon"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1218,25 +1229,25 @@ gui:
         materialName: "NAME_TAG"
         displayName: "&b&l&n setName"
         lore:
-          - "&e&l setShopName"
+          - "&a&l setShopName"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to my store screen"
+          - "&a&lReturn to my store screen"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       manageGoodPage:
         materialName: "CHEST"
-        displayName: "&b&l&nGo to store"
+        displayName: "&b&l&n go to store"
         lore:
-          - "&e&lGo to admin store"
+          - "&a&lGo to manage store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1245,7 +1256,7 @@ gui:
         materialName: "BEACON"
         displayName: "&b&l&nSetting the physical coordinates of the store"
         lore:
-          - "&e&l set physical store"
+          - "&a&l set physical shop coordinates"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1254,7 +1265,7 @@ gui:
         materialName: "BEDROCK"
         displayName: "&b&l&nReset Shop's physical coordinates"
         lore:
-          - "&e&l reset physical store"
+          - "&a&l reset physical store"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1263,7 +1274,7 @@ gui:
         materialName: "WRITTEN_BOOK"
         displayName: "&b&l&n updateShopDescription"
         lore:
-          - "&e&lClick to updateShopDescription"
+          - "&a&lClick to update shop description"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1272,7 +1283,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&n setShopDescription"
         lore:
-          - "&e&lClick to setShopDescription"
+          - "&a&lClick to setShopDescription"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1281,16 +1292,16 @@ gui:
         materialName: "WRITTEN_BOOK"
         displayName: "&b&l&n resetSetShopDescription"
         lore:
-          - "&e&l resetSetShopDescription"
+          - "&a&l resetSetShopDescription"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       addShopDescription:
         materialName: "WRITTEN_BOOK"
-        displayName: "&b&l&nAddSetShopDescription"
+        displayName: "&b&l&nAdd set store description"
         lore:
-          - "&e&lClick to add a set shop description"
+          - "&a&lClick to add set store description"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1299,7 +1310,7 @@ gui:
         materialName: "BARRIER"
         displayName: "&b&l&nRemoveSetShopDescription"
         lore:
-          - "&e&lClick to remove setShopDescription"
+          - "&a&lClick to remove setShopDescription"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1308,7 +1319,7 @@ gui:
         materialName: "ENCHANTED_BOOK"
         displayName: "&b&l&nView Comments"
         lore:
-          - "&e&lClick to view shop comment"
+          - "&a&lClick to view shop comment"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1318,7 +1329,7 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&n gold coins"
         lore:
-          - "&e&l gold currency"
+          - "&a&l gold coins currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1327,16 +1338,16 @@ gui:
         materialName: "map"
         displayName: "&b&l&n pointsCurrency"
         lore:
-          - "&e&l points currency"
+          - "&a&l points currency"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
         customModelData: []
       back:
         materialName: "REDSTONE"
-        displayName: "&b&l&nReturn to previous screen"
+        displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to icon purchase"
+          - "&a&l return icon purchase"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1345,10 +1356,10 @@ gui:
         materialName: "GLASS"
         displayName: "&b&l&n currency"
         lore:
-          - "&b&l↑↑↑↑↑↑↑↑↑↑↑↑"
-          - "&a&l top side is goods"
-          - "&a&l lower side is currency"
-          - "&b&l↓↓↓↓↓↓↓↓↓↓↓↓"
+          - "&a&l↑↑↑↑↑↑↑↑↑↑↑↑"
+          - "&b&l top side is goods"
+          - "&c&l lower side is currency"
+          - "&d&l↓↓↓↓↓↓↓↓↓↓↓↓"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1357,13 +1368,13 @@ gui:
         materialName: "PAINTING"
         displayName: "&b&l&n specific information"
         lore:
-          - "&a&lBoss: {merchant_name}"
-          - "&b&lCustomer: {customer_name}"
-          - "&b&ltransaction_time: {trade_time}"
-          - "&b&ltransaction_tax_rate: {trade_tax_rate}"
-          - "&b&ltransaction_type: {good_type}"
-          - "&e&lquantity: {trade_amount}"
-          - "&e&l whether it is a system store: {good_system}"
+          - "&a&lBoss: &f{merchant_name}"
+          - "&b&lCustomer: &f{customer_name}"
+          - "&c&lTransaction time: &f{trade_time}"
+          - "&d&ltransaction_tax_rate: &f{trade_tax_rate}"
+          - "&e&lTransaction type: &f{good_type}"
+          - "&f&lQuantity: {trade_amount}"
+          - "&a&lWhether it's a system store: {good_system}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1373,14 +1384,14 @@ gui:
         materialName: "PAPER"
         displayName: "&b&l&nTradeRecord"
         lore:
-          - "&a&lBoss: {merchant_name}"
-          - "&b&lCustomer: {customer_name}"
-          - "&b&lquantity: {trade_amount}"
-          - "&b&ltransaction_time: {trade_time}"
-          - "&b&ltransaction_tax_rate: {trade_tax_rate}"
-          - "&b&lTransaction type: {good_type}"
-          - "&e&lWhether it's a system store: {good_system}"
-          - "&b&lClick me for details"
+          - "&a&lBoss: &f{merchant_name}"
+          - "&b&lCustomer: &f{customer_name}"
+          - "&c&lQuantity: &f{trade_amount}"
+          - "&d&ltransaction_time: &f{trade_time}"
+          - "&e&ltransaction_tax_rate: &f{trade_tax_rate}"
+          - "&f&lTransaction type: &f{good_type}"
+          - "&a&lWhether it's a system store: {good_system}"
+          - "&b&lView details"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1389,7 +1400,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nnextPage"
         lore:
-          - "&e&lGo to the next page"
+          - "&a&lGo to the next page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1398,7 +1409,7 @@ gui:
         materialName: "BOOK"
         displayName: "&b&l&nPreviousPage"
         lore:
-          - "&e&lGo to previous page"
+          - "&a&lGo to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1407,7 +1418,7 @@ gui:
         materialName: "REDSTONE"
         displayName: "&b&l&nReturn"
         lore:
-          - "&e&lReturn to previous page"
+          - "&a&lReturn to previous page"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"

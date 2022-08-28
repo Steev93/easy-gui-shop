@@ -9,102 +9,87 @@ setting:
   display: "default"
 
 
-  #每个人气的Vault花费，必须是小数形式，必须是非负数，如果填错，默认值，如果不填，代表不开启购买花费功能
-  #关闭此功能时记得因此页面中按钮的显示
-  #Vault spend per popularity, must be in decimal form, must be non-negative, if you fill in the wrong, the default value, if not, means do not turn on the purchase spend function
-  #Remember to turn off this function so that the display of the button in the page
+  #每个人气的Vault花费，必须是非负数，而且要写成小数形式，如果填错，采用默认值50.0，如果不填，代表不开启购买花费功能
+  #Vault cost of each popularity, must be non-negative, and should be written in decimal form, if you fill in the wrong, using the default value of 50.0, if not, means do not open the purchase cost function
   perPopularityCost: 50.0
 
-  #设置店铺坐标的Vault花费，必须是小数形式，必须是非负数，如果填错，默认值，如果不填，代表不开启此功能
-  # Set the store coordinates of the Vault spend, must be a decimal form, must be non-negative, if you fill in the wrong, the default value, if not, means do not open this function
+  #设置店铺坐标的Vault花费，必须是小数形式，必须是非负数，如果填错，采用默认值50.0，如果不填，代表不开启此功能
+  # Set the store coordinates of the Vault spend, must be a decimal form, must be non-negative, if you fill in the wrong, using the default value of 50.0, if not, means do not open this function
   setShopLocationCost: 50.0
 
-  #距离实体店铺坐标多少范围内，才可以存取商品，必须非负，如果填错，采用默认值32，如果不填，则意味着不开启这个限制
-  # How far from the physical store coordinates to access the goods, must be non-negative,
-  # if you fill in the wrong, using the default value of 32
-  # If you leave it blank, it means that this restriction is not enabled
-  manageGoodRange: 32
+  #距离实体店铺坐标多少范围内，才可以存取商品，必须是非负数，必须是小数形式，如果填错，采用默认值32.0，如果不填，则意味着不开启这个限制
+  # How far from the physical store coordinates can access the goods, must be non-negative, must be in decimal form, if you fill in the wrong, using the default value of 32.0, if not, it means that this limit is not turned on
+  manageGoodRange: 32.0
 
-  #哪些世界禁止设置店铺坐标
-  # Which worlds prohibit setting store coordinates
+  #哪些世界禁止设置店铺坐标，在这些世界不可以设置店铺坐标，如果不填，则意味着不开启这个限制
+  # Which worlds prohibit setting store coordinates, in these worlds it is not possible to set store coordinates, if you do not fill in, it means that this restriction is not turned on
   shopLocationWorldBlackList:
     - "world_not_known"
 
-  #距离银行坐标多少范围内，才可以存取物品货币库存，必须非负，如果填错，采用默认值32，如果不填，则意味着不开启这个限制
-  # How far from the bank coordinates can access the item currency inventory, must be non-negative,
-  #if you fill in the wrong , using the default value of 32
-  # If you leave it blank, it means that this restriction is not enabled
-  manageItemStockRange: 32
+  #距离银行坐标多少范围内，才可以存取物品货币库存，必须是非负数，必须是小数形式，如果填错，采用默认值32.0，如果不填，则意味着不开启这个限制
+  # How far from the bank coordinates can you access the item currency inventory, must be non-negative, must be in decimal form, if filled in wrong, using the default value of 32.0, if not filled in, it means that this limit is not turned on
+  manageItemStockRange: 32.0
 
-  #银行的坐标
-  #Coordinates of the bank
+  #银行的坐标，必填
+  # Coordinates of the bank, required
   bankLocation:
 
-    #在哪一个世界，如果是不存在的世界，将采用默认值world
-    #In which world, if it does not exist, the default value world will be used
+    #在哪一个世界，如果不填或填错则采用默认值
+    # in which world, if not filled or incorrectly filled then the default value is used
     worldName: world
 
-    #x坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
-    #X coordinate, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    #x，这里需要填写小数，必须是小数形式，如果不填或填错则采用默认值
+    #x, here you need to fill in the decimal, must be a decimal form, if not or fill in the wrong value will use the default
     x: 0.0
 
-    #y坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值80.0
-    #Y coordinate, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 80.0 will be used
+    #y，这里需要填写小数，必须是小数形式，如果不填或填错则采用默认值
+    #y, here you need to fill in the decimal, must be a decimal form, if not or fill in the wrong value will use the default
     y: 80.0
 
-    #z坐标，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
-    #Z coordinate, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    #z，这里需要填写小数，必须是小数形式，如果不填或填错则采用默认值
+    #z, here you need to fill in the decimal, must be a decimal form, if not or fill in the wrong value will use the default
     z: 0.0
 
-    #yaw，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
-    #yaw, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    #yaw，这里需要填写小数，必须是小数形式，如果不填或填错则采用默认值
+    #yaw, here you need to fill in the decimal, must be a decimal form, if not or fill in the wrong value will use the default
     yaw: 0.0
 
-    #pitch，这里需要填写小数，如果是5，也必须写为小数的形式5.0，否则将采用默认值0.0
-    #pitch, you need to fill in decimal here.
-    #If it is 5, it must also be written in the form of decimal 5.0, otherwise the default value of 0.0 will be used
+    #pitch，这里需要填写小数，必须是小数形式，如果不填或填错则采用默认值
+    #pitch, here you need to fill in the decimal, must be a decimal form, if not or fill in the wrong value will use the default
     pitch: 0.0
 
-  #税收，值必须为小于等于1并且大于等于0的实数
-  #Tax, the value must be a real number less than or equal to 1 and greater than or equal to 0
+  #税收，必填
   tax:
 
-    #金币的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
-    #The tax on gold coins will be rounded off.
-    #If the transaction amount is 100 and the tax is 0.5, then the tax is 100 × 0.5 = 50
+    #金币交易的税收率，结果会四舍五入，值必须为小于等于1并且大于等于0的实数，而且要写成小数形式，如果不填或填错则采用默认值
+    #The result will be rounded, the value must be a real number less than or equal to 1 and greater than or equal to 0, and should be written in decimal form, if not filled or filled incorrectly then the default value is used
     vault: 0.05
 
-    #点券的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
-    #The tax of points will be rounded off.
-    #If the transaction amount is 100 and the tax is 0.5, the tax is 100 × 0.5 = 50
+    #点券交易的税收率，结果会四舍五入，值必须为小于等于1并且大于等于0的实数，而且要写成小数形式，如果不填或填错则采用默认值
+    #The result will be rounded, the value must be a real number less than or equal to 1 and greater than or equal to 0, and must be written in decimal form, if not filled or incorrectly filled then the default value is used
     playerPoints: 0.1
 
-    #以物易物的税收，会四舍五入，如果交易额为100，税收为0.5 那么税收为100 × 0.5 = 50
-    #The tax item will be rounded off.
-    #If the transaction amount is 100 and the tax is 0.5, the tax is 100 × 0.5 = 50
+    #以物易物交易的税收率，结果会四舍五入，值必须为小于等于1并且大于等于0的实数，而且要写成小数形式，如果不填或填错则采用默认值
+    # The tax rate of barter transactions, the result will be rounded, the value must be less than or equal to 1 and greater than or equal to 0 real numbers, and should be written in decimal form, if not filled or filled in the wrong default value is used
     item: 0.1
 
 
 
   #热力值的大小 = 浏览量 × 浏览量系数 + 收藏数 × 收藏数系数 + 人气×人气系数
   #商店按照热力值大小从前往后排序显示
-  #how value = page view × page view coefficient + number of collections × collection coefficient + popularity × popularity coefficient
-  #Stores are displayed in order of hot value from front to back
+  #Heat value size = Views × Views factor + Favorites × Favorites factor + Popularity × Popularity factor
+  # Shops are displayed in descending order of popularity value
   hotValueCoefficient:
 
-    #浏览量系数，如果这里填写的不是非负数，则采用默认值1
-    #The page view coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
+    #浏览量系数，必须是非负整数，如果不填或填错则采用默认值
+    #Browsing factor, must be a non-negative integer, if not filled or incorrectly filled then the default value is used
     pageView: 1
 
-    #收藏数系数，如果这里填写的不是非负数，则采用默认值50
-    #The collect amount coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
+    #收藏数系数，必须是非负整数，如果不填或填错则采用默认值
+    #Collection coefficients, must be non-negative integers, if not filled or incorrectly filled then the default value is used
     collectAmount: 50
 
-    #人气系数，如果这里填写的不是非负数，则采用默认值5
-    #The popularity coefficient. If it is not a non-negative number filled in here, the default value of 1 will be used
+    #人气系数，必须是非负整数，如果不填或填错则采用默认值
+    # Popularity factor, must be a non-negative integer, if not filled or incorrectly filled then the default value is used
     popularity: 5
 
