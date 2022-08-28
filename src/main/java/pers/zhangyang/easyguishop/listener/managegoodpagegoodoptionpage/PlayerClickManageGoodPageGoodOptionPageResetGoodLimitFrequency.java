@@ -18,7 +18,7 @@ import pers.zhangyang.easylibrary.util.TransactionInvocationHandler;
 @EventListener
 public class PlayerClickManageGoodPageGoodOptionPageResetGoodLimitFrequency implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {38},closeGui = false,refreshGui = true)
+    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {29},closeGui = false,refreshGui = true)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

@@ -12,7 +12,7 @@ import pers.zhangyang.easylibrary.annotation.GuiDiscreteButtonHandler;
 @EventListener
 public class PlayerClickManageGoodPageGoodOptionPageSetGoodLimitFrequency implements Listener {
 
-    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {42},closeGui = true,refreshGui = false)
+    @GuiDiscreteButtonHandler(guiPage = ManageGoodPageGoodOptionPage.class, slot = {33},closeGui = true,refreshGui = false)
     public void onPlayerClickAllShopNextPage(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();

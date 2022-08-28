@@ -105,9 +105,9 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
         inventory.setItem(13, createPlayerPointsGood);
 
         ItemStack resetLimitTime = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodLimitTime");
-        inventory.setItem(39, resetLimitTime);
+        inventory.setItem(20, resetLimitTime);
         ItemStack resetPrice = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodPrice");
-        inventory.setItem(41, resetPrice);
+        inventory.setItem(24, resetPrice);
 
         ItemStack setLimitTime = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodLimitTime");
         inventory.setItem(30, setLimitTime);
@@ -120,9 +120,9 @@ public class ManageGoodPageGoodOptionPage extends SingleGuiPageBase implements B
 
 
         ItemStack resetGoodLimitFrequency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.resetGoodLimitFrequency");
-        inventory.setItem(38, resetGoodLimitFrequency);
+        inventory.setItem(29, resetGoodLimitFrequency);
         ItemStack setGoodLimitFrequency = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.setGoodLimitFrequency");
-        inventory.setItem(42, setGoodLimitFrequency);
+        inventory.setItem(33, setGoodLimitFrequency);
         ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageGoodPageGoodOptionPage.back");
         inventory.setItem(49, back);
         viewer.openInventory(inventory);
