@@ -71,7 +71,7 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
 
 
         ItemStack set = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.setShopDescription");
-        inventory.setItem(5, set);
+        inventory.setItem(14, set);
         ItemStack addShopDescription = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.addShopDescription");
         inventory.setItem(13, addShopDescription);
 
@@ -83,7 +83,7 @@ public class ManageShopPageShopOptionPage extends SingleGuiPageBase implements B
         inventory.setItem(23, lookComment);
 
         ItemStack buyShopPopularity = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.buyShopPopularity");
-        inventory.setItem(3, buyShopPopularity);
+        inventory.setItem(12, buyShopPopularity);
 
         ItemStack back = GuiYaml.INSTANCE.getButtonDefault("gui.button.manageShopPageShopOptionPage.back");
         inventory.setItem(49, back);
