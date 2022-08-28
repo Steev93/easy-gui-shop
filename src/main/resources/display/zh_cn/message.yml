@@ -253,7 +253,7 @@ message:
 
     #教程操作提示的，每个操作对应一个
     howToBuyShopPopularity:
-      - "&A&l输入购买的数量完成购买，输入 &f取消 &b&l取消"
+      - "&A&l输入购买的数量完成购买，输入 &f取消 &a&l取消"
     howToSearchByShopNameInManageShopPage:
       - "&a&l输入店铺名字完成搜索，输入 &f取消 &a&l取消。"
     howToSearchByGoodNameInManageGoodPage:

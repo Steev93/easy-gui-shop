@@ -253,7 +253,7 @@ message:
 
     # of tutorial actions prompted, each action corresponds to a
     howToBuyShopPopularity:
-      - "&A&lEnter the number of purchases to complete the purchase, enter &fCancel &b&lCancel"
+      - "&A&lEnter the number of purchases to complete the purchase, enter &fCancel &a&lCancel"
     howToSearchByShopNameInManageShopPage:
       - "&a&lEnter the name of the store to complete the search, enter &f Cancel &a&l Cancel."
     howToSearchByGoodNameInManageGoodPage:
