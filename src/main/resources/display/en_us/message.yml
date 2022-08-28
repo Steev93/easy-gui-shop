@@ -194,13 +194,13 @@ message:
     notExistItemStockWhenDepositItemStock:
       - "&c&lNotExistItemStock."
     duplicateShopCollectorInAllShopPageShopOptionPage:
-      - "&c&l Duplicate shop collection records."
+      - "&c&l Duplicate shop collection."
     duplicateShopCollectorInCollectedShopPageShopOptionPage:
-      - "&c&l duplicate shop collection records."
+      - "&c&l duplicate shop collection."
     notExistShopCollectorInCollectedShopPageShopOptionPage:
-      - "&c&l Non-existent store collection record."
+      - "&c&l Non-existent store collection."
     notExistShopCollectorInAllShopPageShopOptionPage:
-      - "&c&l non-existent store collection records."
+      - "&c&l non-existent store collection."
     notExistLocationInAllShopPageShopOptionPage:
       - "&c&l nonexistent coordinates."
     notExistLocationInCollectedShopPageShopOptionPage:

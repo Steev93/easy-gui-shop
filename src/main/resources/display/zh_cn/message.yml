@@ -13,6 +13,7 @@ message:
     #评论时，评论完多行后提交需要输入的，不可以是""，不填或者填错则采用默认值
     submit: "提交"
 
+  #下面支持Papi变量
   chat:
     failureGetLatestVersion:
       - "&c&l获得EasyGuiShop最新版本失败。"
@@ -193,13 +194,13 @@ message:
     notExistItemStockWhenDepositItemStock:
       - "&c&l不存在的货币库存。"
     duplicateShopCollectorInAllShopPageShopOptionPage:
-      - "&c&l重复的商店收藏记录。"
+      - "&c&l重复的商店收藏。"
     duplicateShopCollectorInCollectedShopPageShopOptionPage:
-      - "&c&l重复的商店收藏记录。"
+      - "&c&l重复的商店收藏。"
     notExistShopCollectorInCollectedShopPageShopOptionPage:
-      - "&c&l不存在的商店收藏记录。"
+      - "&c&l不存在的商店收藏。"
     notExistShopCollectorInAllShopPageShopOptionPage:
-      - "&c&l不存在的商店收藏记录。"
+      - "&c&l不存在的商店收藏。"
     notExistLocationInAllShopPageShopOptionPage:
       - "&c&l不存在的坐标。"
     notExistLocationInCollectedShopPageShopOptionPage:
