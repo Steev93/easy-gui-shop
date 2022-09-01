@@ -67,16 +67,15 @@ gui:
 
         # indicates the description of the button, all the variables available in lore, except those enclosed in {()}, can be used in displayName
         lore:
-          - "&a&l store name: &f{name}"
-          - "&b&l store owner: &f{owner_name}"
-          - "&c&lStore name: &f{name}"
-          - "&d&lTime created: &f{create_time}"
-          - "&e&lCollected_amount: &f{collect_amount}"
-          - "&f&lViews: &f{page_view}"
-          - "&a&lPopularity: &f{popularity}"
-          - "&b&lHeat value: &f{hot_value}"
-          - "&c&lClick to action options page"
-          - "&d&lHere is the description"
+          - "&a&l store owner: &f{owner_name}"
+          - "&b&lStore name: &f{name}"
+          - "&c&lTime created: &f{create_time}"
+          - "&d&lCollected_amount: &f{collect_amount}"
+          - "&e&lViews: &f{page_view}"
+          - "&f&lPopularity: &f{popularity}"
+          - "&a&lHeat value: &f{hot_value}"
+          - "&b&lClick to action options page"
+          - "&c&lHere is the description"
           - "&f{(description)}"
 
         # indicates the amount
@@ -483,7 +482,7 @@ gui:
           - "&a&lHeat value: &f{hot_value}"
           - "&b&lClick to see store action options"
           - "&c&lHere are the descriptions"
-          - "&d{(description)}"
+          - "&f{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1156,7 +1155,7 @@ gui:
           - "&a&lHeat value: &f{hot_value}"
           - "&b&lClick to store action options page"
           - "&c&lHere is the description"
-          - "&d&l{(description)}"
+          - "&f{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1372,9 +1371,10 @@ gui:
           - "&b&lCustomer: &f{customer_name}"
           - "&c&lTransaction time: &f{trade_time}"
           - "&d&ltransaction_tax_rate: &f{trade_tax_rate}"
-          - "&e&lTransaction type: &f{good_type}"
-          - "&f&lQuantity: {trade_amount}"
-          - "&a&lWhether it's a system store: {good_system}"
+          - "&e&ltransaction_price: &f{price}"
+          - "&f&lTransaction type: &f{good_type}"
+          - "&a&lQuantity: {trade_amount}"
+          - "&b&lWhether it's a system store: {good_system}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"

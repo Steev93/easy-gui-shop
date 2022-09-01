@@ -67,16 +67,15 @@ gui:
 
         #表示按钮的描述，lore中可以用的变量，除了{()}括起来的，都可以用在displayName中
         lore:
-          - "&a&l商店名字: &f{name}"
-          - "&b&l店铺主人: &f{owner_name}"
-          - "&c&l店铺名字: &f{name}"
-          - "&d&l创建时间: &f{create_time}"
-          - "&e&l收藏数量: &f{collect_amount}"
-          - "&f&l浏览量: &f{page_view}"
-          - "&a&l人气: &f{popularity}"
-          - "&b&l热力值: &f{hot_value}"
-          - "&c&l点击进入操作选项页"
-          - "&d&l以下是描述"
+          - "&a&l店铺主人: &f{owner_name}"
+          - "&b&l店铺名字: &f{name}"
+          - "&c&l创建时间: &f{create_time}"
+          - "&d&l收藏数量: &f{collect_amount}"
+          - "&e&l浏览量: &f{page_view}"
+          - "&f&l人气: &f{popularity}"
+          - "&a&l热力值: &f{hot_value}"
+          - "&b&l点击进入操作选项页"
+          - "&c&l以下是描述"
           - "&f{(description)}"
 
         #表示数量
@@ -483,7 +482,7 @@ gui:
           - "&a&l热力值: &f{hot_value}"
           - "&b&l点击查看店铺操作选项"
           - "&c&l以下是描述"
-          - "&d{(description)}"
+          - "&f{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1156,7 +1155,7 @@ gui:
           - "&a&l热力值: &f{hot_value}"
           - "&b&l点击进入店铺操作选项页"
           - "&c&l以下是描述"
-          - "&d&l{(description)}"
+          - "&f{(description)}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
@@ -1372,9 +1371,10 @@ gui:
           - "&b&l顾客: &f{customer_name}"
           - "&c&l交易时间: &f{trade_time}"
           - "&d&l交易税率: &f{trade_tax_rate}"
-          - "&e&l交易类型: &f{good_type}"
-          - "&f&l数量：{trade_amount}"
-          - "&a&l是否为系统商店：{good_system}"
+          - "&e&l交易单价: &f{price}"
+          - "&f&l交易类型: &f{good_type}"
+          - "&a&l数量：{trade_amount}"
+          - "&b&l是否为系统商店：{good_system}"
         amount: 1
         itemFlag:
           - "HIDE_DESTROYS"
