@@ -354,6 +354,12 @@ public class GuiServiceImpl implements GuiService {
     }
 
     @Override
+    public @Nullable ShopMeta getShopByName(String shopName) {
+
+        return new ShopDao().getByName(shopName);
+    }
+
+    @Override
     public GoodMeta getGood(String goodUuid) {
         return new GoodDao().getByUuid(goodUuid);
     }

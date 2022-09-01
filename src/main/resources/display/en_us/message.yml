@@ -79,6 +79,8 @@ message:
       - "&b&lThe current version of EasyGuiShop is &f{current_version}, &b&lThe latest version is &f{latest_version}."
 
     # frequently occurring failure hints, one failure hint for each operation
+    notShopOwner:
+      - "&c&Lnot shop owner，can not delete"
     shopLocationWorldBlackList:
       - "&C&l shop coordinates blacklist, forbid to set store coordinates in this world"
     notEnoughVaultWhenBuyShopPopularity:

@@ -59,6 +59,8 @@ public interface GuiService {
 
     @Nullable
     ShopMeta getShop(String shopUuid);
+    @Nullable
+    ShopMeta getShopByName(String shopName);
 
     GoodMeta getGood(String goodUuid);
 

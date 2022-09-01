@@ -79,6 +79,8 @@ message:
       - "&b&lEasyGuiShop的当前版本是 &f{current_version}，&b&l最新版本是 &f{latest_version}。"
 
     #经常发生的失败提示，每个操作对应一个失败提示
+    notShopOwner:
+      - "&c&L不是店铺的主人，不能删除"
     shopLocationWorldBlackList:
       - "&C&l店铺坐标黑名单，禁止把店铺坐标设置在这个世界"
     notEnoughVaultWhenBuyShopPopularity:
