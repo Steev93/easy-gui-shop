@@ -720,6 +720,19 @@ public class GuiServiceImpl implements GuiService {
             }
             itemStockMetaCustomer.setAmount(itemStockMetaCustomer.getAmount() + afterTax);
 
+
+            if (!goodMeta.isSystem()) {
+                new ItemStockDao().deleteByPlayerUuidAndItemStack(merchantUuid, goodMeta.getCurrencyItemStack());
+                new ItemStockDao().insert(itemStockMetaMerchant);
+            }
+
+
+
+            new ItemStockDao().deleteByPlayerUuidAndItemStack(customUuid, goodMeta.getCurrencyItemStack());
+            new ItemStockDao().insert(itemStockMetaCustomer);
+
+            new GoodDao().deleteByUuid(goodMeta.getUuid());
+            new GoodDao().insert(goodMeta);
         }
         if (goodMeta.getType().equalsIgnoreCase("出售")) {
 
@@ -741,16 +754,19 @@ public class GuiServiceImpl implements GuiService {
                 itemStockMetaMerchant.setAmount(itemStockMetaMerchant.getAmount() + afterTax);
             }
 
-        }
-        new ItemStockDao().deleteByPlayerUuidAndItemStack(merchantUuid, goodMeta.getCurrencyItemStack());
-        assert itemStockMetaMerchant != null;
-        new ItemStockDao().insert(itemStockMetaMerchant);
-        new ItemStockDao().deleteByPlayerUuidAndItemStack(customUuid, goodMeta.getCurrencyItemStack());
-        assert itemStockMetaCustomer != null;
-        new ItemStockDao().insert(itemStockMetaCustomer);
+            if (!goodMeta.isSystem()) {
+                new ItemStockDao().deleteByPlayerUuidAndItemStack(merchantUuid, goodMeta.getCurrencyItemStack());
+                assert itemStockMetaMerchant != null;
+                new ItemStockDao().insert(itemStockMetaMerchant);
+            }
 
-        new GoodDao().deleteByUuid(goodMeta.getUuid());
-        new GoodDao().insert(goodMeta);
+            new ItemStockDao().deleteByPlayerUuidAndItemStack(customUuid, goodMeta.getCurrencyItemStack());
+            new ItemStockDao().insert(itemStockMetaCustomer);
+
+            new GoodDao().deleteByUuid(goodMeta.getUuid());
+            new GoodDao().insert(goodMeta);
+        }
+
     }
 
 
