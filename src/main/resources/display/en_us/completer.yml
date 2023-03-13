@@ -23,62 +23,62 @@ completer:
     - "setShopSystem"
     - "setIconSystem"
 
-  #当输入了/easyGuiShop plusShopPopularity后将提示补全以下内容
+  #When you enter /easyGuiShop plusShopPopularity, you will be prompted to complete the following content
   easyGuiShopPlusPopularity:
-    - "<商店名字>"
+    - " <store name> "
 
-  #当输入了/easyGuiShop plusShopPopularity 值后将提示补全以下内容
+  #When the /easyGuiShop plusShopPopularity value is entered, it will prompt to complete the following content
   easyGuiShopPlusPopularity$:
-    - "<数量>"
+    - " <quantity> "
 
   easyGuiShopOpenMui:
-    - "<玩家名字>"
+    - " <player name> "
 
   easyGuiShopSubtractPopularity:
-    - "<商店>"
+    - " <store> "
   easyGuiShopSubtractPopularity$:
-    - "<数量>"
+    - " <quantity> "
   easyGuiShopDeleteIcon:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopCreateIcon:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconVaultPrice:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconVaultPrice$:
-    - "<价格>"
+    - " <price> "
   easyGuiShopSetIconPlayerPointsPrice:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconPlayerPointsPrice$:
-    - "<价格>"
+    - " <price> "
   easyGuiShopSetIconItemPrice:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconItemPrice$:
-    - "<价格>"
+    - " <price> "
   easyGuiShopSetIconName:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconName$:
-    - "<新名字>"
+    - " <new name> "
   easyGuiShopSetIconStock:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconStock$:
-    - "<数量>"
+    - " <quantity> "
   easyGuiShopSetIconSystem:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconSystem$:
     - "<true|false>"
   easyGuiShopSetShopSystem:
-    - "<店铺名字>"
+    - " <store name> "
   easyGuiShopSetShopSystem$:
     - "<true|false>"
   easyGuiShopSetGoodSystem:
-    - "<店铺名字>"
+    - " <store name> "
   easyGuiShopSetGoodSystem$:
-    - "<商品名字>"
+    - " <product name> "
   easyGuiShopSetGoodSystem$$:
     - "<true|false>"
   easyGuiShopSetIconLimitTime:
-    - "<图标名字>"
+    - " <icon name> "
   easyGuiShopSetIconLimitTime$:
-    - "<时间>"
+    - " <time> "
   easyGuiShopResetIconLimitTime:
-    - "<图标名字>"
+    - " <icon name> "
