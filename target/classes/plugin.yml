@@ -1,5 +1,5 @@
 name: EasyGuiShop
-version: 2.8.4
+version: 2.8.5
 main: pers.zhangyang.easyguishop.EasyGuiShop
 api-version: 1.13
 commands:

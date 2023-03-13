@@ -706,7 +706,7 @@ public class GuiServiceImpl implements GuiService {
             if (itemStockMetaMerchant == null) {
                 throw new NotMoreItemStockException();
             }
-            if (itemStockMetaMerchant.getAmount() < goodMeta.getItemPrice()) {
+            if (itemStockMetaMerchant.getAmount() < beforeTax) {
                 throw new NotMoreItemStockException();
             }
             if (!goodMeta.isSystem()) {
@@ -739,7 +739,7 @@ public class GuiServiceImpl implements GuiService {
             if (itemStockMetaCustomer == null) {
                 throw new NotEnoughItemStockException();
             }
-            if (itemStockMetaCustomer.getAmount() < goodMeta.getItemPrice()) {
+            if (itemStockMetaCustomer.getAmount() < beforeTax) {
                 throw new NotEnoughItemStockException();
             }
             //顾客货币减少
